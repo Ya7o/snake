@@ -1,8 +1,6 @@
 # 13 — Acceptance Matrix
 
-Ce fichier est obligatoire pour valider la première build V4.
-
-Claude Code / Codex doit le remplir ou le reprendre dans son résumé final après `tickets/000_MASTER_BUILD_V4_STABLE.md`.
+Ce fichier sert à valider la build V4 actuelle après patchs.
 
 ## Statuts autorisés
 
@@ -15,7 +13,7 @@ Claude Code / Codex doit le remplir ou le reprendre dans son résumé final apr�
 
 | Domaine | Critère | Statut | Notes |
 |---|---|---:|---|
-| Build | `npm run check` passe | NOT TESTED | |
+| Build | `npm run check` passe | OK | Dernier check demandé pendant nettoyage repo |
 | Web mobile | `npm run dev` accessible sur téléphone via Wi-Fi | NOT TESTED | |
 | Architecture | Pas de fichier monolithique | NOT TESTED | |
 | Architecture | Scènes séparées | NOT TESTED | |
@@ -23,7 +21,12 @@ Claude Code / Codex doit le remplir ou le reprendre dans son résumé final apr�
 | Architecture | Mécaniques séparées par univers | NOT TESTED | |
 | UX | TitleScene fonctionnelle | NOT TESTED | |
 | UX | WorldMapScene fonctionnelle | NOT TESTED | |
-| UX | World map asset réellement utilisé | PARTIAL | world_map.png généré procéduralement + fallback implémenté |
+| UX | World map asset réellement utilisé | OK | `public/assets/map/world_map.png` 1448×1086 |
+| UX | World map cadrage mobile patch 909 | NOT TESTED | Cover scale, zoom initial, nodes compacts, footer/header réduits |
+| UX | World map nodes + double tap patch 911 | NOT TESTED | Nodes taille écran stable, simple tap sélection, double tap lance |
+| UX | Title noms univers patch 912 | NOT TESTED | Labels centralisés, noms complets sur 2 colonnes |
+| Design | Cadres gameplay univers | OK | 8 cadres complets dans `public/assets/frames/[univers]/frame.png`; runtime non testé visuellement dans cette passe |
+| Audit | Audit mobile-first | OK | Rapports dans `docs/audits/` |
 | UX | LevelIntroScene fonctionnelle | NOT TESTED | |
 | UX | ClearScene fonctionnelle | NOT TESTED | |
 | UX | GameOverScene fonctionnelle | NOT TESTED | |

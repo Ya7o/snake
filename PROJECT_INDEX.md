@@ -1,39 +1,38 @@
 # PROJECT_INDEX.md
 
-## Fichiers racine
+## Racine
 
-- `CLAUDE.md` : règles persistantes.
-- `START_HERE_FOR_CLAUDE.md` : entrée rapide pour Claude Code / Codex.
+- `CLAUDE.md` : règles persistantes du projet.
 - `README.md` : démarrage humain.
-- `package.json` : scripts.
-- `tickets/000_MASTER_BUILD_V4_STABLE.md` : ticket principal pour première build stable.
+- `START_HERE_FOR_CLAUDE.md` : entrée rapide pour agent.
+- `package.json` : scripts NPM.
+- `vite.config.ts` / `tsconfig.json` : configuration build.
 
-## Docs projet
+## Code
 
-- `docs/01_VISION.md`
-- `docs/02_GAME_DESIGN.md`
-- `docs/03_MECHANICS_BIBLE.md`
-- `docs/04_ART_BIBLE.md`
-- `docs/05_UX_FLOW.md`
-- `docs/06_TECHNICAL_ARCHITECTURE.md`
-- `docs/07_QA_CHECKLIST.md`
-- `docs/08_ASSET_GUIDE.md`
-- `docs/09_DECISIONS_LOG.md`
-- `docs/10_DESIGN_PACK_USAGE.md`
-- `docs/11_MOBILE_ITERATION_WORKFLOW.md`
-- `docs/12_PREREQUISITES_PC.md`
+- `src/main.ts` : configuration Phaser et bootstrap.
+- `src/scenes/` : scènes du flow complet.
+- `src/core/` : grille, snake, spawn.
+- `src/mechanics/` : mécaniques par univers et boss.
+- `src/render/` : renderers visuels, HUD, cadres, boutons UI.
+- `src/systems/` : input, audio, save, design board manager.
+- `src/config/` : données niveaux/univers/world map.
+- `src/qa/` : checks projet.
 
-## Tickets importants
+## Assets
 
-- `000_MASTER_BUILD_V4_STABLE.md` : première V4 complète.
-- `001_SETUP_PROJECT.md` à `010_AUDIO_MANAGER.md` : sous-tickets de construction.
-- `020_ALL_UNIVERSES_AND_BOSSES.md` : 8 univers / 8 boss.
-- `030_DESIGN_PACK_INTEGRATION.md` : intégration des 8 planches.
-- `900_AUDIT_CONFORMITE_PROJET.md` : audit post première build.
-- `901_PLAN_CORRECTIONS_POST_AUDIT.md` : plan de correction après audit.
+- `public/assets/map/world_map.png` : world map runtime.
+- `public/assets/frames/[univers]/frame.png` : cadres gameplay complets.
+- `public/assets/universes/[univers]/` : HUD/pickups/obstacles/boss.
+- `design_boards/[univers]/` : sources design triées.
+- `design_boards/minimap/` : source minimap/world map.
 
-## Dossiers design
+## Docs
 
-- `design_boards/_incoming/` : planches brutes reçues.
-- `design_boards/[univers]/` : planches triées.
-- `public/assets/universes/[univers]/` : assets réellement utilisés par le jeu.
+- `docs/00_REPO_STRUCTURE.md` : structure actuelle.
+- `docs/01_VISION.md` à `docs/14_UNIVERSE_IMPLEMENTATION_SPEC.md` : specs produit/tech.
+- `docs/audits/` : audits et plans mobile-first.
+
+## Tickets
+
+`tickets/` est volontairement léger. Les anciens packs appliqués ont été supprimés; garder seulement les tickets non appliqués ou nécessaires au prochain travail.

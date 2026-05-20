@@ -1,5 +1,5 @@
 import Phaser from 'phaser';
-import { SCENES } from '../config/constants';
+import { SCENES, UNIVERSE_FRAME_ASSETS } from '../config/constants';
 import { LevelConfig } from '../config/types';
 import { getLevelById } from '../config/levels';
 import { UNIVERSES } from '../config/universes';
@@ -17,14 +17,26 @@ import { SnakeRenderer } from '../render/SnakeRenderer';
 import { PickupRenderer } from '../render/PickupRenderer';
 import { ObstacleRenderer } from '../render/ObstacleRenderer';
 import { HUDRenderer } from '../render/HUDRenderer';
+import { UniverseFrameRenderer } from '../render/UniverseFrameRenderer';
 import { InputSystem } from '../systems/InputSystem';
 import { AudioSystem } from '../systems/AudioSystem';
 import { SaveSystem } from '../systems/SaveSystem';
 import { DesignBoardManager } from '../systems/DesignBoardManager';
 import { MAP_NODES } from '../config/mapNodes';
+import { flashScreen, addScanlines } from '../render/VfxUtils';
 
 const GRID_COLS = 16;
 const GRID_ROWS = 20;
+const FRAME_GRID_WIDTH: Record<string, number> = {
+  castle: 0.68,
+  sonic: 0.70,
+  streets: 0.66,
+  fighter: 0.66,
+  outrun: 0.52,
+  shinobi: 0.70,
+  kombat: 0.66,
+  paperboy: 0.56,
+};
 
 export interface GameSceneData {
   levelId: string;
@@ -54,6 +66,7 @@ export class GameScene extends Phaser.Scene {
   private pickupRenderer!: PickupRenderer;
   private obstacleRenderer!: ObstacleRenderer;
   private hudRenderer!: HUDRenderer;
+  private universeFrameRenderer!: UniverseFrameRenderer;
   private inputSys!: InputSystem;
   private debugAssetsOverlay: Phaser.GameObjects.Text | null = null;
 
@@ -81,6 +94,9 @@ export class GameScene extends Phaser.Scene {
     for (const [key, path] of assetKeys) {
       if (!this.textures.exists(key)) this.load.image(key, path);
     }
+    for (const asset of Object.values(UNIVERSE_FRAME_ASSETS)) {
+      if (!this.textures.exists(asset.key)) this.load.image(asset.key, asset.url);
+    }
     if (!this.cache.json.exists('design_board_manifest')) {
       this.load.json('design_board_manifest', 'assets/design-board-manifest.json');
     }
@@ -100,25 +116,49 @@ export class GameScene extends Phaser.Scene {
     this.add.rectangle(width / 2, height / 2, width, height, this.colorBg);
 
     this.grid = new Grid(GRID_COLS, GRID_ROWS);
-    this.layout = computeGridLayout(width, height, GRID_COLS, GRID_ROWS, 56, 44);
+    const frameAwareWidth = FRAME_GRID_WIDTH[this.levelConfig.universeId] ?? 0.96;
+    this.layout = computeGridLayout(width, height, GRID_COLS, GRID_ROWS, 56, 44, frameAwareWidth, 12);
+
+    // 906 — compute asset keys before renderer creation
+    const uid        = this.levelConfig.universeId;
+    const pickupKey  = `db_${uid}_pickup01`;
+    const pickup2Key = `db_${uid}_pickup02`;
+    const bossKey    = `db_${uid}_boss`;
+    const frameKey   = `db_${uid}_frame`;
+    const hudKey     = `db_${uid}_hudPanel`;
 
     // Renderers
-    this.gridRenderer = new GridRenderer(this, this.layout);
-    this.snakeRenderer = new SnakeRenderer(this);
-    this.pickupRenderer = new PickupRenderer(this);
+    this.gridRenderer    = new GridRenderer(this, this.layout);
+    this.snakeRenderer   = new SnakeRenderer(this);
+    this.pickupRenderer  = new PickupRenderer(this);
     this.obstacleRenderer = new ObstacleRenderer(this);
-    this.hudRenderer = new HUDRenderer(this, palette.accent);
+    this.hudRenderer     = new HUDRenderer(this, palette.accent, this.textures.exists(hudKey) ? hudKey : undefined);
+    this.universeFrameRenderer = new UniverseFrameRenderer(this);
     this.snakeRenderer.setDepth(3);
 
-    // Passer les asset keys aux renderers si les textures sont chargées
-    const uid = this.levelConfig.universeId;
-    const pickupKey = `db_${uid}_pickup01`;
-    if (this.textures.exists(pickupKey)) this.pickupRenderer.setTextureKey(pickupKey);
-    const bossKey = `db_${uid}_boss`;
-    if (this.textures.exists(bossKey)) this.obstacleRenderer.setBossTextureKey(bossKey);
+    // Wire asset textures to renderers
+    if (this.textures.exists(pickupKey))  this.pickupRenderer.setTextureKey(pickupKey);
+    if (this.textures.exists(pickup2Key)) this.pickupRenderer.setSecondaryTextureKey(pickup2Key);
+    this.pickupRenderer.setUniverseId(uid);
+    if (this.textures.exists(bossKey))    this.obstacleRenderer.setBossTextureKey(bossKey);
 
     // Grid is STATIC — draw once here, never again in the game loop
     this.gridRenderer.draw(this.colorBg, this.colorPrimary);
+    const gridBounds = new Phaser.Geom.Rectangle(
+      this.layout.x,
+      this.layout.y,
+      this.layout.cellSize * this.layout.cols,
+      this.layout.cellSize * this.layout.rows,
+    );
+    this.universeFrameRenderer.render({
+      universeId: uid,
+      gridBounds,
+      depth: 1,
+    });
+    // 906 fallback if a legacy frame tile exists but the 910 frame asset failed to load.
+    if (!this.textures.exists(UNIVERSE_FRAME_ASSETS[uid].key) && this.textures.exists(frameKey)) {
+      this.gridRenderer.setFrameTileKey(this, frameKey);
+    }
 
     // Debug overlay ?debugAssets=1
     if (new URLSearchParams(window.location.search).get('debugAssets') === '1') {
@@ -151,14 +191,18 @@ export class GameScene extends Phaser.Scene {
 
     // Back button — created once
     this.add.text(width / 2, height - 22, '< MAP', {
-      fontFamily: 'monospace', fontSize: '13px', color: '#ffffff'
+      fontFamily: '"Press Start 2P", monospace', fontSize: '8px', color: '#444466'
     }).setOrigin(0.5).setDepth(10).setInteractive().on('pointerdown', () => {
       this.scene.start(SCENES.WORLD_MAP);
     });
 
+    addScanlines(this, 0.035, 8);
+    this.cameras.main.fadeIn(250, 0, 0, 0);
+
     // Cleanup on scene shutdown to avoid listener accumulation on retry
     this.events.once(Phaser.Scenes.Events.SHUTDOWN, () => {
       this.inputSys?.destroy();
+      this.universeFrameRenderer?.destroy();
     });
   }
 
@@ -167,23 +211,35 @@ export class GameScene extends Phaser.Scene {
     const universeEntry = (manifestData?.universes as Record<string, unknown> | undefined)?.[uid] as Record<string, unknown> | undefined;
     const boardSource = universeEntry?.boardSource as string ?? '(manifest non chargé)';
     const isFallback  = universeEntry?.fallback as boolean ?? true;
-    const assetKeys = [
+    const allKeys = [
       `db_${uid}_pickup01`, `db_${uid}_pickup02`,
-      `db_${uid}_obstacle01`, `db_${uid}_boss`
+      `db_${uid}_obstacle01`, `db_${uid}_obstacle02`,
+      `db_${uid}_boss`, `db_${uid}_frame`, `db_${uid}_hudPanel`,
     ];
-    const loaded = assetKeys.filter(k => this.textures.exists(k));
+    const loaded   = allKeys.filter(k => this.textures.exists(k));
+    const missing  = allKeys.filter(k => !this.textures.exists(k));
+    // Which are actually wired to renderers
+    const wired = [
+      this.textures.exists(`db_${uid}_pickup01`)  ? 'pickup01→PickupRenderer' : null,
+      this.textures.exists(`db_${uid}_pickup02`)  ? 'pickup02→PickupRenderer(alt)' : null,
+      this.textures.exists(`db_${uid}_boss`)      ? 'boss→ObstacleRenderer' : null,
+      this.textures.exists(`db_${uid}_frame`)     ? 'frame→GridRenderer' : null,
+      this.textures.exists(`db_${uid}_hudPanel`)  ? 'hudPanel→HUDRenderer' : null,
+    ].filter(Boolean);
 
     const lines = [
-      `[DEBUG ASSETS] univers: ${uid}`,
+      `[debugAssets=1] univers: ${uid}`,
       `board: ${boardSource}`,
-      `fallback: ${isFallback}`,
-      `textures chargées: ${loaded.length}/${assetKeys.length}`,
-      ...loaded.map(k => `  ✓ ${k}`),
+      `fallback manifest: ${isFallback}`,
+      `textures: ${loaded.length}/${allKeys.length} chargées`,
+      ...missing.map(k => `  ✗ ${k.replace(`db_${uid}_`, '')}`),
+      `wired:`,
+      ...wired.map(w => `  ✓ ${w}`),
     ];
 
     this.debugAssetsOverlay = this.add.text(4, 58, lines.join('\n'), {
       fontFamily: 'monospace',
-      fontSize: '9px',
+      fontSize: '8px',
       color: '#00ff88',
       backgroundColor: '#000000cc',
       padding: { x: 4, y: 2 }
@@ -306,20 +362,28 @@ export class GameScene extends Phaser.Scene {
   private triggerGameOver(): void {
     this.gameOver = true;
     AudioSystem.gameover();
+    flashScreen(this, 0xe74c3c, 0.55, 400);
     this.time.delayedCall(600, () => {
-      this.scene.start(SCENES.GAME_OVER, { levelId: this.levelConfig.id });
+      this.cameras.main.fadeOut(200, 0, 0, 0);
+      this.cameras.main.once('camerafadeoutcomplete', () => {
+        this.scene.start(SCENES.GAME_OVER, { levelId: this.levelConfig.id });
+      });
     });
   }
 
   private triggerClear(): void {
     this.cleared = true;
     AudioSystem.clear();
+    flashScreen(this, this.colorAccent, 0.45, 350);
     const currentNode = MAP_NODES.find(n => n.levelId === this.levelConfig.id);
     const nodeIndex   = currentNode ? MAP_NODES.indexOf(currentNode) : -1;
     const nextNode    = nodeIndex >= 0 && nodeIndex < MAP_NODES.length - 1 ? MAP_NODES[nodeIndex + 1] : undefined;
     SaveSystem.markCleared(this.levelConfig.id, nextNode?.id);
     this.time.delayedCall(400, () => {
-      this.scene.start(SCENES.CLEAR, { levelId: this.levelConfig.id });
+      this.cameras.main.fadeOut(200, 0, 0, 0);
+      this.cameras.main.once('camerafadeoutcomplete', () => {
+        this.scene.start(SCENES.CLEAR, { levelId: this.levelConfig.id });
+      });
     });
   }
 }

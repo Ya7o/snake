@@ -2,114 +2,109 @@
 
 ## Rôle
 
-Tu développes **Snake Drive V4** from scratch en web mobile.
+Tu développes et maintiens **Snake Drive V4**, un Snake web mobile modern-retro construit avec Vite, TypeScript strict et Phaser 3.
 
-Tu dois :
-- produire une première build stable rapidement ;
-- respecter les tickets ;
-- respecter les mécaniques par univers ;
-- respecter les boss ;
-- utiliser le design pack fourni ;
-- garder le jeu mobile lisible ;
-- éviter le chaos du prototype HTML monofichier V3.
+Le projet n'est plus à créer from scratch : il possède déjà une build jouable avec écran titre, world map, 8 univers, 16 niveaux, 8 boss, mécaniques différenciées, sauvegarde locale, assets par univers et cadres gameplay.
 
-## Objectif final première build
+## Priorité Produit
 
-Une V4 stable avec :
-- écran titre ;
-- world map ;
-- 8 univers ;
-- 16 niveaux ;
-- 8 boss ;
-- Snake jouable ;
-- mécaniques différentes par univers ;
-- boss jouables ;
-- design thématique issu des planches ;
-- Game Over / Clear / Retry ;
-- sauvegarde simple ;
-- test mobile via navigateur.
+1. Stabilité.
+2. Mobile portrait.
+3. Lisibilité de la grille Snake.
+4. Mécaniques différenciées.
+5. Design modern-retro cohérent.
+6. Polish.
 
-## Stack
+## Règles Absolues
 
-- Vite
-- TypeScript strict
-- Phaser 3
-- Web mobile
-- localStorage
-- assets dans `public/assets`
-- planches source dans `design_boards`
+1. Exécuter uniquement le ticket ou la demande utilisateur courante.
+2. Toujours lancer `npm run check` après une modification code.
+3. Ne jamais supprimer les 8 univers, 16 niveaux, 8 boss ou la WorldMap.
+4. Ne jamais afficher une planche design brute dans le gameplay.
+5. Ne jamais mettre un décor détaillé derrière les cellules jouables.
+6. La grille Snake reste prioritaire sur les cadres, HUD et effets.
+7. Mobile Android portrait prioritaire.
+8. Les textes fonctionnels doivent être lisibles; réserver le pixel font aux titres/accents.
+9. Pickups plus visibles que les obstacles.
+10. Dangers télégraphiés.
+11. Boss courts et compréhensibles.
+12. Pas de nouvelle dépendance sans raison forte.
+13. Si un asset manque, fallback procédural obligatoire.
+14. Ne pas lancer de serveur si l'utilisateur dit de ne pas le faire.
 
-## Règles absolues
+## Structure Actuelle
 
-1. Exécuter le ticket demandé.
-2. Si ticket master, suivre les étapes internes.
-3. Toujours lancer `npm run check`.
-4. Ne jamais afficher une planche design brute en gameplay.
-5. Ne jamais mettre de décor détaillé derrière la grille.
-6. Grille Snake prioritaire.
-7. Mobile portrait prioritaire.
-8. Pickups plus visibles que obstacles.
-9. Dangers télégraphiés.
-10. Boss courts et compréhensibles.
-11. Ne pas ajouter de dépendance sans raison.
-12. Ne pas bloquer le jeu si un asset manque : fallback visuel procédural obligatoire.
+- Code : `src/`
+- Scènes : `src/scenes/`
+- Renderers : `src/render/`
+- Mécaniques : `src/mechanics/`
+- Config : `src/config/`
+- Assets runtime : `public/assets/`
+- Sources design triées : `design_boards/[univers]/`
+- Docs : `docs/`
+- Tickets actifs : `tickets/`
 
-## Développement “en un coup”
+`dist/`, `node_modules/` et `.vite/` sont des artefacts locaux/générés et ne doivent pas être considérés comme source projet.
 
-L’utilisateur veut une première V4 développée rapidement en un passage PC.  
-C’est autorisé via `tickets/000_MASTER_BUILD_V4_STABLE.md`.
+## Assets Et Design
 
-Mais même en mode “en un coup” :
-- garder les modules séparés ;
-- éviter un gros fichier unique ;
-- implémenter des fallbacks ;
-- livrer stable plutôt que parfait ;
-- noter les limites.
+Les sources design sont déjà triées par univers :
 
-## Design pack
+- `design_boards/castle/`
+- `design_boards/sonic/`
+- `design_boards/streets/`
+- `design_boards/fighter/`
+- `design_boards/outrun/`
+- `design_boards/shinobi/`
+- `design_boards/kombat/`
+- `design_boards/paperboy/`
 
-Les planches sont dans :
-`design_boards/_incoming/`
+Les cadres gameplay complets sont copiés vers :
 
-Tu dois :
-1. identifier/associer les planches aux univers ;
-2. déplacer ou copier les références vers `design_boards/[univers]/` si pertinent ;
-3. extraire ou recréer des assets propres dans `public/assets/universes/[univers]/` ;
-4. créer fallback procédural si découpe impossible ;
-5. ne jamais afficher la planche brute dans la grille.
+```text
+public/assets/frames/[univers]/frame.png
+```
 
-## Mécaniques obligatoires
+Les assets consommés par gameplay/HUD sont dans :
 
-Chaque univers doit avoir une mécanique distincte :
+```text
+public/assets/universes/[univers]/
+```
 
-- Castle : blink walls / illusion tiles
-- Sonic : ring chains
-- Streets : crowd blockers
-- Fighter : charge move / rounds
-- OutRun : lane drift / checkpoints
-- Shinobi : focus / decoys
-- Kombat : fatal zones / finish window
-- Paperboy : delivery targets / route mayhem
+## Mécaniques Obligatoires
 
-Chaque boss doit avoir une variation boss distincte.
+- Castle : blink walls / illusion tiles ; boss Witch Mirror.
+- Sonic : ring chains ; boss Loop Serpent.
+- Streets : crowd blockers ; boss Crime Lord.
+- Fighter : charge move / rounds ; boss Final Challenger.
+- OutRun : lane drift / checkpoints ; boss Turbo Rival.
+- Shinobi : focus / decoys ; boss Shadow Ninja.
+- Kombat : fatal zones / finish window ; boss Dragon Gate.
+- Paperboy : delivery targets / route mayhem ; boss Neighborhood Chaos.
 
-## Priorités
+## Workflow
 
-1. stabilité ;
-2. jouable mobile ;
-3. lisibilité ;
-4. mécaniques différenciées ;
-5. design cohérent ;
-6. polish.
+Avant modification :
 
-## Réponse attendue après codage
+1. Lire les fichiers concernés.
+2. Respecter les patterns existants.
+3. Éviter les refontes globales si un patch ciblé suffit.
 
-Toujours répondre avec :
-- fichiers créés ;
-- fichiers modifiés ;
-- ce qui marche ;
-- ce qui est fallback ;
-- commandes lancées ;
-- résultat `npm run check` ;
-- URL/dev instruction ;
-- tests mobile à faire.
+Après modification :
+
+1. Lancer `npm run check`.
+2. Documenter les fichiers modifiés.
+3. Signaler les fallbacks et limites.
+4. Ne pas laisser de serveur en cours.
+
+## Nettoyage Repo
+
+Ne pas réintroduire :
+
+- archives de première build ;
+- prototypes HTML monofichier V3 ;
+- dossiers `_incoming` une fois les assets triés ;
+- gros packs de tickets déjà appliqués ;
+- captures dupliquées sans usage documentaire.
+
+Si un nouveau ticket pack arrive, extraire seulement les tickets utiles puis documenter l'état dans `docs/`.

@@ -89,6 +89,29 @@ for (const [uid, entry] of Object.entries(manifest.universes ?? {})) {
   }
 }
 
+// ─── 5. Cohérence clés renderers ────────────────────────────────────────────
+// 908 — vérifie que les clés critiques attendues par les renderers sont déclarées
+
+const RENDERER_KEYS = {
+  'pickup01':  'PickupRenderer (primaire)',
+  'pickup02':  'PickupRenderer (secondaire)',
+  'boss':      'ObstacleRenderer',
+  'frame':     'GridRenderer (frame_tile)',
+  'hudPanel':  'HUDRenderer (hud_panel)',
+};
+
+console.log('\n── Vérification cohérence clés renderers ↔ manifest');
+for (const [uid, entry] of Object.entries(manifest.universes ?? {})) {
+  for (const [key, rendererName] of Object.entries(RENDERER_KEYS)) {
+    const val = entry.assets?.[key];
+    if (!val) {
+      warn(`${uid}.${key} absent du manifest → ${rendererName} utilisera fallback procédural`);
+    } else {
+      ok(`${uid}.${key} → ${rendererName}`);
+    }
+  }
+}
+
 // ─── Résumé ───────────────────────────────────────────────────────────────────
 
 console.log('\n──────────────────────────────────');

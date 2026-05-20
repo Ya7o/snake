@@ -1,37 +1,32 @@
 # Package Manifest
 
-## Version
+## État Actuel
 
-`perfect_pc_package_v1`
+Le repo n'est plus un package “from scratch”. C'est une build V4 active avec :
 
-## Contenu critique ajouté
+- Vite + TypeScript + Phaser 3.
+- 8 univers / 16 niveaux / 8 boss.
+- World map illustrée.
+- Cadres gameplay complets par univers.
+- Assets runtime dans `public/assets`.
+- Sources design triées dans `design_boards/[univers]`.
 
-- `docs/13_ACCEPTANCE_MATRIX.md`
-- `docs/14_UNIVERSE_IMPLEMENTATION_SPEC.md`
-- `design_boards/BOARD_MAPPING.md`
-- `tickets/029_MAP_DESIGN_BOARDS_TO_UNIVERSES.md`
-- `tickets/000_MASTER_BUILD_V4_STABLE.md` renforcé
-- tickets enfants renforcés
-- tickets post-build audit/corrections renforcés
+## Nettoyage
 
-## Design files extraits
+Supprimé du repo de travail :
 
-- `design_boards/_incoming/a_high_resolution_game_ui_sprite_sheet_style_ima.png`
-- `design_boards/_incoming/a_detailed_pixel_art_game_ui_asset_sheet_overall.png`
-- `design_boards/_incoming/a_detailed_pixel_art_ui_concept_sheet_game_hud_a.png`
-- `design_boards/_incoming/a_detailed_pixel_art_game_ui_asset_sheet_mockup.png`
-- `design_boards/_incoming/a_single_image_a_large_pixel_art_16_bit_style_u.png`
-- `design_boards/_incoming/a_high_detail_pixel_art_ui_game_asset_sheet_poster.png`
-- `design_boards/_incoming/a_detailed_game_ui_asset_sheet_poster_in_a_retro_1.png`
-- `design_boards/_incoming/a_detailed_pixel_art_game_ui_asset_sheet_poster.png`
+- `dist/` : artefact généré par build.
+- `design_boards/_incoming/` : doublon après tri par univers.
+- `tickets/1st build/` : archive première build obsolète.
+- anciens packs de tickets appliqués 909-921.
+- prototypes HTML V3 dans `references/prototypes/`.
 
-## Instruction PC recommandée
+## Commande De Validation
 
-```text
-Lis START_HERE_FOR_CLAUDE.md puis CLAUDE.md.
-Objectif : produire une première build V4 stable from scratch.
-Exécute tickets/000_MASTER_BUILD_V4_STABLE.md.
-Respecte docs/13_ACCEPTANCE_MATRIX.md et docs/14_UNIVERSE_IMPLEMENTATION_SPEC.md.
-Utilise le design pack dans design_boards/_incoming/.
-Lance npm run check à la fin.
+```bash
+npm run check
 ```
+
+## Convention
+
+Les tickets futurs doivent être petits, ciblés et documentés. Ne pas réintroduire de gros packs d'archives dans le repo racine.

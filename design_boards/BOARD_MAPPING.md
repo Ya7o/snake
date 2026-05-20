@@ -1,48 +1,29 @@
 # BOARD_MAPPING.md
 
-Ce fichier doit être complété par Claude Code / Codex au moment d’exécuter :
+## Mapping Actuel
 
-`tickets/029_MAP_DESIGN_BOARDS_TO_UNIVERSES.md`
+Les sources design sont triées et nommées par univers.
 
-## Fichiers source extraits
+| Univers | Dossier source | Cadre source | Assets runtime |
+|---|---|---|---|
+| Castle | `design_boards/castle/` | `cadre castle of illusuion.png` | `public/assets/frames/castle/`, `public/assets/universes/castle/` |
+| Sonic | `design_boards/sonic/` | `cadre sonic 2.png` | `public/assets/frames/sonic/`, `public/assets/universes/sonic/` |
+| Streets | `design_boards/streets/` | `cadre street of rage.png` | `public/assets/frames/streets/`, `public/assets/universes/streets/` |
+| Fighter | `design_boards/fighter/` | `cadre street fighter.png` | `public/assets/frames/fighter/`, `public/assets/universes/fighter/` |
+| OutRun | `design_boards/outrun/` | `cadre outrun.png` | `public/assets/frames/outrun/`, `public/assets/universes/outrun/` |
+| Shinobi | `design_boards/shinobi/` | `cadre shinobi.png` | `public/assets/frames/shinobi/`, `public/assets/universes/shinobi/` |
+| Kombat | `design_boards/kombat/` | `cadre mortal kombat.png` | `public/assets/frames/kombat/`, `public/assets/universes/kombat/` |
+| Paperboy | `design_boards/paperboy/` | `cadre paperboy.png` | `public/assets/frames/paperboy/`, `public/assets/universes/paperboy/` |
 
-- `design_boards/_incoming/a_high_resolution_game_ui_sprite_sheet_style_ima.png`
-- `design_boards/_incoming/a_detailed_pixel_art_game_ui_asset_sheet_overall.png`
-- `design_boards/_incoming/a_detailed_pixel_art_ui_concept_sheet_game_hud_a.png`
-- `design_boards/_incoming/a_detailed_pixel_art_game_ui_asset_sheet_mockup.png`
-- `design_boards/_incoming/a_single_image_a_large_pixel_art_16_bit_style_u.png`
-- `design_boards/_incoming/a_high_detail_pixel_art_ui_game_asset_sheet_poster.png`
-- `design_boards/_incoming/a_detailed_game_ui_asset_sheet_poster_in_a_retro_1.png`
-- `design_boards/_incoming/a_detailed_pixel_art_game_ui_asset_sheet_poster.png`
+## Notes
 
-## Mapping — V4 First Build (2026-05-20)
-
-Les planches `_incoming/` sont toutes des sheets pixel art retro UI génériques.
-Aucune n'est assignable avec confiance haute à un univers spécifique.
-Décision : **fallback procédural complet** pour la première build.
-Les palettes de couleur sont codées par univers dans `src/config/universes.ts`.
-
-| Univers | Planche source | Confiance | Justification | Statut |
-|---|---|---:|---|---|
-| castle | aucune — fallback | LOW | Sheets génériques sans thème castle clair | FALLBACK PROCÉDURAL |
-| sonic | aucune — fallback | LOW | Sheets génériques sans thème Sonic clair | FALLBACK PROCÉDURAL |
-| streets | aucune — fallback | LOW | Sheets génériques sans thème Streets clair | FALLBACK PROCÉDURAL |
-| fighter | aucune — fallback | LOW | Sheets génériques sans thème Fighter clair | FALLBACK PROCÉDURAL |
-| outrun | aucune — fallback | LOW | Sheets génériques sans thème OutRun clair | FALLBACK PROCÉDURAL |
-| shinobi | aucune — fallback | LOW | Sheets génériques sans thème Shinobi clair | FALLBACK PROCÉDURAL |
-| kombat | aucune — fallback | LOW | Sheets génériques sans thème Kombat clair | FALLBACK PROCÉDURAL |
-| paperboy | aucune — fallback | LOW | Sheets génériques sans thème Paperboy clair | FALLBACK PROCÉDURAL |
-
-## Décision design
-
-Toutes les planches sont des sprite sheets retro UI pixelart polyvalents.
-Ils seront utilisés dans un ticket dédié (030_DESIGN_PACK_INTEGRATION) pour
-extraire des icônes HUD, frames de bord, et éléments de pickup.
-Pour la première build V4, les rendus sont 100% procéduraux via Phaser Graphics.
+- Le nom `cadre castle of illusuion.png` conserve la faute du fichier source.
+- Les cadres complets sont copiés tels quels vers `public/assets/frames/[univers]/frame.png`.
+- Les découpes gameplay/HUD restent dans `public/assets/universes/[univers]/`.
 
 ## Règles
 
-- Ne pas deviner silencieusement si la confiance est basse.
-- Si deux planches sont ambiguës, utiliser fallback procédural et documenter.
-- Ne jamais écraser les fichiers source.
-- Copier/renommer plutôt que déplacer si doute.
+- Ne pas deviner silencieusement si une nouvelle source est ambiguë.
+- Garder les sources dans `design_boards/[univers]/`.
+- Exporter uniquement les assets runtime propres vers `public/assets/`.
+- Ne jamais écraser une source sans demande explicite.

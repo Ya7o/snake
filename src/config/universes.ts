@@ -1,9 +1,10 @@
 import { UniverseConfig } from './types';
+import { UNIVERSE_DISPLAY_NAMES } from './constants';
 
 export const UNIVERSES: Record<string, UniverseConfig> = {
   castle: {
     id: 'castle',
-    name: 'Castle of Illusion',
+    name: UNIVERSE_DISPLAY_NAMES.castle,
     shortName: 'CASTLE',
     assetFolder: 'castle',
     mechanicNormal: 'castleIllusion',
@@ -12,7 +13,7 @@ export const UNIVERSES: Record<string, UniverseConfig> = {
   },
   sonic: {
     id: 'sonic',
-    name: 'Sonic Ring Rush',
+    name: UNIVERSE_DISPLAY_NAMES.sonic,
     shortName: 'SONIC',
     assetFolder: 'sonic',
     mechanicNormal: 'ringChains',
@@ -21,7 +22,7 @@ export const UNIVERSES: Record<string, UniverseConfig> = {
   },
   streets: {
     id: 'streets',
-    name: 'Streets of Rage',
+    name: UNIVERSE_DISPLAY_NAMES.streets,
     shortName: 'STREETS',
     assetFolder: 'streets',
     mechanicNormal: 'crowdBlockers',
@@ -30,7 +31,7 @@ export const UNIVERSES: Record<string, UniverseConfig> = {
   },
   fighter: {
     id: 'fighter',
-    name: 'Street Fighter Dojo',
+    name: UNIVERSE_DISPLAY_NAMES.fighter,
     shortName: 'FIGHTER',
     assetFolder: 'fighter',
     mechanicNormal: 'chargeMove',
@@ -39,7 +40,7 @@ export const UNIVERSES: Record<string, UniverseConfig> = {
   },
   outrun: {
     id: 'outrun',
-    name: 'OutRun Highway',
+    name: UNIVERSE_DISPLAY_NAMES.outrun,
     shortName: 'OUTRUN',
     assetFolder: 'outrun',
     mechanicNormal: 'laneDrift',
@@ -48,7 +49,7 @@ export const UNIVERSES: Record<string, UniverseConfig> = {
   },
   shinobi: {
     id: 'shinobi',
-    name: 'Shinobi Snow Dojo',
+    name: UNIVERSE_DISPLAY_NAMES.shinobi,
     shortName: 'SHINOBI',
     assetFolder: 'shinobi',
     mechanicNormal: 'focusMode',
@@ -57,7 +58,7 @@ export const UNIVERSES: Record<string, UniverseConfig> = {
   },
   kombat: {
     id: 'kombat',
-    name: 'Mortal Kombat Arena',
+    name: UNIVERSE_DISPLAY_NAMES.kombat,
     shortName: 'KOMBAT',
     assetFolder: 'kombat',
     mechanicNormal: 'fatalZones',
@@ -66,7 +67,7 @@ export const UNIVERSES: Record<string, UniverseConfig> = {
   },
   paperboy: {
     id: 'paperboy',
-    name: 'Paperboy Route',
+    name: UNIVERSE_DISPLAY_NAMES.paperboy,
     shortName: 'PAPER',
     assetFolder: 'paperboy',
     mechanicNormal: 'deliveryTargets',

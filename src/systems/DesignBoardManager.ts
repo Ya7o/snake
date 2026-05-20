@@ -80,6 +80,22 @@ class DesignBoardManagerSingleton {
   getAllUniverseIds(): string[] {
     return Object.keys(this.manifest?.universes ?? {});
   }
+
+  /** 908 — runtime diagnostic string for QA/debug */
+  getDiagnostics(universeId: string): string {
+    if (!this.manifest) return `[DesignBoardManager] manifest non chargé`;
+    const u = this.manifest.universes[universeId];
+    if (!u) return `[DesignBoardManager] univers inconnu: ${universeId}`;
+    const assetCount = Object.values(u.assets).filter(Boolean).length;
+    const fallbackCount = u.fallbacks.length;
+    return [
+      `board: ${u.boardSource}`,
+      `confidence: ${u.confidence}`,
+      `fallback: ${u.fallback}`,
+      `assets: ${assetCount} total, ${fallbackCount} fallback`,
+      `fallback keys: ${u.fallbacks.join(', ') || 'aucun'}`,
+    ].join(' | ');
+  }
 }
 
 export const DesignBoardManager = new DesignBoardManagerSingleton();
