@@ -1,0 +1,84 @@
+import Phaser from 'phaser';
+
+export interface GridLayout {
+  x: number;
+  y: number;
+  cellSize: number;
+  cols: number;
+  rows: number;
+}
+
+export function computeGridLayout(
+  screenW: number,
+  screenH: number,
+  cols: number,
+  rows: number,
+  hudH = 60,
+  bottomH = 40
+): GridLayout {
+  const availW = screenW * 0.96;
+  const availH = screenH - hudH - bottomH;
+  const cellW = Math.floor(availW / cols);
+  const cellH = Math.floor(availH / rows);
+  const cellSize = Math.max(14, Math.min(cellW, cellH));
+  const gridW = cellSize * cols;
+  const gridH = cellSize * rows;
+  return {
+    x: Math.floor((screenW - gridW) / 2),
+    y: hudH + Math.floor((availH - gridH) / 2),
+    cellSize,
+    cols,
+    rows
+  };
+}
+
+export function cellToPixel(layout: GridLayout, col: number, row: number): { px: number; py: number } {
+  return {
+    px: layout.x + col * layout.cellSize + layout.cellSize / 2,
+    py: layout.y + row * layout.cellSize + layout.cellSize / 2,
+  };
+}
+
+export class GridRenderer {
+  private gfx: Phaser.GameObjects.Graphics;
+  private layout: GridLayout;
+  private dirty = true;
+  private lastBg = -1;
+  private lastLine = -1;
+
+  constructor(scene: Phaser.Scene, layout: GridLayout) {
+    this.gfx = scene.add.graphics();
+    this.layout = layout;
+  }
+
+  // Call once during create() to draw the static grid background.
+  // Only redraws if colors changed or flagged dirty (e.g. after resize).
+  draw(bgColor: number, lineColor: number): void {
+    if (!this.dirty && bgColor === this.lastBg && lineColor === this.lastLine) return;
+    this.dirty = false;
+    this.lastBg = bgColor;
+    this.lastLine = lineColor;
+
+    const { x, y, cellSize, cols, rows } = this.layout;
+    const w = cellSize * cols;
+    const h = cellSize * rows;
+    this.gfx.clear();
+    this.gfx.fillStyle(bgColor);
+    this.gfx.fillRect(x, y, w, h);
+    this.gfx.lineStyle(1, lineColor, 0.25);
+    for (let c = 0; c <= cols; c++) {
+      this.gfx.lineBetween(x + c * cellSize, y, x + c * cellSize, y + h);
+    }
+    for (let r = 0; r <= rows; r++) {
+      this.gfx.lineBetween(x, y + r * cellSize, x + w, y + r * cellSize);
+    }
+    this.gfx.lineStyle(2, lineColor, 0.8);
+    this.gfx.strokeRect(x, y, w, h);
+  }
+
+  markDirty(): void { this.dirty = true; }
+
+  getLayout(): GridLayout { return this.layout; }
+
+  destroy(): void { this.gfx.destroy(); }
+}

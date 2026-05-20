@@ -1,0 +1,85 @@
+export interface UniverseDesignAssets {
+  boardSource: string;
+  assetBase: string;
+  confidence: string;
+  fallback: boolean;
+  fallbacks: string[];
+  assets: Record<string, string | null>;
+  assetTypes: Record<string, string>;
+  palette: {
+    bg: string;
+    primary: string;
+    accent: string;
+    secondary: string;
+    highlight: string;
+  };
+}
+
+interface DesignBoardManifest {
+  version: number;
+  generatedAt: string;
+  universes: Record<string, UniverseDesignAssets>;
+}
+
+class DesignBoardManagerSingleton {
+  private manifest: DesignBoardManifest | null = null;
+  private loadPromise: Promise<void> | null = null;
+
+  async load(): Promise<void> {
+    if (this.manifest) return;
+    if (this.loadPromise) return this.loadPromise;
+
+    this.loadPromise = fetch('assets/design-board-manifest.json')
+      .then(r => {
+        if (!r.ok) throw new Error(`manifest HTTP ${r.status}`);
+        return r.json() as Promise<DesignBoardManifest>;
+      })
+      .then(data => { this.manifest = data; })
+      .catch(err => {
+        console.warn('[DesignBoardManager] manifest non chargé:', err);
+        this.manifest = { version: 0, generatedAt: '', universes: {} };
+      });
+
+    return this.loadPromise;
+  }
+
+  isLoaded(): boolean { return this.manifest !== null; }
+
+  getUniverseAssets(universeId: string): UniverseDesignAssets | undefined {
+    return this.manifest?.universes[universeId];
+  }
+
+  hasRealAsset(universeId: string, key: string): boolean {
+    const u = this.manifest?.universes[universeId];
+    if (!u) return false;
+    return !!u.assets[key] && !u.fallbacks.includes(key);
+  }
+
+  getAssetPath(universeId: string, key: string): string | null {
+    const u = this.manifest?.universes[universeId];
+    if (!u) { console.warn(`[DesignBoardManager] univers inconnu: ${universeId}`); return null; }
+    const path = u.assets[key] ?? null;
+    if (!path) console.warn(`[DesignBoardManager] asset manquant: ${universeId}.${key} → fallback`);
+    return path;
+  }
+
+  /** Clé Phaser pour préchargement : "<universeId>_<key>" */
+  assetKey(universeId: string, key: string): string {
+    return `db_${universeId}_${key}`;
+  }
+
+  /** Retourne toutes les paires [key, path] chargeables pour un univers */
+  getLoadableAssets(universeId: string): Array<{ key: string; path: string }> {
+    const u = this.manifest?.universes[universeId];
+    if (!u) return [];
+    return Object.entries(u.assets)
+      .filter(([, path]) => path !== null)
+      .map(([key, path]) => ({ key: this.assetKey(universeId, key), path: path! }));
+  }
+
+  getAllUniverseIds(): string[] {
+    return Object.keys(this.manifest?.universes ?? {});
+  }
+}
+
+export const DesignBoardManager = new DesignBoardManagerSingleton();

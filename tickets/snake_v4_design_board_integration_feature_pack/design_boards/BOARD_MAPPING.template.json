@@ -1,0 +1,18 @@
+{
+  "version": 1,
+  "universes": {
+    "castle": { "sourceFile": "", "confidence": "todo", "reason": "", "status": "unmapped" },
+    "sonic": { "sourceFile": "", "confidence": "todo", "reason": "", "status": "unmapped" },
+    "streets": { "sourceFile": "", "confidence": "todo", "reason": "", "status": "unmapped" },
+    "fighter": { "sourceFile": "", "confidence": "todo", "reason": "", "status": "unmapped" },
+    "outrun": {
+      "sourceFile": "design_boards/outrun/outrun_board_example.png",
+      "confidence": "high",
+      "reason": "Exemple fourni : logo OutRun, HUD mobile, voiture, turbo, checkpoint, route, bordures plage.",
+      "status": "mapped"
+    },
+    "shinobi": { "sourceFile": "", "confidence": "todo", "reason": "", "status": "unmapped" },
+    "kombat": { "sourceFile": "", "confidence": "todo", "reason": "", "status": "unmapped" },
+    "paperboy": { "sourceFile": "", "confidence": "todo", "reason": "", "status": "unmapped" }
+  }
+}
