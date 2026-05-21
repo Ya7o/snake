@@ -1,0 +1,687 @@
+[
+  {
+    "file": "docs/17_WORLDMAP_VISUAL_REFERENCE.md",
+    "line": 5,
+    "text": "La V4 utilise l'image de world map, mais le rendu mobile precedent etait trop eloigne de la reference : carte trop petite, grands vides noirs, nodes trop gros et footer trop distant."
+  },
+  {
+    "file": "docs/17_WORLDMAP_VISUAL_REFERENCE.md",
+    "line": 16,
+    "text": "- carte trop petite ;"
+  },
+  {
+    "file": "docs/17_WORLDMAP_VISUAL_REFERENCE.md",
+    "line": 21,
+    "text": "- interface basse trop distante de la carte."
+  },
+  {
+    "file": "docs/17_WORLDMAP_VISUAL_REFERENCE.md",
+    "line": 32,
+    "text": "- carte tres presente a l'ecran ;"
+  },
+  {
+    "file": "docs/17_WORLDMAP_VISUAL_REFERENCE.md",
+    "line": 44,
+    "text": "3. Les nodes doivent rester proportionnels a la carte."
+  },
+  {
+    "file": "docs/16_WORLDMAP_ASSET_USAGE.md",
+    "line": 30,
+    "text": "Les bounds empêchent de perdre la carte hors écran."
+  },
+  {
+    "file": "docs/16_WORLDMAP_ASSET_USAGE.md",
+    "line": 45,
+    "text": "- drag/pinch : exploration de la carte ;"
+  },
+  {
+    "file": "docs/02_GAME_DESIGN.md",
+    "line": 7,
+    "text": "- Chaque univers : 1 niveau normal + 1 boss."
+  },
+  {
+    "file": "docs/02_GAME_DESIGN.md",
+    "line": 13,
+    "text": "World map → intro niveau → gameplay Snake → clear/game over → retry ou map."
+  },
+  {
+    "file": "docs/02_GAME_DESIGN.md",
+    "line": 21,
+    "text": "- collision danger/corps/mur = défaite ;"
+  },
+  {
+    "file": "docs/02_GAME_DESIGN.md",
+    "line": 22,
+    "text": "- quota atteint ou boss vaincu = victoire."
+  },
+  {
+    "file": "docs/07_QA_CHECKLIST.md",
+    "line": 16,
+    "text": "- lancement niveau ;"
+  },
+  {
+    "file": "dist/assets/index-YYQZ95mf.js",
+    "line": 222,
+    "text": "*/var d=t(45319),c=t(83419),h=t(74943),r=t(81957),n=t(41138),e=t(35154),s=t(90126),a=new c({initialize:function(o,l,u){this.manager=o,this.key=l,this.type=\"frame\",this.frames=this.getFrames(o.textureManager,e(u,\"frames\",[]),e(u,\"defaultText"
+  },
+  {
+    "file": "dist/assets/index-YYQZ95mf.js",
+    "line": 234,
+    "text": "*/var d=t(42099),c=t(30976),h=t(83419),r=t(90330),n=t(74943),e=t(95540),s=new h({initialize:function(i){this.parent=i,this.animationManager=i.scene.sys.anims,this.animationManager.on(n.REMOVE_ANIMATION,this.globalRemove,this),this.textureMa"
+  },
+  {
+    "file": "dist/assets/index-YYQZ95mf.js",
+    "line": 466,
+    "text": "*/var d=t(40366),c=t(60848),h=t(24047),r=t(27919),n=t(83419),e=t(69547),s=t(83719),a=t(86054),i=t(45893),o=t(96391),l=t(82264),u=t(57264),f=t(50792),v=t(8443),m=t(7003),x=t(37277),g=t(77332),y=t(76531),S=t(60903),C=t(69442),E=t(17130),A=t(6"
+  },
+  {
+    "file": "dist/assets/index-YYQZ95mf.js",
+    "line": 470,
+    "text": "*/var d=t(83419),c=t(35154),h=t(29747),r=t(43092),n=new d({initialize:function(s,a){this.game=s,this.raf=new r,this.started=!1,this.running=!1,this.minFps=c(a,\"min\",5),this.targetFps=c(a,\"target\",60),this.fpsLimit=c(a,\"limit\",0),this.hasFps"
+  },
+  {
+    "file": "dist/assets/index-YYQZ95mf.js",
+    "line": 474,
+    "text": "*/var d=t(8443),c=function(h){var r,n=h.events;if(document.hidden!==void 0)r=\"visibilitychange\";else{var e=[\"webkit\",\"moz\",\"ms\"];e.forEach(function(a){document[a+\"Hidden\"]!==void 0&&(document.hidden=function(){return document[a+\"Hidden\"]},r"
+  },
+  {
+    "file": "dist/assets/index-YYQZ95mf.js",
+    "line": 502,
+    "text": "*/p.exports=\"pause\"}),59211:(p=>{/**"
+  },
+  {
+    "file": "dist/assets/index-YYQZ95mf.js",
+    "line": 542,
+    "text": "*/p.exports={BLUR:t(97217),BOOT:t(47548),CONTEXT_LOST:t(19814),DESTROY:t(68446),FOCUS:t(41700),HIDDEN:t(25432),PAUSE:t(65942),POST_RENDER:t(59211),POST_STEP:t(47789),PRE_RENDER:t(39066),PRE_STEP:t(460),READY:t(16175),RESUME:t(42331),STEP:t("
+  },
+  {
+    "file": "dist/assets/index-YYQZ95mf.js",
+    "line": 1305,
+    "text": "*/var d=t(39506),c=t(57355),h=t(35154),r=t(86353),n=t(26099),e={path:null,rotateToPath:!1,pathRotationOffset:0,pathOffset:null,pathVector:null,pathDelta:null,pathTween:null,pathConfig:null,_prevDirection:r.PLAYING_FORWARD,setPath:function(s"
+  },
+  {
+    "file": "dist/assets/index-YYQZ95mf.js",
+    "line": 1667,
+    "text": "*/var d=t(83419),c=t(31401),h=t(53774),r=t(43459),n=t(26388),e=t(19909),s=t(76472),a=t(44777),i=t(20696),o=t(95643),l=t(95540),u=t(26546),f=t(24502),v=t(69036),m=t(1985),x=t(97022),g=t(86091),y=t(73162),S=t(20074),C=t(269),E=t(56480),A=t(69"
+  },
+  {
+    "file": "dist/assets/index-YYQZ95mf.js",
+    "line": 2171,
+    "text": "*/var d=t(45319),c=t(83419),h=t(31401),r=t(51708),n=t(8443),e=t(95643),s=t(36383),a=t(14463),i=t(45650),o=t(10247),l=new c({Extends:e,Mixins:[h.Alpha,h.BlendMode,h.ComputedSize,h.Depth,h.Flip,h.GetBounds,h.Mask,h.Origin,h.Pipeline,h.PostPip"
+  },
+  {
+    "file": "dist/assets/index-YYQZ95mf.js",
+    "line": 3310,
+    "text": "*/var d=t(83419),c=t(50792),h=t(95922),r=t(8443),n=t(35154),e=t(8214),s=t(89639),a=t(30472),i=t(46032),o=t(87960),l=t(74600),u=t(44594),f=t(56583),v=new d({Extends:c,initialize:function(x){c.call(this),this.game=x.systems.game,this.scene=x."
+  },
+  {
+    "file": "dist/assets/index-YYQZ95mf.js",
+    "line": 3382,
+    "text": "*/var T={BACKSPACE:8,TAB:9,ENTER:13,SHIFT:16,CTRL:17,ALT:18,PAUSE:19,CAPS_LOCK:20,ESC:27,SPACE:32,PAGE_UP:33,PAGE_DOWN:34,END:35,HOME:36,LEFT:37,UP:38,RIGHT:39,DOWN:40,PRINT_SCREEN:42,INSERT:45,DELETE:46,ZERO:48,ONE:49,TWO:50,THREE:51,FOUR:"
+  },
+  {
+    "file": "dist/assets/index-YYQZ95mf.js",
+    "line": 4217,
+    "text": "*/var d=t(83419),c=t(39506),h=t(20339),r=t(89774),n=t(66022),e=t(95540),s=t(46975),a=t(72441),i=t(47956),o=t(37277),l=t(44594),u=t(26099),f=t(82248),v=new d({initialize:function(x){this.scene=x,this.systems=x.sys,this.config=this.getConfig("
+  },
+  {
+    "file": "dist/assets/index-YYQZ95mf.js",
+    "line": 4281,
+    "text": "*/var d=t(55495),c=t(37742),h=t(45319),r=t(83419),n=t(79342),e=t(37747),s=t(20339),a=t(52816),i=t(50792),o=t(63012),l=t(43855),u=t(5470),f=t(94977),v=t(64897),m=t(45170),x=t(96523),g=t(35154),y=t(36383),S=t(25774),C=t(96602),E=t(87841),A=t("
+  },
+  {
+    "file": "dist/assets/index-YYQZ95mf.js",
+    "line": 4357,
+    "text": "*/p.exports=\"pause\"}),89954:(p=>{/**"
+  },
+  {
+    "file": "dist/assets/index-YYQZ95mf.js",
+    "line": 4381,
+    "text": "*/p.exports={COLLIDE:t(20009),OVERLAP:t(36768),PAUSE:t(60473),RESUME:t(89954),TILE_COLLIDE:t(61804),TILE_OVERLAP:t(7161),WORLD_BOUNDS:t(34689),WORLD_STEP:t(16006)}}),27064:((p,T,t)=>{/**"
+  },
+  {
+    "file": "dist/assets/index-YYQZ95mf.js",
+    "line": 4445,
+    "text": "*/var d=t(60461),c=t(66615),h=t(66280),r=t(22562),n=t(68174),e=t(15647),s=t(83419),a=t(52284),i=t(53402),o=t(69351),l=t(74116),u=t(48140),f=t(81388),v=t(20339),m=t(28137),x=t(95540),g=t(35154),y=t(46975),S=t(4506),C=t(99561),E=t(37277),A=t("
+  },
+  {
+    "file": "dist/assets/index-YYQZ95mf.js",
+    "line": 4471,
+    "text": "*/var d=t(66280),c=t(22562),h=t(83419),r=t(53402),n=t(69351),e=t(48413),s=t(50792),a=t(1121),i=t(95540),o=t(35154),l=t(22562),u=t(35810),f=t(73834),v=t(4372),m=t(13037),x=t(31725),g=new h({Extends:s,initialize:function(S,C){s.call(this),thi"
+  },
+  {
+    "file": "dist/assets/index-YYQZ95mf.js",
+    "line": 4575,
+    "text": "*/p.exports=\"pause\"}),47861:(p=>{/**"
+  },
+  {
+    "file": "dist/assets/index-YYQZ95mf.js",
+    "line": 4591,
+    "text": "*/p.exports={AFTER_ADD:t(85608),AFTER_REMOVE:t(1213),AFTER_UPDATE:t(25968),BEFORE_ADD:t(67205),BEFORE_REMOVE:t(39438),BEFORE_UPDATE:t(44823),COLLISION_ACTIVE:t(92593),COLLISION_END:t(60128),COLLISION_START:t(76861),DRAG_END:t(92362),DRAG:t("
+  },
+  {
+    "file": "src/systems/RuntimeAssetResolver.ts",
+    "line": 14,
+    "text": "/** À appeler dans preload() de la scène — queue uniquement les 3 assets du niveau. */"
+  },
+  {
+    "file": "src/scenes/WorldMapScene.ts",
+    "line": 277,
+    "text": "this.footerLevelTxt = this.add.text(W * 0.5, footerY + 14, 'SELECTIONNER UN NIVEAU', {"
+  },
+  {
+    "file": "src/scenes/WorldMapScene.ts",
+    "line": 284,
+    "text": "this.footerHintTxt = this.add.text(W * 0.5, footerY + 36, 'DOUBLE TAP POUR JOUER', {"
+  },
+  {
+    "file": "src/scenes/TitleScene.ts",
+    "line": 103,
+    "text": "// TOUCHER POUR JOUER — pulsing"
+  },
+  {
+    "file": "src/scenes/TitleScene.ts",
+    "line": 104,
+    "text": "const tapText = this.add.text(W / 2, H * 0.68, 'TOUCHER POUR JOUER', {"
+  },
+  {
+    "file": "src/scenes/GameOverScene.ts",
+    "line": 104,
+    "text": "label: 'CARTE',"
+  },
+  {
+    "file": "src/scenes/LevelIntroScene.ts",
+    "line": 180,
+    "text": "label: 'JOUER',"
+  },
+  {
+    "file": "src/scenes/LevelIntroScene.ts",
+    "line": 195,
+    "text": "label: 'CARTE',"
+  },
+  {
+    "file": "src/scenes/GameScene.ts",
+    "line": 204,
+    "text": "// Back button — 44 px hit zone, CARTE label"
+  },
+  {
+    "file": "src/scenes/GameScene.ts",
+    "line": 210,
+    "text": "label: 'CARTE',"
+  },
+  {
+    "file": "src/scenes/ClearScene.ts",
+    "line": 127,
+    "text": "label: 'NIVEAU SUIVANT',"
+  },
+  {
+    "file": "src/scenes/ClearScene.ts",
+    "line": 155,
+    "text": "label: 'CARTE',"
+  },
+  {
+    "file": "tickets/patch_923_mobile_fit_worldmap_intro_and_frame_cleanup/PROMPT_COPY_PASTE.md",
+    "line": 1,
+    "text": "Tu dois appliquer le patch suivant au projet Snake Drive V4."
+  },
+  {
+    "file": "tickets/patch_923_mobile_fit_worldmap_intro_and_frame_cleanup/PROMPT_COPY_PASTE.md",
+    "line": 10,
+    "text": "5. Les étoiles et icônes de sélection de niveau sont incohérentes."
+  },
+  {
+    "file": "tickets/patch_923_mobile_fit_worldmap_intro_and_frame_cleanup/PROMPT_COPY_PASTE.md",
+    "line": 11,
+    "text": "6. Le niveau / intro Sonic reste en anglais et n’explique pas bien la mécanique spéciale."
+  },
+  {
+    "file": "tickets/patch_923_mobile_fit_worldmap_intro_and_frame_cleanup/PROMPT_COPY_PASTE.md",
+    "line": 50,
+    "text": "- Ne supprime aucun univers, niveau ou boss."
+  },
+  {
+    "file": "tickets/patch_928_design_board_extraction_quality_gate_manual_crop_workflow/PROMPT_COPY_PASTE.md",
+    "line": 1,
+    "text": "Tu dois appliquer le patch suivant au projet Snake Drive V4."
+  },
+  {
+    "file": "tickets/audit_pack_926_mobile_ready_and_gameplay_mechanics_compliance/PROMPT_COPY_PASTE.md",
+    "line": 39,
+    "text": "- Ne supprime aucun univers, niveau ou boss."
+  },
+  {
+    "file": "tickets/patch_929_worldmap_mobile_zoom_top_left_fit/PROMPT_COPY_PASTE.md",
+    "line": 1,
+    "text": "Tu dois appliquer le patch suivant au projet Snake Drive V4."
+  },
+  {
+    "file": "tickets/patch_929_worldmap_mobile_zoom_top_left_fit/PROMPT_COPY_PASTE.md",
+    "line": 19,
+    "text": "- laisse le footer / `SELECTIONNER UN NIVEAU` lisible sans sacrifier toute la hauteur."
+  },
+  {
+    "file": "tickets/patch_932_external_assets_download_hardening_manual_ingestion/PROMPT_COPY_PASTE.md",
+    "line": 1,
+    "text": "Tu dois appliquer le patch suivant au projet Snake Drive V4."
+  },
+  {
+    "file": "tickets/patch_931_ultimate_internet_assets_ingestion_pack/PROMPT_COPY_PASTE.md",
+    "line": 1,
+    "text": "Tu dois appliquer le patch suivant au projet Snake Drive V4."
+  },
+  {
+    "file": "tickets/patch_931_ultimate_internet_assets_ingestion_pack/PROMPT_COPY_PASTE.md",
+    "line": 39,
+    "text": "- Ne supprime aucun univers/niveau/boss."
+  },
+  {
+    "file": "tickets/patch_944_runtime_assets_gameplay_integration/PROMPT_COPY_PASTE.md",
+    "line": 48,
+    "text": "- Ne pas charger les 24 assets globalement si le niveau courant n’en utilise que 3."
+  },
+  {
+    "file": "tickets/patch_924_remove_worldmap_outer_frame/PROMPT_COPY_PASTE.md",
+    "line": 1,
+    "text": "Tu dois appliquer le patch suivant au projet Snake Drive V4."
+  },
+  {
+    "file": "tickets/patch_924_remove_worldmap_outer_frame/PROMPT_COPY_PASTE.md",
+    "line": 31,
+    "text": "- Ne supprime aucun univers, niveau ou boss."
+  },
+  {
+    "file": "tickets/patch_943_final_24_validated_runtime_assets_and_cleanup/PROMPT_COPY_PASTE.md",
+    "line": 13,
+    "text": "4. Dans `GameScene`, charger seulement les assets du niveau courant."
+  },
+  {
+    "file": "tickets/patch_922_french_intro_instructions_by_level/PROMPT_COPY_PASTE.md",
+    "line": 1,
+    "text": "Tu dois appliquer le patch suivant au projet Snake Drive V4."
+  },
+  {
+    "file": "tickets/patch_922_french_intro_instructions_by_level/PROMPT_COPY_PASTE.md",
+    "line": 3,
+    "text": "# PATCH — Français + écran d’introduction niveau avec consignes"
+  },
+  {
+    "file": "tickets/patch_922_french_intro_instructions_by_level/PROMPT_COPY_PASTE.md",
+    "line": 6,
+    "text": "Le jeu doit être en français, mais plusieurs textes visibles sont encore en anglais. En plus, le joueur comprend difficilement la mécanique spéciale de chaque niveau ou boss après avoir choisi un niveau."
+  },
+  {
+    "file": "tickets/patch_922_french_intro_instructions_by_level/PROMPT_COPY_PASTE.md",
+    "line": 10,
+    "text": "2. Ajouter un écran d’introduction concis avant chaque niveau/boss."
+  },
+  {
+    "file": "tickets/patch_922_french_intro_instructions_by_level/PROMPT_COPY_PASTE.md",
+    "line": 30,
+    "text": "- Après sélection d’un niveau depuis la WorldMap, afficher l’intro avant le gameplay."
+  },
+  {
+    "file": "tickets/patch_922_french_intro_instructions_by_level/PROMPT_COPY_PASTE.md",
+    "line": 32,
+    "text": "- nom du niveau / univers ;"
+  },
+  {
+    "file": "tickets/patch_922_french_intro_instructions_by_level/PROMPT_COPY_PASTE.md",
+    "line": 33,
+    "text": "- badge `NIVEAU` ou `BOSS` ;"
+  },
+  {
+    "file": "tickets/patch_922_french_intro_instructions_by_level/PROMPT_COPY_PASTE.md",
+    "line": 37,
+    "text": "- bouton principal `JOUER` ;"
+  },
+  {
+    "file": "tickets/patch_922_french_intro_instructions_by_level/PROMPT_COPY_PASTE.md",
+    "line": 38,
+    "text": "- bouton secondaire `CARTE` si utile."
+  },
+  {
+    "file": "tickets/patch_922_french_intro_instructions_by_level/PROMPT_COPY_PASTE.md",
+    "line": 42,
+    "text": "- `START` → `JOUER`"
+  },
+  {
+    "file": "tickets/patch_922_french_intro_instructions_by_level/PROMPT_COPY_PASTE.md",
+    "line": 43,
+    "text": "- `NEXT LEVEL` → `NIVEAU SUIVANT`"
+  },
+  {
+    "file": "tickets/patch_922_french_intro_instructions_by_level/PROMPT_COPY_PASTE.md",
+    "line": 44,
+    "text": "- `RETRY` → `REJOUER`"
+  },
+  {
+    "file": "tickets/patch_922_french_intro_instructions_by_level/PROMPT_COPY_PASTE.md",
+    "line": 45,
+    "text": "- `WORLD MAP` → `CARTE`"
+  },
+  {
+    "file": "tickets/patch_922_french_intro_instructions_by_level/PROMPT_COPY_PASTE.md",
+    "line": 48,
+    "text": "- `LEVEL COMPLETE` → `NIVEAU TERMINÉ`"
+  },
+  {
+    "file": "tickets/patch_922_french_intro_instructions_by_level/PROMPT_COPY_PASTE.md",
+    "line": 49,
+    "text": "- `GAME OVER` → `PERDU`"
+  },
+  {
+    "file": "tickets/patch_922_french_intro_instructions_by_level/PROMPT_COPY_PASTE.md",
+    "line": 56,
+    "text": "- Ne supprime aucun univers, niveau ou boss."
+  },
+  {
+    "file": "tickets/patch_922_french_intro_instructions_by_level/PROMPT_COPY_PASTE.md",
+    "line": 74,
+    "text": "- WorldMap → niveau ouvre l’intro ;"
+  },
+  {
+    "file": "tickets/patch_922_french_intro_instructions_by_level/PROMPT_COPY_PASTE.md",
+    "line": 75,
+    "text": "- intro → `JOUER` lance le bon niveau ;"
+  },
+  {
+    "file": "tickets/patch_922_french_intro_instructions_by_level/PROMPT_COPY_PASTE.md",
+    "line": 77,
+    "text": "- `CARTE` revient à la WorldMap ;"
+  },
+  {
+    "file": "tickets/patch_922_french_intro_instructions_by_level/docs/IMPLEMENTATION_NOTES.md",
+    "line": 24,
+    "text": "`NIVEAU 1` ou `BOSS`"
+  },
+  {
+    "file": "tickets/patch_922_french_intro_instructions_by_level/docs/IMPLEMENTATION_NOTES.md",
+    "line": 32,
+    "text": "- bouton principal : `JOUER`"
+  },
+  {
+    "file": "tickets/patch_922_french_intro_instructions_by_level/docs/IMPLEMENTATION_NOTES.md",
+    "line": 33,
+    "text": "- bouton secondaire : `CARTE`"
+  },
+  {
+    "file": "tickets/patch_922_french_intro_instructions_by_level/tickets/922_PATCH_FRENCH_INTRO_INSTRUCTIONS_BY_LEVEL.md",
+    "line": 1,
+    "text": "# PATCH — Français + écran d’introduction niveau avec consignes"
+  },
+  {
+    "file": "tickets/patch_922_french_intro_instructions_by_level/tickets/922_PATCH_FRENCH_INTRO_INSTRUCTIONS_BY_LEVEL.md",
+    "line": 4,
+    "text": "Snake Drive V4 mélange encore des textes anglais (`NEXT LEVEL`, `RETRY`, `WORLD MAP`, etc.) alors que le jeu doit être en français. De plus, une fois un niveau choisi, le joueur comprend difficilement la mécanique spéciale du niveau ou du b"
+  },
+  {
+    "file": "tickets/patch_922_french_intro_instructions_by_level/tickets/922_PATCH_FRENCH_INTRO_INSTRUCTIONS_BY_LEVEL.md",
+    "line": 7,
+    "text": "Passer les textes visibles du jeu en français et ajouter un écran d’introduction concis avant chaque niveau/boss, après sélection depuis la WorldMap, pour expliquer la mécanique spéciale et l’objectif immédiat."
+  },
+  {
+    "file": "tickets/patch_922_french_intro_instructions_by_level/tickets/922_PATCH_FRENCH_INTRO_INSTRUCTIONS_BY_LEVEL.md",
+    "line": 10,
+    "text": "- `src/data/levels.ts` — ajouter ou compléter les textes français par niveau : titre, objectif, mécanique, astuce courte."
+  },
+  {
+    "file": "tickets/patch_922_french_intro_instructions_by_level/tickets/922_PATCH_FRENCH_INTRO_INSTRUCTIONS_BY_LEVEL.md",
+    "line": 12,
+    "text": "- `src/scenes/WorldMapScene.ts` — faire transiter le lancement d’un niveau vers l’écran d’introduction plutôt que lancer directement le gameplay, sauf cas déjà géré ailleurs."
+  },
+  {
+    "file": "tickets/patch_922_french_intro_instructions_by_level/tickets/922_PATCH_FRENCH_INTRO_INSTRUCTIONS_BY_LEVEL.md",
+    "line": 14,
+    "text": "- `src/scenes/GameScene.ts` ou scène gameplay équivalente — recevoir le niveau depuis l’intro et lancer le gameplay normalement."
+  },
+  {
+    "file": "tickets/patch_922_french_intro_instructions_by_level/tickets/922_PATCH_FRENCH_INTRO_INSTRUCTIONS_BY_LEVEL.md",
+    "line": 33,
+    "text": "- [ ] Les boutons anglais sont remplacés : `NEXT LEVEL` → `NIVEAU SUIVANT`, `RETRY` → `REJOUER`, `WORLD MAP` → `CARTE`, `START` → `JOUER`, etc."
+  },
+  {
+    "file": "tickets/patch_922_french_intro_instructions_by_level/tickets/922_PATCH_FRENCH_INTRO_INSTRUCTIONS_BY_LEVEL.md",
+    "line": 34,
+    "text": "- [ ] Après sélection d’un niveau accessible, un écran d’introduction apparaît avant le gameplay."
+  },
+  {
+    "file": "tickets/patch_922_french_intro_instructions_by_level/tickets/922_PATCH_FRENCH_INTRO_INSTRUCTIONS_BY_LEVEL.md",
+    "line": 38,
+    "text": "- [ ] Le joueur peut lancer le niveau depuis l’intro avec un gros bouton mobile-first."
+  },
+  {
+    "file": "tickets/patch_922_french_intro_instructions_by_level/tickets/922_PATCH_FRENCH_INTRO_INSTRUCTIONS_BY_LEVEL.md",
+    "line": 48,
+    "text": "- Une seule action principale sur l’intro : `JOUER`."
+  },
+  {
+    "file": "tickets/patch_922_french_intro_instructions_by_level/tickets/922_PATCH_FRENCH_INTRO_INSTRUCTIONS_BY_LEVEL.md",
+    "line": 49,
+    "text": "- Action secondaire possible : `CARTE`."
+  },
+  {
+    "file": "tickets/patch_922_french_intro_instructions_by_level/tickets/922_PATCH_FRENCH_INTRO_INSTRUCTIONS_BY_LEVEL.md",
+    "line": 120,
+    "text": "5. Règle boss vs niveau normal."
+  },
+  {
+    "file": "tickets/patch_922_french_intro_instructions_by_level/tickets/922_PATCH_FRENCH_INTRO_INSTRUCTIONS_BY_LEVEL.md",
+    "line": 125,
+    "text": "Si un doute existe, le lister explicitement : niveau sans univers, boss non identifié, mécanique ambiguë, texte trop long sur mobile, scène de lancement incertaine, ou conflit avec double tap WorldMap."
+  },
+  {
+    "file": "tickets/patch_943_final_24_validated_runtime_assets_and_cleanup/prompts/PROMPT_CODEX_FINAL_24_ASSETS.md",
+    "line": 13,
+    "text": "4. Dans `GameScene`, charger seulement les assets du niveau courant."
+  },
+  {
+    "file": "tickets/patch_943_final_24_validated_runtime_assets_and_cleanup/docs/CODEX_INSTRUCTIONS.md",
+    "line": 13,
+    "text": "4. Dans `GameScene`, charger seulement les assets du niveau courant."
+  },
+  {
+    "file": "tickets/patch_943_final_24_validated_runtime_assets_and_cleanup/tickets/943_PATCH_FINAL_24_VALIDATED_RUNTIME_ASSETS.md",
+    "line": 33,
+    "text": "- [ ] GameScene ne charge que les assets du niveau courant."
+  },
+  {
+    "file": "tickets/patch_924_remove_worldmap_outer_frame/tickets/924_PATCH_REMOVE_WORLDMAP_OUTER_FRAME.md",
+    "line": 7,
+    "text": "Supprimer le cadre décoratif autour de l’image de la minimap WorldMap, tout en conservant l’image de carte, son cadrage utile, ses interactions, et la lisibilité des nodes."
+  },
+  {
+    "file": "tickets/patch_944_runtime_assets_gameplay_integration/prompts/PROMPT_CODEX_PATCH_944.md",
+    "line": 48,
+    "text": "- Ne pas charger les 24 assets globalement si le niveau courant n’en utilise que 3."
+  },
+  {
+    "file": "tickets/patch_944_runtime_assets_gameplay_integration/docs/RUNTIME_ASSET_MOBILE_QA.md",
+    "line": 13,
+    "text": "- [ ] Boss marker lisible dans niveau boss."
+  },
+  {
+    "file": "tickets/patch_944_runtime_assets_gameplay_integration/docs/RUNTIME_ASSET_GAMEPLAY_INTEGRATION.md",
+    "line": 39,
+    "text": "Dans le preload ou au moment de préparer le niveau :"
+  },
+  {
+    "file": "tickets/patch_944_runtime_assets_gameplay_integration/tickets/944_PATCH_RUNTIME_ASSETS_GAMEPLAY_INTEGRATION.md",
+    "line": 39,
+    "text": "- [ ] Chaque niveau charge les 3 assets de son univers courant."
+  },
+  {
+    "file": "tickets/patch_944_runtime_assets_gameplay_integration/tickets/944_PATCH_RUNTIME_ASSETS_GAMEPLAY_INTEGRATION.md",
+    "line": 42,
+    "text": "- [ ] Le boss ou niveau boss utilise l’image `boss`."
+  },
+  {
+    "file": "tickets/patch_944_runtime_assets_gameplay_integration/ready_to_copy/src/scenes/GameScene.patch944.snippet.ts",
+    "line": 10,
+    "text": "// 1. Récupérer l’univers courant depuis la structure existante du niveau."
+  },
+  {
+    "file": "tickets/patch_931_ultimate_internet_assets_ingestion_pack/fallback_lightweight/src/data/frText.ts",
+    "line": 5,
+    "text": "play: \"JOUER\","
+  },
+  {
+    "file": "tickets/patch_931_ultimate_internet_assets_ingestion_pack/fallback_lightweight/src/data/frText.ts",
+    "line": 6,
+    "text": "start: \"JOUER\","
+  },
+  {
+    "file": "tickets/patch_931_ultimate_internet_assets_ingestion_pack/fallback_lightweight/src/data/frText.ts",
+    "line": 7,
+    "text": "map: \"CARTE\","
+  },
+  {
+    "file": "tickets/patch_931_ultimate_internet_assets_ingestion_pack/fallback_lightweight/src/data/frText.ts",
+    "line": 9,
+    "text": "retry: \"REJOUER\","
+  },
+  {
+    "file": "tickets/patch_931_ultimate_internet_assets_ingestion_pack/fallback_lightweight/src/data/frText.ts",
+    "line": 10,
+    "text": "nextLevel: \"NIVEAU SUIVANT\","
+  },
+  {
+    "file": "tickets/patch_931_ultimate_internet_assets_ingestion_pack/fallback_lightweight/src/data/frText.ts",
+    "line": 11,
+    "text": "selectLevel: \"SÉLECTIONNER UN NIVEAU\","
+  },
+  {
+    "file": "tickets/patch_931_ultimate_internet_assets_ingestion_pack/fallback_lightweight/src/data/frText.ts",
+    "line": 15,
+    "text": "stageClear: \"NIVEAU TERMINÉ\","
+  },
+  {
+    "file": "tickets/patch_931_ultimate_internet_assets_ingestion_pack/fallback_lightweight/src/data/frText.ts",
+    "line": 16,
+    "text": "gameOver: \"PERDU\","
+  },
+  {
+    "file": "tickets/patch_931_ultimate_internet_assets_ingestion_pack/fallback_lightweight/src/data/frText.ts",
+    "line": 17,
+    "text": "pause: \"PAUSE\","
+  },
+  {
+    "file": "tickets/patch_931_ultimate_internet_assets_ingestion_pack/fallback_lightweight/src/data/frText.ts",
+    "line": 24,
+    "text": "level: \"NIVEAU\","
+  },
+  {
+    "file": "tickets/patch_929_worldmap_mobile_zoom_top_left_fit/tickets/929_PATCH_WORLDMAP_MOBILE_ZOOM_TOP_LEFT_FIT.md",
+    "line": 26,
+    "text": "- zone HUD / footer `SELECTIONNER UN NIVEAU`."
+  },
+  {
+    "file": "tickets/patch_929_worldmap_mobile_zoom_top_left_fit/tickets/929_PATCH_WORLDMAP_MOBILE_ZOOM_TOP_LEFT_FIT.md",
+    "line": 55,
+    "text": "- [ ] Le bouton / texte `SELECTIONNER UN NIVEAU` reste lisible."
+  },
+  {
+    "file": "tickets/patch_929_worldmap_mobile_zoom_top_left_fit/tickets/929_PATCH_WORLDMAP_MOBILE_ZOOM_TOP_LEFT_FIT.md",
+    "line": 87,
+    "text": "- Le joueur doit voir la carte, pas du vide."
+  },
+  {
+    "file": "tickets/patch_929_worldmap_mobile_zoom_top_left_fit/tickets/929_PATCH_WORLDMAP_MOBILE_ZOOM_TOP_LEFT_FIT.md",
+    "line": 89,
+    "text": "- Le comportement en zoom ne doit pas casser la sélection de niveau."
+  },
+  {
+    "file": "tickets/patch_929_worldmap_mobile_zoom_top_left_fit/tickets/929_PATCH_WORLDMAP_MOBILE_ZOOM_TOP_LEFT_FIT.md",
+    "line": 117,
+    "text": "- sélection niveau OK."
+  },
+  {
+    "file": "tickets/audit_pack_926_mobile_ready_and_gameplay_mechanics_compliance/tickets/927_PATCH_GAMEPLAY_MECHANICS_COMPLIANCE_AUDIT.md",
+    "line": 96,
+    "text": "- Les boss doivent imposer une contrainte différente du niveau normal."
+  },
+  {
+    "file": "tickets/patch_923_mobile_fit_worldmap_intro_and_frame_cleanup/tickets/923_PATCH_MOBILE_FIT_WORLDMAP_INTRO_AND_FRAME_CLEANUP.md",
+    "line": 36,
+    "text": "- [ ] L’intro Sonic explique clairement la particularité du niveau (anneaux en chaîne / rythme / objectif)."
+  },
+  {
+    "file": "docs/audits/MOBILE_FIRST_UX_CHECKLIST.md",
+    "line": 22,
+    "text": "- [ ] WorldMap -> niveau en double tap direct."
+  },
+  {
+    "file": "docs/audits/MOBILE_FIRST_UX_CHECKLIST.md",
+    "line": 53,
+    "text": "- [ ] FPS ressenti stable sur niveau rapide."
+  },
+  {
+    "file": "docs/audits/926_MOBILE_READY_COMPLIANCE_AUDIT.md",
+    "line": 105,
+    "text": "1. Add a visible World Map footer with selected level name and a 56 px `JOUER` button; keep double tap as a shortcut only."
+  },
+  {
+    "file": "docs/audits/926_MOBILE_READY_COMPLIANCE_AUDIT.md",
+    "line": 108,
+    "text": "4. Localize visible action labels consistently: `JOUER`, `REESSAYER`, `CARTE`, `NIVEAU SUIVANT`."
+  },
+  {
+    "file": "docs/audits/MOBILE_FIRST_PATCH_PLAN.md",
+    "line": 75,
+    "text": "- Niveau Sonic ou OutRun rapide pour ressentir input/FPS."
+  },
+  {
+    "file": "docs/audits/927_GAMEPLAY_MECHANICS_COMPLIANCE_AUDIT.md",
+    "line": 53,
+    "text": "| Paperboy | Livraisons / route mayhem | ✓ | ✓ | ✓ target highlighted / idle | ✓ | Partiel — 2 targets seulement, pas de respawn après livraison → dégénère en \"évite 3 obstacles\" pour le reste du quota | Moyenne | **PARTIEL** | Respawn les "
+  },
+  {
+    "file": "docs/audits/927_GAMEPLAY_MECHANICS_COMPLIANCE_AUDIT.md",
+    "line": 59,
+    "text": "| Univers | Boss attendu | Data | Runtime | Feedback visuel | Intro FR | Contrainte distincte du niveau normal | Phases | Statut | Patch recommandé |"
+  },
+  {
+    "file": "docs/audits/927_GAMEPLAY_MECHANICS_COMPLIANCE_AUDIT.md",
+    "line": 84,
+    "text": "- **Fighter** : Charge move existe et est trackée, mais l'enjeu est uniquement un bonus score (+2 au lieu de +1). Les spar zones sont des obstacles statiques génériques, pas liés à l'état de charge. Sans glow sur la tête du serpent, le joue"
+  },
+  {
+    "file": "docs/audits/927_GAMEPLAY_MECHANICS_COMPLIANCE_AUDIT.md",
+    "line": 86,
+    "text": "- **Paperboy** : La mécanique pickup→hasPaper→deliver est bien implémentée, mais seulement pour 2 livraisons fixes. Une fois les 2 maisons livrées, le reste du quota se joue sans delivery flow — l'univers perd sa spécificité en cours de niv"
+  },
+  {
+    "file": "docs/audits/927_GAMEPLAY_MECHANICS_COMPLIANCE_AUDIT.md",
+    "line": 90,
+    "text": "- **Witch Mirror (Castle)** : Pleinement vérifié — timing de révélation, faux miroir = mort, phases progressives. Distinct du niveau normal."
+  },
+  {
+    "file": "docs/audits/927_GAMEPLAY_MECHANICS_COMPLIANCE_AUDIT.md",
+    "line": 91,
+    "text": "- **Neighborhood Chaos (Paperboy)** : Pleinement vérifié — 3 waves avec escalade d'obstacles, mécanique livraison complète et plus robuste que le niveau normal (targets ne disparaissent pas, obstacles mobiles vs statiques)."
+  },
+  {
+    "file": "docs/audits/927_GAMEPLAY_MECHANICS_COMPLIANCE_AUDIT.md",
+    "line": 130,
+    "text": "1. **6 bosses non lus intégralement** (Loop Serpent, Crime Lord, Final Challenger, Turbo Rival, Shadow Ninja, Dragon Gate) — leur distinctivité par rapport à leur niveau normal est confirmée en théorie (BaseBoss + identifiant distinct) mais"
+  },
+  {
+    "file": "docs/audits/MOBILE_FIRST_UX_AUDIT.md",
+    "line": 18,
+    "text": "- Action principale : choisir et lancer un niveau."
+  },
+  {
+    "file": "docs/audits/MOBILE_FIRST_UX_AUDIT.md",
+    "line": 24,
+    "text": "- Action principale : jouer immediatement."
+  },
+  {
+    "file": "docs/audits/MOBILE_FIRST_UX_AUDIT.md",
+    "line": 30,
+    "text": "- Action principale : continuer au niveau suivant."
+  },
+  {
+    "file": "docs/audits/MOBILE_FIRST_UX_AUDIT.md",
+    "line": 40,
+    "text": "- Action principale : lancer le niveau."
+  }
+]

@@ -1,0 +1,12 @@
+[
+  {
+    "file": "src/main.ts",
+    "line": 39,
+    "text": "document.getElementById('app')!.innerHTML = '';"
+  },
+  {
+    "file": "src/main.ts",
+    "line": 51,
+    "text": "document.getElementById('app')!.innerHTML = '';"
+  }
+]

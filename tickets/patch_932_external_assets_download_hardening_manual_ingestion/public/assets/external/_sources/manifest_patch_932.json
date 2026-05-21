@@ -1,0 +1,13 @@
+{
+  "update": "932",
+  "changes": [
+    "add source.downloadMode: direct | opengameartPageScrape | manual",
+    "add source.status: approved | userLicensed_review_required | manual_required | broken_url",
+    "add source.pageUrl and source.directUrls[] separately",
+    "add downloader content-type guard against HTML pages",
+    "add manual drop import path public/assets/external/_manual_drop/<sourceId>/",
+    "add audit report for downloaded/skipped/manual/reviewRequired"
+  ],
+  "manualDropConvention": "public/assets/external/_manual_drop/<sourceId>/<files...>",
+  "outputConvention": "public/assets/external/_downloaded/<sourceId>/<files...>"
+}

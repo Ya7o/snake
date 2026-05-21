@@ -29,7 +29,7 @@ export class ClearScene extends Phaser.Scene {
     this.add.rectangle(W / 2, H / 2, W, H, bgColor).setDepth(0);
 
     // Gold flash on enter
-    flashScreen(this, accentHex, 0.6, 500);
+    flashScreen(this, accentHex, 0.6, 350);
 
     // Sparkle particles (procedural stars)
     const sparks = this.add.graphics().setDepth(3);
@@ -61,14 +61,14 @@ export class ClearScene extends Phaser.Scene {
     // Console frame
     drawConsoleFrame(this, W * 0.06, H * 0.07, W * 0.88, H * 0.86, accentHex, primaryHex, 4);
 
-    // CLEAR! title
-    this.add.text(W / 2 + 3, H * 0.22 + 3, 'CLEAR!', {
+    // Success title
+    this.add.text(W / 2 + 3, H * 0.22 + 3, 'BRAVO !', {
       fontFamily: ARCADE_FONT,
       fontSize: `${Math.min(28, Math.floor(W * 0.08))}px`,
       color: '#886600',
     }).setOrigin(0.5).setDepth(5);
 
-    const clearTxt = this.add.text(W / 2, H * 0.22, 'CLEAR!', {
+    const clearTxt = this.add.text(W / 2, H * 0.22, 'BRAVO !', {
       fontFamily: ARCADE_FONT,
       fontSize: `${Math.min(28, Math.floor(W * 0.08))}px`,
       color: accentStr,
@@ -98,9 +98,9 @@ export class ClearScene extends Phaser.Scene {
       badgeGfx.fillStyle(0xe74c3c, 0.9);
       badgeGfx.fillRoundedRect(W / 2 - 70, H * 0.43, 140, 22, 4);
 
-      this.add.text(W / 2, H * 0.441, 'BOSS DEFEATED!', {
+      this.add.text(W / 2, H * 0.441, 'BOSS VAINCU !', {
         fontFamily: ARCADE_FONT,
-        fontSize: '7px',
+        fontSize: '10px',
         color: '#ffffff',
       }).setOrigin(0.5).setDepth(6);
     }
@@ -124,7 +124,7 @@ export class ClearScene extends Phaser.Scene {
         y: H * 0.72,
         width: Math.min(260, W * 0.72),
         height: Math.max(52, Math.min(60, H * 0.08)),
-        label: 'NEXT LEVEL',
+        label: 'SUIVANT',
         primary: true,
         fillColor: 0x173018,
         pressedFillColor: 0x24502a,
@@ -138,10 +138,10 @@ export class ClearScene extends Phaser.Scene {
         },
       });
     } else {
-      this.add.text(W / 2, H * 0.66, 'ALL LEVELS', {
+      this.add.text(W / 2, H * 0.66, 'TOUS LES NIVEAUX', {
         fontFamily: ARCADE_FONT, fontSize: `${Math.min(9, Math.floor(W * 0.025))}px`, color: accentStr
       }).setOrigin(0.5).setDepth(6);
-      this.add.text(W / 2, H * 0.73, 'COMPLETE!', {
+      this.add.text(W / 2, H * 0.73, 'TERMINÉS !', {
         fontFamily: ARCADE_FONT, fontSize: `${Math.min(9, Math.floor(W * 0.025))}px`, color: accentStr
       }).setOrigin(0.5).setDepth(6);
     }
@@ -152,7 +152,7 @@ export class ClearScene extends Phaser.Scene {
       y: H * 0.86,
       width: Math.min(210, W * 0.58),
       height: 46,
-      label: 'WORLD MAP',
+      label: 'CARTE',
       fillColor: 0x0d1020,
       pressedFillColor: 0x171b34,
       strokeColor: 0x555577,
@@ -166,6 +166,6 @@ export class ClearScene extends Phaser.Scene {
     });
 
     addScanlines(this, 0.04, 20);
-    this.cameras.main.fadeIn(300, 0, 0, 0);
+    this.cameras.main.fadeIn(200, 0, 0, 0);
   }
 }

@@ -1,0 +1,4580 @@
+[
+  {
+    "path": "dist/assets/map/world_map.png",
+    "bytes": 2874347,
+    "kb": 2807.0,
+    "ext": ".png",
+    "width": 1448,
+    "height": 1086,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "dist/assets/universes/castle/board_preview.png",
+    "bytes": 2208019,
+    "kb": 2156.3,
+    "ext": ".png",
+    "width": 1024,
+    "height": 1536,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "dist/assets/universes/castle/boss.png",
+    "bytes": 282,
+    "kb": 0.3,
+    "ext": ".png",
+    "width": 48,
+    "height": 48,
+    "mode": "RGBA",
+    "transparent_percent": 65.28
+  },
+  {
+    "path": "dist/assets/universes/castle/frame_tile.png",
+    "bytes": 129,
+    "kb": 0.1,
+    "ext": ".png",
+    "width": 32,
+    "height": 32,
+    "mode": "RGBA",
+    "transparent_percent": 0.0
+  },
+  {
+    "path": "dist/assets/universes/castle/hud_panel.png",
+    "bytes": 304,
+    "kb": 0.3,
+    "ext": ".png",
+    "width": 360,
+    "height": 56,
+    "mode": "RGBA",
+    "transparent_percent": 0.0
+  },
+  {
+    "path": "dist/assets/universes/castle/obstacle_01.png",
+    "bytes": 138,
+    "kb": 0.1,
+    "ext": ".png",
+    "width": 32,
+    "height": 32,
+    "mode": "RGBA",
+    "transparent_percent": 43.75
+  },
+  {
+    "path": "dist/assets/universes/castle/obstacle_02.png",
+    "bytes": 138,
+    "kb": 0.1,
+    "ext": ".png",
+    "width": 32,
+    "height": 32,
+    "mode": "RGBA",
+    "transparent_percent": 43.75
+  },
+  {
+    "path": "dist/assets/universes/castle/pickup_01.png",
+    "bytes": 189,
+    "kb": 0.2,
+    "ext": ".png",
+    "width": 32,
+    "height": 32,
+    "mode": "RGBA",
+    "transparent_percent": 74.12
+  },
+  {
+    "path": "dist/assets/universes/castle/pickup_02.png",
+    "bytes": 229,
+    "kb": 0.2,
+    "ext": ".png",
+    "width": 32,
+    "height": 32,
+    "mode": "RGBA",
+    "transparent_percent": 56.93
+  },
+  {
+    "path": "dist/assets/universes/fighter/board_preview.png",
+    "bytes": 2131767,
+    "kb": 2081.8,
+    "ext": ".png",
+    "width": 1024,
+    "height": 1536,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "dist/assets/universes/fighter/boss.png",
+    "bytes": 325,
+    "kb": 0.3,
+    "ext": ".png",
+    "width": 48,
+    "height": 48,
+    "mode": "RGBA",
+    "transparent_percent": 49.05
+  },
+  {
+    "path": "dist/assets/universes/fighter/frame_tile.png",
+    "bytes": 133,
+    "kb": 0.1,
+    "ext": ".png",
+    "width": 32,
+    "height": 32,
+    "mode": "RGBA",
+    "transparent_percent": 0.0
+  },
+  {
+    "path": "dist/assets/universes/fighter/hud_panel.png",
+    "bytes": 301,
+    "kb": 0.3,
+    "ext": ".png",
+    "width": 360,
+    "height": 56,
+    "mode": "RGBA",
+    "transparent_percent": 0.0
+  },
+  {
+    "path": "dist/assets/universes/fighter/obstacle_01.png",
+    "bytes": 137,
+    "kb": 0.1,
+    "ext": ".png",
+    "width": 32,
+    "height": 32,
+    "mode": "RGBA",
+    "transparent_percent": 61.33
+  },
+  {
+    "path": "dist/assets/universes/fighter/obstacle_02.png",
+    "bytes": 138,
+    "kb": 0.1,
+    "ext": ".png",
+    "width": 32,
+    "height": 32,
+    "mode": "RGBA",
+    "transparent_percent": 43.75
+  },
+  {
+    "path": "dist/assets/universes/fighter/pickup_01.png",
+    "bytes": 244,
+    "kb": 0.2,
+    "ext": ".png",
+    "width": 32,
+    "height": 32,
+    "mode": "RGBA",
+    "transparent_percent": 58.89
+  },
+  {
+    "path": "dist/assets/universes/fighter/pickup_02.png",
+    "bytes": 196,
+    "kb": 0.2,
+    "ext": ".png",
+    "width": 32,
+    "height": 32,
+    "mode": "RGBA",
+    "transparent_percent": 75.29
+  },
+  {
+    "path": "dist/assets/universes/kombat/board_preview.png",
+    "bytes": 2286297,
+    "kb": 2232.7,
+    "ext": ".png",
+    "width": 1024,
+    "height": 1536,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "dist/assets/universes/kombat/boss.png",
+    "bytes": 215,
+    "kb": 0.2,
+    "ext": ".png",
+    "width": 48,
+    "height": 48,
+    "mode": "RGBA",
+    "transparent_percent": 62.67
+  },
+  {
+    "path": "dist/assets/universes/kombat/frame_tile.png",
+    "bytes": 128,
+    "kb": 0.1,
+    "ext": ".png",
+    "width": 32,
+    "height": 32,
+    "mode": "RGBA",
+    "transparent_percent": 0.0
+  },
+  {
+    "path": "dist/assets/universes/kombat/hud_panel.png",
+    "bytes": 301,
+    "kb": 0.3,
+    "ext": ".png",
+    "width": 360,
+    "height": 56,
+    "mode": "RGBA",
+    "transparent_percent": 0.0
+  },
+  {
+    "path": "dist/assets/universes/kombat/obstacle_01.png",
+    "bytes": 134,
+    "kb": 0.1,
+    "ext": ".png",
+    "width": 32,
+    "height": 32,
+    "mode": "RGBA",
+    "transparent_percent": 61.33
+  },
+  {
+    "path": "dist/assets/universes/kombat/obstacle_02.png",
+    "bytes": 191,
+    "kb": 0.2,
+    "ext": ".png",
+    "width": 32,
+    "height": 32,
+    "mode": "RGBA",
+    "transparent_percent": 75.29
+  },
+  {
+    "path": "dist/assets/universes/kombat/pickup_01.png",
+    "bytes": 220,
+    "kb": 0.2,
+    "ext": ".png",
+    "width": 32,
+    "height": 32,
+    "mode": "RGBA",
+    "transparent_percent": 48.34
+  },
+  {
+    "path": "dist/assets/universes/kombat/pickup_02.png",
+    "bytes": 218,
+    "kb": 0.2,
+    "ext": ".png",
+    "width": 32,
+    "height": 32,
+    "mode": "RGBA",
+    "transparent_percent": 63.18
+  },
+  {
+    "path": "dist/assets/universes/outrun/board_preview.png",
+    "bytes": 3023474,
+    "kb": 2952.6,
+    "ext": ".png",
+    "width": 1024,
+    "height": 1536,
+    "mode": "RGBA",
+    "transparent_percent": 0.0
+  },
+  {
+    "path": "dist/assets/universes/outrun/boss.png",
+    "bytes": 213,
+    "kb": 0.2,
+    "ext": ".png",
+    "width": 48,
+    "height": 48,
+    "mode": "RGBA",
+    "transparent_percent": 74.0
+  },
+  {
+    "path": "dist/assets/universes/outrun/frame_tile.png",
+    "bytes": 128,
+    "kb": 0.1,
+    "ext": ".png",
+    "width": 32,
+    "height": 32,
+    "mode": "RGBA",
+    "transparent_percent": 0.0
+  },
+  {
+    "path": "dist/assets/universes/outrun/hud_panel.png",
+    "bytes": 301,
+    "kb": 0.3,
+    "ext": ".png",
+    "width": 360,
+    "height": 56,
+    "mode": "RGBA",
+    "transparent_percent": 0.0
+  },
+  {
+    "path": "dist/assets/universes/outrun/obstacle_01.png",
+    "bytes": 168,
+    "kb": 0.2,
+    "ext": ".png",
+    "width": 32,
+    "height": 32,
+    "mode": "RGBA",
+    "transparent_percent": 73.24
+  },
+  {
+    "path": "dist/assets/universes/outrun/obstacle_02.png",
+    "bytes": 132,
+    "kb": 0.1,
+    "ext": ".png",
+    "width": 32,
+    "height": 32,
+    "mode": "RGBA",
+    "transparent_percent": 82.42
+  },
+  {
+    "path": "dist/assets/universes/outrun/pickup_01.png",
+    "bytes": 132,
+    "kb": 0.1,
+    "ext": ".png",
+    "width": 32,
+    "height": 32,
+    "mode": "RGBA",
+    "transparent_percent": 76.95
+  },
+  {
+    "path": "dist/assets/universes/outrun/pickup_02.png",
+    "bytes": 199,
+    "kb": 0.2,
+    "ext": ".png",
+    "width": 32,
+    "height": 32,
+    "mode": "RGBA",
+    "transparent_percent": 78.52
+  },
+  {
+    "path": "dist/assets/universes/paperboy/board_preview.png",
+    "bytes": 2438059,
+    "kb": 2380.9,
+    "ext": ".png",
+    "width": 1024,
+    "height": 1536,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "dist/assets/universes/paperboy/boss.png",
+    "bytes": 227,
+    "kb": 0.2,
+    "ext": ".png",
+    "width": 48,
+    "height": 48,
+    "mode": "RGBA",
+    "transparent_percent": 47.05
+  },
+  {
+    "path": "dist/assets/universes/paperboy/frame_tile.png",
+    "bytes": 126,
+    "kb": 0.1,
+    "ext": ".png",
+    "width": 32,
+    "height": 32,
+    "mode": "RGBA",
+    "transparent_percent": 0.0
+  },
+  {
+    "path": "dist/assets/universes/paperboy/hud_panel.png",
+    "bytes": 302,
+    "kb": 0.3,
+    "ext": ".png",
+    "width": 360,
+    "height": 56,
+    "mode": "RGBA",
+    "transparent_percent": 0.0
+  },
+  {
+    "path": "dist/assets/universes/paperboy/obstacle_01.png",
+    "bytes": 170,
+    "kb": 0.2,
+    "ext": ".png",
+    "width": 32,
+    "height": 32,
+    "mode": "RGBA",
+    "transparent_percent": 69.34
+  },
+  {
+    "path": "dist/assets/universes/paperboy/obstacle_02.png",
+    "bytes": 137,
+    "kb": 0.1,
+    "ext": ".png",
+    "width": 32,
+    "height": 32,
+    "mode": "RGBA",
+    "transparent_percent": 43.75
+  },
+  {
+    "path": "dist/assets/universes/paperboy/pickup_01.png",
+    "bytes": 151,
+    "kb": 0.1,
+    "ext": ".png",
+    "width": 32,
+    "height": 32,
+    "mode": "RGBA",
+    "transparent_percent": 61.33
+  },
+  {
+    "path": "dist/assets/universes/paperboy/pickup_02.png",
+    "bytes": 216,
+    "kb": 0.2,
+    "ext": ".png",
+    "width": 32,
+    "height": 32,
+    "mode": "RGBA",
+    "transparent_percent": 56.93
+  },
+  {
+    "path": "dist/assets/universes/shinobi/board_preview.png",
+    "bytes": 2137762,
+    "kb": 2087.7,
+    "ext": ".png",
+    "width": 1024,
+    "height": 1536,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "dist/assets/universes/shinobi/boss.png",
+    "bytes": 228,
+    "kb": 0.2,
+    "ext": ".png",
+    "width": 48,
+    "height": 48,
+    "mode": "RGBA",
+    "transparent_percent": 59.55
+  },
+  {
+    "path": "dist/assets/universes/shinobi/frame_tile.png",
+    "bytes": 124,
+    "kb": 0.1,
+    "ext": ".png",
+    "width": 32,
+    "height": 32,
+    "mode": "RGBA",
+    "transparent_percent": 0.0
+  },
+  {
+    "path": "dist/assets/universes/shinobi/hud_panel.png",
+    "bytes": 298,
+    "kb": 0.3,
+    "ext": ".png",
+    "width": 360,
+    "height": 56,
+    "mode": "RGBA",
+    "transparent_percent": 0.0
+  },
+  {
+    "path": "dist/assets/universes/shinobi/obstacle_01.png",
+    "bytes": 161,
+    "kb": 0.2,
+    "ext": ".png",
+    "width": 32,
+    "height": 32,
+    "mode": "RGBA",
+    "transparent_percent": 82.62
+  },
+  {
+    "path": "dist/assets/universes/shinobi/obstacle_02.png",
+    "bytes": 138,
+    "kb": 0.1,
+    "ext": ".png",
+    "width": 32,
+    "height": 32,
+    "mode": "RGBA",
+    "transparent_percent": 43.75
+  },
+  {
+    "path": "dist/assets/universes/shinobi/pickup_01.png",
+    "bytes": 174,
+    "kb": 0.2,
+    "ext": ".png",
+    "width": 32,
+    "height": 32,
+    "mode": "RGBA",
+    "transparent_percent": 78.42
+  },
+  {
+    "path": "dist/assets/universes/shinobi/pickup_02.png",
+    "bytes": 141,
+    "kb": 0.1,
+    "ext": ".png",
+    "width": 32,
+    "height": 32,
+    "mode": "RGBA",
+    "transparent_percent": 83.2
+  },
+  {
+    "path": "dist/assets/universes/sonic/board_preview.png",
+    "bytes": 1933630,
+    "kb": 1888.3,
+    "ext": ".png",
+    "width": 1024,
+    "height": 1536,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "dist/assets/universes/sonic/boss.png",
+    "bytes": 210,
+    "kb": 0.2,
+    "ext": ".png",
+    "width": 48,
+    "height": 48,
+    "mode": "RGBA",
+    "transparent_percent": 60.94
+  },
+  {
+    "path": "dist/assets/universes/sonic/frame_tile.png",
+    "bytes": 134,
+    "kb": 0.1,
+    "ext": ".png",
+    "width": 32,
+    "height": 32,
+    "mode": "RGBA",
+    "transparent_percent": 0.0
+  },
+  {
+    "path": "dist/assets/universes/sonic/hud_panel.png",
+    "bytes": 302,
+    "kb": 0.3,
+    "ext": ".png",
+    "width": 360,
+    "height": 56,
+    "mode": "RGBA",
+    "transparent_percent": 0.0
+  },
+  {
+    "path": "dist/assets/universes/sonic/obstacle_01.png",
+    "bytes": 170,
+    "kb": 0.2,
+    "ext": ".png",
+    "width": 32,
+    "height": 32,
+    "mode": "RGBA",
+    "transparent_percent": 73.24
+  },
+  {
+    "path": "dist/assets/universes/sonic/obstacle_02.png",
+    "bytes": 134,
+    "kb": 0.1,
+    "ext": ".png",
+    "width": 32,
+    "height": 32,
+    "mode": "RGBA",
+    "transparent_percent": 61.33
+  },
+  {
+    "path": "dist/assets/universes/sonic/pickup_01.png",
+    "bytes": 213,
+    "kb": 0.2,
+    "ext": ".png",
+    "width": 32,
+    "height": 32,
+    "mode": "RGBA",
+    "transparent_percent": 62.5
+  },
+  {
+    "path": "dist/assets/universes/sonic/pickup_02.png",
+    "bytes": 195,
+    "kb": 0.2,
+    "ext": ".png",
+    "width": 32,
+    "height": 32,
+    "mode": "RGBA",
+    "transparent_percent": 74.12
+  },
+  {
+    "path": "dist/assets/universes/streets/board_preview.png",
+    "bytes": 2030866,
+    "kb": 1983.3,
+    "ext": ".png",
+    "width": 1024,
+    "height": 1536,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "dist/assets/universes/streets/boss.png",
+    "bytes": 209,
+    "kb": 0.2,
+    "ext": ".png",
+    "width": 48,
+    "height": 48,
+    "mode": "RGBA",
+    "transparent_percent": 63.45
+  },
+  {
+    "path": "dist/assets/universes/streets/frame_tile.png",
+    "bytes": 133,
+    "kb": 0.1,
+    "ext": ".png",
+    "width": 32,
+    "height": 32,
+    "mode": "RGBA",
+    "transparent_percent": 0.0
+  },
+  {
+    "path": "dist/assets/universes/streets/hud_panel.png",
+    "bytes": 301,
+    "kb": 0.3,
+    "ext": ".png",
+    "width": 360,
+    "height": 56,
+    "mode": "RGBA",
+    "transparent_percent": 0.0
+  },
+  {
+    "path": "dist/assets/universes/streets/obstacle_01.png",
+    "bytes": 135,
+    "kb": 0.1,
+    "ext": ".png",
+    "width": 32,
+    "height": 32,
+    "mode": "RGBA",
+    "transparent_percent": 61.33
+  },
+  {
+    "path": "dist/assets/universes/streets/obstacle_02.png",
+    "bytes": 170,
+    "kb": 0.2,
+    "ext": ".png",
+    "width": 32,
+    "height": 32,
+    "mode": "RGBA",
+    "transparent_percent": 73.24
+  },
+  {
+    "path": "dist/assets/universes/streets/pickup_01.png",
+    "bytes": 233,
+    "kb": 0.2,
+    "ext": ".png",
+    "width": 32,
+    "height": 32,
+    "mode": "RGBA",
+    "transparent_percent": 56.93
+  },
+  {
+    "path": "dist/assets/universes/streets/pickup_02.png",
+    "bytes": 217,
+    "kb": 0.2,
+    "ext": ".png",
+    "width": 32,
+    "height": 32,
+    "mode": "RGBA",
+    "transparent_percent": 56.93
+  },
+  {
+    "path": "dist/assets/runtime/universes/castle/boss_witch_mirror.png",
+    "bytes": 92934,
+    "kb": 90.8,
+    "ext": ".png",
+    "width": 179,
+    "height": 256,
+    "mode": "RGBA",
+    "transparent_percent": 35.71
+  },
+  {
+    "path": "dist/assets/runtime/universes/castle/obstacle_blink_wall.png",
+    "bytes": 121578,
+    "kb": 118.7,
+    "ext": ".png",
+    "width": 238,
+    "height": 256,
+    "mode": "RGBA",
+    "transparent_percent": 12.33
+  },
+  {
+    "path": "dist/assets/runtime/universes/castle/pickup_orb.png",
+    "bytes": 81324,
+    "kb": 79.4,
+    "ext": ".png",
+    "width": 194,
+    "height": 256,
+    "mode": "RGBA",
+    "transparent_percent": 42.38
+  },
+  {
+    "path": "dist/assets/runtime/universes/fighter/boss_final_challenger.png",
+    "bytes": 71211,
+    "kb": 69.5,
+    "ext": ".png",
+    "width": 217,
+    "height": 256,
+    "mode": "RGBA",
+    "transparent_percent": 54.21
+  },
+  {
+    "path": "dist/assets/runtime/universes/fighter/obstacle_charge_marker.png",
+    "bytes": 81227,
+    "kb": 79.3,
+    "ext": ".png",
+    "width": 236,
+    "height": 256,
+    "mode": "RGBA",
+    "transparent_percent": 37.58
+  },
+  {
+    "path": "dist/assets/runtime/universes/fighter/pickup_energy.png",
+    "bytes": 92055,
+    "kb": 89.9,
+    "ext": ".png",
+    "width": 250,
+    "height": 256,
+    "mode": "RGBA",
+    "transparent_percent": 38.75
+  },
+  {
+    "path": "dist/assets/runtime/universes/kombat/boss_dragon_gate.png",
+    "bytes": 127002,
+    "kb": 124.0,
+    "ext": ".png",
+    "width": 243,
+    "height": 256,
+    "mode": "RGBA",
+    "transparent_percent": 25.14
+  },
+  {
+    "path": "dist/assets/runtime/universes/kombat/obstacle_fatal_zone.png",
+    "bytes": 98109,
+    "kb": 95.8,
+    "ext": ".png",
+    "width": 235,
+    "height": 256,
+    "mode": "RGBA",
+    "transparent_percent": 31.19
+  },
+  {
+    "path": "dist/assets/runtime/universes/kombat/pickup_finish_token.png",
+    "bytes": 89420,
+    "kb": 87.3,
+    "ext": ".png",
+    "width": 239,
+    "height": 256,
+    "mode": "RGBA",
+    "transparent_percent": 34.98
+  },
+  {
+    "path": "dist/assets/runtime/universes/outrun/boss_turbo_rival.png",
+    "bytes": 76024,
+    "kb": 74.2,
+    "ext": ".png",
+    "width": 256,
+    "height": 165,
+    "mode": "RGBA",
+    "transparent_percent": 37.7
+  },
+  {
+    "path": "dist/assets/runtime/universes/outrun/obstacle_car.png",
+    "bytes": 56363,
+    "kb": 55.0,
+    "ext": ".png",
+    "width": 256,
+    "height": 160,
+    "mode": "RGBA",
+    "transparent_percent": 15.09
+  },
+  {
+    "path": "dist/assets/runtime/universes/outrun/pickup_checkpoint.png",
+    "bytes": 66863,
+    "kb": 65.3,
+    "ext": ".png",
+    "width": 160,
+    "height": 256,
+    "mode": "RGBA",
+    "transparent_percent": 33.3
+  },
+  {
+    "path": "dist/assets/runtime/universes/paperboy/boss_neighborhood_chaos.png",
+    "bytes": 127862,
+    "kb": 124.9,
+    "ext": ".png",
+    "width": 256,
+    "height": 233,
+    "mode": "RGBA",
+    "transparent_percent": 27.52
+  },
+  {
+    "path": "dist/assets/runtime/universes/paperboy/obstacle_dog.png",
+    "bytes": 69478,
+    "kb": 67.8,
+    "ext": ".png",
+    "width": 256,
+    "height": 170,
+    "mode": "RGBA",
+    "transparent_percent": 35.26
+  },
+  {
+    "path": "dist/assets/runtime/universes/paperboy/pickup_newspaper.png",
+    "bytes": 78105,
+    "kb": 76.3,
+    "ext": ".png",
+    "width": 256,
+    "height": 191,
+    "mode": "RGBA",
+    "transparent_percent": 48.06
+  },
+  {
+    "path": "dist/assets/runtime/universes/shinobi/boss_shadow_ninja.png",
+    "bytes": 76855,
+    "kb": 75.1,
+    "ext": ".png",
+    "width": 256,
+    "height": 250,
+    "mode": "RGBA",
+    "transparent_percent": 40.03
+  },
+  {
+    "path": "dist/assets/runtime/universes/shinobi/obstacle_decoy.png",
+    "bytes": 90584,
+    "kb": 88.5,
+    "ext": ".png",
+    "width": 251,
+    "height": 256,
+    "mode": "RGBA",
+    "transparent_percent": 38.38
+  },
+  {
+    "path": "dist/assets/runtime/universes/shinobi/pickup_shuriken.png",
+    "bytes": 53500,
+    "kb": 52.2,
+    "ext": ".png",
+    "width": 256,
+    "height": 256,
+    "mode": "RGBA",
+    "transparent_percent": 71.09
+  },
+  {
+    "path": "dist/assets/runtime/universes/sonic/boss_loop_serpent.png",
+    "bytes": 127781,
+    "kb": 124.8,
+    "ext": ".png",
+    "width": 256,
+    "height": 249,
+    "mode": "RGBA",
+    "transparent_percent": 27.85
+  },
+  {
+    "path": "dist/assets/runtime/universes/sonic/obstacle_bumper.png",
+    "bytes": 117788,
+    "kb": 115.0,
+    "ext": ".png",
+    "width": 253,
+    "height": 256,
+    "mode": "RGBA",
+    "transparent_percent": 21.39
+  },
+  {
+    "path": "dist/assets/runtime/universes/sonic/pickup_ring.png",
+    "bytes": 55450,
+    "kb": 54.2,
+    "ext": ".png",
+    "width": 256,
+    "height": 256,
+    "mode": "RGBA",
+    "transparent_percent": 52.34
+  },
+  {
+    "path": "dist/assets/runtime/universes/streets/boss_crime_lord.png",
+    "bytes": 90515,
+    "kb": 88.4,
+    "ext": ".png",
+    "width": 187,
+    "height": 256,
+    "mode": "RGBA",
+    "transparent_percent": 29.95
+  },
+  {
+    "path": "dist/assets/runtime/universes/streets/obstacle_crowd.png",
+    "bytes": 126176,
+    "kb": 123.2,
+    "ext": ".png",
+    "width": 256,
+    "height": 254,
+    "mode": "RGBA",
+    "transparent_percent": 32.66
+  },
+  {
+    "path": "dist/assets/runtime/universes/streets/pickup_street_bonus.png",
+    "bytes": 104063,
+    "kb": 101.6,
+    "ext": ".png",
+    "width": 250,
+    "height": 256,
+    "mode": "RGBA",
+    "transparent_percent": 22.27
+  },
+  {
+    "path": "dist/assets/frames/castle/frame.png",
+    "bytes": 689499,
+    "kb": 673.3,
+    "ext": ".png",
+    "width": 532,
+    "height": 779,
+    "mode": "RGBA",
+    "transparent_percent": 0.0
+  },
+  {
+    "path": "dist/assets/frames/fighter/frame.png",
+    "bytes": 777293,
+    "kb": 759.1,
+    "ext": ".png",
+    "width": 517,
+    "height": 839,
+    "mode": "RGBA",
+    "transparent_percent": 0.0
+  },
+  {
+    "path": "dist/assets/frames/kombat/frame.png",
+    "bytes": 823672,
+    "kb": 804.4,
+    "ext": ".png",
+    "width": 523,
+    "height": 859,
+    "mode": "RGBA",
+    "transparent_percent": 0.0
+  },
+  {
+    "path": "dist/assets/frames/outrun/frame.png",
+    "bytes": 814764,
+    "kb": 795.7,
+    "ext": ".png",
+    "width": 517,
+    "height": 847,
+    "mode": "RGBA",
+    "transparent_percent": 0.0
+  },
+  {
+    "path": "dist/assets/frames/paperboy/frame.png",
+    "bytes": 922568,
+    "kb": 900.9,
+    "ext": ".png",
+    "width": 535,
+    "height": 943,
+    "mode": "RGBA",
+    "transparent_percent": 0.0
+  },
+  {
+    "path": "dist/assets/frames/shinobi/frame.png",
+    "bytes": 715912,
+    "kb": 699.1,
+    "ext": ".png",
+    "width": 511,
+    "height": 805,
+    "mode": "RGBA",
+    "transparent_percent": 0.0
+  },
+  {
+    "path": "dist/assets/frames/sonic/frame.png",
+    "bytes": 725264,
+    "kb": 708.3,
+    "ext": ".png",
+    "width": 529,
+    "height": 873,
+    "mode": "RGBA",
+    "transparent_percent": 0.0
+  },
+  {
+    "path": "dist/assets/frames/streets/frame.png",
+    "bytes": 711720,
+    "kb": 695.0,
+    "ext": ".png",
+    "width": 531,
+    "height": 819,
+    "mode": "RGBA",
+    "transparent_percent": 0.0
+  },
+  {
+    "path": "dist/assets/developer-assets/castle/badges.png",
+    "bytes": 78940,
+    "kb": 77.1,
+    "ext": ".png",
+    "width": 500,
+    "height": 116,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "dist/assets/developer-assets/castle/borders.png",
+    "bytes": 191866,
+    "kb": 187.4,
+    "ext": ".png",
+    "width": 896,
+    "height": 160,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "dist/assets/developer-assets/castle/boss.png",
+    "bytes": 124903,
+    "kb": 122.0,
+    "ext": ".png",
+    "width": 406,
+    "height": 220,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "dist/assets/developer-assets/castle/gameplayPreview.png",
+    "bytes": 219779,
+    "kb": 214.6,
+    "ext": ".png",
+    "width": 452,
+    "height": 418,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "dist/assets/developer-assets/castle/hud.png",
+    "bytes": 84537,
+    "kb": 82.6,
+    "ext": ".png",
+    "width": 350,
+    "height": 172,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "dist/assets/developer-assets/castle/obstacles.png",
+    "bytes": 118183,
+    "kb": 115.4,
+    "ext": ".png",
+    "width": 420,
+    "height": 170,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "dist/assets/developer-assets/castle/palette.png",
+    "bytes": 57868,
+    "kb": 56.5,
+    "ext": ".png",
+    "width": 344,
+    "height": 104,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "dist/assets/developer-assets/castle/pickups.png",
+    "bytes": 89797,
+    "kb": 87.7,
+    "ext": ".png",
+    "width": 406,
+    "height": 156,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "dist/assets/developer-assets/castle/props.png",
+    "bytes": 63489,
+    "kb": 62.0,
+    "ext": ".png",
+    "width": 420,
+    "height": 170,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "dist/assets/developer-assets/fighter/badges.png",
+    "bytes": 92791,
+    "kb": 90.6,
+    "ext": ".png",
+    "width": 520,
+    "height": 120,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "dist/assets/developer-assets/fighter/borders.png",
+    "bytes": 185365,
+    "kb": 181.0,
+    "ext": ".png",
+    "width": 898,
+    "height": 150,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "dist/assets/developer-assets/fighter/boss.png",
+    "bytes": 126433,
+    "kb": 123.5,
+    "ext": ".png",
+    "width": 406,
+    "height": 230,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "dist/assets/developer-assets/fighter/gameplayPreview.png",
+    "bytes": 227331,
+    "kb": 222.0,
+    "ext": ".png",
+    "width": 452,
+    "height": 420,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "dist/assets/developer-assets/fighter/hud.png",
+    "bytes": 77490,
+    "kb": 75.7,
+    "ext": ".png",
+    "width": 360,
+    "height": 176,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "dist/assets/developer-assets/fighter/obstacles.png",
+    "bytes": 129889,
+    "kb": 126.8,
+    "ext": ".png",
+    "width": 420,
+    "height": 180,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "dist/assets/developer-assets/fighter/palette.png",
+    "bytes": 55881,
+    "kb": 54.6,
+    "ext": ".png",
+    "width": 358,
+    "height": 112,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "dist/assets/developer-assets/fighter/pickups.png",
+    "bytes": 85237,
+    "kb": 83.2,
+    "ext": ".png",
+    "width": 406,
+    "height": 166,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "dist/assets/developer-assets/fighter/props.png",
+    "bytes": 77132,
+    "kb": 75.3,
+    "ext": ".png",
+    "width": 420,
+    "height": 176,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "dist/assets/developer-assets/kombat/badges.png",
+    "bytes": 103855,
+    "kb": 101.4,
+    "ext": ".png",
+    "width": 520,
+    "height": 122,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "dist/assets/developer-assets/kombat/borders.png",
+    "bytes": 205815,
+    "kb": 201.0,
+    "ext": ".png",
+    "width": 898,
+    "height": 152,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "dist/assets/developer-assets/kombat/boss.png",
+    "bytes": 139547,
+    "kb": 136.3,
+    "ext": ".png",
+    "width": 406,
+    "height": 230,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "dist/assets/developer-assets/kombat/gameplayPreview.png",
+    "bytes": 241742,
+    "kb": 236.1,
+    "ext": ".png",
+    "width": 452,
+    "height": 418,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "dist/assets/developer-assets/kombat/hud.png",
+    "bytes": 74000,
+    "kb": 72.3,
+    "ext": ".png",
+    "width": 358,
+    "height": 174,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "dist/assets/developer-assets/kombat/obstacles.png",
+    "bytes": 141855,
+    "kb": 138.5,
+    "ext": ".png",
+    "width": 422,
+    "height": 182,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "dist/assets/developer-assets/kombat/palette.png",
+    "bytes": 68847,
+    "kb": 67.2,
+    "ext": ".png",
+    "width": 358,
+    "height": 112,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "dist/assets/developer-assets/kombat/pickups.png",
+    "bytes": 94949,
+    "kb": 92.7,
+    "ext": ".png",
+    "width": 406,
+    "height": 166,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "dist/assets/developer-assets/kombat/props.png",
+    "bytes": 75572,
+    "kb": 73.8,
+    "ext": ".png",
+    "width": 422,
+    "height": 174,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "dist/assets/developer-assets/outrun/badges.png",
+    "bytes": 120589,
+    "kb": 117.8,
+    "ext": ".png",
+    "width": 534,
+    "height": 132,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "dist/assets/developer-assets/outrun/borders.png",
+    "bytes": 205122,
+    "kb": 200.3,
+    "ext": ".png",
+    "width": 902,
+    "height": 150,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "dist/assets/developer-assets/outrun/boss.png",
+    "bytes": 116054,
+    "kb": 113.3,
+    "ext": ".png",
+    "width": 410,
+    "height": 220,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "dist/assets/developer-assets/outrun/gameplayPreview.png",
+    "bytes": 233059,
+    "kb": 227.6,
+    "ext": ".png",
+    "width": 454,
+    "height": 424,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "dist/assets/developer-assets/outrun/hud.png",
+    "bytes": 54788,
+    "kb": 53.5,
+    "ext": ".png",
+    "width": 358,
+    "height": 166,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "dist/assets/developer-assets/outrun/obstacles.png",
+    "bytes": 132046,
+    "kb": 129.0,
+    "ext": ".png",
+    "width": 424,
+    "height": 172,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "dist/assets/developer-assets/outrun/palette.png",
+    "bytes": 59366,
+    "kb": 58.0,
+    "ext": ".png",
+    "width": 368,
+    "height": 120,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "dist/assets/developer-assets/outrun/pickups.png",
+    "bytes": 83124,
+    "kb": 81.2,
+    "ext": ".png",
+    "width": 410,
+    "height": 164,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "dist/assets/developer-assets/outrun/props.png",
+    "bytes": 84307,
+    "kb": 82.3,
+    "ext": ".png",
+    "width": 424,
+    "height": 166,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "dist/assets/developer-assets/paperboy/badges.png",
+    "bytes": 136144,
+    "kb": 133.0,
+    "ext": ".png",
+    "width": 540,
+    "height": 126,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "dist/assets/developer-assets/paperboy/borders.png",
+    "bytes": 226011,
+    "kb": 220.7,
+    "ext": ".png",
+    "width": 902,
+    "height": 148,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "dist/assets/developer-assets/paperboy/boss.png",
+    "bytes": 130471,
+    "kb": 127.4,
+    "ext": ".png",
+    "width": 410,
+    "height": 232,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "dist/assets/developer-assets/paperboy/gameplayPreview.png",
+    "bytes": 230591,
+    "kb": 225.2,
+    "ext": ".png",
+    "width": 454,
+    "height": 424,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "dist/assets/developer-assets/paperboy/hud.png",
+    "bytes": 89048,
+    "kb": 87.0,
+    "ext": ".png",
+    "width": 358,
+    "height": 170,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "dist/assets/developer-assets/paperboy/obstacles.png",
+    "bytes": 121887,
+    "kb": 119.0,
+    "ext": ".png",
+    "width": 424,
+    "height": 184,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "dist/assets/developer-assets/paperboy/palette.png",
+    "bytes": 79758,
+    "kb": 77.9,
+    "ext": ".png",
+    "width": 368,
+    "height": 112,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "dist/assets/developer-assets/paperboy/pickups.png",
+    "bytes": 94548,
+    "kb": 92.3,
+    "ext": ".png",
+    "width": 410,
+    "height": 164,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "dist/assets/developer-assets/paperboy/props.png",
+    "bytes": 77987,
+    "kb": 76.2,
+    "ext": ".png",
+    "width": 424,
+    "height": 174,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "dist/assets/developer-assets/shinobi/badges.png",
+    "bytes": 107683,
+    "kb": 105.2,
+    "ext": ".png",
+    "width": 520,
+    "height": 124,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "dist/assets/developer-assets/shinobi/borders.png",
+    "bytes": 180852,
+    "kb": 176.6,
+    "ext": ".png",
+    "width": 898,
+    "height": 154,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "dist/assets/developer-assets/shinobi/boss.png",
+    "bytes": 118310,
+    "kb": 115.5,
+    "ext": ".png",
+    "width": 406,
+    "height": 222,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "dist/assets/developer-assets/shinobi/gameplayPreview.png",
+    "bytes": 219626,
+    "kb": 214.5,
+    "ext": ".png",
+    "width": 452,
+    "height": 416,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "dist/assets/developer-assets/shinobi/hud.png",
+    "bytes": 67236,
+    "kb": 65.7,
+    "ext": ".png",
+    "width": 358,
+    "height": 168,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "dist/assets/developer-assets/shinobi/obstacles.png",
+    "bytes": 124140,
+    "kb": 121.2,
+    "ext": ".png",
+    "width": 422,
+    "height": 174,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "dist/assets/developer-assets/shinobi/palette.png",
+    "bytes": 53793,
+    "kb": 52.5,
+    "ext": ".png",
+    "width": 350,
+    "height": 108,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "dist/assets/developer-assets/shinobi/pickups.png",
+    "bytes": 88658,
+    "kb": 86.6,
+    "ext": ".png",
+    "width": 406,
+    "height": 164,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "dist/assets/developer-assets/shinobi/props.png",
+    "bytes": 80226,
+    "kb": 78.3,
+    "ext": ".png",
+    "width": 422,
+    "height": 170,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "dist/assets/developer-assets/sonic/badges.png",
+    "bytes": 86692,
+    "kb": 84.7,
+    "ext": ".png",
+    "width": 520,
+    "height": 128,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "dist/assets/developer-assets/sonic/borders.png",
+    "bytes": 177640,
+    "kb": 173.5,
+    "ext": ".png",
+    "width": 902,
+    "height": 150,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "dist/assets/developer-assets/sonic/boss.png",
+    "bytes": 111912,
+    "kb": 109.3,
+    "ext": ".png",
+    "width": 408,
+    "height": 214,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "dist/assets/developer-assets/sonic/gameplayPreview.png",
+    "bytes": 191463,
+    "kb": 187.0,
+    "ext": ".png",
+    "width": 456,
+    "height": 430,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "dist/assets/developer-assets/sonic/hud.png",
+    "bytes": 65229,
+    "kb": 63.7,
+    "ext": ".png",
+    "width": 354,
+    "height": 160,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "dist/assets/developer-assets/sonic/obstacles.png",
+    "bytes": 118523,
+    "kb": 115.7,
+    "ext": ".png",
+    "width": 424,
+    "height": 174,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "dist/assets/developer-assets/sonic/palette.png",
+    "bytes": 58508,
+    "kb": 57.1,
+    "ext": ".png",
+    "width": 356,
+    "height": 112,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "dist/assets/developer-assets/sonic/pickups.png",
+    "bytes": 91087,
+    "kb": 89.0,
+    "ext": ".png",
+    "width": 408,
+    "height": 164,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "dist/assets/developer-assets/sonic/props.png",
+    "bytes": 55264,
+    "kb": 54.0,
+    "ext": ".png",
+    "width": 424,
+    "height": 168,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "dist/assets/developer-assets/streets/badges.png",
+    "bytes": 91090,
+    "kb": 89.0,
+    "ext": ".png",
+    "width": 520,
+    "height": 120,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "dist/assets/developer-assets/streets/borders.png",
+    "bytes": 207506,
+    "kb": 202.6,
+    "ext": ".png",
+    "width": 900,
+    "height": 156,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "dist/assets/developer-assets/streets/boss.png",
+    "bytes": 117315,
+    "kb": 114.6,
+    "ext": ".png",
+    "width": 406,
+    "height": 222,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "dist/assets/developer-assets/streets/gameplayPreview.png",
+    "bytes": 218657,
+    "kb": 213.5,
+    "ext": ".png",
+    "width": 450,
+    "height": 416,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "dist/assets/developer-assets/streets/hud.png",
+    "bytes": 76310,
+    "kb": 74.5,
+    "ext": ".png",
+    "width": 360,
+    "height": 170,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "dist/assets/developer-assets/streets/obstacles.png",
+    "bytes": 100764,
+    "kb": 98.4,
+    "ext": ".png",
+    "width": 424,
+    "height": 174,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "dist/assets/developer-assets/streets/palette.png",
+    "bytes": 25228,
+    "kb": 24.6,
+    "ext": ".png",
+    "width": 348,
+    "height": 104,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "dist/assets/developer-assets/streets/pickups.png",
+    "bytes": 80219,
+    "kb": 78.3,
+    "ext": ".png",
+    "width": 406,
+    "height": 162,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "dist/assets/developer-assets/streets/props.png",
+    "bytes": 63606,
+    "kb": 62.1,
+    "ext": ".png",
+    "width": 424,
+    "height": 170,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "references/screenshots/target_reference_good_map_framing.jpg",
+    "bytes": 282789,
+    "kb": 276.2,
+    "ext": ".jpg",
+    "width": 709,
+    "height": 1536,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "references/screenshots/v4_bad_zoomed_out_tiny_map.jpg",
+    "bytes": 215864,
+    "kb": 210.8,
+    "ext": ".jpg",
+    "width": 709,
+    "height": 1536,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "design_boards/outrun/outrun_board_example.png",
+    "bytes": 3023474,
+    "kb": 2952.6,
+    "ext": ".png",
+    "width": 1024,
+    "height": 1536,
+    "mode": "RGBA",
+    "transparent_percent": 0.0
+  },
+  {
+    "path": "design_boards/outrun/developper assets.png",
+    "bytes": 2097046,
+    "kb": 2047.9,
+    "ext": ".png",
+    "width": 1024,
+    "height": 1536,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "design_boards/outrun/cadre outrun.png",
+    "bytes": 814764,
+    "kb": 795.7,
+    "ext": ".png",
+    "width": 517,
+    "height": 847,
+    "mode": "RGBA",
+    "transparent_percent": 0.0
+  },
+  {
+    "path": "design_boards/outrun/outrun_board.png",
+    "bytes": 2097046,
+    "kb": 2047.9,
+    "ext": ".png",
+    "width": 1024,
+    "height": 1536,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "design_boards/kombat/cadre mortal kombat.png",
+    "bytes": 823672,
+    "kb": 804.4,
+    "ext": ".png",
+    "width": 523,
+    "height": 859,
+    "mode": "RGBA",
+    "transparent_percent": 0.0
+  },
+  {
+    "path": "design_boards/kombat/kombat_board.png",
+    "bytes": 2286297,
+    "kb": 2232.7,
+    "ext": ".png",
+    "width": 1024,
+    "height": 1536,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "design_boards/kombat/developper assets.png",
+    "bytes": 2286297,
+    "kb": 2232.7,
+    "ext": ".png",
+    "width": 1024,
+    "height": 1536,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "design_boards/shinobi/developper assets.png.png",
+    "bytes": 2137762,
+    "kb": 2087.7,
+    "ext": ".png",
+    "width": 1024,
+    "height": 1536,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "design_boards/shinobi/cadre shinobi.png",
+    "bytes": 715912,
+    "kb": 699.1,
+    "ext": ".png",
+    "width": 511,
+    "height": 805,
+    "mode": "RGBA",
+    "transparent_percent": 0.0
+  },
+  {
+    "path": "design_boards/shinobi/shinobi_board.png",
+    "bytes": 2137762,
+    "kb": 2087.7,
+    "ext": ".png",
+    "width": 1024,
+    "height": 1536,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "design_boards/castle/castle_board.png",
+    "bytes": 2208019,
+    "kb": 2156.3,
+    "ext": ".png",
+    "width": 1024,
+    "height": 1536,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "design_boards/castle/cadre castle of illusuion.png",
+    "bytes": 689499,
+    "kb": 673.3,
+    "ext": ".png",
+    "width": 532,
+    "height": 779,
+    "mode": "RGBA",
+    "transparent_percent": 0.0
+  },
+  {
+    "path": "design_boards/castle/developper assets.png",
+    "bytes": 2208019,
+    "kb": 2156.3,
+    "ext": ".png",
+    "width": 1024,
+    "height": 1536,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "design_boards/sonic/sonic_board.png",
+    "bytes": 1933630,
+    "kb": 1888.3,
+    "ext": ".png",
+    "width": 1024,
+    "height": 1536,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "design_boards/sonic/developper assets.png",
+    "bytes": 1933630,
+    "kb": 1888.3,
+    "ext": ".png",
+    "width": 1024,
+    "height": 1536,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "design_boards/sonic/cadre sonic 2.png",
+    "bytes": 725264,
+    "kb": 708.3,
+    "ext": ".png",
+    "width": 529,
+    "height": 873,
+    "mode": "RGBA",
+    "transparent_percent": 0.0
+  },
+  {
+    "path": "design_boards/paperboy/paperboy_board.png",
+    "bytes": 2438059,
+    "kb": 2380.9,
+    "ext": ".png",
+    "width": 1024,
+    "height": 1536,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "design_boards/paperboy/developper assets.png",
+    "bytes": 2438059,
+    "kb": 2380.9,
+    "ext": ".png",
+    "width": 1024,
+    "height": 1536,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "design_boards/paperboy/cadre paperboy.png",
+    "bytes": 922568,
+    "kb": 900.9,
+    "ext": ".png",
+    "width": 535,
+    "height": 943,
+    "mode": "RGBA",
+    "transparent_percent": 0.0
+  },
+  {
+    "path": "design_boards/streets/streets_board.png",
+    "bytes": 2030866,
+    "kb": 1983.3,
+    "ext": ".png",
+    "width": 1024,
+    "height": 1536,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "design_boards/streets/cadre street of rage.png",
+    "bytes": 711720,
+    "kb": 695.0,
+    "ext": ".png",
+    "width": 531,
+    "height": 819,
+    "mode": "RGBA",
+    "transparent_percent": 0.0
+  },
+  {
+    "path": "design_boards/streets/developper assets.png",
+    "bytes": 2030866,
+    "kb": 1983.3,
+    "ext": ".png",
+    "width": 1024,
+    "height": 1536,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "design_boards/minimap/ChatGPT Image 20 mai 2026, 11_57_43.png",
+    "bytes": 2874347,
+    "kb": 2807.0,
+    "ext": ".png",
+    "width": 1448,
+    "height": 1086,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "design_boards/fighter/developper assets.png",
+    "bytes": 2131767,
+    "kb": 2081.8,
+    "ext": ".png",
+    "width": 1024,
+    "height": 1536,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "design_boards/fighter/cadre street fighter.png",
+    "bytes": 777293,
+    "kb": 759.1,
+    "ext": ".png",
+    "width": 517,
+    "height": 839,
+    "mode": "RGBA",
+    "transparent_percent": 0.0
+  },
+  {
+    "path": "design_boards/fighter/fighter_board.png",
+    "bytes": 2131767,
+    "kb": 2081.8,
+    "ext": ".png",
+    "width": 1024,
+    "height": 1536,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "tickets/patch_943_final_24_validated_runtime_assets_and_cleanup/review/contact_sheets/runtime_assets_alpha_contact_sheet.jpg",
+    "bytes": 309571,
+    "kb": 302.3,
+    "ext": ".jpg",
+    "width": 1140,
+    "height": 740,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "tickets/patch_943_final_24_validated_runtime_assets_and_cleanup/ready_to_copy/public/assets/runtime/universes/outrun/pickup_checkpoint.png",
+    "bytes": 66863,
+    "kb": 65.3,
+    "ext": ".png",
+    "width": 160,
+    "height": 256,
+    "mode": "RGBA",
+    "transparent_percent": 33.3
+  },
+  {
+    "path": "tickets/patch_943_final_24_validated_runtime_assets_and_cleanup/ready_to_copy/public/assets/runtime/universes/outrun/obstacle_car.png",
+    "bytes": 56363,
+    "kb": 55.0,
+    "ext": ".png",
+    "width": 256,
+    "height": 160,
+    "mode": "RGBA",
+    "transparent_percent": 15.09
+  },
+  {
+    "path": "tickets/patch_943_final_24_validated_runtime_assets_and_cleanup/ready_to_copy/public/assets/runtime/universes/outrun/boss_turbo_rival.png",
+    "bytes": 76024,
+    "kb": 74.2,
+    "ext": ".png",
+    "width": 256,
+    "height": 165,
+    "mode": "RGBA",
+    "transparent_percent": 37.7
+  },
+  {
+    "path": "tickets/patch_943_final_24_validated_runtime_assets_and_cleanup/ready_to_copy/public/assets/runtime/universes/kombat/boss_dragon_gate.png",
+    "bytes": 127002,
+    "kb": 124.0,
+    "ext": ".png",
+    "width": 243,
+    "height": 256,
+    "mode": "RGBA",
+    "transparent_percent": 25.14
+  },
+  {
+    "path": "tickets/patch_943_final_24_validated_runtime_assets_and_cleanup/ready_to_copy/public/assets/runtime/universes/kombat/pickup_finish_token.png",
+    "bytes": 89420,
+    "kb": 87.3,
+    "ext": ".png",
+    "width": 239,
+    "height": 256,
+    "mode": "RGBA",
+    "transparent_percent": 34.98
+  },
+  {
+    "path": "tickets/patch_943_final_24_validated_runtime_assets_and_cleanup/ready_to_copy/public/assets/runtime/universes/kombat/obstacle_fatal_zone.png",
+    "bytes": 98109,
+    "kb": 95.8,
+    "ext": ".png",
+    "width": 235,
+    "height": 256,
+    "mode": "RGBA",
+    "transparent_percent": 31.19
+  },
+  {
+    "path": "tickets/patch_943_final_24_validated_runtime_assets_and_cleanup/ready_to_copy/public/assets/runtime/universes/shinobi/obstacle_decoy.png",
+    "bytes": 90584,
+    "kb": 88.5,
+    "ext": ".png",
+    "width": 251,
+    "height": 256,
+    "mode": "RGBA",
+    "transparent_percent": 38.38
+  },
+  {
+    "path": "tickets/patch_943_final_24_validated_runtime_assets_and_cleanup/ready_to_copy/public/assets/runtime/universes/shinobi/pickup_shuriken.png",
+    "bytes": 53500,
+    "kb": 52.2,
+    "ext": ".png",
+    "width": 256,
+    "height": 256,
+    "mode": "RGBA",
+    "transparent_percent": 71.09
+  },
+  {
+    "path": "tickets/patch_943_final_24_validated_runtime_assets_and_cleanup/ready_to_copy/public/assets/runtime/universes/shinobi/boss_shadow_ninja.png",
+    "bytes": 76855,
+    "kb": 75.1,
+    "ext": ".png",
+    "width": 256,
+    "height": 250,
+    "mode": "RGBA",
+    "transparent_percent": 40.03
+  },
+  {
+    "path": "tickets/patch_943_final_24_validated_runtime_assets_and_cleanup/ready_to_copy/public/assets/runtime/universes/castle/obstacle_blink_wall.png",
+    "bytes": 121578,
+    "kb": 118.7,
+    "ext": ".png",
+    "width": 238,
+    "height": 256,
+    "mode": "RGBA",
+    "transparent_percent": 12.33
+  },
+  {
+    "path": "tickets/patch_943_final_24_validated_runtime_assets_and_cleanup/ready_to_copy/public/assets/runtime/universes/castle/boss_witch_mirror.png",
+    "bytes": 92934,
+    "kb": 90.8,
+    "ext": ".png",
+    "width": 179,
+    "height": 256,
+    "mode": "RGBA",
+    "transparent_percent": 35.71
+  },
+  {
+    "path": "tickets/patch_943_final_24_validated_runtime_assets_and_cleanup/ready_to_copy/public/assets/runtime/universes/castle/pickup_orb.png",
+    "bytes": 81324,
+    "kb": 79.4,
+    "ext": ".png",
+    "width": 194,
+    "height": 256,
+    "mode": "RGBA",
+    "transparent_percent": 42.38
+  },
+  {
+    "path": "tickets/patch_943_final_24_validated_runtime_assets_and_cleanup/ready_to_copy/public/assets/runtime/universes/sonic/obstacle_bumper.png",
+    "bytes": 117788,
+    "kb": 115.0,
+    "ext": ".png",
+    "width": 253,
+    "height": 256,
+    "mode": "RGBA",
+    "transparent_percent": 21.39
+  },
+  {
+    "path": "tickets/patch_943_final_24_validated_runtime_assets_and_cleanup/ready_to_copy/public/assets/runtime/universes/sonic/boss_loop_serpent.png",
+    "bytes": 127781,
+    "kb": 124.8,
+    "ext": ".png",
+    "width": 256,
+    "height": 249,
+    "mode": "RGBA",
+    "transparent_percent": 27.85
+  },
+  {
+    "path": "tickets/patch_943_final_24_validated_runtime_assets_and_cleanup/ready_to_copy/public/assets/runtime/universes/sonic/pickup_ring.png",
+    "bytes": 55450,
+    "kb": 54.2,
+    "ext": ".png",
+    "width": 256,
+    "height": 256,
+    "mode": "RGBA",
+    "transparent_percent": 52.34
+  },
+  {
+    "path": "tickets/patch_943_final_24_validated_runtime_assets_and_cleanup/ready_to_copy/public/assets/runtime/universes/paperboy/obstacle_dog.png",
+    "bytes": 69478,
+    "kb": 67.8,
+    "ext": ".png",
+    "width": 256,
+    "height": 170,
+    "mode": "RGBA",
+    "transparent_percent": 35.26
+  },
+  {
+    "path": "tickets/patch_943_final_24_validated_runtime_assets_and_cleanup/ready_to_copy/public/assets/runtime/universes/paperboy/boss_neighborhood_chaos.png",
+    "bytes": 127862,
+    "kb": 124.9,
+    "ext": ".png",
+    "width": 256,
+    "height": 233,
+    "mode": "RGBA",
+    "transparent_percent": 27.52
+  },
+  {
+    "path": "tickets/patch_943_final_24_validated_runtime_assets_and_cleanup/ready_to_copy/public/assets/runtime/universes/paperboy/pickup_newspaper.png",
+    "bytes": 78105,
+    "kb": 76.3,
+    "ext": ".png",
+    "width": 256,
+    "height": 191,
+    "mode": "RGBA",
+    "transparent_percent": 48.06
+  },
+  {
+    "path": "tickets/patch_943_final_24_validated_runtime_assets_and_cleanup/ready_to_copy/public/assets/runtime/universes/streets/pickup_street_bonus.png",
+    "bytes": 104063,
+    "kb": 101.6,
+    "ext": ".png",
+    "width": 250,
+    "height": 256,
+    "mode": "RGBA",
+    "transparent_percent": 22.27
+  },
+  {
+    "path": "tickets/patch_943_final_24_validated_runtime_assets_and_cleanup/ready_to_copy/public/assets/runtime/universes/streets/obstacle_crowd.png",
+    "bytes": 126176,
+    "kb": 123.2,
+    "ext": ".png",
+    "width": 256,
+    "height": 254,
+    "mode": "RGBA",
+    "transparent_percent": 32.66
+  },
+  {
+    "path": "tickets/patch_943_final_24_validated_runtime_assets_and_cleanup/ready_to_copy/public/assets/runtime/universes/streets/boss_crime_lord.png",
+    "bytes": 90515,
+    "kb": 88.4,
+    "ext": ".png",
+    "width": 187,
+    "height": 256,
+    "mode": "RGBA",
+    "transparent_percent": 29.95
+  },
+  {
+    "path": "tickets/patch_943_final_24_validated_runtime_assets_and_cleanup/ready_to_copy/public/assets/runtime/universes/fighter/pickup_energy.png",
+    "bytes": 92055,
+    "kb": 89.9,
+    "ext": ".png",
+    "width": 250,
+    "height": 256,
+    "mode": "RGBA",
+    "transparent_percent": 38.75
+  },
+  {
+    "path": "tickets/patch_943_final_24_validated_runtime_assets_and_cleanup/ready_to_copy/public/assets/runtime/universes/fighter/boss_final_challenger.png",
+    "bytes": 71211,
+    "kb": 69.5,
+    "ext": ".png",
+    "width": 217,
+    "height": 256,
+    "mode": "RGBA",
+    "transparent_percent": 54.21
+  },
+  {
+    "path": "tickets/patch_943_final_24_validated_runtime_assets_and_cleanup/ready_to_copy/public/assets/runtime/universes/fighter/obstacle_charge_marker.png",
+    "bytes": 81227,
+    "kb": 79.3,
+    "ext": ".png",
+    "width": 236,
+    "height": 256,
+    "mode": "RGBA",
+    "transparent_percent": 37.58
+  },
+  {
+    "path": "tickets/patch_943_final_24_validated_runtime_assets_and_cleanup/source_attempts/reference_only/outrun/retro_futuristic_red_sports_car_sprite.png",
+    "bytes": 1254381,
+    "kb": 1225.0,
+    "ext": ".png",
+    "width": 1254,
+    "height": 1254,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "tickets/patch_943_final_24_validated_runtime_assets_and_cleanup/source_attempts/reference_only/outrun/retro_pixel_art_sports_car_sprite.png",
+    "bytes": 1010756,
+    "kb": 987.1,
+    "ext": ".png",
+    "width": 1254,
+    "height": 1254,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "tickets/patch_943_final_24_validated_runtime_assets_and_cleanup/source_attempts/reference_only/outrun/golden_trophy_with_checkered_flag.png",
+    "bytes": 1034261,
+    "kb": 1010.0,
+    "ext": ".png",
+    "width": 1254,
+    "height": 1254,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "tickets/patch_943_final_24_validated_runtime_assets_and_cleanup/source_attempts/reference_only/kombat/golden_trophy_medallion_with_fiery_aura.png",
+    "bytes": 1206314,
+    "kb": 1178.0,
+    "ext": ".png",
+    "width": 1254,
+    "height": 1254,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "tickets/patch_943_final_24_validated_runtime_assets_and_cleanup/source_attempts/reference_only/kombat/lava_portal_with_spiked_rim.png",
+    "bytes": 1221893,
+    "kb": 1193.3,
+    "ext": ".png",
+    "width": 1254,
+    "height": 1254,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "tickets/patch_943_final_24_validated_runtime_assets_and_cleanup/source_attempts/reference_only/kombat/dragon_gate_with_fiery_portal.png",
+    "bytes": 1921809,
+    "kb": 1876.8,
+    "ext": ".png",
+    "width": 1254,
+    "height": 1254,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "tickets/patch_943_final_24_validated_runtime_assets_and_cleanup/source_attempts/reference_only/shinobi/fierce_ninja_in_pixel_art.png",
+    "bytes": 1034282,
+    "kb": 1010.0,
+    "ext": ".png",
+    "width": 1254,
+    "height": 1254,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "tickets/patch_943_final_24_validated_runtime_assets_and_cleanup/source_attempts/reference_only/shinobi/metallic_ninja_shuriken_with_electric_aura.png",
+    "bytes": 1028464,
+    "kb": 1004.4,
+    "ext": ".png",
+    "width": 1254,
+    "height": 1254,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "tickets/patch_943_final_24_validated_runtime_assets_and_cleanup/source_attempts/reference_only/shinobi/stealthy_ninja_in_a_ready_stance.png",
+    "bytes": 1152630,
+    "kb": 1125.6,
+    "ext": ".png",
+    "width": 1254,
+    "height": 1254,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "tickets/patch_943_final_24_validated_runtime_assets_and_cleanup/source_attempts/reference_only/castle/magical_orb_with_glowing_castle.png",
+    "bytes": 1231328,
+    "kb": 1202.5,
+    "ext": ".png",
+    "width": 1254,
+    "height": 1254,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "tickets/patch_943_final_24_validated_runtime_assets_and_cleanup/source_attempts/reference_only/castle/magical_dungeon_wall_with_glowing_gem.png",
+    "bytes": 1290402,
+    "kb": 1260.2,
+    "ext": ".png",
+    "width": 1254,
+    "height": 1254,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "tickets/patch_943_final_24_validated_runtime_assets_and_cleanup/source_attempts/reference_only/castle/haunted_gothic_mirror_with_dark_aura.png",
+    "bytes": 1534644,
+    "kb": 1498.7,
+    "ext": ".png",
+    "width": 1254,
+    "height": 1254,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "tickets/patch_943_final_24_validated_runtime_assets_and_cleanup/source_attempts/reference_only/sonic/mechanical_cobra_head_emblem_in_pixels.png",
+    "bytes": 1426842,
+    "kb": 1393.4,
+    "ext": ".png",
+    "width": 1254,
+    "height": 1254,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "tickets/patch_943_final_24_validated_runtime_assets_and_cleanup/source_attempts/reference_only/sonic/mechanical_bumper_with_starburst_emblem.png",
+    "bytes": 1229722,
+    "kb": 1200.9,
+    "ext": ".png",
+    "width": 1254,
+    "height": 1254,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "tickets/patch_943_final_24_validated_runtime_assets_and_cleanup/source_attempts/reference_only/sonic/shiny_golden_ring_sprite.png",
+    "bytes": 908061,
+    "kb": 886.8,
+    "ext": ".png",
+    "width": 1254,
+    "height": 1254,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "tickets/patch_943_final_24_validated_runtime_assets_and_cleanup/source_attempts/reference_only/paperboy/pixel_art_rolled_up_newspaper_bundle.png",
+    "bytes": 1168275,
+    "kb": 1140.9,
+    "ext": ".png",
+    "width": 1254,
+    "height": 1254,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "tickets/patch_943_final_24_validated_runtime_assets_and_cleanup/source_attempts/reference_only/paperboy/angry_bulldog_game_sprite_in_16_bit.png",
+    "bytes": 1167001,
+    "kb": 1139.6,
+    "ext": ".png",
+    "width": 1254,
+    "height": 1254,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "tickets/patch_943_final_24_validated_runtime_assets_and_cleanup/source_attempts/reference_only/paperboy/angry_bulldog_boss_with_newspapers.png",
+    "bytes": 1737520,
+    "kb": 1696.8,
+    "ext": ".png",
+    "width": 1254,
+    "height": 1254,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "tickets/patch_943_final_24_validated_runtime_assets_and_cleanup/source_attempts/reference_only/streets/boss_gangster_in_pixel_art_style.png",
+    "bytes": 1266246,
+    "kb": 1236.6,
+    "ext": ".png",
+    "width": 1254,
+    "height": 1254,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "tickets/patch_943_final_24_validated_runtime_assets_and_cleanup/source_attempts/reference_only/streets/tough_trio_ready_to_brawl.png",
+    "bytes": 1381551,
+    "kb": 1349.2,
+    "ext": ".png",
+    "width": 1254,
+    "height": 1254,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "tickets/patch_943_final_24_validated_runtime_assets_and_cleanup/source_attempts/reference_only/streets/neon_star_coin_with_glowing_accents.png",
+    "bytes": 1171623,
+    "kb": 1144.2,
+    "ext": ".png",
+    "width": 1254,
+    "height": 1254,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "tickets/patch_943_final_24_validated_runtime_assets_and_cleanup/source_attempts/reference_only/fighter/fiery_martial_artist_in_battle_stance.png",
+    "bytes": 1239194,
+    "kb": 1210.2,
+    "ext": ".png",
+    "width": 1254,
+    "height": 1254,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "tickets/patch_943_final_24_validated_runtime_assets_and_cleanup/source_attempts/reference_only/fighter/fiery_dragon_medallion_emblem.png",
+    "bytes": 1074980,
+    "kb": 1049.8,
+    "ext": ".png",
+    "width": 1254,
+    "height": 1254,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "tickets/patch_943_final_24_validated_runtime_assets_and_cleanup/source_attempts/reference_only/fighter/glowing_pixel_energy_orb.png",
+    "bytes": 1137582,
+    "kb": 1110.9,
+    "ext": ".png",
+    "width": 1254,
+    "height": 1254,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "tickets/patch_924_remove_worldmap_outer_frame/references/screenshots/worldmap_frame_to_remove.jpg",
+    "bytes": 264539,
+    "kb": 258.3,
+    "ext": ".jpg",
+    "width": 709,
+    "height": 1536,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "tickets/patch_925_update_variable_developer_asset_layouts/references/screenshots/a_single_image_a_large_pixel_art_16_bit_style_u(1).png",
+    "bytes": 3023474,
+    "kb": 2952.6,
+    "ext": ".png",
+    "width": 1024,
+    "height": 1536,
+    "mode": "RGBA",
+    "transparent_percent": 0.0
+  },
+  {
+    "path": "tickets/patch_925_update_variable_developer_asset_layouts/references/screenshots/a_detailed_game_ui_asset_sheet_poster_in_a_retro_1.png",
+    "bytes": 3077060,
+    "kb": 3004.9,
+    "ext": ".png",
+    "width": 1024,
+    "height": 1536,
+    "mode": "RGBA",
+    "transparent_percent": 0.0
+  },
+  {
+    "path": "tickets/patch_925_update_variable_developer_asset_layouts/references/screenshots/a_detailed_pixel_art_game_ui_asset_sheet_mockup.png",
+    "bytes": 3022641,
+    "kb": 2951.8,
+    "ext": ".png",
+    "width": 1024,
+    "height": 1536,
+    "mode": "RGBA",
+    "transparent_percent": 0.0
+  },
+  {
+    "path": "tickets/patch_925_update_variable_developer_asset_layouts/references/screenshots/a_detailed_pixel_art_ui_concept_sheet_game_hud_a.png",
+    "bytes": 2887405,
+    "kb": 2819.7,
+    "ext": ".png",
+    "width": 1024,
+    "height": 1536,
+    "mode": "RGBA",
+    "transparent_percent": 0.0
+  },
+  {
+    "path": "tickets/patch_925_update_variable_developer_asset_layouts/references/screenshots/a_detailed_pixel_art_game_ui_asset_sheet_poster.png",
+    "bytes": 3223261,
+    "kb": 3147.7,
+    "ext": ".png",
+    "width": 1024,
+    "height": 1536,
+    "mode": "RGBA",
+    "transparent_percent": 0.0
+  },
+  {
+    "path": "tickets/patch_925_update_variable_developer_asset_layouts/references/screenshots/a_high_detail_pixel_art_ui_game_asset_sheet_poster.png",
+    "bytes": 2909616,
+    "kb": 2841.4,
+    "ext": ".png",
+    "width": 1024,
+    "height": 1536,
+    "mode": "RGBA",
+    "transparent_percent": 0.0
+  },
+  {
+    "path": "tickets/patch_925_update_variable_developer_asset_layouts/references/screenshots/a_detailed_pixel_art_game_ui_asset_sheet_overall.png",
+    "bytes": 2797288,
+    "kb": 2731.7,
+    "ext": ".png",
+    "width": 1024,
+    "height": 1536,
+    "mode": "RGBA",
+    "transparent_percent": 0.0
+  },
+  {
+    "path": "tickets/patch_925_update_variable_developer_asset_layouts/references/screenshots/a_high_resolution_game_ui_sprite_sheet_style_ima.png",
+    "bytes": 3046013,
+    "kb": 2974.6,
+    "ext": ".png",
+    "width": 1024,
+    "height": 1536,
+    "mode": "RGBA",
+    "transparent_percent": 0.0
+  },
+  {
+    "path": "tickets/patch_931_ultimate_internet_assets_ingestion_pack/fallback_lightweight/public/assets/ui/icons/pickup_star.svg",
+    "bytes": 304,
+    "kb": 0.3,
+    "ext": ".svg"
+  },
+  {
+    "path": "tickets/patch_931_ultimate_internet_assets_ingestion_pack/fallback_lightweight/public/assets/ui/icons/obstacle_car.svg",
+    "bytes": 391,
+    "kb": 0.4,
+    "ext": ".svg"
+  },
+  {
+    "path": "tickets/patch_931_ultimate_internet_assets_ingestion_pack/fallback_lightweight/public/assets/ui/icons/boss_challenger.svg",
+    "bytes": 352,
+    "kb": 0.3,
+    "ext": ".svg"
+  },
+  {
+    "path": "tickets/patch_931_ultimate_internet_assets_ingestion_pack/fallback_lightweight/public/assets/ui/icons/boss_dragon_gate.svg",
+    "bytes": 365,
+    "kb": 0.4,
+    "ext": ".svg"
+  },
+  {
+    "path": "tickets/patch_931_ultimate_internet_assets_ingestion_pack/fallback_lightweight/public/assets/ui/icons/ui_play.svg",
+    "bytes": 236,
+    "kb": 0.2,
+    "ext": ".svg"
+  },
+  {
+    "path": "tickets/patch_931_ultimate_internet_assets_ingestion_pack/fallback_lightweight/public/assets/ui/icons/ui_retry.svg",
+    "bytes": 308,
+    "kb": 0.3,
+    "ext": ".svg"
+  },
+  {
+    "path": "tickets/patch_931_ultimate_internet_assets_ingestion_pack/fallback_lightweight/public/assets/ui/icons/obstacle_fire.svg",
+    "bytes": 404,
+    "kb": 0.4,
+    "ext": ".svg"
+  },
+  {
+    "path": "tickets/patch_931_ultimate_internet_assets_ingestion_pack/fallback_lightweight/public/assets/ui/icons/obstacle_dog.svg",
+    "bytes": 411,
+    "kb": 0.4,
+    "ext": ".svg"
+  },
+  {
+    "path": "tickets/patch_931_ultimate_internet_assets_ingestion_pack/fallback_lightweight/public/assets/ui/icons/boss_rival.svg",
+    "bytes": 386,
+    "kb": 0.4,
+    "ext": ".svg"
+  },
+  {
+    "path": "tickets/patch_931_ultimate_internet_assets_ingestion_pack/fallback_lightweight/public/assets/ui/icons/boss_bulldog.svg",
+    "bytes": 506,
+    "kb": 0.5,
+    "ext": ".svg"
+  },
+  {
+    "path": "tickets/patch_931_ultimate_internet_assets_ingestion_pack/fallback_lightweight/public/assets/ui/icons/state_boss.svg",
+    "bytes": 364,
+    "kb": 0.4,
+    "ext": ".svg"
+  },
+  {
+    "path": "tickets/patch_931_ultimate_internet_assets_ingestion_pack/fallback_lightweight/public/assets/ui/icons/obstacle_block.svg",
+    "bytes": 339,
+    "kb": 0.3,
+    "ext": ".svg"
+  },
+  {
+    "path": "tickets/patch_931_ultimate_internet_assets_ingestion_pack/fallback_lightweight/public/assets/ui/icons/pickup_shuriken.svg",
+    "bytes": 315,
+    "kb": 0.3,
+    "ext": ".svg"
+  },
+  {
+    "path": "tickets/patch_931_ultimate_internet_assets_ingestion_pack/fallback_lightweight/public/assets/ui/icons/pickup_finish.svg",
+    "bytes": 365,
+    "kb": 0.4,
+    "ext": ".svg"
+  },
+  {
+    "path": "tickets/patch_931_ultimate_internet_assets_ingestion_pack/fallback_lightweight/public/assets/ui/icons/pickup_orb.svg",
+    "bytes": 286,
+    "kb": 0.3,
+    "ext": ".svg"
+  },
+  {
+    "path": "tickets/patch_931_ultimate_internet_assets_ingestion_pack/fallback_lightweight/public/assets/ui/icons/state_clear.svg",
+    "bytes": 364,
+    "kb": 0.4,
+    "ext": ".svg"
+  },
+  {
+    "path": "tickets/patch_931_ultimate_internet_assets_ingestion_pack/fallback_lightweight/public/assets/ui/icons/ui_lock.svg",
+    "bytes": 342,
+    "kb": 0.3,
+    "ext": ".svg"
+  },
+  {
+    "path": "tickets/patch_931_ultimate_internet_assets_ingestion_pack/fallback_lightweight/public/assets/ui/icons/boss_mirror.svg",
+    "bytes": 368,
+    "kb": 0.4,
+    "ext": ".svg"
+  },
+  {
+    "path": "tickets/patch_931_ultimate_internet_assets_ingestion_pack/fallback_lightweight/public/assets/ui/icons/boss_crime_lord.svg",
+    "bytes": 350,
+    "kb": 0.3,
+    "ext": ".svg"
+  },
+  {
+    "path": "tickets/patch_931_ultimate_internet_assets_ingestion_pack/fallback_lightweight/public/assets/ui/icons/obstacle_cone.svg",
+    "bytes": 359,
+    "kb": 0.4,
+    "ext": ".svg"
+  },
+  {
+    "path": "tickets/patch_931_ultimate_internet_assets_ingestion_pack/fallback_lightweight/public/assets/ui/icons/obstacle_mailbox.svg",
+    "bytes": 378,
+    "kb": 0.4,
+    "ext": ".svg"
+  },
+  {
+    "path": "tickets/patch_931_ultimate_internet_assets_ingestion_pack/fallback_lightweight/public/assets/ui/icons/pickup_newspaper.svg",
+    "bytes": 350,
+    "kb": 0.3,
+    "ext": ".svg"
+  },
+  {
+    "path": "tickets/patch_931_ultimate_internet_assets_ingestion_pack/fallback_lightweight/public/assets/ui/icons/pickup_ring.svg",
+    "bytes": 319,
+    "kb": 0.3,
+    "ext": ".svg"
+  },
+  {
+    "path": "tickets/patch_931_ultimate_internet_assets_ingestion_pack/fallback_lightweight/public/assets/ui/icons/ui_map.svg",
+    "bytes": 318,
+    "kb": 0.3,
+    "ext": ".svg"
+  },
+  {
+    "path": "tickets/patch_931_ultimate_internet_assets_ingestion_pack/fallback_lightweight/public/assets/ui/icons/boss_shadow_ninja.svg",
+    "bytes": 447,
+    "kb": 0.4,
+    "ext": ".svg"
+  },
+  {
+    "path": "tickets/patch_931_ultimate_internet_assets_ingestion_pack/fallback_lightweight/public/assets/ui/icons/boss_loop_serpent.svg",
+    "bytes": 347,
+    "kb": 0.3,
+    "ext": ".svg"
+  },
+  {
+    "path": "tickets/patch_931_ultimate_internet_assets_ingestion_pack/fallback_lightweight/public/assets/ui/icons/pickup_checkpoint.svg",
+    "bytes": 408,
+    "kb": 0.4,
+    "ext": ".svg"
+  },
+  {
+    "path": "tickets/patch_931_ultimate_internet_assets_ingestion_pack/fallback_lightweight/public/assets/ui/icons/obstacle_crowd.svg",
+    "bytes": 428,
+    "kb": 0.4,
+    "ext": ".svg"
+  },
+  {
+    "path": "tickets/patch_929_worldmap_mobile_zoom_top_left_fit/references/screenshots/worldmap_expected_top_left_zoom.jpg",
+    "bytes": 268874,
+    "kb": 262.6,
+    "ext": ".jpg",
+    "width": 709,
+    "height": 1536,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "tickets/patch_929_worldmap_mobile_zoom_top_left_fit/references/screenshots/worldmap_current_black_bands.jpg",
+    "bytes": 173804,
+    "kb": 169.7,
+    "ext": ".jpg",
+    "width": 709,
+    "height": 1536,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "tickets/patch_928_design_board_extraction_quality_gate_manual_crop_workflow/references/bad_outputs/boss.png",
+    "bytes": 130471,
+    "kb": 127.4,
+    "ext": ".png",
+    "width": 410,
+    "height": 232,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "tickets/patch_928_design_board_extraction_quality_gate_manual_crop_workflow/references/bad_outputs/obstacles.png",
+    "bytes": 121887,
+    "kb": 119.0,
+    "ext": ".png",
+    "width": 424,
+    "height": 184,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "tickets/patch_928_design_board_extraction_quality_gate_manual_crop_workflow/references/bad_outputs/pickups.png",
+    "bytes": 94548,
+    "kb": 92.3,
+    "ext": ".png",
+    "width": 410,
+    "height": 164,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "tickets/patch_928_design_board_extraction_quality_gate_manual_crop_workflow/references/bad_outputs/props.png",
+    "bytes": 77987,
+    "kb": 76.2,
+    "ext": ".png",
+    "width": 424,
+    "height": 174,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "tickets/patch_928_design_board_extraction_quality_gate_manual_crop_workflow/references/bad_outputs/gameplayPreview.png",
+    "bytes": 230591,
+    "kb": 225.2,
+    "ext": ".png",
+    "width": 454,
+    "height": 424,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "tickets/patch_928_design_board_extraction_quality_gate_manual_crop_workflow/references/bad_outputs/palette.png",
+    "bytes": 79758,
+    "kb": 77.9,
+    "ext": ".png",
+    "width": 368,
+    "height": 112,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "tickets/patch_928_design_board_extraction_quality_gate_manual_crop_workflow/references/bad_outputs/hud.png",
+    "bytes": 89048,
+    "kb": 87.0,
+    "ext": ".png",
+    "width": 358,
+    "height": 170,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "tickets/patch_928_design_board_extraction_quality_gate_manual_crop_workflow/references/bad_outputs/badges.png",
+    "bytes": 136144,
+    "kb": 133.0,
+    "ext": ".png",
+    "width": 540,
+    "height": 126,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "tickets/patch_928_design_board_extraction_quality_gate_manual_crop_workflow/references/bad_outputs/borders.png",
+    "bytes": 226011,
+    "kb": 220.7,
+    "ext": ".png",
+    "width": 902,
+    "height": 148,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "tickets/patch_923_mobile_fit_worldmap_intro_and_frame_cleanup/references/screenshots/intro_button_overflow.jpg",
+    "bytes": 96278,
+    "kb": 94.0,
+    "ext": ".jpg",
+    "width": 709,
+    "height": 1536,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "tickets/patch_923_mobile_fit_worldmap_intro_and_frame_cleanup/references/screenshots/sonic_frame_overlap_problem.jpg",
+    "bytes": 148857,
+    "kb": 145.4,
+    "ext": ".jpg",
+    "width": 709,
+    "height": 1536,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "tickets/patch_923_mobile_fit_worldmap_intro_and_frame_cleanup/references/screenshots/worldmap_dezoom_reference.jpg",
+    "bytes": 263249,
+    "kb": 257.1,
+    "ext": ".jpg",
+    "width": 709,
+    "height": 1536,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "tickets/patch_923_mobile_fit_worldmap_intro_and_frame_cleanup/references/screenshots/kombat_frame_overlap_problem.jpg",
+    "bytes": 144873,
+    "kb": 141.5,
+    "ext": ".jpg",
+    "width": 709,
+    "height": 1536,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "tickets/patch_923_mobile_fit_worldmap_intro_and_frame_cleanup/references/screenshots/worldmap_zoomed_problem.jpg",
+    "bytes": 214204,
+    "kb": 209.2,
+    "ext": ".jpg",
+    "width": 709,
+    "height": 1536,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "tickets/patch_923_mobile_fit_worldmap_intro_and_frame_cleanup/references/screenshots/sonic_intro_english_problem.jpg",
+    "bytes": 93549,
+    "kb": 91.4,
+    "ext": ".jpg",
+    "width": 709,
+    "height": 1536,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "public/assets/map/world_map.png",
+    "bytes": 2874347,
+    "kb": 2807.0,
+    "ext": ".png",
+    "width": 1448,
+    "height": 1086,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "public/assets/runtime/universes/outrun/pickup_checkpoint.png",
+    "bytes": 66863,
+    "kb": 65.3,
+    "ext": ".png",
+    "width": 160,
+    "height": 256,
+    "mode": "RGBA",
+    "transparent_percent": 33.3
+  },
+  {
+    "path": "public/assets/runtime/universes/outrun/obstacle_car.png",
+    "bytes": 56363,
+    "kb": 55.0,
+    "ext": ".png",
+    "width": 256,
+    "height": 160,
+    "mode": "RGBA",
+    "transparent_percent": 15.09
+  },
+  {
+    "path": "public/assets/runtime/universes/outrun/boss_turbo_rival.png",
+    "bytes": 76024,
+    "kb": 74.2,
+    "ext": ".png",
+    "width": 256,
+    "height": 165,
+    "mode": "RGBA",
+    "transparent_percent": 37.7
+  },
+  {
+    "path": "public/assets/runtime/universes/kombat/boss_dragon_gate.png",
+    "bytes": 127002,
+    "kb": 124.0,
+    "ext": ".png",
+    "width": 243,
+    "height": 256,
+    "mode": "RGBA",
+    "transparent_percent": 25.14
+  },
+  {
+    "path": "public/assets/runtime/universes/kombat/pickup_finish_token.png",
+    "bytes": 89420,
+    "kb": 87.3,
+    "ext": ".png",
+    "width": 239,
+    "height": 256,
+    "mode": "RGBA",
+    "transparent_percent": 34.98
+  },
+  {
+    "path": "public/assets/runtime/universes/kombat/obstacle_fatal_zone.png",
+    "bytes": 98109,
+    "kb": 95.8,
+    "ext": ".png",
+    "width": 235,
+    "height": 256,
+    "mode": "RGBA",
+    "transparent_percent": 31.19
+  },
+  {
+    "path": "public/assets/runtime/universes/shinobi/obstacle_decoy.png",
+    "bytes": 90584,
+    "kb": 88.5,
+    "ext": ".png",
+    "width": 251,
+    "height": 256,
+    "mode": "RGBA",
+    "transparent_percent": 38.38
+  },
+  {
+    "path": "public/assets/runtime/universes/shinobi/pickup_shuriken.png",
+    "bytes": 53500,
+    "kb": 52.2,
+    "ext": ".png",
+    "width": 256,
+    "height": 256,
+    "mode": "RGBA",
+    "transparent_percent": 71.09
+  },
+  {
+    "path": "public/assets/runtime/universes/shinobi/boss_shadow_ninja.png",
+    "bytes": 76855,
+    "kb": 75.1,
+    "ext": ".png",
+    "width": 256,
+    "height": 250,
+    "mode": "RGBA",
+    "transparent_percent": 40.03
+  },
+  {
+    "path": "public/assets/runtime/universes/castle/obstacle_blink_wall.png",
+    "bytes": 121578,
+    "kb": 118.7,
+    "ext": ".png",
+    "width": 238,
+    "height": 256,
+    "mode": "RGBA",
+    "transparent_percent": 12.33
+  },
+  {
+    "path": "public/assets/runtime/universes/castle/boss_witch_mirror.png",
+    "bytes": 92934,
+    "kb": 90.8,
+    "ext": ".png",
+    "width": 179,
+    "height": 256,
+    "mode": "RGBA",
+    "transparent_percent": 35.71
+  },
+  {
+    "path": "public/assets/runtime/universes/castle/pickup_orb.png",
+    "bytes": 81324,
+    "kb": 79.4,
+    "ext": ".png",
+    "width": 194,
+    "height": 256,
+    "mode": "RGBA",
+    "transparent_percent": 42.38
+  },
+  {
+    "path": "public/assets/runtime/universes/sonic/obstacle_bumper.png",
+    "bytes": 117788,
+    "kb": 115.0,
+    "ext": ".png",
+    "width": 253,
+    "height": 256,
+    "mode": "RGBA",
+    "transparent_percent": 21.39
+  },
+  {
+    "path": "public/assets/runtime/universes/sonic/boss_loop_serpent.png",
+    "bytes": 127781,
+    "kb": 124.8,
+    "ext": ".png",
+    "width": 256,
+    "height": 249,
+    "mode": "RGBA",
+    "transparent_percent": 27.85
+  },
+  {
+    "path": "public/assets/runtime/universes/sonic/pickup_ring.png",
+    "bytes": 55450,
+    "kb": 54.2,
+    "ext": ".png",
+    "width": 256,
+    "height": 256,
+    "mode": "RGBA",
+    "transparent_percent": 52.34
+  },
+  {
+    "path": "public/assets/runtime/universes/paperboy/obstacle_dog.png",
+    "bytes": 69478,
+    "kb": 67.8,
+    "ext": ".png",
+    "width": 256,
+    "height": 170,
+    "mode": "RGBA",
+    "transparent_percent": 35.26
+  },
+  {
+    "path": "public/assets/runtime/universes/paperboy/boss_neighborhood_chaos.png",
+    "bytes": 127862,
+    "kb": 124.9,
+    "ext": ".png",
+    "width": 256,
+    "height": 233,
+    "mode": "RGBA",
+    "transparent_percent": 27.52
+  },
+  {
+    "path": "public/assets/runtime/universes/paperboy/pickup_newspaper.png",
+    "bytes": 78105,
+    "kb": 76.3,
+    "ext": ".png",
+    "width": 256,
+    "height": 191,
+    "mode": "RGBA",
+    "transparent_percent": 48.06
+  },
+  {
+    "path": "public/assets/runtime/universes/streets/pickup_street_bonus.png",
+    "bytes": 104063,
+    "kb": 101.6,
+    "ext": ".png",
+    "width": 250,
+    "height": 256,
+    "mode": "RGBA",
+    "transparent_percent": 22.27
+  },
+  {
+    "path": "public/assets/runtime/universes/streets/obstacle_crowd.png",
+    "bytes": 126176,
+    "kb": 123.2,
+    "ext": ".png",
+    "width": 256,
+    "height": 254,
+    "mode": "RGBA",
+    "transparent_percent": 32.66
+  },
+  {
+    "path": "public/assets/runtime/universes/streets/boss_crime_lord.png",
+    "bytes": 90515,
+    "kb": 88.4,
+    "ext": ".png",
+    "width": 187,
+    "height": 256,
+    "mode": "RGBA",
+    "transparent_percent": 29.95
+  },
+  {
+    "path": "public/assets/runtime/universes/fighter/pickup_energy.png",
+    "bytes": 92055,
+    "kb": 89.9,
+    "ext": ".png",
+    "width": 250,
+    "height": 256,
+    "mode": "RGBA",
+    "transparent_percent": 38.75
+  },
+  {
+    "path": "public/assets/runtime/universes/fighter/boss_final_challenger.png",
+    "bytes": 71211,
+    "kb": 69.5,
+    "ext": ".png",
+    "width": 217,
+    "height": 256,
+    "mode": "RGBA",
+    "transparent_percent": 54.21
+  },
+  {
+    "path": "public/assets/runtime/universes/fighter/obstacle_charge_marker.png",
+    "bytes": 81227,
+    "kb": 79.3,
+    "ext": ".png",
+    "width": 236,
+    "height": 256,
+    "mode": "RGBA",
+    "transparent_percent": 37.58
+  },
+  {
+    "path": "public/assets/developer-assets/outrun/boss.png",
+    "bytes": 116054,
+    "kb": 113.3,
+    "ext": ".png",
+    "width": 410,
+    "height": 220,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "public/assets/developer-assets/outrun/obstacles.png",
+    "bytes": 132046,
+    "kb": 129.0,
+    "ext": ".png",
+    "width": 424,
+    "height": 172,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "public/assets/developer-assets/outrun/pickups.png",
+    "bytes": 83124,
+    "kb": 81.2,
+    "ext": ".png",
+    "width": 410,
+    "height": 164,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "public/assets/developer-assets/outrun/props.png",
+    "bytes": 84307,
+    "kb": 82.3,
+    "ext": ".png",
+    "width": 424,
+    "height": 166,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "public/assets/developer-assets/outrun/gameplayPreview.png",
+    "bytes": 233059,
+    "kb": 227.6,
+    "ext": ".png",
+    "width": 454,
+    "height": 424,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "public/assets/developer-assets/outrun/palette.png",
+    "bytes": 59366,
+    "kb": 58.0,
+    "ext": ".png",
+    "width": 368,
+    "height": 120,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "public/assets/developer-assets/outrun/hud.png",
+    "bytes": 54788,
+    "kb": 53.5,
+    "ext": ".png",
+    "width": 358,
+    "height": 166,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "public/assets/developer-assets/outrun/badges.png",
+    "bytes": 120589,
+    "kb": 117.8,
+    "ext": ".png",
+    "width": 534,
+    "height": 132,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "public/assets/developer-assets/outrun/borders.png",
+    "bytes": 205122,
+    "kb": 200.3,
+    "ext": ".png",
+    "width": 902,
+    "height": 150,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "public/assets/developer-assets/kombat/boss.png",
+    "bytes": 139547,
+    "kb": 136.3,
+    "ext": ".png",
+    "width": 406,
+    "height": 230,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "public/assets/developer-assets/kombat/obstacles.png",
+    "bytes": 141855,
+    "kb": 138.5,
+    "ext": ".png",
+    "width": 422,
+    "height": 182,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "public/assets/developer-assets/kombat/pickups.png",
+    "bytes": 94949,
+    "kb": 92.7,
+    "ext": ".png",
+    "width": 406,
+    "height": 166,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "public/assets/developer-assets/kombat/props.png",
+    "bytes": 75572,
+    "kb": 73.8,
+    "ext": ".png",
+    "width": 422,
+    "height": 174,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "public/assets/developer-assets/kombat/gameplayPreview.png",
+    "bytes": 241742,
+    "kb": 236.1,
+    "ext": ".png",
+    "width": 452,
+    "height": 418,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "public/assets/developer-assets/kombat/palette.png",
+    "bytes": 68847,
+    "kb": 67.2,
+    "ext": ".png",
+    "width": 358,
+    "height": 112,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "public/assets/developer-assets/kombat/hud.png",
+    "bytes": 74000,
+    "kb": 72.3,
+    "ext": ".png",
+    "width": 358,
+    "height": 174,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "public/assets/developer-assets/kombat/badges.png",
+    "bytes": 103855,
+    "kb": 101.4,
+    "ext": ".png",
+    "width": 520,
+    "height": 122,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "public/assets/developer-assets/kombat/borders.png",
+    "bytes": 205815,
+    "kb": 201.0,
+    "ext": ".png",
+    "width": 898,
+    "height": 152,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "public/assets/developer-assets/shinobi/boss.png",
+    "bytes": 118310,
+    "kb": 115.5,
+    "ext": ".png",
+    "width": 406,
+    "height": 222,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "public/assets/developer-assets/shinobi/obstacles.png",
+    "bytes": 124140,
+    "kb": 121.2,
+    "ext": ".png",
+    "width": 422,
+    "height": 174,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "public/assets/developer-assets/shinobi/pickups.png",
+    "bytes": 88658,
+    "kb": 86.6,
+    "ext": ".png",
+    "width": 406,
+    "height": 164,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "public/assets/developer-assets/shinobi/props.png",
+    "bytes": 80226,
+    "kb": 78.3,
+    "ext": ".png",
+    "width": 422,
+    "height": 170,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "public/assets/developer-assets/shinobi/gameplayPreview.png",
+    "bytes": 219626,
+    "kb": 214.5,
+    "ext": ".png",
+    "width": 452,
+    "height": 416,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "public/assets/developer-assets/shinobi/palette.png",
+    "bytes": 53793,
+    "kb": 52.5,
+    "ext": ".png",
+    "width": 350,
+    "height": 108,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "public/assets/developer-assets/shinobi/hud.png",
+    "bytes": 67236,
+    "kb": 65.7,
+    "ext": ".png",
+    "width": 358,
+    "height": 168,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "public/assets/developer-assets/shinobi/badges.png",
+    "bytes": 107683,
+    "kb": 105.2,
+    "ext": ".png",
+    "width": 520,
+    "height": 124,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "public/assets/developer-assets/shinobi/borders.png",
+    "bytes": 180852,
+    "kb": 176.6,
+    "ext": ".png",
+    "width": 898,
+    "height": 154,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "public/assets/developer-assets/castle/boss.png",
+    "bytes": 124903,
+    "kb": 122.0,
+    "ext": ".png",
+    "width": 406,
+    "height": 220,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "public/assets/developer-assets/castle/obstacles.png",
+    "bytes": 118183,
+    "kb": 115.4,
+    "ext": ".png",
+    "width": 420,
+    "height": 170,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "public/assets/developer-assets/castle/pickups.png",
+    "bytes": 89797,
+    "kb": 87.7,
+    "ext": ".png",
+    "width": 406,
+    "height": 156,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "public/assets/developer-assets/castle/props.png",
+    "bytes": 63489,
+    "kb": 62.0,
+    "ext": ".png",
+    "width": 420,
+    "height": 170,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "public/assets/developer-assets/castle/gameplayPreview.png",
+    "bytes": 219779,
+    "kb": 214.6,
+    "ext": ".png",
+    "width": 452,
+    "height": 418,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "public/assets/developer-assets/castle/palette.png",
+    "bytes": 57868,
+    "kb": 56.5,
+    "ext": ".png",
+    "width": 344,
+    "height": 104,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "public/assets/developer-assets/castle/hud.png",
+    "bytes": 84537,
+    "kb": 82.6,
+    "ext": ".png",
+    "width": 350,
+    "height": 172,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "public/assets/developer-assets/castle/badges.png",
+    "bytes": 78940,
+    "kb": 77.1,
+    "ext": ".png",
+    "width": 500,
+    "height": 116,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "public/assets/developer-assets/castle/borders.png",
+    "bytes": 191866,
+    "kb": 187.4,
+    "ext": ".png",
+    "width": 896,
+    "height": 160,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "public/assets/developer-assets/sonic/boss.png",
+    "bytes": 111912,
+    "kb": 109.3,
+    "ext": ".png",
+    "width": 408,
+    "height": 214,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "public/assets/developer-assets/sonic/obstacles.png",
+    "bytes": 118523,
+    "kb": 115.7,
+    "ext": ".png",
+    "width": 424,
+    "height": 174,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "public/assets/developer-assets/sonic/pickups.png",
+    "bytes": 91087,
+    "kb": 89.0,
+    "ext": ".png",
+    "width": 408,
+    "height": 164,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "public/assets/developer-assets/sonic/props.png",
+    "bytes": 55264,
+    "kb": 54.0,
+    "ext": ".png",
+    "width": 424,
+    "height": 168,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "public/assets/developer-assets/sonic/gameplayPreview.png",
+    "bytes": 191463,
+    "kb": 187.0,
+    "ext": ".png",
+    "width": 456,
+    "height": 430,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "public/assets/developer-assets/sonic/palette.png",
+    "bytes": 58508,
+    "kb": 57.1,
+    "ext": ".png",
+    "width": 356,
+    "height": 112,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "public/assets/developer-assets/sonic/hud.png",
+    "bytes": 65229,
+    "kb": 63.7,
+    "ext": ".png",
+    "width": 354,
+    "height": 160,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "public/assets/developer-assets/sonic/badges.png",
+    "bytes": 86692,
+    "kb": 84.7,
+    "ext": ".png",
+    "width": 520,
+    "height": 128,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "public/assets/developer-assets/sonic/borders.png",
+    "bytes": 177640,
+    "kb": 173.5,
+    "ext": ".png",
+    "width": 902,
+    "height": 150,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "public/assets/developer-assets/paperboy/boss.png",
+    "bytes": 130471,
+    "kb": 127.4,
+    "ext": ".png",
+    "width": 410,
+    "height": 232,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "public/assets/developer-assets/paperboy/obstacles.png",
+    "bytes": 121887,
+    "kb": 119.0,
+    "ext": ".png",
+    "width": 424,
+    "height": 184,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "public/assets/developer-assets/paperboy/pickups.png",
+    "bytes": 94548,
+    "kb": 92.3,
+    "ext": ".png",
+    "width": 410,
+    "height": 164,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "public/assets/developer-assets/paperboy/props.png",
+    "bytes": 77987,
+    "kb": 76.2,
+    "ext": ".png",
+    "width": 424,
+    "height": 174,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "public/assets/developer-assets/paperboy/gameplayPreview.png",
+    "bytes": 230591,
+    "kb": 225.2,
+    "ext": ".png",
+    "width": 454,
+    "height": 424,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "public/assets/developer-assets/paperboy/palette.png",
+    "bytes": 79758,
+    "kb": 77.9,
+    "ext": ".png",
+    "width": 368,
+    "height": 112,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "public/assets/developer-assets/paperboy/hud.png",
+    "bytes": 89048,
+    "kb": 87.0,
+    "ext": ".png",
+    "width": 358,
+    "height": 170,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "public/assets/developer-assets/paperboy/badges.png",
+    "bytes": 136144,
+    "kb": 133.0,
+    "ext": ".png",
+    "width": 540,
+    "height": 126,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "public/assets/developer-assets/paperboy/borders.png",
+    "bytes": 226011,
+    "kb": 220.7,
+    "ext": ".png",
+    "width": 902,
+    "height": 148,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "public/assets/developer-assets/streets/boss.png",
+    "bytes": 117315,
+    "kb": 114.6,
+    "ext": ".png",
+    "width": 406,
+    "height": 222,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "public/assets/developer-assets/streets/obstacles.png",
+    "bytes": 100764,
+    "kb": 98.4,
+    "ext": ".png",
+    "width": 424,
+    "height": 174,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "public/assets/developer-assets/streets/pickups.png",
+    "bytes": 80219,
+    "kb": 78.3,
+    "ext": ".png",
+    "width": 406,
+    "height": 162,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "public/assets/developer-assets/streets/props.png",
+    "bytes": 63606,
+    "kb": 62.1,
+    "ext": ".png",
+    "width": 424,
+    "height": 170,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "public/assets/developer-assets/streets/gameplayPreview.png",
+    "bytes": 218657,
+    "kb": 213.5,
+    "ext": ".png",
+    "width": 450,
+    "height": 416,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "public/assets/developer-assets/streets/palette.png",
+    "bytes": 25228,
+    "kb": 24.6,
+    "ext": ".png",
+    "width": 348,
+    "height": 104,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "public/assets/developer-assets/streets/hud.png",
+    "bytes": 76310,
+    "kb": 74.5,
+    "ext": ".png",
+    "width": 360,
+    "height": 170,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "public/assets/developer-assets/streets/badges.png",
+    "bytes": 91090,
+    "kb": 89.0,
+    "ext": ".png",
+    "width": 520,
+    "height": 120,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "public/assets/developer-assets/streets/borders.png",
+    "bytes": 207506,
+    "kb": 202.6,
+    "ext": ".png",
+    "width": 900,
+    "height": 156,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "public/assets/developer-assets/fighter/boss.png",
+    "bytes": 126433,
+    "kb": 123.5,
+    "ext": ".png",
+    "width": 406,
+    "height": 230,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "public/assets/developer-assets/fighter/obstacles.png",
+    "bytes": 129889,
+    "kb": 126.8,
+    "ext": ".png",
+    "width": 420,
+    "height": 180,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "public/assets/developer-assets/fighter/pickups.png",
+    "bytes": 85237,
+    "kb": 83.2,
+    "ext": ".png",
+    "width": 406,
+    "height": 166,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "public/assets/developer-assets/fighter/props.png",
+    "bytes": 77132,
+    "kb": 75.3,
+    "ext": ".png",
+    "width": 420,
+    "height": 176,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "public/assets/developer-assets/fighter/gameplayPreview.png",
+    "bytes": 227331,
+    "kb": 222.0,
+    "ext": ".png",
+    "width": 452,
+    "height": 420,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "public/assets/developer-assets/fighter/palette.png",
+    "bytes": 55881,
+    "kb": 54.6,
+    "ext": ".png",
+    "width": 358,
+    "height": 112,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "public/assets/developer-assets/fighter/hud.png",
+    "bytes": 77490,
+    "kb": 75.7,
+    "ext": ".png",
+    "width": 360,
+    "height": 176,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "public/assets/developer-assets/fighter/badges.png",
+    "bytes": 92791,
+    "kb": 90.6,
+    "ext": ".png",
+    "width": 520,
+    "height": 120,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "public/assets/developer-assets/fighter/borders.png",
+    "bytes": 185365,
+    "kb": 181.0,
+    "ext": ".png",
+    "width": 898,
+    "height": 150,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "public/assets/frames/outrun/frame.png",
+    "bytes": 814764,
+    "kb": 795.7,
+    "ext": ".png",
+    "width": 517,
+    "height": 847,
+    "mode": "RGBA",
+    "transparent_percent": 0.0
+  },
+  {
+    "path": "public/assets/frames/kombat/frame.png",
+    "bytes": 823672,
+    "kb": 804.4,
+    "ext": ".png",
+    "width": 523,
+    "height": 859,
+    "mode": "RGBA",
+    "transparent_percent": 0.0
+  },
+  {
+    "path": "public/assets/frames/shinobi/frame.png",
+    "bytes": 715912,
+    "kb": 699.1,
+    "ext": ".png",
+    "width": 511,
+    "height": 805,
+    "mode": "RGBA",
+    "transparent_percent": 0.0
+  },
+  {
+    "path": "public/assets/frames/castle/frame.png",
+    "bytes": 689499,
+    "kb": 673.3,
+    "ext": ".png",
+    "width": 532,
+    "height": 779,
+    "mode": "RGBA",
+    "transparent_percent": 0.0
+  },
+  {
+    "path": "public/assets/frames/sonic/frame.png",
+    "bytes": 725264,
+    "kb": 708.3,
+    "ext": ".png",
+    "width": 529,
+    "height": 873,
+    "mode": "RGBA",
+    "transparent_percent": 0.0
+  },
+  {
+    "path": "public/assets/frames/paperboy/frame.png",
+    "bytes": 922568,
+    "kb": 900.9,
+    "ext": ".png",
+    "width": 535,
+    "height": 943,
+    "mode": "RGBA",
+    "transparent_percent": 0.0
+  },
+  {
+    "path": "public/assets/frames/streets/frame.png",
+    "bytes": 711720,
+    "kb": 695.0,
+    "ext": ".png",
+    "width": 531,
+    "height": 819,
+    "mode": "RGBA",
+    "transparent_percent": 0.0
+  },
+  {
+    "path": "public/assets/frames/fighter/frame.png",
+    "bytes": 777293,
+    "kb": 759.1,
+    "ext": ".png",
+    "width": 517,
+    "height": 839,
+    "mode": "RGBA",
+    "transparent_percent": 0.0
+  },
+  {
+    "path": "public/assets/universes/outrun/boss.png",
+    "bytes": 213,
+    "kb": 0.2,
+    "ext": ".png",
+    "width": 48,
+    "height": 48,
+    "mode": "RGBA",
+    "transparent_percent": 74.0
+  },
+  {
+    "path": "public/assets/universes/outrun/frame_tile.png",
+    "bytes": 128,
+    "kb": 0.1,
+    "ext": ".png",
+    "width": 32,
+    "height": 32,
+    "mode": "RGBA",
+    "transparent_percent": 0.0
+  },
+  {
+    "path": "public/assets/universes/outrun/board_preview.png",
+    "bytes": 3023474,
+    "kb": 2952.6,
+    "ext": ".png",
+    "width": 1024,
+    "height": 1536,
+    "mode": "RGBA",
+    "transparent_percent": 0.0
+  },
+  {
+    "path": "public/assets/universes/outrun/pickup_02.png",
+    "bytes": 199,
+    "kb": 0.2,
+    "ext": ".png",
+    "width": 32,
+    "height": 32,
+    "mode": "RGBA",
+    "transparent_percent": 78.52
+  },
+  {
+    "path": "public/assets/universes/outrun/obstacle_01.png",
+    "bytes": 168,
+    "kb": 0.2,
+    "ext": ".png",
+    "width": 32,
+    "height": 32,
+    "mode": "RGBA",
+    "transparent_percent": 73.24
+  },
+  {
+    "path": "public/assets/universes/outrun/obstacle_02.png",
+    "bytes": 132,
+    "kb": 0.1,
+    "ext": ".png",
+    "width": 32,
+    "height": 32,
+    "mode": "RGBA",
+    "transparent_percent": 82.42
+  },
+  {
+    "path": "public/assets/universes/outrun/pickup_01.png",
+    "bytes": 132,
+    "kb": 0.1,
+    "ext": ".png",
+    "width": 32,
+    "height": 32,
+    "mode": "RGBA",
+    "transparent_percent": 76.95
+  },
+  {
+    "path": "public/assets/universes/outrun/hud_panel.png",
+    "bytes": 301,
+    "kb": 0.3,
+    "ext": ".png",
+    "width": 360,
+    "height": 56,
+    "mode": "RGBA",
+    "transparent_percent": 0.0
+  },
+  {
+    "path": "public/assets/universes/kombat/boss.png",
+    "bytes": 215,
+    "kb": 0.2,
+    "ext": ".png",
+    "width": 48,
+    "height": 48,
+    "mode": "RGBA",
+    "transparent_percent": 62.67
+  },
+  {
+    "path": "public/assets/universes/kombat/frame_tile.png",
+    "bytes": 128,
+    "kb": 0.1,
+    "ext": ".png",
+    "width": 32,
+    "height": 32,
+    "mode": "RGBA",
+    "transparent_percent": 0.0
+  },
+  {
+    "path": "public/assets/universes/kombat/board_preview.png",
+    "bytes": 2286297,
+    "kb": 2232.7,
+    "ext": ".png",
+    "width": 1024,
+    "height": 1536,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "public/assets/universes/kombat/pickup_02.png",
+    "bytes": 218,
+    "kb": 0.2,
+    "ext": ".png",
+    "width": 32,
+    "height": 32,
+    "mode": "RGBA",
+    "transparent_percent": 63.18
+  },
+  {
+    "path": "public/assets/universes/kombat/obstacle_01.png",
+    "bytes": 134,
+    "kb": 0.1,
+    "ext": ".png",
+    "width": 32,
+    "height": 32,
+    "mode": "RGBA",
+    "transparent_percent": 61.33
+  },
+  {
+    "path": "public/assets/universes/kombat/obstacle_02.png",
+    "bytes": 191,
+    "kb": 0.2,
+    "ext": ".png",
+    "width": 32,
+    "height": 32,
+    "mode": "RGBA",
+    "transparent_percent": 75.29
+  },
+  {
+    "path": "public/assets/universes/kombat/pickup_01.png",
+    "bytes": 220,
+    "kb": 0.2,
+    "ext": ".png",
+    "width": 32,
+    "height": 32,
+    "mode": "RGBA",
+    "transparent_percent": 48.34
+  },
+  {
+    "path": "public/assets/universes/kombat/hud_panel.png",
+    "bytes": 301,
+    "kb": 0.3,
+    "ext": ".png",
+    "width": 360,
+    "height": 56,
+    "mode": "RGBA",
+    "transparent_percent": 0.0
+  },
+  {
+    "path": "public/assets/universes/shinobi/boss.png",
+    "bytes": 228,
+    "kb": 0.2,
+    "ext": ".png",
+    "width": 48,
+    "height": 48,
+    "mode": "RGBA",
+    "transparent_percent": 59.55
+  },
+  {
+    "path": "public/assets/universes/shinobi/frame_tile.png",
+    "bytes": 124,
+    "kb": 0.1,
+    "ext": ".png",
+    "width": 32,
+    "height": 32,
+    "mode": "RGBA",
+    "transparent_percent": 0.0
+  },
+  {
+    "path": "public/assets/universes/shinobi/board_preview.png",
+    "bytes": 2137762,
+    "kb": 2087.7,
+    "ext": ".png",
+    "width": 1024,
+    "height": 1536,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "public/assets/universes/shinobi/pickup_02.png",
+    "bytes": 141,
+    "kb": 0.1,
+    "ext": ".png",
+    "width": 32,
+    "height": 32,
+    "mode": "RGBA",
+    "transparent_percent": 83.2
+  },
+  {
+    "path": "public/assets/universes/shinobi/obstacle_01.png",
+    "bytes": 161,
+    "kb": 0.2,
+    "ext": ".png",
+    "width": 32,
+    "height": 32,
+    "mode": "RGBA",
+    "transparent_percent": 82.62
+  },
+  {
+    "path": "public/assets/universes/shinobi/obstacle_02.png",
+    "bytes": 138,
+    "kb": 0.1,
+    "ext": ".png",
+    "width": 32,
+    "height": 32,
+    "mode": "RGBA",
+    "transparent_percent": 43.75
+  },
+  {
+    "path": "public/assets/universes/shinobi/pickup_01.png",
+    "bytes": 174,
+    "kb": 0.2,
+    "ext": ".png",
+    "width": 32,
+    "height": 32,
+    "mode": "RGBA",
+    "transparent_percent": 78.42
+  },
+  {
+    "path": "public/assets/universes/shinobi/hud_panel.png",
+    "bytes": 298,
+    "kb": 0.3,
+    "ext": ".png",
+    "width": 360,
+    "height": 56,
+    "mode": "RGBA",
+    "transparent_percent": 0.0
+  },
+  {
+    "path": "public/assets/universes/castle/boss.png",
+    "bytes": 282,
+    "kb": 0.3,
+    "ext": ".png",
+    "width": 48,
+    "height": 48,
+    "mode": "RGBA",
+    "transparent_percent": 65.28
+  },
+  {
+    "path": "public/assets/universes/castle/frame_tile.png",
+    "bytes": 129,
+    "kb": 0.1,
+    "ext": ".png",
+    "width": 32,
+    "height": 32,
+    "mode": "RGBA",
+    "transparent_percent": 0.0
+  },
+  {
+    "path": "public/assets/universes/castle/board_preview.png",
+    "bytes": 2208019,
+    "kb": 2156.3,
+    "ext": ".png",
+    "width": 1024,
+    "height": 1536,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "public/assets/universes/castle/pickup_02.png",
+    "bytes": 229,
+    "kb": 0.2,
+    "ext": ".png",
+    "width": 32,
+    "height": 32,
+    "mode": "RGBA",
+    "transparent_percent": 56.93
+  },
+  {
+    "path": "public/assets/universes/castle/obstacle_01.png",
+    "bytes": 138,
+    "kb": 0.1,
+    "ext": ".png",
+    "width": 32,
+    "height": 32,
+    "mode": "RGBA",
+    "transparent_percent": 43.75
+  },
+  {
+    "path": "public/assets/universes/castle/obstacle_02.png",
+    "bytes": 138,
+    "kb": 0.1,
+    "ext": ".png",
+    "width": 32,
+    "height": 32,
+    "mode": "RGBA",
+    "transparent_percent": 43.75
+  },
+  {
+    "path": "public/assets/universes/castle/pickup_01.png",
+    "bytes": 189,
+    "kb": 0.2,
+    "ext": ".png",
+    "width": 32,
+    "height": 32,
+    "mode": "RGBA",
+    "transparent_percent": 74.12
+  },
+  {
+    "path": "public/assets/universes/castle/hud_panel.png",
+    "bytes": 304,
+    "kb": 0.3,
+    "ext": ".png",
+    "width": 360,
+    "height": 56,
+    "mode": "RGBA",
+    "transparent_percent": 0.0
+  },
+  {
+    "path": "public/assets/universes/sonic/boss.png",
+    "bytes": 210,
+    "kb": 0.2,
+    "ext": ".png",
+    "width": 48,
+    "height": 48,
+    "mode": "RGBA",
+    "transparent_percent": 60.94
+  },
+  {
+    "path": "public/assets/universes/sonic/frame_tile.png",
+    "bytes": 134,
+    "kb": 0.1,
+    "ext": ".png",
+    "width": 32,
+    "height": 32,
+    "mode": "RGBA",
+    "transparent_percent": 0.0
+  },
+  {
+    "path": "public/assets/universes/sonic/board_preview.png",
+    "bytes": 1933630,
+    "kb": 1888.3,
+    "ext": ".png",
+    "width": 1024,
+    "height": 1536,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "public/assets/universes/sonic/pickup_02.png",
+    "bytes": 195,
+    "kb": 0.2,
+    "ext": ".png",
+    "width": 32,
+    "height": 32,
+    "mode": "RGBA",
+    "transparent_percent": 74.12
+  },
+  {
+    "path": "public/assets/universes/sonic/obstacle_01.png",
+    "bytes": 170,
+    "kb": 0.2,
+    "ext": ".png",
+    "width": 32,
+    "height": 32,
+    "mode": "RGBA",
+    "transparent_percent": 73.24
+  },
+  {
+    "path": "public/assets/universes/sonic/obstacle_02.png",
+    "bytes": 134,
+    "kb": 0.1,
+    "ext": ".png",
+    "width": 32,
+    "height": 32,
+    "mode": "RGBA",
+    "transparent_percent": 61.33
+  },
+  {
+    "path": "public/assets/universes/sonic/pickup_01.png",
+    "bytes": 213,
+    "kb": 0.2,
+    "ext": ".png",
+    "width": 32,
+    "height": 32,
+    "mode": "RGBA",
+    "transparent_percent": 62.5
+  },
+  {
+    "path": "public/assets/universes/sonic/hud_panel.png",
+    "bytes": 302,
+    "kb": 0.3,
+    "ext": ".png",
+    "width": 360,
+    "height": 56,
+    "mode": "RGBA",
+    "transparent_percent": 0.0
+  },
+  {
+    "path": "public/assets/universes/paperboy/boss.png",
+    "bytes": 227,
+    "kb": 0.2,
+    "ext": ".png",
+    "width": 48,
+    "height": 48,
+    "mode": "RGBA",
+    "transparent_percent": 47.05
+  },
+  {
+    "path": "public/assets/universes/paperboy/frame_tile.png",
+    "bytes": 126,
+    "kb": 0.1,
+    "ext": ".png",
+    "width": 32,
+    "height": 32,
+    "mode": "RGBA",
+    "transparent_percent": 0.0
+  },
+  {
+    "path": "public/assets/universes/paperboy/board_preview.png",
+    "bytes": 2438059,
+    "kb": 2380.9,
+    "ext": ".png",
+    "width": 1024,
+    "height": 1536,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "public/assets/universes/paperboy/pickup_02.png",
+    "bytes": 216,
+    "kb": 0.2,
+    "ext": ".png",
+    "width": 32,
+    "height": 32,
+    "mode": "RGBA",
+    "transparent_percent": 56.93
+  },
+  {
+    "path": "public/assets/universes/paperboy/obstacle_01.png",
+    "bytes": 170,
+    "kb": 0.2,
+    "ext": ".png",
+    "width": 32,
+    "height": 32,
+    "mode": "RGBA",
+    "transparent_percent": 69.34
+  },
+  {
+    "path": "public/assets/universes/paperboy/obstacle_02.png",
+    "bytes": 137,
+    "kb": 0.1,
+    "ext": ".png",
+    "width": 32,
+    "height": 32,
+    "mode": "RGBA",
+    "transparent_percent": 43.75
+  },
+  {
+    "path": "public/assets/universes/paperboy/pickup_01.png",
+    "bytes": 151,
+    "kb": 0.1,
+    "ext": ".png",
+    "width": 32,
+    "height": 32,
+    "mode": "RGBA",
+    "transparent_percent": 61.33
+  },
+  {
+    "path": "public/assets/universes/paperboy/hud_panel.png",
+    "bytes": 302,
+    "kb": 0.3,
+    "ext": ".png",
+    "width": 360,
+    "height": 56,
+    "mode": "RGBA",
+    "transparent_percent": 0.0
+  },
+  {
+    "path": "public/assets/universes/streets/boss.png",
+    "bytes": 209,
+    "kb": 0.2,
+    "ext": ".png",
+    "width": 48,
+    "height": 48,
+    "mode": "RGBA",
+    "transparent_percent": 63.45
+  },
+  {
+    "path": "public/assets/universes/streets/frame_tile.png",
+    "bytes": 133,
+    "kb": 0.1,
+    "ext": ".png",
+    "width": 32,
+    "height": 32,
+    "mode": "RGBA",
+    "transparent_percent": 0.0
+  },
+  {
+    "path": "public/assets/universes/streets/board_preview.png",
+    "bytes": 2030866,
+    "kb": 1983.3,
+    "ext": ".png",
+    "width": 1024,
+    "height": 1536,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "public/assets/universes/streets/pickup_02.png",
+    "bytes": 217,
+    "kb": 0.2,
+    "ext": ".png",
+    "width": 32,
+    "height": 32,
+    "mode": "RGBA",
+    "transparent_percent": 56.93
+  },
+  {
+    "path": "public/assets/universes/streets/obstacle_01.png",
+    "bytes": 135,
+    "kb": 0.1,
+    "ext": ".png",
+    "width": 32,
+    "height": 32,
+    "mode": "RGBA",
+    "transparent_percent": 61.33
+  },
+  {
+    "path": "public/assets/universes/streets/obstacle_02.png",
+    "bytes": 170,
+    "kb": 0.2,
+    "ext": ".png",
+    "width": 32,
+    "height": 32,
+    "mode": "RGBA",
+    "transparent_percent": 73.24
+  },
+  {
+    "path": "public/assets/universes/streets/pickup_01.png",
+    "bytes": 233,
+    "kb": 0.2,
+    "ext": ".png",
+    "width": 32,
+    "height": 32,
+    "mode": "RGBA",
+    "transparent_percent": 56.93
+  },
+  {
+    "path": "public/assets/universes/streets/hud_panel.png",
+    "bytes": 301,
+    "kb": 0.3,
+    "ext": ".png",
+    "width": 360,
+    "height": 56,
+    "mode": "RGBA",
+    "transparent_percent": 0.0
+  },
+  {
+    "path": "public/assets/universes/fighter/boss.png",
+    "bytes": 325,
+    "kb": 0.3,
+    "ext": ".png",
+    "width": 48,
+    "height": 48,
+    "mode": "RGBA",
+    "transparent_percent": 49.05
+  },
+  {
+    "path": "public/assets/universes/fighter/frame_tile.png",
+    "bytes": 133,
+    "kb": 0.1,
+    "ext": ".png",
+    "width": 32,
+    "height": 32,
+    "mode": "RGBA",
+    "transparent_percent": 0.0
+  },
+  {
+    "path": "public/assets/universes/fighter/board_preview.png",
+    "bytes": 2131767,
+    "kb": 2081.8,
+    "ext": ".png",
+    "width": 1024,
+    "height": 1536,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "public/assets/universes/fighter/pickup_02.png",
+    "bytes": 196,
+    "kb": 0.2,
+    "ext": ".png",
+    "width": 32,
+    "height": 32,
+    "mode": "RGBA",
+    "transparent_percent": 75.29
+  },
+  {
+    "path": "public/assets/universes/fighter/obstacle_01.png",
+    "bytes": 137,
+    "kb": 0.1,
+    "ext": ".png",
+    "width": 32,
+    "height": 32,
+    "mode": "RGBA",
+    "transparent_percent": 61.33
+  },
+  {
+    "path": "public/assets/universes/fighter/obstacle_02.png",
+    "bytes": 138,
+    "kb": 0.1,
+    "ext": ".png",
+    "width": 32,
+    "height": 32,
+    "mode": "RGBA",
+    "transparent_percent": 43.75
+  },
+  {
+    "path": "public/assets/universes/fighter/pickup_01.png",
+    "bytes": 244,
+    "kb": 0.2,
+    "ext": ".png",
+    "width": 32,
+    "height": 32,
+    "mode": "RGBA",
+    "transparent_percent": 58.89
+  },
+  {
+    "path": "public/assets/universes/fighter/hud_panel.png",
+    "bytes": 301,
+    "kb": 0.3,
+    "ext": ".png",
+    "width": 360,
+    "height": 56,
+    "mode": "RGBA",
+    "transparent_percent": 0.0
+  }
+]

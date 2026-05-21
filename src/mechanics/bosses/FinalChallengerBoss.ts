@@ -72,7 +72,7 @@ export class FinalChallengerBoss extends BaseBoss {
 
   getHudExtra(): string {
     const base = super.getHudExtra();
-    if (this.roundPhase === 'attack_window') return `${base} STRIKE!`;
+    if (this.roundPhase === 'attack_window') return `${base} FRAPPE !`;
     return base;
   }
 }

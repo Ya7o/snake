@@ -25,8 +25,7 @@ export const MAP_NODES: MapNodeConfig[] = [
   // Mortal Kombat
   { id: 'node_13', levelId: 'kombat_normal',     x: 0.1428, y: 0.8149, label: '13' },
   { id: 'node_14', levelId: 'kombat_boss',       x: 0.1851, y: 0.8168, label: '14★' },
-  // Paperboy has a boss star on the map; the normal selector sits on the
-  // Paperboy nameplate because the source art has no separate yellow circle.
-  { id: 'node_15', levelId: 'paperboy_normal',   x: 0.4965, y: 0.8094, label: '15' },
+  // Paperboy: source art has no yellow circle for the normal node — draw one at runtime.
+  { id: 'node_15', levelId: 'paperboy_normal',   x: 0.4965, y: 0.8094, label: '15', drawCircle: true },
   { id: 'node_16', levelId: 'paperboy_boss',     x: 0.5539, y: 0.8094, label: '16★' },
 ];

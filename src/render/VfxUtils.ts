@@ -21,13 +21,20 @@ export interface MobileButtonOptions {
 export function addMobileButton(scene: Phaser.Scene, options: MobileButtonOptions): Phaser.GameObjects.Container {
   const container = scene.add.container(options.x, options.y).setDepth(8);
   const bg = scene.add.graphics();
+  const targetFont = options.primary ? MOBILE_UI.BUTTON_FONT : MOBILE_UI.SECONDARY_BUTTON_FONT;
   const label = scene.add.text(0, 0, options.label, {
     fontFamily: UI_FONT,
-    fontSize: `${options.primary ? MOBILE_UI.BUTTON_FONT : MOBILE_UI.SECONDARY_BUTTON_FONT}px`,
+    fontSize: `${targetFont}px`,
     fontStyle: '700',
     color: options.textColor,
     align: 'center',
   }).setOrigin(0.5);
+  const maxLabelW = options.width - 24;
+  let fittedFont = targetFont;
+  while (label.width > maxLabelW && fittedFont > 11) {
+    fittedFont -= 1;
+    label.setFontSize(fittedFont);
+  }
   const hit = scene.add.zone(0, 0, options.width, options.height).setInteractive({ useHandCursor: true });
   let isPressed = false;
 

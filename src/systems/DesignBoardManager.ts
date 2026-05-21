@@ -81,6 +81,23 @@ class DesignBoardManagerSingleton {
     return Object.keys(this.manifest?.universes ?? {});
   }
 
+  /**
+   * 928 — Returns the path for a developer-extracted asset only if it passed
+   * the quality gate (status === 'clean' in the extraction report).
+   * `extractionReport` is the parsed JSON from
+   * `public/assets/generated/_audit/design-board-extraction-report.json`.
+   * Returns null for any non-clean or missing entry.
+   */
+  getDeveloperExtractedPath(
+    universeId: string,
+    key: string,
+    extractionReport: Record<string, { zones?: Record<string, { status?: string }> }>,
+  ): string | null {
+    const status = extractionReport?.[universeId]?.zones?.[key]?.status;
+    if (status !== 'clean') return null;
+    return `assets/generated/${universeId}/clean/${key}.png`;
+  }
+
   /** 908 — runtime diagnostic string for QA/debug */
   getDiagnostics(universeId: string): string {
     if (!this.manifest) return `[DesignBoardManager] manifest non chargé`;

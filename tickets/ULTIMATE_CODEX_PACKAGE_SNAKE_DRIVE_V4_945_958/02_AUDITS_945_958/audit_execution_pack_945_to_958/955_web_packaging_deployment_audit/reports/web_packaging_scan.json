@@ -1,0 +1,273 @@
+{
+  "dist_total_kb": 38594.0,
+  "dist_file_count": 200,
+  "largest_dist_files": [
+    {
+      "path": "dist/assets/universes/outrun/board_preview.png",
+      "bytes": 3023474,
+      "kb": 2952.6,
+      "ext": ".png"
+    },
+    {
+      "path": "dist/assets/map/world_map.png",
+      "bytes": 2874347,
+      "kb": 2807.0,
+      "ext": ".png"
+    },
+    {
+      "path": "dist/assets/universes/paperboy/board_preview.png",
+      "bytes": 2438059,
+      "kb": 2380.9,
+      "ext": ".png"
+    },
+    {
+      "path": "dist/assets/universes/kombat/board_preview.png",
+      "bytes": 2286297,
+      "kb": 2232.7,
+      "ext": ".png"
+    },
+    {
+      "path": "dist/assets/universes/castle/board_preview.png",
+      "bytes": 2208019,
+      "kb": 2156.3,
+      "ext": ".png"
+    },
+    {
+      "path": "dist/assets/universes/shinobi/board_preview.png",
+      "bytes": 2137762,
+      "kb": 2087.7,
+      "ext": ".png"
+    },
+    {
+      "path": "dist/assets/universes/fighter/board_preview.png",
+      "bytes": 2131767,
+      "kb": 2081.8,
+      "ext": ".png"
+    },
+    {
+      "path": "dist/assets/universes/streets/board_preview.png",
+      "bytes": 2030866,
+      "kb": 1983.3,
+      "ext": ".png"
+    },
+    {
+      "path": "dist/assets/universes/sonic/board_preview.png",
+      "bytes": 1933630,
+      "kb": 1888.3,
+      "ext": ".png"
+    },
+    {
+      "path": "dist/assets/index-YYQZ95mf.js",
+      "bytes": 1574006,
+      "kb": 1537.1,
+      "ext": ".js"
+    },
+    {
+      "path": "dist/assets/frames/paperboy/frame.png",
+      "bytes": 922568,
+      "kb": 900.9,
+      "ext": ".png"
+    },
+    {
+      "path": "dist/assets/frames/kombat/frame.png",
+      "bytes": 823672,
+      "kb": 804.4,
+      "ext": ".png"
+    },
+    {
+      "path": "dist/assets/frames/outrun/frame.png",
+      "bytes": 814764,
+      "kb": 795.7,
+      "ext": ".png"
+    },
+    {
+      "path": "dist/assets/frames/fighter/frame.png",
+      "bytes": 777293,
+      "kb": 759.1,
+      "ext": ".png"
+    },
+    {
+      "path": "dist/assets/frames/sonic/frame.png",
+      "bytes": 725264,
+      "kb": 708.3,
+      "ext": ".png"
+    },
+    {
+      "path": "dist/assets/frames/shinobi/frame.png",
+      "bytes": 715912,
+      "kb": 699.1,
+      "ext": ".png"
+    },
+    {
+      "path": "dist/assets/frames/streets/frame.png",
+      "bytes": 711720,
+      "kb": 695.0,
+      "ext": ".png"
+    },
+    {
+      "path": "dist/assets/frames/castle/frame.png",
+      "bytes": 689499,
+      "kb": 673.3,
+      "ext": ".png"
+    },
+    {
+      "path": "dist/assets/developer-assets/kombat/gameplayPreview.png",
+      "bytes": 241742,
+      "kb": 236.1,
+      "ext": ".png"
+    },
+    {
+      "path": "dist/assets/developer-assets/outrun/gameplayPreview.png",
+      "bytes": 233059,
+      "kb": 227.6,
+      "ext": ".png"
+    },
+    {
+      "path": "dist/assets/developer-assets/paperboy/gameplayPreview.png",
+      "bytes": 230591,
+      "kb": 225.2,
+      "ext": ".png"
+    },
+    {
+      "path": "dist/assets/developer-assets/fighter/gameplayPreview.png",
+      "bytes": 227331,
+      "kb": 222.0,
+      "ext": ".png"
+    },
+    {
+      "path": "dist/assets/developer-assets/paperboy/borders.png",
+      "bytes": 226011,
+      "kb": 220.7,
+      "ext": ".png"
+    },
+    {
+      "path": "dist/assets/developer-assets/castle/gameplayPreview.png",
+      "bytes": 219779,
+      "kb": 214.6,
+      "ext": ".png"
+    },
+    {
+      "path": "dist/assets/developer-assets/shinobi/gameplayPreview.png",
+      "bytes": 219626,
+      "kb": 214.5,
+      "ext": ".png"
+    },
+    {
+      "path": "dist/assets/developer-assets/streets/gameplayPreview.png",
+      "bytes": 218657,
+      "kb": 213.5,
+      "ext": ".png"
+    },
+    {
+      "path": "dist/assets/developer-assets/streets/borders.png",
+      "bytes": 207506,
+      "kb": 202.6,
+      "ext": ".png"
+    },
+    {
+      "path": "dist/assets/developer-assets/kombat/borders.png",
+      "bytes": 205815,
+      "kb": 201.0,
+      "ext": ".png"
+    },
+    {
+      "path": "dist/assets/developer-assets/outrun/borders.png",
+      "bytes": 205122,
+      "kb": 200.3,
+      "ext": ".png"
+    },
+    {
+      "path": "dist/assets/developer-assets/castle/borders.png",
+      "bytes": 191866,
+      "kb": 187.4,
+      "ext": ".png"
+    }
+  ],
+  "meta_viewport": true,
+  "manifest_refs": [
+    {
+      "file": "docs/00_REPO_STRUCTURE.md",
+      "line": 19,
+      "text": "- `public/assets/design-board-manifest.json` — manifest assets par univers."
+    },
+    {
+      "file": "docs/EXTERNAL_ASSET_INGESTION.md",
+      "line": 23,
+      "text": "│   ├── externalAssetManifest.json   ← manifest centralisé (version 2)"
+    },
+    {
+      "file": "docs/EXTERNAL_ASSET_INGESTION.md",
+      "line": 100,
+      "text": "1. Éditer `public/assets/external/_sources/externalAssetManifest.json` — ajouter l'entrée."
+    },
+    {
+      "file": "src/systems/DesignBoardManager.ts",
+      "line": 32,
+      "text": "this.loadPromise = fetch('assets/design-board-manifest.json')"
+    },
+    {
+      "file": "src/scenes/GameScene.ts",
+      "line": 105,
+      "text": "this.load.json('design_board_manifest', 'assets/design-board-manifest.json');"
+    },
+    {
+      "file": "tickets/patch_932_external_assets_download_hardening_manual_ingestion/PROMPT_COPY_PASTE.md",
+      "line": 30,
+      "text": "4. Mettre à jour `externalAssetManifest.json` :"
+    },
+    {
+      "file": "tickets/patch_931_ultimate_internet_assets_ingestion_pack/PROMPT_COPY_PASTE.md",
+      "line": 9,
+      "text": "- `public/assets/external/_sources/externalAssetManifest.json`"
+    },
+    {
+      "file": "tickets/patch_943_final_24_validated_runtime_assets_and_cleanup/README_START_HERE.md",
+      "line": 33,
+      "text": "src/assets/runtimeUniverseAssets.manifest.json"
+    },
+    {
+      "file": "tickets/patch_943_final_24_validated_runtime_assets_and_cleanup/tickets/943_PATCH_FINAL_24_VALIDATED_RUNTIME_ASSETS.md",
+      "line": 17,
+      "text": "- `ready_to_copy/src/assets/runtimeUniverseAssets.manifest.json`"
+    },
+    {
+      "file": "tickets/patch_931_ultimate_internet_assets_ingestion_pack/tickets/931_PATCH_INTERNET_ASSETS_INGESTION_PACK_BY_UNIVERSE.md",
+      "line": 10,
+      "text": "- `public/assets/external/_sources/externalAssetManifest.json` — manifest complet des sources internet."
+    },
+    {
+      "file": "tickets/patch_931_ultimate_internet_assets_ingestion_pack/tools/assets/downloadExternalAssets.ts",
+      "line": 6,
+      "text": "const manifestPath = path.resolve(\"public/assets/external/_sources/externalAssetManifest.json\");"
+    },
+    {
+      "file": "tickets/patch_932_external_assets_download_hardening_manual_ingestion/tickets/932_PATCH_EXTERNAL_ASSETS_DOWNLOAD_HARDENING_MANUAL_INGESTION.md",
+      "line": 13,
+      "text": "- `public/assets/external/_sources/externalAssetManifest.json` — ajouter `downloadMode`, `pageUrl`, `directUrls`, `status`."
+    },
+    {
+      "file": "tickets/patch_932_external_assets_download_hardening_manual_ingestion/tools/assets/auditExternalAssets.ts",
+      "line": 4,
+      "text": "const manifestPath = path.resolve(\"public/assets/external/_sources/externalAssetManifest.json\");"
+    },
+    {
+      "file": "tickets/patch_932_external_assets_download_hardening_manual_ingestion/tools/assets/downloadExternalAssets.ts",
+      "line": 20,
+      "text": "const manifestPath = path.resolve(\"public/assets/external/_sources/externalAssetManifest.json\");"
+    },
+    {
+      "file": "docs/design_boards/DEVELOPER_ASSET_PIPELINE.md",
+      "line": 84,
+      "text": "`public/assets/design-board-manifest.json` est le manifest runtime chargé par les scènes. Il reste indépendant du pipeline d'extraction developer. Les assets developer ne sont intégrés au gameplay qu'après promotion explicite via le quality gate."
+    }
+  ],
+  "vite_config": "import { defineConfig } from 'vite';\n\nexport default defineConfig({\n  server: {\n    host: '0.0.0.0',\n    port: 5173\n  },\n  preview: {\n    host: '0.0.0.0',\n    port: 5173\n  }\n});\n",
+  "package_scripts": {
+    "dev": "vite --host 0.0.0.0",
+    "build": "tsc && vite build",
+    "preview": "vite preview --host 0.0.0.0",
+    "check": "npm run build",
+    "ticket:status": "node scripts/ticket-status.mjs",
+    "assets:list-runtime": "find public/assets/runtime/universes -name '*.png' | sort"
+  }
+}

@@ -1,0 +1,376 @@
+{
+  "resize_scale": [
+    {
+      "file": "package-lock.json",
+      "line": 831,
+      "text": "\"integrity\": \"sha512-bbPBYYrtZbkt6Os6FiTLCTFxvq4tt3JKall1vRwshA3fdVztsLAatFaZobhkBC8/BrPetoa0oksYoKXoG4ryJg==\","
+    },
+    {
+      "file": "index.html",
+      "line": 5,
+      "text": "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover\" />"
+    },
+    {
+      "file": "CLAUDE.md",
+      "line": 91,
+      "text": "3. Éviter les refontes globales si un patch ciblé suffit."
+    },
+    {
+      "file": "docs/17_WORLDMAP_VISUAL_REFERENCE.md",
+      "line": 43,
+      "text": "2. Le zoom initial doit etre superieur au fit complet de l'image."
+    },
+    {
+      "file": "docs/18_REPO_CLEANUP_LOG.md",
+      "line": 23,
+      "text": "- `tickets/patch_922_french_intro_instructions_by_level/` et `tickets/patch_923_mobile_fit_worldmap_intro_and_frame_cleanup/` : tickets non appliqués à date."
+    },
+    {
+      "file": "src/main.ts",
+      "line": 16,
+      "text": "mode: Phaser.Scale.RESIZE,"
+    },
+    {
+      "file": "src/main.ts",
+      "line": 17,
+      "text": "autoCenter: Phaser.Scale.CENTER_BOTH"
+    },
+    {
+      "file": "dist/index.html",
+      "line": 5,
+      "text": "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover\" />"
+    },
+    {
+      "file": "dist/assets/index-YYQZ95mf.js",
+      "line": 322,
+      "text": "*/var d=t(38058),c=t(83419),h=t(95540),r=t(37277),n=t(37303),e=t(97480),s=t(44594),a=new c({initialize:function(o){this.scene=o,this.systems=o.sys,this.roundPixels=o.sys.game.config.roundPixels,this.cameras=[],this.main,this.default,o.sys.events.once(s.BOOT,th"
+    },
+    {
+      "file": "dist/assets/index-YYQZ95mf.js",
+      "line": 1627,
+      "text": "*/var d=t(83419),c=t(31401),h=t(95643),r=t(78023),n=t(39318),e=new d({Extends:h,Mixins:[c.AlphaSingle,c.BlendMode,c.Depth,c.GetBounds,c.Mask,c.Origin,c.Pipeline,c.PostPipeline,c.ScrollFactor,c.Texture,c.Transform,c.Visible,r],initialize:function(a,i,o,l,u,f,v,"
+    },
+    {
+      "file": "dist/assets/index-YYQZ95mf.js",
+      "line": 1779,
+      "text": "*/var d=t(83419),c=t(81320),h=t(88571),r=new d({Extends:h,initialize:function(e,s,a,i,o,l){s===void 0&&(s=0),a===void 0&&(a=0),i===void 0&&(i=32),o===void 0&&(o=32),l===void 0&&(l=!0);var u=new c(e.sys.textures,\"\",i,o,l);h.call(this,e,s,a,u),this.type=\"RenderT"
+    },
+    {
+      "file": "dist/assets/index-YYQZ95mf.js",
+      "line": 2629,
+      "text": "*/var d=t(83419),c=t(70554),h=t(25836),r=new d({Extends:h,initialize:function(e,s,a,i,o,l,u,f,v,m){l===void 0&&(l=16777215),u===void 0&&(u=1),f===void 0&&(f=0),v===void 0&&(v=0),m===void 0&&(m=0),h.call(this,e,s,a),this.vx=0,this.vy=0,this.vz=0,this.nx=f,this."
+    },
+    {
+      "file": "dist/assets/index-YYQZ95mf.js",
+      "line": 2914,
+      "text": "*/var d=t(87841);d.Area=t(62224),d.Ceil=t(98615),d.CeilAll=t(31688),d.CenterOn=t(67502),d.Clone=t(65085),d.Contains=t(37303),d.ContainsPoint=t(96553),d.ContainsRect=t(70273),d.CopyFrom=t(43459),d.Decompose=t(77493),d.Equals=t(9219),d.FitInside=t(53751),d.FitOu"
+    },
+    {
+      "file": "dist/assets/index-YYQZ95mf.js",
+      "line": 4595,
+      "text": "*/p.exports={BodyBounds:t(68174),Components:t(31884),Events:t(1121),Factory:t(28137),MatterGameObject:t(75803),Image:t(23181),Matter:t(19933),MatterPhysics:t(42045),PolyDecomp:t(55973),Sprite:t(34803),TileBody:t(73834),PhysicsEditorParser:t(19496),PhysicsJSONP"
+    },
+    {
+      "file": "src/render/VfxUtils.ts",
+      "line": 33,
+      "text": "let fittedFont = targetFont;"
+    },
+    {
+      "file": "src/render/VfxUtils.ts",
+      "line": 34,
+      "text": "while (label.width > maxLabelW && fittedFont > 11) {"
+    },
+    {
+      "file": "src/render/VfxUtils.ts",
+      "line": 35,
+      "text": "fittedFont -= 1;"
+    },
+    {
+      "file": "src/render/VfxUtils.ts",
+      "line": 36,
+      "text": "label.setFontSize(fittedFont);"
+    },
+    {
+      "file": "src/render/UniverseFrameRenderer.ts",
+      "line": 52,
+      "text": "this.resize(params.gridBounds, params.depth);"
+    },
+    {
+      "file": "src/render/UniverseFrameRenderer.ts",
+      "line": 55,
+      "text": "resize(gridBounds: Phaser.Geom.Rectangle, depth = 1): void {"
+    },
+    {
+      "file": "src/render/UniverseFrameRenderer.ts",
+      "line": 117,
+      "text": "this.resize(params.gridBounds, params.depth);"
+    },
+    {
+      "file": "src/render/UniverseFrameRenderer.ts",
+      "line": 126,
+      "text": "this.resize(params.gridBounds, params.depth);"
+    },
+    {
+      "file": "src/render/UniverseFrameRenderer.ts",
+      "line": 132,
+      "text": "this.resize(params.gridBounds, params.depth);"
+    },
+    {
+      "file": "tickets/patch_923_mobile_fit_worldmap_intro_and_frame_cleanup/PROMPT_COPY_PASTE.md",
+      "line": 3,
+      "text": "# PATCH — Mobile fit, WorldMap, intro et cadres"
+    },
+    {
+      "file": "tickets/patch_923_mobile_fit_worldmap_intro_and_frame_cleanup/PROMPT_COPY_PASTE.md",
+      "line": 12,
+      "text": "7. Certains cadres de gameplay ne fit pas l’écran (Sonic, Kombat) et les décors chevauchent le plateau."
+    },
+    {
+      "file": "tickets/patch_923_mobile_fit_worldmap_intro_and_frame_cleanup/PROMPT_COPY_PASTE.md",
+      "line": 36,
+      "text": "- Corriger le fit des cadres de gameplay sur mobile portrait."
+    },
+    {
+      "file": "tickets/patch_923_mobile_fit_worldmap_intro_and_frame_cleanup/PROMPT_COPY_PASTE.md",
+      "line": 70,
+      "text": "- Sonic et Kombat : cadre fit, plateau lisible, décor non intrusif."
+    },
+    {
+      "file": "tickets/audit_pack_926_mobile_ready_and_gameplay_mechanics_compliance/PROMPT_COPY_PASTE.md",
+      "line": 15,
+      "text": "- fit des cadres ;"
+    },
+    {
+      "file": "tickets/patch_932_external_assets_download_hardening_manual_ingestion/docs/IMPLEMENTATION_NOTES.md",
+      "line": 3,
+      "text": "Le rapport 931 est correct : un downloader naïf ne suffit pas."
+    },
+    {
+      "file": "tickets/patch_929_worldmap_mobile_zoom_top_left_fit/docs/IMPLEMENTATION_NOTES.md",
+      "line": 12,
+      "text": "- un fit mobile dédié ;"
+    },
+    {
+      "file": "tickets/patch_929_worldmap_mobile_zoom_top_left_fit/tickets/929_PATCH_WORLDMAP_MOBILE_ZOOM_TOP_LEFT_FIT.md",
+      "line": 10,
+      "text": "- la map soit ancrée en haut à gauche en mode zoom / fit mobile ;"
+    },
+    {
+      "file": "tickets/patch_929_worldmap_mobile_zoom_top_left_fit/tickets/929_PATCH_WORLDMAP_MOBILE_ZOOM_TOP_LEFT_FIT.md",
+      "line": 68,
+      "text": "- fit mode basé sur centrage global ;"
+    },
+    {
+      "file": "tickets/patch_929_worldmap_mobile_zoom_top_left_fit/tickets/929_PATCH_WORLDMAP_MOBILE_ZOOM_TOP_LEFT_FIT.md",
+      "line": 73,
+      "text": "- absence de mode distinct “mobile zoom fit”."
+    },
+    {
+      "file": "tickets/patch_929_worldmap_mobile_zoom_top_left_fit/tickets/929_PATCH_WORLDMAP_MOBILE_ZOOM_TOP_LEFT_FIT.md",
+      "line": 77,
+      "text": "- `mobileFitMode: \"top-left-zoom\"` ou équivalent ;"
+    },
+    {
+      "file": "tickets/audit_pack_926_mobile_ready_and_gameplay_mechanics_compliance/tickets/926_PATCH_MOBILE_READY_COMPLIANCE_AUDIT.md",
+      "line": 4,
+      "text": "Snake Drive V4 est prioritairement joué sur téléphone Android via navigateur. Les dernières versions montrent plusieurs fragilités : boutons peu ergonomiques, textes parfois illisibles, parcours utilisateur encore trop lourd, rendu pixel brut, cadres mal fitté"
+    },
+    {
+      "file": "tickets/audit_pack_926_mobile_ready_and_gameplay_mechanics_compliance/tickets/926_PATCH_MOBILE_READY_COMPLIANCE_AUDIT.md",
+      "line": 36,
+      "text": "- [ ] Vérifier le fit des cadres et la priorité de la grille Snake."
+    },
+    {
+      "file": "tickets/audit_pack_926_mobile_ready_and_gameplay_mechanics_compliance/tickets/926_PATCH_MOBILE_READY_COMPLIANCE_AUDIT.md",
+      "line": 72,
+      "text": "9. Problèmes de layout / fit."
+    },
+    {
+      "file": "tickets/patch_923_mobile_fit_worldmap_intro_and_frame_cleanup/docs/IMPLEMENTATION_NOTES.md",
+      "line": 4,
+      "text": "Ce patch ne doit pas lancer une refonte complète. Il corrige d’abord ce qui se voit immédiatement sur Android : débordements, mauvais fit, surcouches parasites, manque de compréhension, et priorité insuffisante donnée au plateau de jeu."
+    },
+    {
+      "file": "tickets/patch_923_mobile_fit_worldmap_intro_and_frame_cleanup/docs/IMPLEMENTATION_NOTES.md",
+      "line": 10,
+      "text": "4. Faire fitter les cadres sans que le décor mange la grille."
+    },
+    {
+      "file": "tickets/patch_923_mobile_fit_worldmap_intro_and_frame_cleanup/tickets/923_PATCH_MOBILE_FIT_WORLDMAP_INTRO_AND_FRAME_CLEANUP.md",
+      "line": 1,
+      "text": "# PATCH — Mobile fit, WorldMap, intro et cadres"
+    },
+    {
+      "file": "tickets/patch_923_mobile_fit_worldmap_intro_and_frame_cleanup/tickets/923_PATCH_MOBILE_FIT_WORLDMAP_INTRO_AND_FRAME_CLEANUP.md",
+      "line": 4,
+      "text": "La dernière version progresse, mais plusieurs régressions mobile restent visibles sur Android : le bouton de l’écran d’introduction déborde, la WorldMap est trop zoomée et masque son cadre, le bouton `START` sous la minimap est inutile, certains marqueurs boss"
+    },
+    {
+      "file": "tickets/patch_923_mobile_fit_worldmap_intro_and_frame_cleanup/tickets/923_PATCH_MOBILE_FIT_WORLDMAP_INTRO_AND_FRAME_CLEANUP.md",
+      "line": 7,
+      "text": "Corriger en une passe cohérente les régressions mobile-first les plus visibles : fit des boutons et panneaux, cadrage WorldMap, nettoyage des marqueurs WorldMap, textes FR et consignes d’intro, et fit correct des cadres de gameplay pour que le décor n’empiète "
+    },
+    {
+      "file": "tickets/patch_923_mobile_fit_worldmap_intro_and_frame_cleanup/tickets/923_PATCH_MOBILE_FIT_WORLDMAP_INTRO_AND_FRAME_CLEANUP.md",
+      "line": 14,
+      "text": "- `src/scenes/GameScene.ts` — corriger le fit mobile des cadres / plateaux selon l’univers actif."
+    },
+    {
+      "file": "tickets/patch_923_mobile_fit_worldmap_intro_and_frame_cleanup/tickets/923_PATCH_MOBILE_FIT_WORLDMAP_INTRO_AND_FRAME_CLEANUP.md",
+      "line": 16,
+      "text": "- `src/config/*` — centraliser les constantes de marge mobile, safe area, panel width, scale, fit et offsets si nécessaire."
+    },
+    {
+      "file": "tickets/patch_923_mobile_fit_worldmap_intro_and_frame_cleanup/tickets/923_PATCH_MOBILE_FIT_WORLDMAP_INTRO_AND_FRAME_CLEANUP.md",
+      "line": 38,
+      "text": "- [ ] Les cadres de gameplay fit correctement l’écran mobile portrait."
+    },
+    {
+      "file": "tickets/patch_923_mobile_fit_worldmap_intro_and_frame_cleanup/tickets/923_PATCH_MOBILE_FIT_WORLDMAP_INTRO_AND_FRAME_CLEANUP.md",
+      "line": 46,
+      "text": "- Le fit doit respecter les safe areas et laisser une zone respirable autour du cadre."
+    },
+    {
+      "file": "tickets/patch_923_mobile_fit_worldmap_intro_and_frame_cleanup/tickets/923_PATCH_MOBILE_FIT_WORLDMAP_INTRO_AND_FRAME_CLEANUP.md",
+      "line": 70,
+      "text": "7. Règle de fit des cadres / plateau gameplay."
+    },
+    {
+      "file": "docs/audits/926_MOBILE_READY_COMPLIANCE_AUDIT.md",
+      "line": 38,
+      "text": "The game is broadly playable in portrait and already includes several mobile-first patches: responsive Phaser resize, readable UI font for functional text, 46-56 px primary buttons, native swipe input, listener cleanup, frame-aware grid sizing, and renderer se"
+    },
+    {
+      "file": "docs/audits/926_MOBILE_READY_COMPLIANCE_AUDIT.md",
+      "line": 96,
+      "text": "## Layout / Fit"
+    }
+  ],
+  "viewport": [
+    {
+      "file": "index.html",
+      "line": 5,
+      "text": "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover\" />"
+    },
+    {
+      "file": "docs/17_WORLDMAP_VISUAL_REFERENCE.md",
+      "line": 53,
+      "text": "viewport = zone disponible entre header et footer"
+    },
+    {
+      "file": "docs/17_WORLDMAP_VISUAL_REFERENCE.md",
+      "line": 54,
+      "text": "coverScale = max(viewportWidth / mapWidth, viewportHeight / mapHeight)"
+    },
+    {
+      "file": "dist/index.html",
+      "line": 5,
+      "text": "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover\" />"
+    },
+    {
+      "file": "dist/assets/index-YYQZ95mf.js",
+      "line": 314,
+      "text": "*/var d=t(83419),c=t(31401),h=t(39506),r=t(50792),n=t(19715),e=t(87841),s=t(61340),a=t(80333),i=t(26099),o=new d({Extends:r,Mixins:[c.AlphaSingle,c.Visible],initialize:function(u,f,v,m){u===void 0&&(u=0),f===void 0&&(f=0),v===void 0&&(v=0),m===void 0&&(m=0),r."
+    },
+    {
+      "file": "dist/assets/index-YYQZ95mf.js",
+      "line": 1016,
+      "text": "*/var T=function(t){if(!t)return window.innerHeight;var d=Math.abs(window.orientation),c={w:0,h:0},h=document.createElement(\"div\");return h.setAttribute(\"style\",\"position: fixed; height: 100vh; width: 0; top: 0\"),document.documentElement.appendChild(h),c.w=d=="
+    },
+    {
+      "file": "dist/assets/index-YYQZ95mf.js",
+      "line": 1020,
+      "text": "*/var d=t(13560),c=function(h,r){var n=window.screen,e=n?n.orientation||n.mozOrientation||n.msOrientation:!1;if(e&&typeof e.type==\"string\")return e.type;if(typeof e==\"string\")return e;if(typeof window.orientation==\"number\")return window.orientation===0||window"
+    },
+    {
+      "file": "dist/assets/index-YYQZ95mf.js",
+      "line": 1040,
+      "text": "*/var d={AddToDOM:t(40366),DOMContentLoaded:t(57264),GetInnerHeight:t(57811),GetScreenOrientation:t(45818),GetTarget:t(74403),ParseXML:t(56836),RemoveFromDOM:t(35846),RequestAnimationFrame:t(43092)};p.exports=d}),47565:((p,T,t)=>{/**"
+    },
+    {
+      "file": "dist/assets/index-YYQZ95mf.js",
+      "line": 1503,
+      "text": "*/var d=t(71911),c=t(83419),h=t(85592),r=t(31401),n=t(8497),e=t(95643),s=t(95540),a=t(35154),i=t(36383),o=t(84503),l=new c({Extends:e,Mixins:[r.AlphaSingle,r.BlendMode,r.Depth,r.Mask,r.Pipeline,r.PostPipeline,r.Transform,r.Visible,r.ScrollFactor,o],initialize:"
+    },
+    {
+      "file": "src/config/mapNodes.ts",
+      "line": 5,
+      "text": "// relative to the full source image, not the current viewport crop."
+    },
+    {
+      "file": "tickets/patch_923_mobile_fit_worldmap_intro_and_frame_cleanup/PROMPT_COPY_PASTE.md",
+      "line": 63,
+      "text": "Puis vérifier manuellement sur Android / viewport mobile :"
+    },
+    {
+      "file": "tickets/patch_929_worldmap_mobile_zoom_top_left_fit/PROMPT_COPY_PASTE.md",
+      "line": 50,
+      "text": "Puis vérifier manuellement sur viewport mobile :"
+    },
+    {
+      "file": "tickets/patch_924_remove_worldmap_outer_frame/PROMPT_COPY_PASTE.md",
+      "line": 42,
+      "text": "Puis vérifier manuellement sur Android / viewport mobile :"
+    },
+    {
+      "file": "tickets/patch_922_french_intro_instructions_by_level/tickets/922_PATCH_FRENCH_INTRO_INSTRUCTIONS_BY_LEVEL.md",
+      "line": 46,
+      "text": "- Viewport cible : 360–430 px de large en portrait."
+    },
+    {
+      "file": "tickets/patch_924_remove_worldmap_outer_frame/tickets/924_PATCH_REMOVE_WORLDMAP_OUTER_FRAME.md",
+      "line": 34,
+      "text": "- Viewport cible : 360–430 px de large."
+    },
+    {
+      "file": "tickets/patch_929_worldmap_mobile_zoom_top_left_fit/tickets/929_PATCH_WORLDMAP_MOBILE_ZOOM_TOP_LEFT_FIT.md",
+      "line": 25,
+      "text": "- camera / scroll / viewport ;"
+    },
+    {
+      "file": "tickets/patch_929_worldmap_mobile_zoom_top_left_fit/tickets/929_PATCH_WORLDMAP_MOBILE_ZOOM_TOP_LEFT_FIT.md",
+      "line": 42,
+      "text": "- Le viewport mobile n’est pas utilisé intelligemment."
+    },
+    {
+      "file": "tickets/patch_929_worldmap_mobile_zoom_top_left_fit/tickets/929_PATCH_WORLDMAP_MOBILE_ZOOM_TOP_LEFT_FIT.md",
+      "line": 80,
+      "text": "- clamp du viewport pour éviter les débordements ;"
+    },
+    {
+      "file": "tickets/patch_929_worldmap_mobile_zoom_top_left_fit/tickets/929_PATCH_WORLDMAP_MOBILE_ZOOM_TOP_LEFT_FIT.md",
+      "line": 106,
+      "text": "Puis test manuel sur viewport mobile :"
+    },
+    {
+      "file": "tickets/patch_929_worldmap_mobile_zoom_top_left_fit/tickets/929_PATCH_WORLDMAP_MOBILE_ZOOM_TOP_LEFT_FIT.md",
+      "line": 125,
+      "text": "5. Viewports testés."
+    },
+    {
+      "file": "tickets/audit_pack_926_mobile_ready_and_gameplay_mechanics_compliance/tickets/926_PATCH_MOBILE_READY_COMPLIANCE_AUDIT.md",
+      "line": 30,
+      "text": "- [ ] Vérifier toutes les scènes en viewport mobile portrait 360–430 px."
+    },
+    {
+      "file": "tickets/patch_928_design_board_extraction_quality_gate_manual_crop_workflow/tickets/928_PATCH_DESIGN_BOARD_EXTRACTION_QUALITY_GATE_MANUAL_CROP_WORKFLOW.md",
+      "line": 61,
+      "text": "Identifier l’image source par univers, sa taille exacte, et son orientation."
+    },
+    {
+      "file": "tickets/patch_923_mobile_fit_worldmap_intro_and_frame_cleanup/tickets/923_PATCH_MOBILE_FIT_WORLDMAP_INTRO_AND_FRAME_CLEANUP.md",
+      "line": 45,
+      "text": "- Viewport cible : 360–430 px de large, portrait."
+    },
+    {
+      "file": "docs/audits/926_MOBILE_READY_COMPLIANCE_AUDIT.md",
+      "line": 100,
+      "text": "- P1: Small viewport checks should specifically cover 360 x 640, 390 x 844, and 430 x 932. No automated screenshot harness is present."
+    },
+    {
+      "file": "docs/audits/926_MOBILE_READY_COMPLIANCE_AUDIT.md",
+      "line": 109,
+      "text": "5. Add a lightweight Playwright or Phaser screenshot QA script for 360, 390, and 430 px portrait viewports."
+    }
+  ]
+}

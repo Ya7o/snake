@@ -44,6 +44,12 @@ export class PaperboyDeliveryMechanic extends BaseMechanic {
     const head = this.ctx.snake.body[0];
     let hitDanger = false;
 
+    // Respawn targets when all delivered and not carrying paper
+    if (!this.hasPaper && this.targets.every(t => !t.active)) {
+      this.spawnTargets();
+      this.spawnObstacles();
+    }
+
     // Check obstacle collision
     for (const o of this.obstacles) {
       if (o.col === head.col && o.row === head.row) hitDanger = true;
@@ -80,7 +86,7 @@ export class PaperboyDeliveryMechanic extends BaseMechanic {
   }
 
   getHudExtra(): string {
-    return this.hasPaper ? 'DELIVER!' : 'GET PAPER';
+    return this.hasPaper ? 'LIVRER !' : 'PRENDS LE JOURNAL';
   }
 
   getDeliveredCount(): number {

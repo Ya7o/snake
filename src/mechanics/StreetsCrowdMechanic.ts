@@ -68,5 +68,5 @@ export class StreetsCrowdMechanic extends BaseMechanic {
     }));
   }
 
-  getHudExtra(): string { return 'CROWDS MOVE'; }
+  getHudExtra(): string { return 'FOULE MOBILE'; }
 }

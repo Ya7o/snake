@@ -66,6 +66,6 @@ export class CastleIllusionMechanic extends BaseMechanic {
   }
 
   getHudExtra(): string {
-    return 'BLINK=DANGER';
+    return 'CLIGNO=DANGER';
   }
 }

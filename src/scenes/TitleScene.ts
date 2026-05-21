@@ -94,14 +94,14 @@ export class TitleScene extends Phaser.Scene {
     sepGfx.lineBetween(W * 0.2, H * 0.455, W * 0.8, H * 0.455);
 
     // Stats line
-    this.add.text(W / 2, H * 0.495, '8 WORLDS  ·  16 STAGES  ·  8 BOSSES', {
+    this.add.text(W / 2, H * 0.495, '8 MONDES  ·  16 NIVEAUX  ·  8 BOSS', {
       fontFamily: ARCADE_FONT,
-      fontSize: `${Math.min(7, Math.floor(W * 0.019))}px`,
+      fontSize: `${Math.min(11, Math.floor(W * 0.028))}px`,
       color: '#d9d9e8',
     }).setOrigin(0.5).setDepth(6);
 
-    // TAP TO START — pulsing
-    const tapText = this.add.text(W / 2, H * 0.68, 'TAP TO START', {
+    // TOUCHER POUR JOUER — pulsing
+    const tapText = this.add.text(W / 2, H * 0.68, 'TOUCHER POUR JOUER', {
       fontFamily: ARCADE_FONT,
       fontSize: `${Math.min(13, Math.floor(W * 0.035))}px`,
       color: '#ffe66a',
@@ -117,9 +117,9 @@ export class TitleScene extends Phaser.Scene {
     });
 
     // Version
-    this.add.text(W / 2, H * 0.93, 'FIRST BUILD — SNAKE DRIVE V4', {
+    this.add.text(W / 2, H * 0.93, 'SNAKE DRIVE V4', {
       fontFamily: ARCADE_FONT,
-      fontSize: `${Math.min(6, Math.floor(W * 0.016))}px`,
+      fontSize: `${Math.min(10, Math.floor(W * 0.026))}px`,
       color: '#333355',
     }).setOrigin(0.5).setDepth(6);
 
@@ -127,7 +127,10 @@ export class TitleScene extends Phaser.Scene {
     addScanlines(this, 0.05, 20);
 
     // Input
+    let titleStarted = false;
     const startGame = () => {
+      if (titleStarted) return;
+      titleStarted = true;
       AudioSystem.resume();
       this.cameras.main.fadeOut(200, 0, 0, 0);
       this.cameras.main.once('camerafadeoutcomplete', () => {
@@ -135,7 +138,7 @@ export class TitleScene extends Phaser.Scene {
       });
     };
 
-    this.input.once('pointerdown', startGame);
+    this.input.on('pointerdown', startGame);
     if (this.input.keyboard) {
       this.input.keyboard.once('keydown', startGame);
     }

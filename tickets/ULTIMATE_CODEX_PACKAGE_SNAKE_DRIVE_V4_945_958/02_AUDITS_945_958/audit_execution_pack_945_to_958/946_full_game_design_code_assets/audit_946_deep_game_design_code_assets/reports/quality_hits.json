@@ -1,0 +1,98 @@
+{
+  "todo": [],
+  "console": [
+    {
+      "file": "src/systems/SaveSystem.ts",
+      "line": 41,
+      "text": "console.warn('[Save] localStorage unavailable');"
+    },
+    {
+      "file": "src/systems/DesignBoardManager.ts",
+      "line": 39,
+      "text": "console.warn('[DesignBoardManager] manifest non chargé:', err);"
+    },
+    {
+      "file": "src/systems/DesignBoardManager.ts",
+      "line": 60,
+      "text": "if (!u) { console.warn(`[DesignBoardManager] univers inconnu: ${universeId}`); return null; }"
+    },
+    {
+      "file": "src/systems/DesignBoardManager.ts",
+      "line": 62,
+      "text": "if (!path) console.warn(`[DesignBoardManager] asset manquant: ${universeId}.${key} → fallback`);"
+    },
+    {
+      "file": "src/systems/AudioSystem.ts",
+      "line": 9,
+      "text": "console.warn('[Audio] Web Audio not available');"
+    },
+    {
+      "file": "src/scenes/WorldMapScene.ts",
+      "line": 72,
+      "text": "console.warn('[WorldMap] world_map.png introuvable — fallback procédural');"
+    },
+    {
+      "file": "src/scenes/WorldMapScene.ts",
+      "line": 135,
+      "text": "console.warn('[WorldMap] Texture absente — fallback procédural');"
+    },
+    {
+      "file": "src/qa/QAChecks.ts",
+      "line": 145,
+      "text": "console.log(`${c.pass ? '✓' : '✗'} ${c.name}: ${c.detail}`);"
+    },
+    {
+      "file": "src/qa/QAChecks.ts",
+      "line": 147,
+      "text": "console.log(allPass ? '✅ All checks passed' : '❌ Some checks failed');"
+    },
+    {
+      "file": "src/mechanics/MechanicFactory.ts",
+      "line": 41,
+      "text": "console.warn(`[MechanicFactory] Unknown mechanic: ${id}, using fallback`);"
+    },
+    {
+      "file": "tickets/patch_931_ultimate_internet_assets_ingestion_pack/tools/assets/indexExternalAssets.ts",
+      "line": 25,
+      "text": "console.log(`External asset index: ${out}`);"
+    },
+    {
+      "file": "tickets/patch_931_ultimate_internet_assets_ingestion_pack/tools/assets/downloadExternalAssets.ts",
+      "line": 80,
+      "text": "console.log(`Asset download report: ${reportPath}`);"
+    },
+    {
+      "file": "tickets/patch_931_ultimate_internet_assets_ingestion_pack/tools/assets/downloadExternalAssets.ts",
+      "line": 84,
+      "text": "console.error(error);"
+    },
+    {
+      "file": "tickets/patch_932_external_assets_download_hardening_manual_ingestion/tools/assets/auditExternalAssets.ts",
+      "line": 56,
+      "text": "console.log(`External assets audit: ${path.join(auditRoot, \"external-assets-audit.md\")}`);"
+    },
+    {
+      "file": "tickets/patch_932_external_assets_download_hardening_manual_ingestion/tools/assets/downloadExternalAssets.ts",
+      "line": 207,
+      "text": "console.log(`External download report: ${out}`);"
+    },
+    {
+      "file": "tickets/patch_932_external_assets_download_hardening_manual_ingestion/tools/assets/downloadExternalAssets.ts",
+      "line": 211,
+      "text": "console.error(error);"
+    }
+  ],
+  "danger": [
+    {
+      "file": "src/main.ts",
+      "line": 39,
+      "text": "document.getElementById('app')!.innerHTML = '';"
+    },
+    {
+      "file": "src/main.ts",
+      "line": 51,
+      "text": "document.getElementById('app')!.innerHTML = '';"
+    }
+  ],
+  "any": []
+}

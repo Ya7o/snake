@@ -1,0 +1,281 @@
+{
+  "generatedAt": "2026-05-20T13:26:34.347Z",
+  "outputRoot": "public/assets/developer-assets",
+  "universes": {
+    "castle": {
+      "sourceFile": "design_boards/castle/developper assets.png",
+      "image": {
+        "width": 1024,
+        "height": 1536
+      },
+      "confirmed": [
+        "props",
+        "pickups",
+        "obstacles",
+        "boss",
+        "palette"
+      ],
+      "estimated": [
+        "gameplayPreview",
+        "hud",
+        "borders",
+        "badges"
+      ],
+      "ambiguous": [],
+      "missing": [],
+      "exports": {
+        "gameplayPreview": "assets/developer-assets/castle/gameplayPreview.png",
+        "hud": "assets/developer-assets/castle/hud.png",
+        "props": "assets/developer-assets/castle/props.png",
+        "pickups": "assets/developer-assets/castle/pickups.png",
+        "obstacles": "assets/developer-assets/castle/obstacles.png",
+        "boss": "assets/developer-assets/castle/boss.png",
+        "borders": "assets/developer-assets/castle/borders.png",
+        "badges": "assets/developer-assets/castle/badges.png",
+        "palette": "assets/developer-assets/castle/palette.png"
+      },
+      "palette": "palette.png + palette.json"
+    },
+    "sonic": {
+      "sourceFile": "design_boards/sonic/developper assets.png",
+      "image": {
+        "width": 1024,
+        "height": 1536
+      },
+      "confirmed": [
+        "props",
+        "pickups",
+        "obstacles",
+        "boss",
+        "palette"
+      ],
+      "estimated": [
+        "gameplayPreview",
+        "hud",
+        "borders",
+        "badges"
+      ],
+      "ambiguous": [],
+      "missing": [],
+      "exports": {
+        "gameplayPreview": "assets/developer-assets/sonic/gameplayPreview.png",
+        "hud": "assets/developer-assets/sonic/hud.png",
+        "props": "assets/developer-assets/sonic/props.png",
+        "pickups": "assets/developer-assets/sonic/pickups.png",
+        "obstacles": "assets/developer-assets/sonic/obstacles.png",
+        "boss": "assets/developer-assets/sonic/boss.png",
+        "borders": "assets/developer-assets/sonic/borders.png",
+        "badges": "assets/developer-assets/sonic/badges.png",
+        "palette": "assets/developer-assets/sonic/palette.png"
+      },
+      "palette": "palette.png + palette.json"
+    },
+    "streets": {
+      "sourceFile": "design_boards/streets/developper assets.png",
+      "image": {
+        "width": 1024,
+        "height": 1536
+      },
+      "confirmed": [
+        "props",
+        "pickups",
+        "obstacles",
+        "boss"
+      ],
+      "estimated": [
+        "gameplayPreview",
+        "hud",
+        "borders",
+        "badges"
+      ],
+      "ambiguous": [
+        "palette"
+      ],
+      "missing": [],
+      "exports": {
+        "gameplayPreview": "assets/developer-assets/streets/gameplayPreview.png",
+        "hud": "assets/developer-assets/streets/hud.png",
+        "props": "assets/developer-assets/streets/props.png",
+        "pickups": "assets/developer-assets/streets/pickups.png",
+        "obstacles": "assets/developer-assets/streets/obstacles.png",
+        "boss": "assets/developer-assets/streets/boss.png",
+        "borders": "assets/developer-assets/streets/borders.png",
+        "badges": "assets/developer-assets/streets/badges.png",
+        "palette": "assets/developer-assets/streets/palette.png"
+      },
+      "palette": "palette.png only; JSON conversion marked ambiguous"
+    },
+    "fighter": {
+      "sourceFile": "design_boards/fighter/developper assets.png",
+      "image": {
+        "width": 1024,
+        "height": 1536
+      },
+      "confirmed": [
+        "pickups",
+        "boss"
+      ],
+      "estimated": [
+        "gameplayPreview",
+        "hud",
+        "props",
+        "obstacles",
+        "borders",
+        "badges"
+      ],
+      "ambiguous": [
+        "palette"
+      ],
+      "missing": [],
+      "exports": {
+        "gameplayPreview": "assets/developer-assets/fighter/gameplayPreview.png",
+        "hud": "assets/developer-assets/fighter/hud.png",
+        "props": "assets/developer-assets/fighter/props.png",
+        "pickups": "assets/developer-assets/fighter/pickups.png",
+        "obstacles": "assets/developer-assets/fighter/obstacles.png",
+        "boss": "assets/developer-assets/fighter/boss.png",
+        "borders": "assets/developer-assets/fighter/borders.png",
+        "badges": "assets/developer-assets/fighter/badges.png",
+        "palette": "assets/developer-assets/fighter/palette.png"
+      },
+      "palette": "palette.png only; JSON conversion marked ambiguous"
+    },
+    "outrun": {
+      "sourceFile": "design_boards/outrun/developper assets.png",
+      "image": {
+        "width": 1024,
+        "height": 1536
+      },
+      "confirmed": [
+        "props",
+        "pickups",
+        "obstacles",
+        "boss",
+        "palette"
+      ],
+      "estimated": [
+        "gameplayPreview",
+        "hud",
+        "borders",
+        "badges"
+      ],
+      "ambiguous": [],
+      "missing": [],
+      "exports": {
+        "gameplayPreview": "assets/developer-assets/outrun/gameplayPreview.png",
+        "hud": "assets/developer-assets/outrun/hud.png",
+        "props": "assets/developer-assets/outrun/props.png",
+        "pickups": "assets/developer-assets/outrun/pickups.png",
+        "obstacles": "assets/developer-assets/outrun/obstacles.png",
+        "boss": "assets/developer-assets/outrun/boss.png",
+        "borders": "assets/developer-assets/outrun/borders.png",
+        "badges": "assets/developer-assets/outrun/badges.png",
+        "palette": "assets/developer-assets/outrun/palette.png"
+      },
+      "palette": "palette.png + palette.json"
+    },
+    "shinobi": {
+      "sourceFile": "design_boards/shinobi/developper assets.png.png",
+      "image": {
+        "width": 1024,
+        "height": 1536
+      },
+      "confirmed": [
+        "props",
+        "pickups",
+        "obstacles",
+        "boss",
+        "palette"
+      ],
+      "estimated": [
+        "gameplayPreview",
+        "hud",
+        "borders",
+        "badges"
+      ],
+      "ambiguous": [],
+      "missing": [],
+      "exports": {
+        "gameplayPreview": "assets/developer-assets/shinobi/gameplayPreview.png",
+        "hud": "assets/developer-assets/shinobi/hud.png",
+        "props": "assets/developer-assets/shinobi/props.png",
+        "pickups": "assets/developer-assets/shinobi/pickups.png",
+        "obstacles": "assets/developer-assets/shinobi/obstacles.png",
+        "boss": "assets/developer-assets/shinobi/boss.png",
+        "borders": "assets/developer-assets/shinobi/borders.png",
+        "badges": "assets/developer-assets/shinobi/badges.png",
+        "palette": "assets/developer-assets/shinobi/palette.png"
+      },
+      "palette": "palette.png + palette.json"
+    },
+    "kombat": {
+      "sourceFile": "design_boards/kombat/developper assets.png",
+      "image": {
+        "width": 1024,
+        "height": 1536
+      },
+      "confirmed": [
+        "pickups",
+        "boss"
+      ],
+      "estimated": [
+        "gameplayPreview",
+        "hud",
+        "props",
+        "obstacles",
+        "borders",
+        "badges"
+      ],
+      "ambiguous": [
+        "palette"
+      ],
+      "missing": [],
+      "exports": {
+        "gameplayPreview": "assets/developer-assets/kombat/gameplayPreview.png",
+        "hud": "assets/developer-assets/kombat/hud.png",
+        "props": "assets/developer-assets/kombat/props.png",
+        "pickups": "assets/developer-assets/kombat/pickups.png",
+        "obstacles": "assets/developer-assets/kombat/obstacles.png",
+        "boss": "assets/developer-assets/kombat/boss.png",
+        "borders": "assets/developer-assets/kombat/borders.png",
+        "badges": "assets/developer-assets/kombat/badges.png",
+        "palette": "assets/developer-assets/kombat/palette.png"
+      },
+      "palette": "palette.png only; JSON conversion marked ambiguous"
+    },
+    "paperboy": {
+      "sourceFile": "design_boards/paperboy/developper assets.png",
+      "image": {
+        "width": 1024,
+        "height": 1536
+      },
+      "confirmed": [
+        "props",
+        "pickups",
+        "obstacles",
+        "boss",
+        "palette"
+      ],
+      "estimated": [
+        "gameplayPreview",
+        "hud",
+        "borders",
+        "badges"
+      ],
+      "ambiguous": [],
+      "missing": [],
+      "exports": {
+        "gameplayPreview": "assets/developer-assets/paperboy/gameplayPreview.png",
+        "hud": "assets/developer-assets/paperboy/hud.png",
+        "props": "assets/developer-assets/paperboy/props.png",
+        "pickups": "assets/developer-assets/paperboy/pickups.png",
+        "obstacles": "assets/developer-assets/paperboy/obstacles.png",
+        "boss": "assets/developer-assets/paperboy/boss.png",
+        "borders": "assets/developer-assets/paperboy/borders.png",
+        "badges": "assets/developer-assets/paperboy/badges.png",
+        "palette": "assets/developer-assets/paperboy/palette.png"
+      },
+      "palette": "palette.png + palette.json"
+    }
+  }
+}

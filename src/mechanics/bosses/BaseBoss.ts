@@ -25,6 +25,6 @@ export abstract class BaseBoss extends BaseMechanic {
   }
 
   getHudExtra(): string {
-    return `HP ${'♥'.repeat(this.hp)}${'♡'.repeat(this.maxHp - this.hp)}`;
+    return `PV ${'♥'.repeat(this.hp)}${'♡'.repeat(this.maxHp - this.hp)}`;
   }
 }

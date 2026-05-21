@@ -56,5 +56,5 @@ export class ShinobiFocusMechanic extends BaseMechanic {
     return this.targets.filter(t => t.real).map(t => t.cell);
   }
 
-  getHudExtra(): string { return 'FOCUS TARGET'; }
+  getHudExtra(): string { return 'VRAIE CIBLE'; }
 }

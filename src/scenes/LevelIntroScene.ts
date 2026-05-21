@@ -4,6 +4,8 @@ import { getLevelById } from '../config/levels';
 import { UNIVERSES } from '../config/universes';
 import { ARCADE_FONT, UI_FONT, addMobileButton, drawConsoleFrame, addScanlines, flashScreen } from '../render/VfxUtils';
 
+const clamp = (value: number, min: number, max: number): number => Math.max(min, Math.min(max, value));
+
 export interface LevelIntroData {
   levelId: string;
 }
@@ -45,6 +47,18 @@ export class LevelIntroScene extends Phaser.Scene {
     const primary   = parseInt(universe.palette.primary.replace('#', ''), 16);
     const accent    = parseInt(universe.palette.accent.replace('#', ''), 16);
     const isBoss = level.type === 'boss';
+    const safeX = Math.max(16, Math.floor(W * 0.06));
+    const panelW = W - safeX * 2;
+    const frameY = Math.max(28, H * 0.055);
+    const frameH = Math.min(H - frameY - MOBILE_UI.SAFE_BOTTOM, H * 0.88);
+    const innerBottom = frameY + frameH - 28;
+    const titleY = frameY + clamp(H * 0.12, 58, 74);
+    const nameY = frameY + clamp(H * 0.31, 148, 182);
+    const ruleY = frameY + clamp(H * 0.43, 222, 252);
+    const backBtnY = Math.min(H - MOBILE_UI.SAFE_BOTTOM - 28, innerBottom - MOBILE_UI.MIN_TOUCH_H / 2);
+    const playBtnY = backBtnY - MOBILE_UI.MIN_TOUCH_H / 2 - MOBILE_UI.PRIMARY_TOUCH_H / 2 - 12;
+    const infoY = ruleY + 22;
+    const hintY = Math.min(ruleY + 70, playBtnY - MOBILE_UI.PRIMARY_TOUCH_H / 2 - 26);
 
     // Background
     this.add.rectangle(W / 2, H / 2, W, H, bgColor).setDepth(0);
@@ -56,30 +70,30 @@ export class LevelIntroScene extends Phaser.Scene {
     for (let y = 0; y < H; y += 28) grid.lineBetween(0, y, W, y);
 
     // Console frame
-    const frameX = W * 0.06, frameY = H * 0.07;
-    const frameW = W * 0.88, frameH = H * 0.86;
-    drawConsoleFrame(this, frameX, frameY, frameW, frameH, primary, accent, 4);
+    drawConsoleFrame(this, safeX, frameY, panelW, frameH, primary, accent, 4);
 
     // Universe name banner
     const bannerGfx = this.add.graphics().setDepth(5);
-    bannerGfx.fillStyle(primary, 0.25);
-    bannerGfx.fillRect(W * 0.1, H * 0.14, W * 0.8, H * 0.1);
+    bannerGfx.fillStyle(primary, 0.24);
+    bannerGfx.fillRect(safeX + 14, titleY - 28, panelW - 28, 56);
     bannerGfx.lineStyle(2, primary, 0.8);
-    bannerGfx.strokeRect(W * 0.1, H * 0.14, W * 0.8, H * 0.1);
+    bannerGfx.strokeRect(safeX + 14, titleY - 28, panelW - 28, 56);
 
-    this.add.text(W / 2, H * 0.19, universe.name.toUpperCase(), {
+    this.add.text(W / 2, titleY, universe.name.toUpperCase(), {
       fontFamily: ARCADE_FONT,
       fontSize: `${Math.max(MOBILE_UI.CAPTION_MIN, Math.min(12, Math.floor(W * 0.03)))}px`,
       color: universe.palette.primary,
+      align: 'center',
+      wordWrap: { width: panelW - 48, useAdvancedWrap: true },
     }).setOrigin(0.5).setDepth(6);
 
     // Boss badge
     if (isBoss) {
       const badgeGfx = this.add.graphics().setDepth(5);
       badgeGfx.fillStyle(0xe74c3c, 1);
-      badgeGfx.fillRoundedRect(W / 2 - 44, H * 0.295, 88, 20, 4);
+      badgeGfx.fillRoundedRect(W / 2 - 44, nameY - 58, 88, 20, 4);
 
-      this.add.text(W / 2, H * 0.305, '⚡ BOSS ⚡', {
+      this.add.text(W / 2, nameY - 48, 'BOSS', {
         fontFamily: UI_FONT,
         fontSize: `${MOBILE_UI.LABEL_MIN}px`,
         fontStyle: '700',
@@ -88,47 +102,63 @@ export class LevelIntroScene extends Phaser.Scene {
     }
 
     // Level name (main)
-    this.add.text(W / 2, H * 0.39, level.name.toUpperCase(), {
+    this.add.text(W / 2, nameY, level.name.toUpperCase(), {
       fontFamily: ARCADE_FONT,
       fontSize: `${Math.min(13, Math.floor(W * 0.036))}px`,
       color: universe.palette.accent,
+      align: 'center',
+      wordWrap: { width: panelW - 44, useAdvancedWrap: true },
     }).setOrigin(0.5).setDepth(6);
 
     // Separator
     const sep = this.add.graphics().setDepth(5);
     sep.lineStyle(1, accent, 0.5);
-    sep.lineBetween(W * 0.2, H * 0.47, W * 0.8, H * 0.47);
+    sep.lineBetween(safeX + 40, ruleY - 44, W - safeX - 40, ruleY - 44);
 
     // Rule text
     const ruleGfx = this.add.graphics().setDepth(5);
     ruleGfx.fillStyle(accent, 0.12);
-    ruleGfx.fillRoundedRect(W * 0.12, H * 0.5, W * 0.76, H * 0.09, 6);
+    ruleGfx.fillRoundedRect(safeX + 16, ruleY - 34, panelW - 32, 68, 6);
 
-    this.add.text(W / 2, H * 0.545, level.ruleText, {
+    this.add.text(W / 2, ruleY - 8, level.ruleText, {
       fontFamily: UI_FONT,
       fontSize: `${Math.max(MOBILE_UI.LABEL_MIN, Math.min(16, Math.floor(W * 0.04)))}px`,
       fontStyle: '700',
       color: '#f39c12',
+      align: 'center',
+      wordWrap: { width: panelW - 56, useAdvancedWrap: true },
     }).setOrigin(0.5).setDepth(6);
 
     // Info (quota or boss HP)
     const infoText = isBoss
-      ? `BOSS HP : ${level.bossHp ?? 3}`
-      : `COLLECT  ${level.quota ?? 10}  PICKUPS`;
+      ? `PV BOSS : ${level.bossHp ?? 3}`
+      : `OBJECTIF : ${level.quota ?? 10}`;
 
-    this.add.text(W / 2, H * 0.66, infoText, {
+    this.add.text(W / 2, infoY, infoText, {
       fontFamily: UI_FONT,
-      fontSize: `${Math.max(MOBILE_UI.LABEL_MIN, Math.min(15, Math.floor(W * 0.038)))}px`,
+      fontSize: `${MOBILE_UI.LABEL_MIN}px`,
       fontStyle: '700',
       color: '#aaaacc',
     }).setOrigin(0.5).setDepth(6);
+
+    const hintFontSize = Math.max(MOBILE_UI.LABEL_MIN, Math.min(15, Math.floor(W * 0.038)));
+    const hint = this.add.text(W / 2, hintY, level.introHint, {
+      fontFamily: UI_FONT,
+      fontSize: `${hintFontSize}px`,
+      fontStyle: '700',
+      color: '#d8d8ee',
+      align: 'center',
+      lineSpacing: 3,
+      wordWrap: { width: panelW - 48, useAdvancedWrap: true },
+    }).setOrigin(0.5).setDepth(6);
+    hint.setMaxLines(playBtnY - hintY < 76 ? 2 : 3);
 
     // 906 — universe asset badge (pickup or boss icon, right side of frame)
     const uid = level.universeId;
     const badgeKey = isBoss ? `db_${uid}_boss` : `db_${uid}_pickup01`;
     if (this.textures.exists(badgeKey)) {
-      const badgeSize = Math.min(48, W * 0.12);
-      this.add.image(W * 0.86, H * 0.55, badgeKey)
+      const badgeSize = Math.min(42, W * 0.11);
+      this.add.image(W - safeX - 30, ruleY, badgeKey)
         .setDisplaySize(badgeSize, badgeSize)
         .setAlpha(0.8)
         .setDepth(7);
@@ -147,27 +177,28 @@ export class LevelIntroScene extends Phaser.Scene {
     };
 
     let started = false;
-    const startBtn = addMobileButton(this, {
+
+    // Primary and back buttons
+    addMobileButton(this, {
       x: W / 2,
-      y: H * 0.79,
-      width: Math.min(250, W * 0.68),
+      y: playBtnY,
+      width: Math.min(260, panelW - 40),
       height: MOBILE_UI.PRIMARY_TOUCH_H,
-      label: 'START',
+      label: 'JOUER',
       primary: true,
-      fillColor: 0x162236,
-      pressedFillColor: 0x223a58,
-      strokeColor: accent,
+      fillColor: 0x10172a,
+      pressedFillColor: 0x1b2746,
+      strokeColor: 0xffffff,
       textColor: '#ffffff',
       onClick: startLevel,
     });
 
-    // Back button
     addMobileButton(this, {
       x: W / 2,
-      y: H * 0.9,
-      width: Math.min(210, W * 0.58),
+      y: backBtnY,
+      width: Math.min(220, panelW - 40),
       height: MOBILE_UI.MIN_TOUCH_H,
-      label: 'WORLD MAP',
+      label: 'CARTE',
       fillColor: 0x0d1020,
       pressedFillColor: 0x171b34,
       strokeColor: 0x555577,
@@ -184,7 +215,6 @@ export class LevelIntroScene extends Phaser.Scene {
     this.input.on('pointerdown', (_p: unknown, go: Phaser.GameObjects.GameObject[]) => {
       if (started) return;
       if (go && go.length > 0) return; // hit an interactive object
-      if (startBtn.getBounds().contains(this.input.activePointer.x, this.input.activePointer.y)) return;
       startLevel();
     });
   }

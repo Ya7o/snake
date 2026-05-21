@@ -26,6 +26,7 @@ export interface LevelConfig {
   bossHp?: number;
   speedMs: number;
   ruleText: string;
+  introHint: string;
   mapNodeId: string;
 }
 
@@ -35,4 +36,6 @@ export interface MapNodeConfig {
   x: number;
   y: number;
   label: string;
+  /** Draw a yellow circle on the map (for nodes the source art doesn't include one) */
+  drawCircle?: boolean;
 }

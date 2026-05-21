@@ -61,13 +61,13 @@ export class FighterChargeMechanic extends BaseMechanic {
       type: 'sparZone', cell: s, state: 'static'
     }));
     if (this.chargeReady) {
-      // visual indicator on head — just report as extra HUD
+      entities.push({ type: 'chargeGlow', cell: this.ctx.snake.body[0], state: 'ready' });
     }
     return entities;
   }
 
   getHudExtra(): string {
-    if (this.chargeReady) return 'CHARGED!';
+    if (this.chargeReady) return 'CHARGE PRÊTE !';
     return `CHARGE ${this.chargeCount}/4`;
   }
 }

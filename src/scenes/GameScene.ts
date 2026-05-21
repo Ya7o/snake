@@ -11,6 +11,7 @@ import { BaseMechanic } from '../mechanics/BaseMechanic';
 import { createMechanic } from '../mechanics/MechanicFactory';
 import { SonicRingsMechanic } from '../mechanics/SonicRingsMechanic';
 import { ShinobiFocusMechanic } from '../mechanics/ShinobiFocusMechanic';
+import { OutRunLaneMechanic } from '../mechanics/OutRunLaneMechanic';
 import { BaseBoss } from '../mechanics/bosses/BaseBoss';
 import { GridRenderer, computeGridLayout, GridLayout } from '../render/GridRenderer';
 import { SnakeRenderer } from '../render/SnakeRenderer';
@@ -24,18 +25,20 @@ import { SaveSystem } from '../systems/SaveSystem';
 import { DesignBoardManager } from '../systems/DesignBoardManager';
 import { MAP_NODES } from '../config/mapNodes';
 import { flashScreen, addScanlines } from '../render/VfxUtils';
+import { preloadRuntimeAssets, getRuntimeTextureKey } from '../systems/RuntimeAssetResolver';
+import { preloadCodexAssets, getCodexTextureKey } from '../systems/CodexAssetResolver';
 
 const GRID_COLS = 16;
 const GRID_ROWS = 20;
 const FRAME_GRID_WIDTH: Record<string, number> = {
   castle: 0.68,
-  sonic: 0.70,
-  streets: 0.66,
-  fighter: 0.66,
-  outrun: 0.52,
-  shinobi: 0.70,
-  kombat: 0.66,
-  paperboy: 0.56,
+  sonic: 0.68,
+  streets: 0.68,
+  fighter: 0.68,
+  outrun: 0.68,
+  shinobi: 0.68,
+  kombat: 0.68,
+  paperboy: 0.68,
 };
 
 export interface GameSceneData {
@@ -94,6 +97,10 @@ export class GameScene extends Phaser.Scene {
     for (const [key, path] of assetKeys) {
       if (!this.textures.exists(key)) this.load.image(key, path);
     }
+    // 944 — 3 assets runtime de l'univers courant (pickup / obstacle / boss)
+    preloadRuntimeAssets(this, uid);
+    // codex — assets complémentaires de la banque 8x10
+    preloadCodexAssets(this, uid);
     for (const asset of Object.values(UNIVERSE_FRAME_ASSETS)) {
       if (!this.textures.exists(asset.key)) this.load.image(asset.key, asset.url);
     }
@@ -113,11 +120,11 @@ export class GameScene extends Phaser.Scene {
     this.colorPrimary = parseInt(palette.primary.replace('#', ''), 16);
     this.colorAccent  = parseInt(palette.accent.replace('#', ''), 16);
 
-    this.add.rectangle(width / 2, height / 2, width, height, this.colorBg);
+    this.add.rectangle(width / 2, height / 2, width, height, this.colorBg).setDepth(-2);
 
     this.grid = new Grid(GRID_COLS, GRID_ROWS);
     const frameAwareWidth = FRAME_GRID_WIDTH[this.levelConfig.universeId] ?? 0.96;
-    this.layout = computeGridLayout(width, height, GRID_COLS, GRID_ROWS, 56, 44, frameAwareWidth, 12);
+    this.layout = computeGridLayout(width, height, GRID_COLS, GRID_ROWS, 56, 44, frameAwareWidth, 10);
 
     // 906 — compute asset keys before renderer creation
     const uid        = this.levelConfig.universeId;
@@ -142,6 +149,36 @@ export class GameScene extends Phaser.Scene {
     this.pickupRenderer.setUniverseId(uid);
     if (this.textures.exists(bossKey))    this.obstacleRenderer.setBossTextureKey(bossKey);
 
+    // 944 — runtime assets prioritaires sur les db_ si chargés
+    const rtPickup = getRuntimeTextureKey(this, uid, 'pickup');
+    if (rtPickup) this.pickupRenderer.setTextureKey(rtPickup);
+    const rtObstacle = getRuntimeTextureKey(this, uid, 'obstacle');
+    if (rtObstacle) this.obstacleRenderer.setObstacleTextureKey(rtObstacle);
+    const rtBoss = getRuntimeTextureKey(this, uid, 'boss');
+    if (rtBoss) this.obstacleRenderer.setBossTextureKey(rtBoss);
+
+    // codex — fallback si runtime absent, secondary pickup si runtime présent
+    // Assets codex = RGB sans alpha → blend ADD pour effacer le fond sur background sombre
+    const cdxPickup = getCodexTextureKey(this, uid, 'pickup');
+    if (cdxPickup) {
+      if (!rtPickup) {
+        this.pickupRenderer.setTextureKey(cdxPickup);
+        this.pickupRenderer.setImageBlendMode(Phaser.BlendModes.ADD);
+      } else {
+        this.pickupRenderer.setSecondaryTextureKey(cdxPickup);
+      }
+    }
+    const cdxObstacle = getCodexTextureKey(this, uid, 'obstacle');
+    if (cdxObstacle && !rtObstacle) {
+      this.obstacleRenderer.setObstacleTextureKey(cdxObstacle);
+      this.obstacleRenderer.setObstacleBlendMode(Phaser.BlendModes.ADD);
+    }
+    const cdxBoss = getCodexTextureKey(this, uid, 'boss');
+    if (cdxBoss && !rtBoss) {
+      this.obstacleRenderer.setBossTextureKey(cdxBoss);
+      this.obstacleRenderer.setBossBlendMode(Phaser.BlendModes.ADD);
+    }
+
     // Grid is STATIC — draw once here, never again in the game loop
     this.gridRenderer.draw(this.colorBg, this.colorPrimary);
     const gridBounds = new Phaser.Geom.Rectangle(
@@ -153,7 +190,7 @@ export class GameScene extends Phaser.Scene {
     this.universeFrameRenderer.render({
       universeId: uid,
       gridBounds,
-      depth: 1,
+      depth: -1,
     });
     // 906 fallback if a legacy frame tile exists but the 910 frame asset failed to load.
     if (!this.textures.exists(UNIVERSE_FRAME_ASSETS[uid].key) && this.textures.exists(frameKey)) {
@@ -188,13 +225,6 @@ export class GameScene extends Phaser.Scene {
 
     this.inputSys = new InputSystem(this);
     this.inputSys.bind(this.snake);
-
-    // Back button — created once
-    this.add.text(width / 2, height - 22, '< MAP', {
-      fontFamily: '"Press Start 2P", monospace', fontSize: '8px', color: '#444466'
-    }).setOrigin(0.5).setDepth(10).setInteractive().on('pointerdown', () => {
-      this.scene.start(SCENES.WORLD_MAP);
-    });
 
     addScanlines(this, 0.035, 8);
     this.cameras.main.fadeIn(250, 0, 0, 0);
@@ -253,6 +283,10 @@ export class GameScene extends Phaser.Scene {
     }
     if (this.mechanic instanceof ShinobiFocusMechanic) {
       this.pickups = (this.mechanic as ShinobiFocusMechanic).getRealTargetPickups();
+      return;
+    }
+    if (this.mechanic instanceof OutRunLaneMechanic) {
+      this.pickups = (this.mechanic as OutRunLaneMechanic).getCheckpointPickup();
       return;
     }
     const p = spawnPickup(this.grid, this.snake, this.walls);
@@ -314,11 +348,14 @@ export class GameScene extends Phaser.Scene {
   private getActivePickups(): Cell[] {
     if (this.mechanic instanceof SonicRingsMechanic)  return (this.mechanic as SonicRingsMechanic).getChainPickups();
     if (this.mechanic instanceof ShinobiFocusMechanic) return (this.mechanic as ShinobiFocusMechanic).getRealTargetPickups();
+    if (this.mechanic instanceof OutRunLaneMechanic)   return (this.mechanic as OutRunLaneMechanic).getCheckpointPickup();
     return this.pickups;
   }
 
   private spawnNextPickup(): void {
-    if (this.mechanic instanceof SonicRingsMechanic || this.mechanic instanceof ShinobiFocusMechanic) return;
+    if (this.mechanic instanceof SonicRingsMechanic ||
+        this.mechanic instanceof ShinobiFocusMechanic ||
+        this.mechanic instanceof OutRunLaneMechanic) return;
     if (this.pickups.length < 1) {
       const p = spawnPickup(this.grid, this.snake, this.walls);
       if (p) this.pickups.push(p);

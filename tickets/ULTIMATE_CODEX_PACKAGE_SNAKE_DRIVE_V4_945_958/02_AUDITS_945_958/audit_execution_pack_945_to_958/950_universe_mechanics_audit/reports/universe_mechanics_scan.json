@@ -1,0 +1,50 @@
+[
+  {
+    "universe": "castle",
+    "terms": "blink, wall, mirror, castle",
+    "hit_count": 339,
+    "file_count": 65
+  },
+  {
+    "universe": "sonic",
+    "terms": "ring, chain, bumper, sonic",
+    "hit_count": 464,
+    "file_count": 74
+  },
+  {
+    "universe": "streets",
+    "terms": "crowd, street, crime, block",
+    "hit_count": 332,
+    "file_count": 55
+  },
+  {
+    "universe": "fighter",
+    "terms": "charge, fighter, challenger",
+    "hit_count": 367,
+    "file_count": 76
+  },
+  {
+    "universe": "outrun",
+    "terms": "checkpoint, lane, drift, car",
+    "hit_count": 168,
+    "file_count": 44
+  },
+  {
+    "universe": "shinobi",
+    "terms": "decoy, focus, shuriken, ninja",
+    "hit_count": 174,
+    "file_count": 38
+  },
+  {
+    "universe": "kombat",
+    "terms": "fatal, dragon, zone, finish",
+    "hit_count": 316,
+    "file_count": 50
+  },
+  {
+    "universe": "paperboy",
+    "terms": "delivery, newspaper, dog, paperboy",
+    "hit_count": 294,
+    "file_count": 53
+  }
+]

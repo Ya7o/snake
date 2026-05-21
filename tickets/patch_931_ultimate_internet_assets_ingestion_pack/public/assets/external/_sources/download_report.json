@@ -1,0 +1,62 @@
+[
+  {
+    "id": "streets_of_fight_ansimuz",
+    "url": "https://opengameart.org/sites/default/files/streets_of_fight_files.zip",
+    "downloaded": false,
+    "reason": "zip laissé au script de téléchargement pour éviter paquet trop lourd"
+  },
+  {
+    "id": "street_tile_set_chasersgaming",
+    "url": "https://opengameart.org/sites/default/files/streettileset_0.png",
+    "downloaded": false,
+    "reason": "<urlopen error [Errno -3] Temporary failure in name resolution>"
+  },
+  {
+    "id": "racing_pack_kenney",
+    "url": "https://opengameart.org/sites/default/files/racing-pack.zip",
+    "downloaded": false,
+    "reason": "zip laissé au script de téléchargement pour éviter paquet trop lourd"
+  },
+  {
+    "id": "topdown_vehicle_sprites_unlucky",
+    "url": "https://opengameart.org/sites/default/files/Topdown_vehicle_sprites_pack_Unluckystudio.zip",
+    "downloaded": false,
+    "reason": "zip laissé au script de téléchargement pour éviter paquet trop lourd"
+  },
+  {
+    "id": "dog_spritesheets_jason_gdn",
+    "url": "https://opengameart.org/sites/default/files/spritesheet_brown.png",
+    "downloaded": false,
+    "reason": "<urlopen error [Errno -3] Temporary failure in name resolution>"
+  },
+  {
+    "id": "pixel_dog_cat_bonzille",
+    "url": "https://opengameart.org/sites/default/files/pixel_dog.png",
+    "downloaded": false,
+    "reason": "<urlopen error [Errno -3] Temporary failure in name resolution>"
+  },
+  {
+    "id": "ninja_jail_castle_r3troboidx",
+    "url": "https://opengameart.org/sites/default/files/wall_3.png",
+    "downloaded": false,
+    "reason": "<urlopen error [Errno -3] Temporary failure in name resolution>"
+  },
+  {
+    "id": "free_cc0_top_down_tileset_rgsdev",
+    "url": "https://opengameart.org/sites/default/files/free_cc0_top_down_tileset_template_pixel_art_by_rgsdev.zip",
+    "downloaded": false,
+    "reason": "zip laissé au script de téléchargement pour éviter paquet trop lourd"
+  },
+  {
+    "id": "sonic_style_tiles_corey_archer",
+    "url": "https://opengameart.org/sites/default/files/Green%20Hill%20TileSet%201.png",
+    "downloaded": false,
+    "reason": "<urlopen error [Errno -3] Temporary failure in name resolution>"
+  },
+  {
+    "id": "sonic_loop_corey_archer",
+    "url": "https://opengameart.org/sites/default/files/loop%20test%201.png",
+    "downloaded": false,
+    "reason": "<urlopen error [Errno -3] Temporary failure in name resolution>"
+  }
+]

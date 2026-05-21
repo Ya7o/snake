@@ -1,0 +1,27 @@
+[
+  {
+    "file": "src/main.ts",
+    "line": 39,
+    "text": "document.getElementById('app')!.innerHTML = '';"
+  },
+  {
+    "file": "src/main.ts",
+    "line": 51,
+    "text": "document.getElementById('app')!.innerHTML = '';"
+  },
+  {
+    "file": "dist/assets/index-YYQZ95mf.js",
+    "line": 1391,
+    "text": "*/var d=t(83419),c=t(31401),h=t(441),r=t(95643),n=t(41212),e=t(35846),s=t(44594),a=t(61369),i=new d({Extends:r,Mixins:[c.AlphaSingle,c.BlendMode,c.Depth,c.Origin,c.ScrollFactor,c.Transform,c.Visible,h],initialize:function(l,u,f,v,m,x){if(r."
+  },
+  {
+    "file": "dist/assets/index-YYQZ95mf.js",
+    "line": 3522,
+    "text": "*/var d=t(83419),c=t(23906),h=t(41299),r=t(74099),n=t(95540),e=t(41212),s=new d({Extends:h,initialize:function(i,o,l,u){var f=\"css\";if(e(o)){var v=o;o=n(v,\"key\"),l=n(v,\"url\"),u=n(v,\"xhrSettings\"),f=n(v,\"extension\",f)}var m={type:\"script\",ca"
+  },
+  {
+    "file": "dist/assets/index-YYQZ95mf.js",
+    "line": 3587,
+    "text": "}).call(this);`),i=eval;this.loader.sceneManager.add(this.key,i(a)),this.complete=!0}});r.register(\"sceneFile\",function(a,i,o){if(Array.isArray(a))for(var l=0;l<a.length;l++)this.addFile(new s(this,a[l]));else this.addFile(new s(this,a,i,o)"
+  }
+]

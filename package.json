@@ -9,8 +9,7 @@
     "preview": "vite preview --host 0.0.0.0",
     "check": "npm run build",
     "ticket:status": "node scripts/ticket-status.mjs",
-    "assets:build": "node scripts/build-design-assets.mjs",
-    "assets:audit": "node scripts/audit-design-assets.mjs"
+    "assets:list-runtime": "find public/assets/runtime/universes -name '*.png' | sort"
   },
   "dependencies": {
     "phaser": "^3.80.1"

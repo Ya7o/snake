@@ -20,9 +20,14 @@ export const SCENES = {
 
 export const WORLD_MAP_VIEW = {
   HEADER_H: 34,
-  FOOTER_H: 78,
-  INITIAL_ZOOM: 1.22,
-  MIN_ZOOM: 1.04,
+  FOOTER_H: 96,
+  MAP_SAFE_PAD: 0,
+  CROP_LEFT: 0,
+  CROP_TOP: 0,
+  CROP_RIGHT: 0,
+  CROP_BOTTOM: 0,
+  INITIAL_ZOOM: 1,
+  MIN_ZOOM: 1,
   MAX_ZOOM: 2.85,
   NODE_R_NORMAL: 7,
   NODE_R_BOSS: 9,

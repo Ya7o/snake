@@ -1,0 +1,244 @@
+{
+  "version": 1,
+  "policy": {
+    "default": "prototype_personnel",
+    "runtimeRule": "only assets with status approved or userLicensed can be preloaded",
+    "doNotUseTrademarkedCharacters": true,
+    "keepOriginalArchives": true
+  },
+  "sources": [
+    {
+      "id": "streets_of_fight_ansimuz",
+      "universes": [
+        "streets",
+        "fighter"
+      ],
+      "role": [
+        "decor",
+        "frame",
+        "props",
+        "characters"
+      ],
+      "title": "Streets of Fight",
+      "author": "ansimuz",
+      "license": "CC0",
+      "licenseStatus": "approved",
+      "page": "https://opengameart.org/content/streets-of-fight",
+      "download": "https://opengameart.org/sites/default/files/streets_of_fight_files.zip",
+      "notes": "Beat'em up / urban assets. Bon candidat pour Streets et Fighter."
+    },
+    {
+      "id": "street_tile_set_chasersgaming",
+      "universes": [
+        "streets"
+      ],
+      "role": [
+        "tiles",
+        "street_props"
+      ],
+      "title": "Street Tile Set",
+      "author": "Chasersgaming",
+      "license": "free_to_use_no_credit_required",
+      "licenseStatus": "approved",
+      "page": "https://opengameart.org/content/street-tile-set",
+      "download": "https://opengameart.org/sites/default/files/streettileset_0.png",
+      "notes": "Petit tileset street 16x16."
+    },
+    {
+      "id": "racing_pack_kenney",
+      "universes": [
+        "outrun"
+      ],
+      "role": [
+        "cars",
+        "roads",
+        "obstacles",
+        "props"
+      ],
+      "title": "Racing pack",
+      "author": "Kenney",
+      "license": "CC0",
+      "licenseStatus": "approved",
+      "page": "https://opengameart.org/content/racing-pack",
+      "download": "https://opengameart.org/sites/default/files/racing-pack.zip",
+      "notes": "Pack top-down racing complet."
+    },
+    {
+      "id": "topdown_vehicle_sprites_unlucky",
+      "universes": [
+        "outrun",
+        "paperboy"
+      ],
+      "role": [
+        "cars",
+        "obstacles"
+      ],
+      "title": "Free Top Down Car Sprites",
+      "author": "Unlucky Studio / sujit1717",
+      "license": "CC0",
+      "licenseStatus": "approved",
+      "page": "https://opengameart.org/content/free-top-down-car-sprites-by-unlucky-studio",
+      "download": "https://opengameart.org/sites/default/files/Topdown_vehicle_sprites_pack_Unluckystudio.zip",
+      "notes": "Voitures top-down. Attention ressemblance véhicules réels si distribution publique."
+    },
+    {
+      "id": "dog_spritesheets_jason_gdn",
+      "universes": [
+        "paperboy"
+      ],
+      "role": [
+        "obstacle",
+        "boss_reference"
+      ],
+      "title": "Dog Spritesheets",
+      "author": "Jason of GDN",
+      "license": "CC0",
+      "licenseStatus": "approved",
+      "page": "https://opengameart.org/content/dog-spritesheets",
+      "download": "https://opengameart.org/sites/default/files/spritesheet_brown.png",
+      "notes": "Bon candidat pour obstacle chien Paperboy."
+    },
+    {
+      "id": "pixel_dog_cat_bonzille",
+      "universes": [
+        "paperboy"
+      ],
+      "role": [
+        "obstacle",
+        "boss_reference"
+      ],
+      "title": "Pixel art dog and cat",
+      "author": "bonzille",
+      "license": "CC0",
+      "licenseStatus": "approved",
+      "page": "https://opengameart.org/content/pixel-art-dog-and-cat",
+      "download": "https://opengameart.org/sites/default/files/pixel_dog.png",
+      "notes": "Alternative chien Paperboy."
+    },
+    {
+      "id": "ninja_jail_castle_r3troboidx",
+      "universes": [
+        "shinobi",
+        "castle"
+      ],
+      "role": [
+        "tiles",
+        "frame",
+        "obstacles"
+      ],
+      "title": "Ninja Jail Castle whatever Platformer Tiles",
+      "author": "R3tr0BoiDX",
+      "license": "CC0",
+      "licenseStatus": "approved",
+      "page": "https://opengameart.org/content/ninja-jail-castle-whatever-platformer-tiles",
+      "download": "https://opengameart.org/sites/default/files/wall_3.png",
+      "notes": "Tuiles ninja/castle simples."
+    },
+    {
+      "id": "free_cc0_top_down_tileset_rgsdev",
+      "universes": [
+        "castle",
+        "shinobi",
+        "kombat"
+      ],
+      "role": [
+        "tiles",
+        "generic"
+      ],
+      "title": "Free CC0 Top Down Tileset Template Pixel Art",
+      "author": "rgsdev",
+      "license": "CC0",
+      "licenseStatus": "approved",
+      "page": "https://opengameart.org/content/free-cc0-top-down-tileset-template-pixel-art",
+      "download": "https://opengameart.org/sites/default/files/free_cc0_top_down_tileset_template_pixel_art_by_rgsdev.zip",
+      "notes": "Base générique top-down 16x16, utile pour prototypage."
+    },
+    {
+      "id": "animated_fire_benhickling",
+      "universes": [
+        "kombat",
+        "castle"
+      ],
+      "role": [
+        "effect",
+        "obstacle",
+        "boss_fx"
+      ],
+      "title": "Animated Fire",
+      "author": "BenHickling",
+      "license": "CC0",
+      "licenseStatus": "approved",
+      "page": "https://opengameart.org/content/animated-fire",
+      "download": null,
+      "notes": "Source CC0 à intégrer si URL fichier confirmée par Codex."
+    },
+    {
+      "id": "sonic_style_tiles_corey_archer",
+      "universes": [
+        "sonic"
+      ],
+      "role": [
+        "tiles",
+        "loop",
+        "reference"
+      ],
+      "title": "Sonic Style Tiles",
+      "author": "Corey Archer",
+      "license": "CC-BY 4.0",
+      "licenseStatus": "userLicensed_review_required",
+      "page": "https://opengameart.org/content/sonic-style-tiles",
+      "download": "https://opengameart.org/sites/default/files/Green%20Hill%20TileSet%201.png",
+      "notes": "À utiliser seulement si licence/risque validé par l’utilisateur. La page OpenGameArt contient des commentaires signalant un possible problème de similarité."
+    },
+    {
+      "id": "sonic_loop_corey_archer",
+      "universes": [
+        "sonic"
+      ],
+      "role": [
+        "loop_reference"
+      ],
+      "title": "Sonic Style loop test",
+      "author": "Corey Archer",
+      "license": "CC-BY 4.0",
+      "licenseStatus": "userLicensed_review_required",
+      "page": "https://opengameart.org/content/sonic-style-tiles",
+      "download": "https://opengameart.org/sites/default/files/loop%20test%201.png",
+      "notes": "Même réserve que `sonic_style_tiles_corey_archer`."
+    }
+  ],
+  "universePlan": {
+    "castle": [
+      "ninja_jail_castle_r3troboidx",
+      "free_cc0_top_down_tileset_rgsdev"
+    ],
+    "sonic": [
+      "sonic_style_tiles_corey_archer",
+      "sonic_loop_corey_archer"
+    ],
+    "streets": [
+      "streets_of_fight_ansimuz",
+      "street_tile_set_chasersgaming"
+    ],
+    "fighter": [
+      "streets_of_fight_ansimuz"
+    ],
+    "outrun": [
+      "racing_pack_kenney",
+      "topdown_vehicle_sprites_unlucky"
+    ],
+    "shinobi": [
+      "ninja_jail_castle_r3troboidx",
+      "free_cc0_top_down_tileset_rgsdev"
+    ],
+    "kombat": [
+      "free_cc0_top_down_tileset_rgsdev",
+      "animated_fire_benhickling"
+    ],
+    "paperboy": [
+      "dog_spritesheets_jason_gdn",
+      "pixel_dog_cat_bonzille",
+      "topdown_vehicle_sprites_unlucky"
+    ]
+  }
+}

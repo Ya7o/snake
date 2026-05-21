@@ -1,0 +1,168 @@
+{
+  "english": [
+    {
+      "term": "GAME OVER",
+      "file": "src/scenes/GameOverScene.ts",
+      "line": 40,
+      "text": "// GAME OVER title with shadow"
+    },
+    {
+      "term": "RETRY",
+      "file": "src/scenes/GameOverScene.ts",
+      "line": 73,
+      "text": "// RETRY button"
+    },
+    {
+      "term": "LOCKED",
+      "file": "src/assets/designBoardManifest.ts",
+      "line": 268,
+      "text": "export const BLOCKED_STATUSES: DesignBoardZoneStatus[] = ["
+    }
+  ],
+  "french": [
+    {
+      "term": "NIVEAU",
+      "file": "src/scenes/WorldMapScene.ts",
+      "line": 277,
+      "text": "this.footerLevelTxt = this.add.text(W * 0.5, footerY + 14, 'SELECTIONNER UN NIVEAU', {"
+    },
+    {
+      "term": "JOUER",
+      "file": "src/scenes/WorldMapScene.ts",
+      "line": 284,
+      "text": "this.footerHintTxt = this.add.text(W * 0.5, footerY + 36, 'DOUBLE TAP POUR JOUER', {"
+    },
+    {
+      "term": "NIVEAU",
+      "file": "src/scenes/TitleScene.ts",
+      "line": 97,
+      "text": "this.add.text(W / 2, H * 0.495, '8 MONDES  ·  16 NIVEAUX  ·  8 BOSS', {"
+    },
+    {
+      "term": "JOUER",
+      "file": "src/scenes/TitleScene.ts",
+      "line": 103,
+      "text": "// TOUCHER POUR JOUER — pulsing"
+    },
+    {
+      "term": "JOUER",
+      "file": "src/scenes/TitleScene.ts",
+      "line": 104,
+      "text": "const tapText = this.add.text(W / 2, H * 0.68, 'TOUCHER POUR JOUER', {"
+    },
+    {
+      "term": "CARTE",
+      "file": "src/scenes/GameOverScene.ts",
+      "line": 104,
+      "text": "label: 'CARTE',"
+    },
+    {
+      "term": "JOUER",
+      "file": "src/scenes/LevelIntroScene.ts",
+      "line": 180,
+      "text": "label: 'JOUER',"
+    },
+    {
+      "term": "CARTE",
+      "file": "src/scenes/LevelIntroScene.ts",
+      "line": 195,
+      "text": "label: 'CARTE',"
+    },
+    {
+      "term": "CARTE",
+      "file": "src/scenes/GameScene.ts",
+      "line": 204,
+      "text": "// Back button — 44 px hit zone, CARTE label"
+    },
+    {
+      "term": "CARTE",
+      "file": "src/scenes/GameScene.ts",
+      "line": 210,
+      "text": "label: 'CARTE',"
+    },
+    {
+      "term": "NIVEAU",
+      "file": "src/scenes/ClearScene.ts",
+      "line": 127,
+      "text": "label: 'NIVEAU SUIVANT',"
+    },
+    {
+      "term": "NIVEAU",
+      "file": "src/scenes/ClearScene.ts",
+      "line": 141,
+      "text": "this.add.text(W / 2, H * 0.66, 'TOUS LES NIVEAUX', {"
+    },
+    {
+      "term": "CARTE",
+      "file": "src/scenes/ClearScene.ts",
+      "line": 155,
+      "text": "label: 'CARTE',"
+    },
+    {
+      "term": "JOUER",
+      "file": "tickets/patch_931_ultimate_internet_assets_ingestion_pack/fallback_lightweight/src/data/frText.ts",
+      "line": 5,
+      "text": "play: \"JOUER\","
+    },
+    {
+      "term": "JOUER",
+      "file": "tickets/patch_931_ultimate_internet_assets_ingestion_pack/fallback_lightweight/src/data/frText.ts",
+      "line": 6,
+      "text": "start: \"JOUER\","
+    },
+    {
+      "term": "CARTE",
+      "file": "tickets/patch_931_ultimate_internet_assets_ingestion_pack/fallback_lightweight/src/data/frText.ts",
+      "line": 7,
+      "text": "map: \"CARTE\","
+    },
+    {
+      "term": "JOUER",
+      "file": "tickets/patch_931_ultimate_internet_assets_ingestion_pack/fallback_lightweight/src/data/frText.ts",
+      "line": 9,
+      "text": "retry: \"REJOUER\","
+    },
+    {
+      "term": "REJOUER",
+      "file": "tickets/patch_931_ultimate_internet_assets_ingestion_pack/fallback_lightweight/src/data/frText.ts",
+      "line": 9,
+      "text": "retry: \"REJOUER\","
+    },
+    {
+      "term": "NIVEAU",
+      "file": "tickets/patch_931_ultimate_internet_assets_ingestion_pack/fallback_lightweight/src/data/frText.ts",
+      "line": 10,
+      "text": "nextLevel: \"NIVEAU SUIVANT\","
+    },
+    {
+      "term": "NIVEAU",
+      "file": "tickets/patch_931_ultimate_internet_assets_ingestion_pack/fallback_lightweight/src/data/frText.ts",
+      "line": 11,
+      "text": "selectLevel: \"SÉLECTIONNER UN NIVEAU\","
+    },
+    {
+      "term": "VERROUILLÉ",
+      "file": "tickets/patch_931_ultimate_internet_assets_ingestion_pack/fallback_lightweight/src/data/frText.ts",
+      "line": 12,
+      "text": "locked: \"VERROUILLÉ\","
+    },
+    {
+      "term": "NIVEAU",
+      "file": "tickets/patch_931_ultimate_internet_assets_ingestion_pack/fallback_lightweight/src/data/frText.ts",
+      "line": 15,
+      "text": "stageClear: \"NIVEAU TERMINÉ\","
+    },
+    {
+      "term": "PERDU",
+      "file": "tickets/patch_931_ultimate_internet_assets_ingestion_pack/fallback_lightweight/src/data/frText.ts",
+      "line": 16,
+      "text": "gameOver: \"PERDU\","
+    },
+    {
+      "term": "NIVEAU",
+      "file": "tickets/patch_931_ultimate_internet_assets_ingestion_pack/fallback_lightweight/src/data/frText.ts",
+      "line": 24,
+      "text": "level: \"NIVEAU\","
+    }
+  ]
+}

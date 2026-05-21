@@ -1,0 +1,42 @@
+[
+  {
+    "check": "npm run check OK",
+    "ok": true
+  },
+  {
+    "check": "npm run build OK",
+    "ok": true
+  },
+  {
+    "check": "24 runtime assets alpha OK",
+    "ok": true
+  },
+  {
+    "check": "GameScene references runtime assets",
+    "ok": true
+  },
+  {
+    "check": "WorldMap present",
+    "ok": true
+  },
+  {
+    "check": "Intro/Clear/GameOver present",
+    "ok": true
+  },
+  {
+    "check": "Legacy residue count <= 3",
+    "ok": true
+  },
+  {
+    "check": "No dangerous eval/innerHTML scan",
+    "ok": false
+  },
+  {
+    "check": "French UI needs review",
+    "ok": false
+  },
+  {
+    "check": "Android real QA completed",
+    "ok": false
+  }
+]

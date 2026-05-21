@@ -14,16 +14,7 @@ type FramePart =
   | Phaser.GameObjects.Image
   | Phaser.GameObjects.Graphics;
 
-const FULL_FRAME_INNER_RECTS: Record<UniverseId, { x: number; y: number; w: number; h: number }> = {
-  castle:   { x: 82 / 532,  y: 80 / 779,  w: 368 / 532, h: 612 / 779 },
-  sonic:    { x: 74 / 529,  y: 174 / 873, w: 381 / 529, h: 584 / 873 },
-  streets:  { x: 83 / 531,  y: 119 / 819, w: 363 / 531, h: 595 / 819 },
-  fighter:  { x: 86 / 517,  y: 115 / 839, w: 342 / 517, h: 600 / 839 },
-  outrun:   { x: 126 / 517, y: 90 / 847,  w: 265 / 517, h: 612 / 847 },
-  shinobi:  { x: 70 / 511,  y: 95 / 805,  w: 370 / 511, h: 620 / 805 },
-  kombat:   { x: 83 / 523,  y: 105 / 859, w: 360 / 523, h: 630 / 859 },
-  paperboy: { x: 113 / 535, y: 100 / 943, w: 305 / 535, h: 700 / 943 },
-};
+const FULL_FRAME_INNER_RECT = { x: 156 / 941, y: 252 / 1672, w: 628 / 941, h: 1104 / 1672 };
 
 export class UniverseFrameRenderer {
   private parts: FramePart[] = [];
@@ -159,11 +150,10 @@ export class UniverseFrameRenderer {
     if (!(frame instanceof Phaser.GameObjects.Image)) return;
     if (!this.currentUniverseId) return;
 
-    const inner = FULL_FRAME_INNER_RECTS[this.currentUniverseId];
-    const innerX = inner.x;
-    const innerY = inner.y;
-    const innerW = inner.w;
-    const innerH = inner.h;
+    const innerX = FULL_FRAME_INNER_RECT.x;
+    const innerY = FULL_FRAME_INNER_RECT.y;
+    const innerW = FULL_FRAME_INNER_RECT.w;
+    const innerH = FULL_FRAME_INNER_RECT.h;
     const displayW = gridBounds.width / innerW;
     const displayH = gridBounds.height / innerH;
     const displayX = gridBounds.x - innerX * displayW;

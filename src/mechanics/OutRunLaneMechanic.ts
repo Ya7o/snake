@@ -2,7 +2,7 @@ import { BaseMechanic, ExtraEntity, MechanicUpdate } from './BaseMechanic';
 import { Cell, cellKey } from '../core/Grid';
 import { Grid } from '../core/Grid';
 
-// Lane drift: vertical lanes; traffic blocks in lanes
+// Lane drift: vertical lanes; traffic blocks in lanes; checkpoints on lane columns
 interface TrafficBlock { cell: Cell; ttl: number }
 
 export class OutRunLaneMechanic extends BaseMechanic {
@@ -10,9 +10,37 @@ export class OutRunLaneMechanic extends BaseMechanic {
   private grid!: Grid;
   private spawnTimer = 0;
   private laneCount = 3;
+  private checkpoint: Cell | null = null;
+  private lastLane = -1;
 
   protected onInit(): void {
     this.grid = new Grid(this.ctx.grid.cols, this.ctx.grid.rows);
+    this.spawnCheckpoint();
+  }
+
+  private spawnCheckpoint(): void {
+    let lane: number;
+    let attempts = 0;
+    do {
+      lane = Math.floor(Math.random() * this.laneCount);
+      attempts++;
+    } while (lane === this.lastLane && this.laneCount > 1 && attempts < 10);
+    this.lastLane = lane;
+    const col = this.getLaneX(lane);
+    const occupied = new Set<string>(this.ctx.snake.body.map(c => cellKey(c)));
+    for (const t of this.traffic) occupied.add(cellKey(t.cell));
+    for (let attempt = 0; attempt < 20; attempt++) {
+      const row = 2 + Math.floor(Math.random() * (this.ctx.grid.rows - 4));
+      if (!occupied.has(cellKey({ col, row }))) {
+        this.checkpoint = { col, row };
+        return;
+      }
+    }
+    this.checkpoint = this.grid.randomFreeCell(occupied) ?? null;
+  }
+
+  getCheckpointPickup(): Cell[] {
+    return this.checkpoint ? [this.checkpoint] : [];
   }
 
   getLaneX(lane: number): number {
@@ -54,11 +82,16 @@ export class OutRunLaneMechanic extends BaseMechanic {
     return { hitDanger };
   }
 
+  onPickupCollected(_cell: Cell): MechanicUpdate {
+    this.spawnCheckpoint();
+    return {};
+  }
+
   getExtraEntities(): ExtraEntity[] {
     return this.traffic.map(t => ({
       type: 'trafficBlock', cell: t.cell, state: 'moving'
     }));
   }
 
-  getHudExtra(): string { return 'HIT CHECKPOINTS'; }
+  getHudExtra(): string { return 'PASSE LES BALISES'; }
 }

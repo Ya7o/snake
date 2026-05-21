@@ -20,6 +20,7 @@ export class PickupRenderer {
   private imagePool: Phaser.GameObjects.Image[] = [];
   private textureKey: string | null = null;
   private secondaryTextureKey: string | null = null;
+  private blendMode: number = Phaser.BlendModes.NORMAL;
   private lastCellKeys = '';
   private lastGlowKeys = '';  // 907 — glow redraw only when positions change
   private universeId = '';
@@ -36,6 +37,12 @@ export class PickupRenderer {
     this.clearImagePool();
     this.lastCellKeys = '';
     this.lastGlowKeys = '';
+  }
+
+  setImageBlendMode(mode: number): void {
+    if (this.blendMode === mode) return;
+    this.blendMode = mode;
+    for (const img of this.imagePool) img.setBlendMode(mode);
   }
 
   /** 906 — secondary texture for alternate pickup types */
@@ -74,7 +81,7 @@ export class PickupRenderer {
         this.lastCellKeys = cellKeysNow;
       }
 
-      const imgScale = scale * cs / 32;
+      const maxSize = cs * 0.82 * scale;
       for (let i = 0; i < pickups.length; i++) {
         const { px, py } = cellToPixel(layout, pickups[i].col, pickups[i].row);
         const img = this.imagePool[i];
@@ -82,7 +89,8 @@ export class PickupRenderer {
         const useSecondary = i % 2 === 1 && this.secondaryTextureKey && this.scene.textures.exists(this.secondaryTextureKey);
         const texKey = useSecondary ? this.secondaryTextureKey! : key!;
         if (img.texture.key !== texKey) img.setTexture(texKey);
-        img.setPosition(px, py).setScale(imgScale).setVisible(true);
+        this.fitImageInCell(img, texKey, maxSize);
+        img.setPosition(px, py).setVisible(true);
       }
       for (let i = pickups.length; i < this.imagePool.length; i++) {
         this.imagePool[i].setVisible(false);
@@ -244,9 +252,18 @@ export class PickupRenderer {
     while (this.imagePool.length < count) {
       const img = this.scene.add.image(0, 0, this.textureKey!)
         .setDepth(2)
+        .setBlendMode(this.blendMode)
         .setVisible(false);
       this.imagePool.push(img);
     }
+  }
+
+  private fitImageInCell(img: Phaser.GameObjects.Image, textureKey: string, maxSize: number): void {
+    const frame = this.scene.textures.getFrame(textureKey);
+    const fw = frame?.width ?? img.width;
+    const fh = frame?.height ?? img.height;
+    const ratio = fw > 0 && fh > 0 ? Math.min(maxSize / fw, maxSize / fh) : 1;
+    img.setDisplaySize(fw * ratio, fh * ratio);
   }
 
   private hideAllImages(): void {

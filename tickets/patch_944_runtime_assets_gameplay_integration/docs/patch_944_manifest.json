@@ -1,0 +1,24 @@
+{
+  "patch": "944",
+  "name": "Runtime assets gameplay integration",
+  "created": "2026-05-20T16:26:20.775737+00:00",
+  "dependsOn": "patch_943_final_24_validated_runtime_assets_and_cleanup",
+  "creates": [
+    "src/systems/RuntimeAssetResolver.ts"
+  ],
+  "modifies": [
+    "src/scenes/GameScene.ts",
+    "src/scenes/BootScene.ts or src/scenes/PreloadScene.ts if needed"
+  ],
+  "forbidden": [
+    "public/assets/external/_downloaded",
+    "public/assets/external/_extracted",
+    "public/assets/design_board_icons",
+    "public/assets/runtime_candidates_from_design_boards"
+  ],
+  "tests": [
+    "npm run check",
+    "npm run build",
+    "npm run preview -- --host 0.0.0.0"
+  ]
+}

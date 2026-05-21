@@ -26,7 +26,7 @@ export class GameOverScene extends Phaser.Scene {
     this.add.rectangle(W / 2, H / 2, W, H, bgColor).setDepth(0);
 
     // Red flash on death
-    flashScreen(this, 0xe74c3c, 0.65, 600);
+    flashScreen(this, 0xe74c3c, 0.65, 400);
 
     // Subtle grid
     const grid = this.add.graphics().setDepth(1);
@@ -37,24 +37,24 @@ export class GameOverScene extends Phaser.Scene {
     // Console frame
     drawConsoleFrame(this, W * 0.06, H * 0.07, W * 0.88, H * 0.86, 0xe74c3c, primaryHex, 4);
 
-    // GAME OVER title with shadow
-    this.add.text(W / 2 + 3, H * 0.24 + 3, 'GAME', {
+    // Defeat title with shadow
+    this.add.text(W / 2 + 3, H * 0.24 + 3, 'PERDU', {
       fontFamily: ARCADE_FONT,
       fontSize: `${Math.min(26, Math.floor(W * 0.074))}px`,
       color: '#660000',
     }).setOrigin(0.5).setDepth(5);
-    this.add.text(W / 2, H * 0.24, 'GAME', {
+    this.add.text(W / 2, H * 0.24, 'PERDU', {
       fontFamily: ARCADE_FONT,
       fontSize: `${Math.min(26, Math.floor(W * 0.074))}px`,
       color: '#e74c3c',
     }).setOrigin(0.5).setDepth(6);
 
-    this.add.text(W / 2 + 3, H * 0.35 + 3, 'OVER', {
+    this.add.text(W / 2 + 3, H * 0.35 + 3, 'REJOUE', {
       fontFamily: ARCADE_FONT,
       fontSize: `${Math.min(26, Math.floor(W * 0.074))}px`,
       color: '#660000',
     }).setOrigin(0.5).setDepth(5);
-    this.add.text(W / 2, H * 0.35, 'OVER', {
+    this.add.text(W / 2, H * 0.35, 'REJOUE', {
       fontFamily: ARCADE_FONT,
       fontSize: `${Math.min(26, Math.floor(W * 0.074))}px`,
       color: '#e74c3c',
@@ -76,7 +76,7 @@ export class GameOverScene extends Phaser.Scene {
       y: H * 0.64,
       width: Math.min(260, W * 0.72),
       height: Math.max(52, Math.min(60, H * 0.08)),
-      label: 'RETRY',
+      label: 'REJOUER',
       primary: true,
       fillColor: 0x341111,
       pressedFillColor: 0x541818,
@@ -101,7 +101,7 @@ export class GameOverScene extends Phaser.Scene {
       y: H * 0.81,
       width: Math.min(210, W * 0.58),
       height: 46,
-      label: 'WORLD MAP',
+      label: 'CARTE',
       fillColor: 0x0d1020,
       pressedFillColor: 0x171b34,
       strokeColor: 0x555577,
@@ -115,6 +115,6 @@ export class GameOverScene extends Phaser.Scene {
     });
 
     addScanlines(this, 0.04, 20);
-    this.cameras.main.fadeIn(250, 0, 0, 0);
+    this.cameras.main.fadeIn(180, 0, 0, 0);
   }
 }

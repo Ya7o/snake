@@ -54,5 +54,5 @@ export class KombatFatalMechanic extends BaseMechanic {
     }));
   }
 
-  getHudExtra(): string { return 'FATAL ZONES'; }
+  getHudExtra(): string { return 'ZONES FATALES'; }
 }

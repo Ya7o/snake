@@ -1,0 +1,44 @@
+{
+  "archive": "snake-drive-v4-backup-20260520-2039.tar.gz",
+  "repo_root": ".",
+  "total_files": 515,
+  "ext_counts": {
+    ".csv": 1,
+    ".html": 1,
+    ".jpg": 12,
+    ".json": 28,
+    ".md": 95,
+    ".mjs": 3,
+    ".png": 260,
+    ".sh": 2,
+    ".svg": 28,
+    ".ts": 63,
+    "[no_ext]": 22
+  },
+  "scene_files": [
+    "src/scenes/BootScene.ts",
+    "src/scenes/ClearScene.ts",
+    "src/scenes/GameOverScene.ts",
+    "src/scenes/GameScene.ts",
+    "src/scenes/LevelIntroScene.ts",
+    "src/scenes/TitleScene.ts",
+    "src/scenes/WorldMapScene.ts"
+  ],
+  "data_files": [],
+  "systems_files": [
+    "src/systems/AudioSystem.ts",
+    "src/systems/DesignBoardManager.ts",
+    "src/systems/InputSystem.ts",
+    "src/systems/RuntimeAssetResolver.ts",
+    "src/systems/SaveSystem.ts"
+  ],
+  "scripts": [
+    "assets:list-runtime",
+    "build",
+    "check",
+    "dev",
+    "preview",
+    "ticket:status"
+  ],
+  "legacy_scripts_remaining": []
+}

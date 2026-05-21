@@ -1,0 +1,972 @@
+[
+  {
+    "path": "dist/assets/map/world_map.png",
+    "bytes": 2874347,
+    "kb": 2807.0,
+    "ext": ".png",
+    "width": 1448,
+    "height": 1086,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "dist/assets/universes/castle/board_preview.png",
+    "bytes": 2208019,
+    "kb": 2156.3,
+    "ext": ".png",
+    "width": 1024,
+    "height": 1536,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "dist/assets/universes/fighter/board_preview.png",
+    "bytes": 2131767,
+    "kb": 2081.8,
+    "ext": ".png",
+    "width": 1024,
+    "height": 1536,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "dist/assets/universes/kombat/board_preview.png",
+    "bytes": 2286297,
+    "kb": 2232.7,
+    "ext": ".png",
+    "width": 1024,
+    "height": 1536,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "dist/assets/universes/outrun/board_preview.png",
+    "bytes": 3023474,
+    "kb": 2952.6,
+    "ext": ".png",
+    "width": 1024,
+    "height": 1536,
+    "mode": "RGBA",
+    "transparent_percent": 0.0
+  },
+  {
+    "path": "dist/assets/universes/paperboy/board_preview.png",
+    "bytes": 2438059,
+    "kb": 2380.9,
+    "ext": ".png",
+    "width": 1024,
+    "height": 1536,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "dist/assets/universes/shinobi/board_preview.png",
+    "bytes": 2137762,
+    "kb": 2087.7,
+    "ext": ".png",
+    "width": 1024,
+    "height": 1536,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "dist/assets/universes/sonic/board_preview.png",
+    "bytes": 1933630,
+    "kb": 1888.3,
+    "ext": ".png",
+    "width": 1024,
+    "height": 1536,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "dist/assets/universes/streets/board_preview.png",
+    "bytes": 2030866,
+    "kb": 1983.3,
+    "ext": ".png",
+    "width": 1024,
+    "height": 1536,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "dist/assets/frames/castle/frame.png",
+    "bytes": 689499,
+    "kb": 673.3,
+    "ext": ".png",
+    "width": 532,
+    "height": 779,
+    "mode": "RGBA",
+    "transparent_percent": 0.0
+  },
+  {
+    "path": "dist/assets/frames/fighter/frame.png",
+    "bytes": 777293,
+    "kb": 759.1,
+    "ext": ".png",
+    "width": 517,
+    "height": 839,
+    "mode": "RGBA",
+    "transparent_percent": 0.0
+  },
+  {
+    "path": "dist/assets/frames/kombat/frame.png",
+    "bytes": 823672,
+    "kb": 804.4,
+    "ext": ".png",
+    "width": 523,
+    "height": 859,
+    "mode": "RGBA",
+    "transparent_percent": 0.0
+  },
+  {
+    "path": "dist/assets/frames/outrun/frame.png",
+    "bytes": 814764,
+    "kb": 795.7,
+    "ext": ".png",
+    "width": 517,
+    "height": 847,
+    "mode": "RGBA",
+    "transparent_percent": 0.0
+  },
+  {
+    "path": "dist/assets/frames/paperboy/frame.png",
+    "bytes": 922568,
+    "kb": 900.9,
+    "ext": ".png",
+    "width": 535,
+    "height": 943,
+    "mode": "RGBA",
+    "transparent_percent": 0.0
+  },
+  {
+    "path": "dist/assets/frames/shinobi/frame.png",
+    "bytes": 715912,
+    "kb": 699.1,
+    "ext": ".png",
+    "width": 511,
+    "height": 805,
+    "mode": "RGBA",
+    "transparent_percent": 0.0
+  },
+  {
+    "path": "dist/assets/frames/sonic/frame.png",
+    "bytes": 725264,
+    "kb": 708.3,
+    "ext": ".png",
+    "width": 529,
+    "height": 873,
+    "mode": "RGBA",
+    "transparent_percent": 0.0
+  },
+  {
+    "path": "dist/assets/frames/streets/frame.png",
+    "bytes": 711720,
+    "kb": 695.0,
+    "ext": ".png",
+    "width": 531,
+    "height": 819,
+    "mode": "RGBA",
+    "transparent_percent": 0.0
+  },
+  {
+    "path": "references/screenshots/target_reference_good_map_framing.jpg",
+    "bytes": 282789,
+    "kb": 276.2,
+    "ext": ".jpg",
+    "width": 709,
+    "height": 1536,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "design_boards/outrun/outrun_board_example.png",
+    "bytes": 3023474,
+    "kb": 2952.6,
+    "ext": ".png",
+    "width": 1024,
+    "height": 1536,
+    "mode": "RGBA",
+    "transparent_percent": 0.0
+  },
+  {
+    "path": "design_boards/outrun/developper assets.png",
+    "bytes": 2097046,
+    "kb": 2047.9,
+    "ext": ".png",
+    "width": 1024,
+    "height": 1536,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "design_boards/outrun/cadre outrun.png",
+    "bytes": 814764,
+    "kb": 795.7,
+    "ext": ".png",
+    "width": 517,
+    "height": 847,
+    "mode": "RGBA",
+    "transparent_percent": 0.0
+  },
+  {
+    "path": "design_boards/outrun/outrun_board.png",
+    "bytes": 2097046,
+    "kb": 2047.9,
+    "ext": ".png",
+    "width": 1024,
+    "height": 1536,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "design_boards/kombat/cadre mortal kombat.png",
+    "bytes": 823672,
+    "kb": 804.4,
+    "ext": ".png",
+    "width": 523,
+    "height": 859,
+    "mode": "RGBA",
+    "transparent_percent": 0.0
+  },
+  {
+    "path": "design_boards/kombat/kombat_board.png",
+    "bytes": 2286297,
+    "kb": 2232.7,
+    "ext": ".png",
+    "width": 1024,
+    "height": 1536,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "design_boards/kombat/developper assets.png",
+    "bytes": 2286297,
+    "kb": 2232.7,
+    "ext": ".png",
+    "width": 1024,
+    "height": 1536,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "design_boards/shinobi/developper assets.png.png",
+    "bytes": 2137762,
+    "kb": 2087.7,
+    "ext": ".png",
+    "width": 1024,
+    "height": 1536,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "design_boards/shinobi/cadre shinobi.png",
+    "bytes": 715912,
+    "kb": 699.1,
+    "ext": ".png",
+    "width": 511,
+    "height": 805,
+    "mode": "RGBA",
+    "transparent_percent": 0.0
+  },
+  {
+    "path": "design_boards/shinobi/shinobi_board.png",
+    "bytes": 2137762,
+    "kb": 2087.7,
+    "ext": ".png",
+    "width": 1024,
+    "height": 1536,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "design_boards/castle/castle_board.png",
+    "bytes": 2208019,
+    "kb": 2156.3,
+    "ext": ".png",
+    "width": 1024,
+    "height": 1536,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "design_boards/castle/cadre castle of illusuion.png",
+    "bytes": 689499,
+    "kb": 673.3,
+    "ext": ".png",
+    "width": 532,
+    "height": 779,
+    "mode": "RGBA",
+    "transparent_percent": 0.0
+  },
+  {
+    "path": "design_boards/castle/developper assets.png",
+    "bytes": 2208019,
+    "kb": 2156.3,
+    "ext": ".png",
+    "width": 1024,
+    "height": 1536,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "design_boards/sonic/sonic_board.png",
+    "bytes": 1933630,
+    "kb": 1888.3,
+    "ext": ".png",
+    "width": 1024,
+    "height": 1536,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "design_boards/sonic/developper assets.png",
+    "bytes": 1933630,
+    "kb": 1888.3,
+    "ext": ".png",
+    "width": 1024,
+    "height": 1536,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "design_boards/sonic/cadre sonic 2.png",
+    "bytes": 725264,
+    "kb": 708.3,
+    "ext": ".png",
+    "width": 529,
+    "height": 873,
+    "mode": "RGBA",
+    "transparent_percent": 0.0
+  },
+  {
+    "path": "design_boards/paperboy/paperboy_board.png",
+    "bytes": 2438059,
+    "kb": 2380.9,
+    "ext": ".png",
+    "width": 1024,
+    "height": 1536,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "design_boards/paperboy/developper assets.png",
+    "bytes": 2438059,
+    "kb": 2380.9,
+    "ext": ".png",
+    "width": 1024,
+    "height": 1536,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "design_boards/paperboy/cadre paperboy.png",
+    "bytes": 922568,
+    "kb": 900.9,
+    "ext": ".png",
+    "width": 535,
+    "height": 943,
+    "mode": "RGBA",
+    "transparent_percent": 0.0
+  },
+  {
+    "path": "design_boards/streets/streets_board.png",
+    "bytes": 2030866,
+    "kb": 1983.3,
+    "ext": ".png",
+    "width": 1024,
+    "height": 1536,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "design_boards/streets/cadre street of rage.png",
+    "bytes": 711720,
+    "kb": 695.0,
+    "ext": ".png",
+    "width": 531,
+    "height": 819,
+    "mode": "RGBA",
+    "transparent_percent": 0.0
+  },
+  {
+    "path": "design_boards/streets/developper assets.png",
+    "bytes": 2030866,
+    "kb": 1983.3,
+    "ext": ".png",
+    "width": 1024,
+    "height": 1536,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "design_boards/minimap/ChatGPT Image 20 mai 2026, 11_57_43.png",
+    "bytes": 2874347,
+    "kb": 2807.0,
+    "ext": ".png",
+    "width": 1448,
+    "height": 1086,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "design_boards/fighter/developper assets.png",
+    "bytes": 2131767,
+    "kb": 2081.8,
+    "ext": ".png",
+    "width": 1024,
+    "height": 1536,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "design_boards/fighter/cadre street fighter.png",
+    "bytes": 777293,
+    "kb": 759.1,
+    "ext": ".png",
+    "width": 517,
+    "height": 839,
+    "mode": "RGBA",
+    "transparent_percent": 0.0
+  },
+  {
+    "path": "design_boards/fighter/fighter_board.png",
+    "bytes": 2131767,
+    "kb": 2081.8,
+    "ext": ".png",
+    "width": 1024,
+    "height": 1536,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "tickets/patch_943_final_24_validated_runtime_assets_and_cleanup/review/contact_sheets/runtime_assets_alpha_contact_sheet.jpg",
+    "bytes": 309571,
+    "kb": 302.3,
+    "ext": ".jpg",
+    "width": 1140,
+    "height": 740,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "tickets/patch_943_final_24_validated_runtime_assets_and_cleanup/source_attempts/reference_only/outrun/retro_futuristic_red_sports_car_sprite.png",
+    "bytes": 1254381,
+    "kb": 1225.0,
+    "ext": ".png",
+    "width": 1254,
+    "height": 1254,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "tickets/patch_943_final_24_validated_runtime_assets_and_cleanup/source_attempts/reference_only/outrun/retro_pixel_art_sports_car_sprite.png",
+    "bytes": 1010756,
+    "kb": 987.1,
+    "ext": ".png",
+    "width": 1254,
+    "height": 1254,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "tickets/patch_943_final_24_validated_runtime_assets_and_cleanup/source_attempts/reference_only/outrun/golden_trophy_with_checkered_flag.png",
+    "bytes": 1034261,
+    "kb": 1010.0,
+    "ext": ".png",
+    "width": 1254,
+    "height": 1254,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "tickets/patch_943_final_24_validated_runtime_assets_and_cleanup/source_attempts/reference_only/kombat/golden_trophy_medallion_with_fiery_aura.png",
+    "bytes": 1206314,
+    "kb": 1178.0,
+    "ext": ".png",
+    "width": 1254,
+    "height": 1254,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "tickets/patch_943_final_24_validated_runtime_assets_and_cleanup/source_attempts/reference_only/kombat/lava_portal_with_spiked_rim.png",
+    "bytes": 1221893,
+    "kb": 1193.3,
+    "ext": ".png",
+    "width": 1254,
+    "height": 1254,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "tickets/patch_943_final_24_validated_runtime_assets_and_cleanup/source_attempts/reference_only/kombat/dragon_gate_with_fiery_portal.png",
+    "bytes": 1921809,
+    "kb": 1876.8,
+    "ext": ".png",
+    "width": 1254,
+    "height": 1254,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "tickets/patch_943_final_24_validated_runtime_assets_and_cleanup/source_attempts/reference_only/shinobi/fierce_ninja_in_pixel_art.png",
+    "bytes": 1034282,
+    "kb": 1010.0,
+    "ext": ".png",
+    "width": 1254,
+    "height": 1254,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "tickets/patch_943_final_24_validated_runtime_assets_and_cleanup/source_attempts/reference_only/shinobi/metallic_ninja_shuriken_with_electric_aura.png",
+    "bytes": 1028464,
+    "kb": 1004.4,
+    "ext": ".png",
+    "width": 1254,
+    "height": 1254,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "tickets/patch_943_final_24_validated_runtime_assets_and_cleanup/source_attempts/reference_only/shinobi/stealthy_ninja_in_a_ready_stance.png",
+    "bytes": 1152630,
+    "kb": 1125.6,
+    "ext": ".png",
+    "width": 1254,
+    "height": 1254,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "tickets/patch_943_final_24_validated_runtime_assets_and_cleanup/source_attempts/reference_only/castle/magical_orb_with_glowing_castle.png",
+    "bytes": 1231328,
+    "kb": 1202.5,
+    "ext": ".png",
+    "width": 1254,
+    "height": 1254,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "tickets/patch_943_final_24_validated_runtime_assets_and_cleanup/source_attempts/reference_only/castle/magical_dungeon_wall_with_glowing_gem.png",
+    "bytes": 1290402,
+    "kb": 1260.2,
+    "ext": ".png",
+    "width": 1254,
+    "height": 1254,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "tickets/patch_943_final_24_validated_runtime_assets_and_cleanup/source_attempts/reference_only/castle/haunted_gothic_mirror_with_dark_aura.png",
+    "bytes": 1534644,
+    "kb": 1498.7,
+    "ext": ".png",
+    "width": 1254,
+    "height": 1254,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "tickets/patch_943_final_24_validated_runtime_assets_and_cleanup/source_attempts/reference_only/sonic/mechanical_cobra_head_emblem_in_pixels.png",
+    "bytes": 1426842,
+    "kb": 1393.4,
+    "ext": ".png",
+    "width": 1254,
+    "height": 1254,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "tickets/patch_943_final_24_validated_runtime_assets_and_cleanup/source_attempts/reference_only/sonic/mechanical_bumper_with_starburst_emblem.png",
+    "bytes": 1229722,
+    "kb": 1200.9,
+    "ext": ".png",
+    "width": 1254,
+    "height": 1254,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "tickets/patch_943_final_24_validated_runtime_assets_and_cleanup/source_attempts/reference_only/sonic/shiny_golden_ring_sprite.png",
+    "bytes": 908061,
+    "kb": 886.8,
+    "ext": ".png",
+    "width": 1254,
+    "height": 1254,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "tickets/patch_943_final_24_validated_runtime_assets_and_cleanup/source_attempts/reference_only/paperboy/pixel_art_rolled_up_newspaper_bundle.png",
+    "bytes": 1168275,
+    "kb": 1140.9,
+    "ext": ".png",
+    "width": 1254,
+    "height": 1254,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "tickets/patch_943_final_24_validated_runtime_assets_and_cleanup/source_attempts/reference_only/paperboy/angry_bulldog_game_sprite_in_16_bit.png",
+    "bytes": 1167001,
+    "kb": 1139.6,
+    "ext": ".png",
+    "width": 1254,
+    "height": 1254,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "tickets/patch_943_final_24_validated_runtime_assets_and_cleanup/source_attempts/reference_only/paperboy/angry_bulldog_boss_with_newspapers.png",
+    "bytes": 1737520,
+    "kb": 1696.8,
+    "ext": ".png",
+    "width": 1254,
+    "height": 1254,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "tickets/patch_943_final_24_validated_runtime_assets_and_cleanup/source_attempts/reference_only/streets/boss_gangster_in_pixel_art_style.png",
+    "bytes": 1266246,
+    "kb": 1236.6,
+    "ext": ".png",
+    "width": 1254,
+    "height": 1254,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "tickets/patch_943_final_24_validated_runtime_assets_and_cleanup/source_attempts/reference_only/streets/tough_trio_ready_to_brawl.png",
+    "bytes": 1381551,
+    "kb": 1349.2,
+    "ext": ".png",
+    "width": 1254,
+    "height": 1254,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "tickets/patch_943_final_24_validated_runtime_assets_and_cleanup/source_attempts/reference_only/streets/neon_star_coin_with_glowing_accents.png",
+    "bytes": 1171623,
+    "kb": 1144.2,
+    "ext": ".png",
+    "width": 1254,
+    "height": 1254,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "tickets/patch_943_final_24_validated_runtime_assets_and_cleanup/source_attempts/reference_only/fighter/fiery_martial_artist_in_battle_stance.png",
+    "bytes": 1239194,
+    "kb": 1210.2,
+    "ext": ".png",
+    "width": 1254,
+    "height": 1254,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "tickets/patch_943_final_24_validated_runtime_assets_and_cleanup/source_attempts/reference_only/fighter/fiery_dragon_medallion_emblem.png",
+    "bytes": 1074980,
+    "kb": 1049.8,
+    "ext": ".png",
+    "width": 1254,
+    "height": 1254,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "tickets/patch_943_final_24_validated_runtime_assets_and_cleanup/source_attempts/reference_only/fighter/glowing_pixel_energy_orb.png",
+    "bytes": 1137582,
+    "kb": 1110.9,
+    "ext": ".png",
+    "width": 1254,
+    "height": 1254,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "tickets/patch_924_remove_worldmap_outer_frame/references/screenshots/worldmap_frame_to_remove.jpg",
+    "bytes": 264539,
+    "kb": 258.3,
+    "ext": ".jpg",
+    "width": 709,
+    "height": 1536,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "tickets/patch_925_update_variable_developer_asset_layouts/references/screenshots/a_single_image_a_large_pixel_art_16_bit_style_u(1).png",
+    "bytes": 3023474,
+    "kb": 2952.6,
+    "ext": ".png",
+    "width": 1024,
+    "height": 1536,
+    "mode": "RGBA",
+    "transparent_percent": 0.0
+  },
+  {
+    "path": "tickets/patch_925_update_variable_developer_asset_layouts/references/screenshots/a_detailed_game_ui_asset_sheet_poster_in_a_retro_1.png",
+    "bytes": 3077060,
+    "kb": 3004.9,
+    "ext": ".png",
+    "width": 1024,
+    "height": 1536,
+    "mode": "RGBA",
+    "transparent_percent": 0.0
+  },
+  {
+    "path": "tickets/patch_925_update_variable_developer_asset_layouts/references/screenshots/a_detailed_pixel_art_game_ui_asset_sheet_mockup.png",
+    "bytes": 3022641,
+    "kb": 2951.8,
+    "ext": ".png",
+    "width": 1024,
+    "height": 1536,
+    "mode": "RGBA",
+    "transparent_percent": 0.0
+  },
+  {
+    "path": "tickets/patch_925_update_variable_developer_asset_layouts/references/screenshots/a_detailed_pixel_art_ui_concept_sheet_game_hud_a.png",
+    "bytes": 2887405,
+    "kb": 2819.7,
+    "ext": ".png",
+    "width": 1024,
+    "height": 1536,
+    "mode": "RGBA",
+    "transparent_percent": 0.0
+  },
+  {
+    "path": "tickets/patch_925_update_variable_developer_asset_layouts/references/screenshots/a_detailed_pixel_art_game_ui_asset_sheet_poster.png",
+    "bytes": 3223261,
+    "kb": 3147.7,
+    "ext": ".png",
+    "width": 1024,
+    "height": 1536,
+    "mode": "RGBA",
+    "transparent_percent": 0.0
+  },
+  {
+    "path": "tickets/patch_925_update_variable_developer_asset_layouts/references/screenshots/a_high_detail_pixel_art_ui_game_asset_sheet_poster.png",
+    "bytes": 2909616,
+    "kb": 2841.4,
+    "ext": ".png",
+    "width": 1024,
+    "height": 1536,
+    "mode": "RGBA",
+    "transparent_percent": 0.0
+  },
+  {
+    "path": "tickets/patch_925_update_variable_developer_asset_layouts/references/screenshots/a_detailed_pixel_art_game_ui_asset_sheet_overall.png",
+    "bytes": 2797288,
+    "kb": 2731.7,
+    "ext": ".png",
+    "width": 1024,
+    "height": 1536,
+    "mode": "RGBA",
+    "transparent_percent": 0.0
+  },
+  {
+    "path": "tickets/patch_925_update_variable_developer_asset_layouts/references/screenshots/a_high_resolution_game_ui_sprite_sheet_style_ima.png",
+    "bytes": 3046013,
+    "kb": 2974.6,
+    "ext": ".png",
+    "width": 1024,
+    "height": 1536,
+    "mode": "RGBA",
+    "transparent_percent": 0.0
+  },
+  {
+    "path": "tickets/patch_929_worldmap_mobile_zoom_top_left_fit/references/screenshots/worldmap_expected_top_left_zoom.jpg",
+    "bytes": 268874,
+    "kb": 262.6,
+    "ext": ".jpg",
+    "width": 709,
+    "height": 1536,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "tickets/patch_923_mobile_fit_worldmap_intro_and_frame_cleanup/references/screenshots/worldmap_dezoom_reference.jpg",
+    "bytes": 263249,
+    "kb": 257.1,
+    "ext": ".jpg",
+    "width": 709,
+    "height": 1536,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "public/assets/map/world_map.png",
+    "bytes": 2874347,
+    "kb": 2807.0,
+    "ext": ".png",
+    "width": 1448,
+    "height": 1086,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "public/assets/frames/outrun/frame.png",
+    "bytes": 814764,
+    "kb": 795.7,
+    "ext": ".png",
+    "width": 517,
+    "height": 847,
+    "mode": "RGBA",
+    "transparent_percent": 0.0
+  },
+  {
+    "path": "public/assets/frames/kombat/frame.png",
+    "bytes": 823672,
+    "kb": 804.4,
+    "ext": ".png",
+    "width": 523,
+    "height": 859,
+    "mode": "RGBA",
+    "transparent_percent": 0.0
+  },
+  {
+    "path": "public/assets/frames/shinobi/frame.png",
+    "bytes": 715912,
+    "kb": 699.1,
+    "ext": ".png",
+    "width": 511,
+    "height": 805,
+    "mode": "RGBA",
+    "transparent_percent": 0.0
+  },
+  {
+    "path": "public/assets/frames/castle/frame.png",
+    "bytes": 689499,
+    "kb": 673.3,
+    "ext": ".png",
+    "width": 532,
+    "height": 779,
+    "mode": "RGBA",
+    "transparent_percent": 0.0
+  },
+  {
+    "path": "public/assets/frames/sonic/frame.png",
+    "bytes": 725264,
+    "kb": 708.3,
+    "ext": ".png",
+    "width": 529,
+    "height": 873,
+    "mode": "RGBA",
+    "transparent_percent": 0.0
+  },
+  {
+    "path": "public/assets/frames/paperboy/frame.png",
+    "bytes": 922568,
+    "kb": 900.9,
+    "ext": ".png",
+    "width": 535,
+    "height": 943,
+    "mode": "RGBA",
+    "transparent_percent": 0.0
+  },
+  {
+    "path": "public/assets/frames/streets/frame.png",
+    "bytes": 711720,
+    "kb": 695.0,
+    "ext": ".png",
+    "width": 531,
+    "height": 819,
+    "mode": "RGBA",
+    "transparent_percent": 0.0
+  },
+  {
+    "path": "public/assets/frames/fighter/frame.png",
+    "bytes": 777293,
+    "kb": 759.1,
+    "ext": ".png",
+    "width": 517,
+    "height": 839,
+    "mode": "RGBA",
+    "transparent_percent": 0.0
+  },
+  {
+    "path": "public/assets/universes/outrun/board_preview.png",
+    "bytes": 3023474,
+    "kb": 2952.6,
+    "ext": ".png",
+    "width": 1024,
+    "height": 1536,
+    "mode": "RGBA",
+    "transparent_percent": 0.0
+  },
+  {
+    "path": "public/assets/universes/kombat/board_preview.png",
+    "bytes": 2286297,
+    "kb": 2232.7,
+    "ext": ".png",
+    "width": 1024,
+    "height": 1536,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "public/assets/universes/shinobi/board_preview.png",
+    "bytes": 2137762,
+    "kb": 2087.7,
+    "ext": ".png",
+    "width": 1024,
+    "height": 1536,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "public/assets/universes/castle/board_preview.png",
+    "bytes": 2208019,
+    "kb": 2156.3,
+    "ext": ".png",
+    "width": 1024,
+    "height": 1536,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "public/assets/universes/sonic/board_preview.png",
+    "bytes": 1933630,
+    "kb": 1888.3,
+    "ext": ".png",
+    "width": 1024,
+    "height": 1536,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "public/assets/universes/paperboy/board_preview.png",
+    "bytes": 2438059,
+    "kb": 2380.9,
+    "ext": ".png",
+    "width": 1024,
+    "height": 1536,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "public/assets/universes/streets/board_preview.png",
+    "bytes": 2030866,
+    "kb": 1983.3,
+    "ext": ".png",
+    "width": 1024,
+    "height": 1536,
+    "mode": "RGB",
+    "transparent_percent": 0
+  },
+  {
+    "path": "public/assets/universes/fighter/board_preview.png",
+    "bytes": 2131767,
+    "kb": 2081.8,
+    "ext": ".png",
+    "width": 1024,
+    "height": 1536,
+    "mode": "RGB",
+    "transparent_percent": 0
+  }
+]

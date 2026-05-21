@@ -8,11 +8,19 @@ const BOSS_ENTITY_TYPES = new Set([
   'turboRival', 'shadowNinja', 'dragonGate', 'chaosObstacle'
 ]);
 
+// Types d'obstacles physiques sans rendu spécifique — éligibles à l'image runtime obstacle
+const OBSTACLE_IMAGE_TYPES = new Set([
+  'crowdBlocker', 'sparZone', 'trafficBlock', 'fatalZone',
+  'pressureZone', 'counterZone', 'turboZone', 'dangerZone',
+  'routeObstacle',
+]);
+
 const ENTITY_COLORS: Record<string, Record<string, number>> = {
   blinkWall:      { ghost: 0x4a235a, warning: 0xf39c12, active: 0xe74c3c },
   chainRing:      { active: 0xf9ca24, inactive: 0x5d4e00 },
   crowdBlocker:   { static: 0xe67e22, moving: 0xff6b35 },
   sparZone:       { static: 0xc0392b },
+  chargeGlow:     { ready: 0xf39c12 },
   trafficBlock:   { moving: 0xff6b9d },
   focusTarget:    { real: 0x00b4d8, decoy: 0x666666 },
   fatalZone:      { warning: 0xf39c12, active: 0xe74c3c },
@@ -39,6 +47,10 @@ export class ObstacleRenderer {
   private scene: Phaser.Scene;
   private bossTextureKey: string | null = null;
   private bossImages: Map<string, Phaser.GameObjects.Image> = new Map();
+  private bossBlendMode: number = Phaser.BlendModes.NORMAL;
+  private obstacleTextureKey: string | null = null;
+  private obstaclePool: Phaser.GameObjects.Image[] = [];
+  private obstacleBlendMode: number = Phaser.BlendModes.NORMAL;
 
   constructor(scene: Phaser.Scene) {
     this.scene = scene;
@@ -53,6 +65,23 @@ export class ObstacleRenderer {
     this.clearBossImages();
   }
 
+  setBossBlendMode(mode: number): void {
+    this.bossBlendMode = mode;
+    for (const img of this.bossImages.values()) img.setBlendMode(mode);
+  }
+
+  /** Appelé par GameScene si l'obstacle texture runtime est disponible */
+  setObstacleTextureKey(key: string): void {
+    if (this.obstacleTextureKey === key) return;
+    this.obstacleTextureKey = key;
+    this.clearObstaclePool();
+  }
+
+  setObstacleBlendMode(mode: number): void {
+    this.obstacleBlendMode = mode;
+    for (const img of this.obstaclePool) img.setBlendMode(mode);
+  }
+
   draw(entities: ExtraEntity[], layout: GridLayout): void {
     this.gfx.clear();
     const cs = layout.cellSize;
@@ -61,6 +90,10 @@ export class ObstacleRenderer {
     const bossKey = this.bossTextureKey;
     const hasBossTexture = !!(bossKey && this.scene.textures.exists(bossKey));
     const seenBossIds = new Set<string>();
+
+    const obstacleKey = this.obstacleTextureKey;
+    const hasObstacleTexture = !!(obstacleKey && this.scene.textures.exists(obstacleKey));
+    let obsPoolIdx = 0;
 
     for (const e of entities) {
       const { px, py } = cellToPixel(layout, e.cell.col, e.cell.row);
@@ -77,10 +110,24 @@ export class ObstacleRenderer {
         seenBossIds.add(imgId);
         let img = this.bossImages.get(imgId);
         if (!img) {
-          img = this.scene.add.image(px, py, bossKey!).setDepth(1);
+          img = this.scene.add.image(px, py, bossKey!).setDepth(1).setBlendMode(this.bossBlendMode);
           this.bossImages.set(imgId, img);
         }
-        img.setPosition(px, py).setScale(size / 48).setVisible(true);
+        this.fitImageInCell(img, bossKey!, size * 1.05);
+        img.setPosition(px, py).setVisible(true);
+      } else if (!isBossType && OBSTACLE_IMAGE_TYPES.has(e.type) && hasObstacleTexture) {
+        // Rendu image pour obstacles physiques — glow + sprite poolé
+        this.gfx.fillStyle(color, 0.25);
+        this.gfx.fillCircle(px, py, cs * 0.45);
+        if (obsPoolIdx >= this.obstaclePool.length) {
+          this.obstaclePool.push(
+            this.scene.add.image(px, py, obstacleKey!).setDepth(1).setBlendMode(this.obstacleBlendMode),
+          );
+        }
+        const img = this.obstaclePool[obsPoolIdx];
+        img.setTexture(obstacleKey!).setPosition(px, py)
+          .setDisplaySize(cs * 0.82, cs * 0.82).setVisible(true);
+        obsPoolIdx++;
       } else {
         this.drawEntity(e, px, py, size, color);
       }
@@ -90,11 +137,28 @@ export class ObstacleRenderer {
     for (const [id, img] of this.bossImages.entries()) {
       if (!seenBossIds.has(id)) img.setVisible(false);
     }
+    // Masquer les images obstacle inutilisées ce tick
+    for (let i = obsPoolIdx; i < this.obstaclePool.length; i++) {
+      this.obstaclePool[i].setVisible(false);
+    }
   }
 
   private clearBossImages(): void {
     for (const img of this.bossImages.values()) img.destroy();
     this.bossImages.clear();
+  }
+
+  private fitImageInCell(img: Phaser.GameObjects.Image, textureKey: string, maxSize: number): void {
+    const frame = this.scene.textures.getFrame(textureKey);
+    const fw = frame?.width ?? img.width;
+    const fh = frame?.height ?? img.height;
+    const ratio = fw > 0 && fh > 0 ? Math.min(maxSize / fw, maxSize / fh) : 1;
+    img.setDisplaySize(fw * ratio, fh * ratio);
+  }
+
+  private clearObstaclePool(): void {
+    for (const img of this.obstaclePool) img.destroy();
+    this.obstaclePool = [];
   }
 
   private drawEntity(e: ExtraEntity, px: number, py: number, size: number, color: number): void {
@@ -106,6 +170,13 @@ export class ObstacleRenderer {
           this.gfx.lineStyle(2, 0xf39c12, 0.8);
           this.gfx.strokeRect(px - size / 2 - 2, py - size / 2 - 2, size + 4, size + 4);
         }
+        break;
+
+      case 'chargeGlow':
+        this.gfx.lineStyle(3, color, 0.85);
+        this.gfx.strokeCircle(px, py, size * 0.6);
+        this.gfx.lineStyle(1, color, 0.35);
+        this.gfx.strokeCircle(px, py, size * 0.78);
         break;
 
       case 'chainRing':
@@ -187,6 +258,7 @@ export class ObstacleRenderer {
 
   destroy(): void {
     this.clearBossImages();
+    this.clearObstaclePool();
     this.gfx.destroy();
   }
 }

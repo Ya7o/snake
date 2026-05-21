@@ -64,7 +64,7 @@ export class HUDRenderer {
   }
 
   update(universeName: string, rule: string, score: number, quota: number | undefined, extra: string): void {
-    const scoreStr = quota !== undefined ? `${score}/${quota}` : `HP:${score}`;
+    const scoreStr = quota !== undefined ? `${score}/${quota}` : `PV : ${score}`;
     if (universeName !== this.lastUniverse) { this.universeTxt.setText(universeName); this.lastUniverse = universeName; }
     if (rule !== this.lastRule)             { this.ruleTxt.setText(rule);             this.lastRule = rule; }
     if (scoreStr !== this.lastScore)        { this.scoreTxt.setText(scoreStr);        this.lastScore = scoreStr; }

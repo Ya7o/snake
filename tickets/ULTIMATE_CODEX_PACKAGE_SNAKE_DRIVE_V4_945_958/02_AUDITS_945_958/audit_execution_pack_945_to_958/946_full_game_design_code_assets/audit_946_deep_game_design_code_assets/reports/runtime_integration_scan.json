@@ -1,0 +1,10 @@
+{
+  "runtimeUniverseAssets_import_or_ref": false,
+  "RuntimeAssetResolver_import_or_ref": true,
+  "load_image": true,
+  "add_image": false,
+  "setDisplaySize": false,
+  "pickup_role": true,
+  "obstacle_role": true,
+  "boss_role": true
+}

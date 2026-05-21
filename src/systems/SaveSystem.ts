@@ -1,3 +1,6 @@
+import { MAP_NODES } from '../config/mapNodes';
+import { LEVELS } from '../config/levels';
+
 const SAVE_KEY = 'snakeDriveV4_save';
 
 export interface SaveData {
@@ -8,12 +11,32 @@ export interface SaveData {
 function defaultSave(): SaveData {
   return {
     clearedLevels: [],
-    unlockedNodes: [
-      'node_1','node_2','node_3','node_4',
-      'node_5','node_6','node_7','node_8',
-      'node_9','node_10','node_11','node_12',
-      'node_13','node_14','node_15','node_16',
-    ],
+    unlockedNodes: MAP_NODES.map(node => node.id),
+  };
+}
+
+function sanitizeSave(value: unknown): SaveData {
+  if (!value || typeof value !== 'object') return defaultSave();
+
+  const raw = value as Partial<SaveData>;
+  const validLevelIds = new Set(LEVELS.map(level => level.id));
+  const validNodeIds = new Set(MAP_NODES.map(node => node.id));
+
+  const clearedLevels = Array.isArray(raw.clearedLevels)
+    ? raw.clearedLevels.filter((id): id is string => typeof id === 'string' && validLevelIds.has(id))
+    : [];
+
+  const unlockedNodes = Array.isArray(raw.unlockedNodes)
+    ? raw.unlockedNodes.filter((id): id is string => typeof id === 'string' && validNodeIds.has(id))
+    : [];
+
+  for (const node of MAP_NODES) {
+    if (!unlockedNodes.includes(node.id)) unlockedNodes.push(node.id);
+  }
+
+  return {
+    clearedLevels: [...new Set(clearedLevels)],
+    unlockedNodes: [...new Set(unlockedNodes)],
   };
 }
 
@@ -22,13 +45,7 @@ export const SaveSystem = {
     try {
       const raw = localStorage.getItem(SAVE_KEY);
       if (!raw) return defaultSave();
-      const data = JSON.parse(raw) as SaveData;
-      // Always ensure all nodes are unlocked
-      const def = defaultSave();
-      for (const n of def.unlockedNodes) {
-        if (!data.unlockedNodes.includes(n)) data.unlockedNodes.push(n);
-      }
-      return data;
+      return sanitizeSave(JSON.parse(raw));
     } catch {
       return defaultSave();
     }
@@ -36,7 +53,7 @@ export const SaveSystem = {
 
   save(data: SaveData): void {
     try {
-      localStorage.setItem(SAVE_KEY, JSON.stringify(data));
+      localStorage.setItem(SAVE_KEY, JSON.stringify(sanitizeSave(data)));
     } catch {
       console.warn('[Save] localStorage unavailable');
     }

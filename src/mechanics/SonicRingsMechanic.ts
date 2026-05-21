@@ -77,6 +77,6 @@ export class SonicRingsMechanic extends BaseMechanic {
   }
 
   getHudExtra(): string {
-    return `RING ${this.chainIndex + 1}/${this.chainSize}`;
+    return `ANNEAU ${this.chainIndex + 1}/${this.chainSize}`;
   }
 }

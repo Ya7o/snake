@@ -1,0 +1,474 @@
+{
+  "setInterval": [],
+  "setTimeout": [
+    {
+      "file": "dist/assets/index-YYQZ95mf.js",
+      "line": 1012,
+      "text": "*/var d=t(25892),c=function(h){if(document.readyState===\"complete\"||document.readyState===\"interactive\"){h();return}var r=function(){document.removeEventListener(\"deviceready\",r,!0),document.removeEventListener(\"DOMContentLoaded\",r,!0),window.removeEventListen"
+    },
+    {
+      "file": "dist/assets/index-YYQZ95mf.js",
+      "line": 1036,
+      "text": "*/var d=t(83419),c=t(29747),h=new d({initialize:function(){this.isRunning=!1,this.callback=c,this.isSetTimeOut=!1,this.timeOutID=null,this.delay=0;var n=this;this.step=function e(s){n.callback(s),n.isRunning&&(n.timeOutID=window.requestAnimationFrame(e))},this"
+    },
+    {
+      "file": "dist/assets/index-YYQZ95mf.js",
+      "line": 3540,
+      "text": "*/var d=t(83419),c=t(54899),h=t(41299),r=t(95540),n=t(98356),e=t(41212),s=new d({Extends:h,initialize:function(i,o,l,u){if(e(o)){var f=o;o=r(f,\"key\"),u=r(f,\"config\",u)}var v={type:\"audio\",cache:i.cacheManager.audio,extension:l.type,key:o,url:l.url,config:u};h."
+    },
+    {
+      "file": "src/systems/AudioSystem.ts",
+      "line": 41,
+      "text": "clear(): void     { this.tone(660, 0.12); setTimeout(() => this.tone(880, 0.15), 100); },"
+    }
+  ],
+  "tweens_particles": [
+    {
+      "file": "package-lock.json",
+      "line": 870,
+      "text": "\"node_modules/eventemitter3\": {"
+    },
+    {
+      "file": "package-lock.json",
+      "line": 872,
+      "text": "\"resolved\": \"https://registry.npmjs.org/eventemitter3/-/eventemitter3-5.0.4.tgz\","
+    },
+    {
+      "file": "package-lock.json",
+      "line": 934,
+      "text": "\"eventemitter3\": \"^5.0.1\""
+    },
+    {
+      "file": "dist/assets/index-YYQZ95mf.js",
+      "line": 1,
+      "text": "var ve=Object.defineProperty;var ce=(q,Z,b)=>Z in q?ve(q,Z,{enumerable:!0,configurable:!0,writable:!0,value:b}):q[Z]=b;var $=(q,Z,b)=>ce(q,typeof Z!=\"symbol\"?Z+\"\":Z,b);(function(){const Z=document.createElement(\"link\").relList;if(Z&&Z.supports&&Z.supports(\"mod"
+    },
+    {
+      "file": "dist/assets/index-YYQZ95mf.js",
+      "line": 466,
+      "text": "*/var d=t(40366),c=t(60848),h=t(24047),r=t(27919),n=t(83419),e=t(69547),s=t(83719),a=t(86054),i=t(45893),o=t(96391),l=t(82264),u=t(57264),f=t(50792),v=t(8443),m=t(7003),x=t(37277),g=t(77332),y=t(76531),S=t(60903),C=t(69442),E=t(17130),A=t(65898),P=t(51085),M=t"
+    },
+    {
+      "file": "dist/assets/index-YYQZ95mf.js",
+      "line": 1044,
+      "text": "*/var d=t(83419),c=t(50792),h=t(37277),r=new d({Extends:c,initialize:function(){c.call(this)},shutdown:function(){this.removeAllListeners()},destroy:function(){this.removeAllListeners()}});h.register(\"EventEmitter\",r,\"events\"),p.exports=r}),93055:((p,T,t)=>{/*"
+    },
+    {
+      "file": "dist/assets/index-YYQZ95mf.js",
+      "line": 1048,
+      "text": "*/p.exports={EventEmitter:t(47565)}}),20122:((p,T,t)=>{/**"
+    },
+    {
+      "file": "dist/assets/index-YYQZ95mf.js",
+      "line": 1305,
+      "text": "*/var d=t(39506),c=t(57355),h=t(35154),r=t(86353),n=t(26099),e={path:null,rotateToPath:!1,pathRotationOffset:0,pathOffset:null,pathVector:null,pathDelta:null,pathTween:null,pathConfig:null,_prevDirection:r.PLAYING_FORWARD,setPath:function(s,a){a===void 0&&(a=t"
+    },
+    {
+      "file": "dist/assets/index-YYQZ95mf.js",
+      "line": 1563,
+      "text": "*/var d={Events:t(51708),DisplayList:t(8050),GameObjectCreator:t(44603),GameObjectFactory:t(39429),UpdateList:t(45027),Components:t(31401),GetCalcMatrix:t(91296),BuildGameObject:t(25305),BuildGameObjectAnimation:t(13059),GameObject:t(95643),BitmapText:t(22186)"
+    },
+    {
+      "file": "dist/assets/index-YYQZ95mf.js",
+      "line": 1659,
+      "text": "*/var d=t(9674),c=t(45319),h=t(83419),r=t(39506),n=t(87841),e=t(11520),s=t(26099),a=new h({initialize:function(o){this.emitter=o,this.texture=null,this.frame=null,this.x=0,this.y=0,this.worldPosition=new s,this.velocityX=0,this.velocityY=0,this.accelerationX=0"
+    },
+    {
+      "file": "dist/assets/index-YYQZ95mf.js",
+      "line": 1667,
+      "text": "*/var d=t(83419),c=t(31401),h=t(53774),r=t(43459),n=t(26388),e=t(19909),s=t(76472),a=t(44777),i=t(20696),o=t(95643),l=t(95540),u=t(26546),f=t(24502),v=t(69036),m=t(1985),x=t(97022),g=t(86091),y=t(73162),S=t(20074),C=t(269),E=t(56480),A=t(69601),P=t(68875),M=t("
+    },
+    {
+      "file": "dist/assets/index-YYQZ95mf.js",
+      "line": 1675,
+      "text": "*/var d=t(25305),c=t(44603),h=t(23568),r=t(95540),n=t(31600);c.register(\"particles\",function(e,s){e===void 0&&(e={});var a=h(e,\"key\",null),i=r(e,\"config\",null),o=new n(this.scene,0,0,a);return s!==void 0&&(e.add=s),d(this.scene,o,e),i&&o.setConfig(i),o})}),676"
+    },
+    {
+      "file": "dist/assets/index-YYQZ95mf.js",
+      "line": 1679,
+      "text": "*/var d=t(39429),c=t(31600);d.register(\"particles\",function(h,r,n,e){return h!==void 0&&typeof h==\"string\"&&console.warn(\"ParticleEmitterManager was removed in Phaser 3.60. See documentation for details\"),this.displayList.add(new c(this.scene,h,r,n,e))})}),906"
+    },
+    {
+      "file": "dist/assets/index-YYQZ95mf.js",
+      "line": 1691,
+      "text": "*/var d=t(83419),c=new d({initialize:function(r,n,e){r===void 0&&(r=0),n===void 0&&(n=0),e===void 0&&(e=!0),this.emitter,this.x=r,this.y=n,this.active=e},update:function(){},destroy:function(){this.emitter=null}});p.exports=c}),9774:(p=>{/**"
+    },
+    {
+      "file": "dist/assets/index-YYQZ95mf.js",
+      "line": 1719,
+      "text": "*/p.exports={EmitterColorOp:t(76472),EmitterOp:t(44777),Events:t(20696),GravityWell:t(24502),Particle:t(56480),ParticleBounds:t(69601),ParticleEmitter:t(31600),ParticleProcessor:t(20286),Zones:t(21024)}}),26388:((p,T,t)=>{/**"
+    },
+    {
+      "file": "dist/assets/index-YYQZ95mf.js",
+      "line": 4209,
+      "text": "*/t(63595);var d=t(8054),c=t(79291),h={Actions:t(61061),Animations:t(60421),BlendModes:t(10312),Cache:t(83388),Cameras:t(26638),Core:t(42857),Class:t(83419),Create:t(15822),Curves:t(25410),Data:t(44965),Display:t(27460),DOM:t(84902),Events:t(93055),FX:t(66064)"
+    },
+    {
+      "file": "src/render/VfxUtils.ts",
+      "line": 140,
+      "text": "scene.tweens.add({"
+    },
+    {
+      "file": "src/scenes/TitleScene.ts",
+      "line": 74,
+      "text": "this.tweens.add({"
+    },
+    {
+      "file": "src/scenes/TitleScene.ts",
+      "line": 110,
+      "text": "this.tweens.add({"
+    },
+    {
+      "file": "src/scenes/ClearScene.ts",
+      "line": 34,
+      "text": "// Sparkle particles (procedural stars)"
+    },
+    {
+      "file": "src/scenes/ClearScene.ts",
+      "line": 77,
+      "text": "this.tweens.add({"
+    },
+    {
+      "file": "tickets/audit_pack_926_mobile_ready_and_gameplay_mechanics_compliance/tickets/926_PATCH_MOBILE_READY_COMPLIANCE_AUDIT.md",
+      "line": 39,
+      "text": "- [ ] Vérifier les risques performance Android : objets créés dans `update()`, listeners accumulés, textures recréées, tweens/timers non nettoyés."
+    }
+  ],
+  "destroy": [
+    {
+      "file": "src/main.ts",
+      "line": 38,
+      "text": "try { __SNAKE_GAME__.destroy(true, false); } catch { /* ignore */ }"
+    },
+    {
+      "file": "src/main.ts",
+      "line": 50,
+      "text": "try { game.destroy(true, false); } catch { /* ignore */ }"
+    },
+    {
+      "file": "dist/assets/index-YYQZ95mf.js",
+      "line": 222,
+      "text": "*/var d=t(45319),c=t(83419),h=t(74943),r=t(81957),n=t(41138),e=t(35154),s=t(90126),a=new c({initialize:function(o,l,u){this.manager=o,this.key=l,this.type=\"frame\",this.frames=this.getFrames(o.textureManager,e(u,\"frames\",[]),e(u,\"defaultTextureKey\",null),e(u,\"s"
+    },
+    {
+      "file": "dist/assets/index-YYQZ95mf.js",
+      "line": 294,
+      "text": "*/var d=t(2161),c=t(83419),h=t(8443),r=new c({initialize:function(e){this.game=e,this.binary=new d,this.bitmapFont=new d,this.json=new d,this.physics=new d,this.shader=new d,this.audio=new d,this.video=new d,this.text=new d,this.html=new d,this.obj=new d,this."
+    },
+    {
+      "file": "dist/assets/index-YYQZ95mf.js",
+      "line": 314,
+      "text": "*/var d=t(83419),c=t(31401),h=t(39506),r=t(50792),n=t(19715),e=t(87841),s=t(61340),a=t(80333),i=t(26099),o=new d({Extends:r,Mixins:[c.AlphaSingle,c.Visible],initialize:function(u,f,v,m){u===void 0&&(u=0),f===void 0&&(f=0),v===void 0&&(v=0),m===void 0&&(m=0),r."
+    },
+    {
+      "file": "dist/assets/index-YYQZ95mf.js",
+      "line": 322,
+      "text": "*/var d=t(38058),c=t(83419),h=t(95540),r=t(37277),n=t(37303),e=t(97480),s=t(44594),a=new c({initialize:function(o){this.scene=o,this.systems=o.sys,this.roundPixels=o.sys.game.config.roundPixels,this.cameras=[],this.main,this.default,o.sys.events.once(s.BOOT,th"
+    },
+    {
+      "file": "dist/assets/index-YYQZ95mf.js",
+      "line": 466,
+      "text": "*/var d=t(40366),c=t(60848),h=t(24047),r=t(27919),n=t(83419),e=t(69547),s=t(83719),a=t(86054),i=t(45893),o=t(96391),l=t(82264),u=t(57264),f=t(50792),v=t(8443),m=t(7003),x=t(37277),g=t(77332),y=t(76531),S=t(60903),C=t(69442),E=t(17130),A=t(65898),P=t(51085),M=t"
+    },
+    {
+      "file": "dist/assets/index-YYQZ95mf.js",
+      "line": 470,
+      "text": "*/var d=t(83419),c=t(35154),h=t(29747),r=t(43092),n=new d({initialize:function(s,a){this.game=s,this.raf=new r,this.started=!1,this.running=!1,this.minFps=c(a,\"min\",5),this.targetFps=c(a,\"target\",60),this.fpsLimit=c(a,\"limit\",0),this.hasFpsLimit=this.fpsLimit>"
+    },
+    {
+      "file": "dist/assets/index-YYQZ95mf.js",
+      "line": 1128,
+      "text": "*/var d=t(83419),c=t(73162),h=t(37277),r=t(51708),n=t(44594),e=t(19186),s=new d({Extends:c,initialize:function(i){c.call(this,i),this.sortChildrenFlag=!1,this.scene=i,this.systems=i.sys,this.events=i.sys.events,this.addCallback=this.addChildCallback,this.remov"
+    },
+    {
+      "file": "dist/assets/index-YYQZ95mf.js",
+      "line": 1132,
+      "text": "*/var d=t(83419),c=t(53774),h=t(45893),r=t(50792),n=t(51708),e=t(44594),s=new d({Extends:r,initialize:function(i,o){r.call(this),this.scene=i,this.displayList=null,this.type=o,this.state=0,this.parentContainer=null,this.name=\"\",this.active=!0,this.tabIndex=-1,"
+    },
+    {
+      "file": "dist/assets/index-YYQZ95mf.js",
+      "line": 1148,
+      "text": "*/var d=t(83419),c=t(25774),h=t(37277),r=t(44594),n=new d({Extends:c,initialize:function(s){c.call(this),this.checkQueue=!0,this.scene=s,this.systems=s.sys,s.sys.events.once(r.BOOT,this.boot,this),s.sys.events.on(r.START,this.start,this)},boot:function(){this."
+    },
+    {
+      "file": "dist/assets/index-YYQZ95mf.js",
+      "line": 1233,
+      "text": "*/var d=t(48011),c=t(46590),h=t(83419),r=t(31401),n=t(4327),e=t(95643),s=t(73162),a=new h({Extends:e,Mixins:[r.Alpha,r.BlendMode,r.Depth,r.Mask,r.Pipeline,r.PostPipeline,r.ScrollFactor,r.Size,r.Texture,r.Transform,r.Visible,d],initialize:function(o,l,u,f,v){e."
+    },
+    {
+      "file": "dist/assets/index-YYQZ95mf.js",
+      "line": 1285,
+      "text": "*/var d=t(83419),c=t(66064),h=t(19133),r=new d({initialize:function(e,s){this.gameObject=e,this.isPost=s,this.enabled=!1,this.list=[],this.padding=0},setPadding:function(n){return n===void 0&&(n=0),this.padding=n,this.gameObject},onFXCopy:function(){},onFX:fun"
+    },
+    {
+      "file": "dist/assets/index-YYQZ95mf.js",
+      "line": 1297,
+      "text": "*/var d=t(6858),c=t(80661),h={mask:null,setMask:function(r){return this.mask=r,this},clearMask:function(r){return r===void 0&&(r=!1),r&&this.mask&&this.mask.destroy(),this.mask=null,this},createBitmapMask:function(r,n,e,s,a){return r===void 0&&(this.texture||t"
+    },
+    {
+      "file": "dist/assets/index-YYQZ95mf.js",
+      "line": 1313,
+      "text": "*/var d=t(62644),c=t(47059),h=t(19133),r={hasPostPipeline:!1,postPipelines:null,postPipelineData:null,preFX:null,postFX:null,initPostPipeline:function(n){this.postPipelines=[],this.postPipelineData={},this.postFX=new c(this,!0),n&&(this.preFX=new c(this,!1))},"
+    },
+    {
+      "file": "dist/assets/index-YYQZ95mf.js",
+      "line": 1341,
+      "text": "*/var d=t(36383),c=t(61340),h=t(85955),r=t(86554),n=t(30954),e=t(26099),s=4,a={hasTransformComponent:!0,_scaleX:1,_scaleY:1,_rotation:0,x:0,y:0,z:0,w:0,scale:{get:function(){return(this._scaleX+this._scaleY)/2},set:function(i){this._scaleX=i,this._scaleY=i,i=="
+    },
+    {
+      "file": "dist/assets/index-YYQZ95mf.js",
+      "line": 1358,
+      "text": "*/var d=t(37105),c=t(10312),h=t(83419),r=t(31401),n=t(51708),e=t(95643),s=t(87841),a=t(29959),i=t(36899),o=t(26099),l=new r.TransformMatrix,u=new h({Extends:e,Mixins:[r.AlphaSingle,r.BlendMode,r.ComputedSize,r.Depth,r.Mask,r.PostPipeline,r.Transform,r.Visible,"
+    },
+    {
+      "file": "dist/assets/index-YYQZ95mf.js",
+      "line": 1527,
+      "text": "*/var d=t(61061),c=t(83419),h=t(51708),r=t(50792),n=t(46710),e=t(95540),s=t(35154),a=t(97022),i=t(41212),o=t(88492),l=t(35072),u=t(68287),f=new c({Extends:r,initialize:function(m,x,g){r.call(this),g?x&&!Array.isArray(x)&&(x=[x]):Array.isArray(x)?i(x[0])&&(g=x,"
+    },
+    {
+      "file": "dist/assets/index-YYQZ95mf.js",
+      "line": 1567,
+      "text": "*/var d=t(10312),c=t(83419),h=t(31401),r=t(53774),n=t(45893),e=t(50792),s=t(51708),a=t(73162),i=t(33963),o=t(44594),l=t(19186),u=new c({Extends:a,Mixins:[h.AlphaSingle,h.BlendMode,h.Depth,h.Mask,h.PostPipeline,h.Visible,e,i],initialize:function(v,m){a.call(thi"
+    },
+    {
+      "file": "dist/assets/index-YYQZ95mf.js",
+      "line": 1603,
+      "text": "*/var d=t(83419),c=t(31401),h=t(39506),r=t(83997),n=t(95643),e=t(34684),s=t(92515),a=t(91296),i=t(37867),o=t(29807),l=t(43396),u=t(19186),f=t(25836),v=t(39318),m=new d({Extends:n,Mixins:[c.AlphaSingle,c.BlendMode,c.Depth,c.Mask,c.Pipeline,c.PostPipeline,c.Scro"
+    },
+    {
+      "file": "dist/assets/index-YYQZ95mf.js",
+      "line": 1659,
+      "text": "*/var d=t(9674),c=t(45319),h=t(83419),r=t(39506),n=t(87841),e=t(11520),s=t(26099),a=new h({initialize:function(o){this.emitter=o,this.texture=null,this.frame=null,this.x=0,this.y=0,this.worldPosition=new s,this.velocityX=0,this.velocityY=0,this.accelerationX=0"
+    },
+    {
+      "file": "dist/assets/index-YYQZ95mf.js",
+      "line": 1667,
+      "text": "*/var d=t(83419),c=t(31401),h=t(53774),r=t(43459),n=t(26388),e=t(19909),s=t(76472),a=t(44777),i=t(20696),o=t(95643),l=t(95540),u=t(26546),f=t(24502),v=t(69036),m=t(1985),x=t(97022),g=t(86091),y=t(73162),S=t(20074),C=t(269),E=t(56480),A=t(69601),P=t(68875),M=t("
+    },
+    {
+      "file": "dist/assets/index-YYQZ95mf.js",
+      "line": 1747,
+      "text": "*/var d=t(9674),c=t(83419),h=t(48803),r=t(90664),n=t(4703),e=t(45650),s=new c({Extends:n,initialize:function(i,o,l,u,f,v,m,x){u||(u=\"__DEFAULT\"),n.call(this,i,o,l,u,f),this.type=\"Plane\",this.anims=new d(this),this.gridWidth,this.gridHeight,this.isTiled,this._c"
+    },
+    {
+      "file": "dist/assets/index-YYQZ95mf.js",
+      "line": 1779,
+      "text": "*/var d=t(83419),c=t(81320),h=t(88571),r=new d({Extends:h,initialize:function(e,s,a,i,o,l){s===void 0&&(s=0),a===void 0&&(a=0),i===void 0&&(i=32),o===void 0&&(o=32),l===void 0&&(l=!0);var u=new c(e.sys.textures,\"\",i,o,l);h.call(this,e,s,a,u),this.type=\"RenderT"
+    },
+    {
+      "file": "dist/assets/index-YYQZ95mf.js",
+      "line": 1791,
+      "text": "*/var d=t(9674),c=t(83419),h=t(31401),r=t(95643),n=t(36060),e=t(38745),s=t(26099),a=new c({Extends:r,Mixins:[h.AlphaSingle,h.BlendMode,h.Depth,h.Flip,h.Mask,h.Pipeline,h.PostPipeline,h.Size,h.Texture,h.Transform,h.Visible,h.ScrollFactor,e],initialize:function("
+    },
+    {
+      "file": "dist/assets/index-YYQZ95mf.js",
+      "line": 1815,
+      "text": "*/var d=t(83419),c=t(31401),h=t(95643),r=t(95540),n=t(79291),e=t(61622),s=t(25479),a=t(61340),i=t(95428),o=t(92503),l=new d({Extends:h,Mixins:[c.ComputedSize,c.Depth,c.GetBounds,c.Mask,c.Origin,c.ScrollFactor,c.Transform,c.Visible,s],initialize:function(f,v,m,"
+    },
+    {
+      "file": "dist/assets/index-YYQZ95mf.js",
+      "line": 2079,
+      "text": "*/var d=t(9674),c=t(83419),h=t(31401),r=t(95643),n=t(92751),e=new c({Extends:r,Mixins:[h.Alpha,h.BlendMode,h.Depth,h.Flip,h.GetBounds,h.Mask,h.Origin,h.Pipeline,h.PostPipeline,h.ScrollFactor,h.Size,h.TextureCrop,h.Tint,h.Transform,h.Visible,n],initialize:funct"
+    },
+    {
+      "file": "dist/assets/index-YYQZ95mf.js",
+      "line": 2119,
+      "text": "`+f:f);return m!==this._text&&(this._text=m,this.updateText()),this},setStyle:function(f){return this.style.setStyle(f)},setFont:function(f){return this.style.setFont(f)},setFontFamily:function(f){return this.style.setFontFamily(f)},setFontSize:function(f){ret"
+    },
+    {
+      "file": "dist/assets/index-YYQZ95mf.js",
+      "line": 2147,
+      "text": "*/var d=t(27919),c=t(83419),h=t(31401),r=t(95643),n=t(98439),e=t(68703),s=t(56295),a=t(45650),i=t(26099),o=8,l=new c({Extends:r,Mixins:[h.Alpha,h.BlendMode,h.ComputedSize,h.Crop,h.Depth,h.Flip,h.GetBounds,h.Mask,h.Origin,h.Pipeline,h.PostPipeline,h.ScrollFacto"
+    },
+    {
+      "file": "dist/assets/index-YYQZ95mf.js",
+      "line": 3030,
+      "text": "*/var d=t(83419),c=t(93301),h=t(50792),r=t(8214),n=t(8443),e=t(78970),s=t(85098),a=t(42515),i=t(36210),o=t(61340),l=t(85955),u=new d({initialize:function(v,m){this.game=v,this.scaleManager,this.canvas,this.config=m,this.enabled=!0,this.events=new h,this.isOver"
+    },
+    {
+      "file": "dist/assets/index-YYQZ95mf.js",
+      "line": 3034,
+      "text": "*/var d=t(96503),c=t(87902),h=t(83419),r=t(93301),n=t(74457),e=t(84409),s=t(20339),a=t(8497),i=t(81154),o=t(8214),l=t(50792),u=t(95540),f=t(23777),v=t(89639),m=t(41212),x=t(37277),g=t(87841),y=t(37303),S=t(44594),C=t(16483),E=t(10690),A=new h({Extends:l,initia"
+    },
+    {
+      "file": "dist/assets/index-YYQZ95mf.js",
+      "line": 3246,
+      "text": "*/var d=t(97421),c=t(28884),h=t(83419),r=t(50792),n=t(26099),e=new h({Extends:r,initialize:function(a,i){r.call(this),this.manager=a,this.pad=i,this.id=i.id,this.index=i.index;for(var o=[],l=0;l<i.buttons.length;l++)o.push(new c(this,l));this.buttons=o;var u=["
+    },
+    {
+      "file": "dist/assets/index-YYQZ95mf.js",
+      "line": 3250,
+      "text": "*/var d=t(83419),c=t(50792),h=t(92734),r=t(99125),n=t(35154),e=t(89639),s=t(8214),a=new d({Extends:c,initialize:function(o){c.call(this),this.scene=o.scene,this.settings=this.scene.sys.settings,this.sceneInputPlugin=o,this.enabled=!0,this.target,this.gamepads="
+    },
+    {
+      "file": "dist/assets/index-YYQZ95mf.js",
+      "line": 3310,
+      "text": "*/var d=t(83419),c=t(50792),h=t(95922),r=t(8443),n=t(35154),e=t(8214),s=t(89639),a=t(30472),i=t(46032),o=t(87960),l=t(74600),u=t(44594),f=t(56583),v=new d({Extends:c,initialize:function(x){c.call(this),this.game=x.systems.game,this.scene=x.scene,this.settings="
+    },
+    {
+      "file": "dist/assets/index-YYQZ95mf.js",
+      "line": 3318,
+      "text": "*/var d=t(83419),c=t(95922),h=t(95540),r=t(68769),n=t(92803),e=new d({initialize:function(a,i,o){if(o===void 0&&(o={}),i.length<2)return!1;this.manager=a,this.enabled=!0,this.keyCodes=[];for(var l=0;l<i.length;l++){var u=i[l];typeof u==\"string\"?this.keyCodes.p"
+    },
+    {
+      "file": "dist/assets/index-YYQZ95mf.js",
+      "line": 4217,
+      "text": "*/var d=t(83419),c=t(39506),h=t(20339),r=t(89774),n=t(66022),e=t(95540),s=t(46975),a=t(72441),i=t(47956),o=t(37277),l=t(44594),u=t(26099),f=t(82248),v=new d({initialize:function(x){this.scene=x,this.systems=x.sys,this.config=this.getConfig(),this.world,this.ad"
+    },
+    {
+      "file": "dist/assets/index-YYQZ95mf.js",
+      "line": 4281,
+      "text": "*/var d=t(55495),c=t(37742),h=t(45319),r=t(83419),n=t(79342),e=t(37747),s=t(20339),a=t(52816),i=t(50792),o=t(63012),l=t(43855),u=t(5470),f=t(94977),v=t(64897),m=t(45170),x=t(96523),g=t(35154),y=t(36383),S=t(25774),C=t(96602),E=t(87841),A=t(59542),P=t(40012),M="
+    },
+    {
+      "file": "dist/assets/index-YYQZ95mf.js",
+      "line": 4445,
+      "text": "*/var d=t(60461),c=t(66615),h=t(66280),r=t(22562),n=t(68174),e=t(15647),s=t(83419),a=t(52284),i=t(53402),o=t(69351),l=t(74116),u=t(48140),f=t(81388),v=t(20339),m=t(28137),x=t(95540),g=t(35154),y=t(46975),S=t(4506),C=t(99561),E=t(37277),A=t(73296),P=t(66272),M="
+    },
+    {
+      "file": "dist/assets/index-YYQZ95mf.js",
+      "line": 4453,
+      "text": "*/var d=t(66280),c=t(22562),h=t(83419),r=t(31884),n=t(62644),e=t(50792),s=t(95540),a=t(97022),i=t(41598),o=new h({Extends:e,Mixins:[r.Bounce,r.Collision,r.Friction,r.Gravity,r.Mass,r.Sensor,r.Sleep,r.Static],initialize:function(u,f,v){e.call(this),this.tile=f,"
+    },
+    {
+      "file": "dist/assets/index-YYQZ95mf.js",
+      "line": 4471,
+      "text": "*/var d=t(66280),c=t(22562),h=t(83419),r=t(53402),n=t(69351),e=t(48413),s=t(50792),a=t(1121),i=t(95540),o=t(35154),l=t(22562),u=t(35810),f=t(73834),v=t(4372),m=t(13037),x=t(31725),g=new h({Extends:s,initialize:function(S,C){s.call(this),this.scene=S,this.engin"
+    },
+    {
+      "file": "src/render/SnakeRenderer.ts",
+      "line": 89,
+      "text": "destroy(): void { this.gfx.destroy(); }"
+    },
+    {
+      "file": "src/render/VfxUtils.ts",
+      "line": 145,
+      "text": "onComplete: () => flash.destroy()"
+    },
+    {
+      "file": "src/render/PickupRenderer.ts",
+      "line": 257,
+      "text": "for (const img of this.imagePool) img.destroy();"
+    },
+    {
+      "file": "src/render/PickupRenderer.ts",
+      "line": 261,
+      "text": "destroy(): void {"
+    },
+    {
+      "file": "src/render/PickupRenderer.ts",
+      "line": 263,
+      "text": "this.gfx.destroy();"
+    },
+    {
+      "file": "src/render/GridRenderer.ts",
+      "line": 66,
+      "text": "for (const t of this.frameTiles) t.destroy();"
+    },
+    {
+      "file": "src/render/GridRenderer.ts",
+      "line": 141,
+      "text": "destroy(): void {"
+    },
+    {
+      "file": "src/render/GridRenderer.ts",
+      "line": 142,
+      "text": "for (const t of this.frameTiles) t.destroy();"
+    },
+    {
+      "file": "src/render/GridRenderer.ts",
+      "line": 143,
+      "text": "this.gfx.destroy();"
+    },
+    {
+      "file": "src/render/UniverseFrameRenderer.ts",
+      "line": 102,
+      "text": "destroy(): void {"
+    },
+    {
+      "file": "src/render/UniverseFrameRenderer.ts",
+      "line": 179,
+      "text": "for (const part of this.parts) part.destroy();"
+    },
+    {
+      "file": "src/render/ObstacleRenderer.ts",
+      "line": 134,
+      "text": "for (const img of this.bossImages.values()) img.destroy();"
+    },
+    {
+      "file": "src/render/ObstacleRenderer.ts",
+      "line": 139,
+      "text": "for (const img of this.obstaclePool) img.destroy();"
+    },
+    {
+      "file": "src/render/ObstacleRenderer.ts",
+      "line": 238,
+      "text": "destroy(): void {"
+    },
+    {
+      "file": "src/render/ObstacleRenderer.ts",
+      "line": 241,
+      "text": "this.gfx.destroy();"
+    },
+    {
+      "file": "src/render/HUDRenderer.ts",
+      "line": 74,
+      "text": "destroy(): void {"
+    },
+    {
+      "file": "src/render/HUDRenderer.ts",
+      "line": 75,
+      "text": "this.bg.destroy();"
+    },
+    {
+      "file": "src/render/HUDRenderer.ts",
+      "line": 76,
+      "text": "this.hudPanelImg?.destroy();"
+    },
+    {
+      "file": "src/render/HUDRenderer.ts",
+      "line": 77,
+      "text": "this.accentBar.destroy();"
+    },
+    {
+      "file": "src/render/HUDRenderer.ts",
+      "line": 78,
+      "text": "this.universeTxt.destroy();"
+    },
+    {
+      "file": "src/render/HUDRenderer.ts",
+      "line": 79,
+      "text": "this.ruleTxt.destroy();"
+    },
+    {
+      "file": "src/render/HUDRenderer.ts",
+      "line": 80,
+      "text": "this.scoreTxt.destroy();"
+    },
+    {
+      "file": "src/render/HUDRenderer.ts",
+      "line": 81,
+      "text": "this.extraTxt.destroy();"
+    },
+    {
+      "file": "src/systems/InputSystem.ts",
+      "line": 124,
+      "text": "destroy(): void {"
+    },
+    {
+      "file": "src/scenes/GameScene.ts",
+      "line": 223,
+      "text": "this.inputSys?.destroy();"
+    },
+    {
+      "file": "src/scenes/GameScene.ts",
+      "line": 224,
+      "text": "this.universeFrameRenderer?.destroy();"
+    },
+    {
+      "file": "docs/audits/926_MOBILE_READY_COMPLIANCE_AUDIT.md",
+      "line": 91,
+      "text": "- Pass: `InputSystem.destroy()` and `WorldMapScene.doShutdown()` remove listeners."
+    }
+  ]
+}

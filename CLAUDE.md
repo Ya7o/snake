@@ -30,7 +30,8 @@ Le projet n'est plus à créer from scratch : il possède déjà une build jouab
 11. Boss courts et compréhensibles.
 12. Pas de nouvelle dépendance sans raison forte.
 13. Si un asset manque, fallback procédural obligatoire.
-14. Ne pas lancer de serveur si l'utilisateur dit de ne pas le faire.
+14. Ne jamais lancer de serveur (`npm run dev`, `npm run preview`, Vite ou équivalent) : l'utilisateur démarre toujours les serveurs manuellement.
+15. WorldMap : ne jamais réintroduire de bouton `JOUER` dans le footer. Le lancement se fait par double tap/retap du badge de niveau; afficher seulement une consigne texte si nécessaire.
 
 ## Structure Actuelle
 
@@ -95,7 +96,7 @@ Après modification :
 1. Lancer `npm run check`.
 2. Documenter les fichiers modifiés.
 3. Signaler les fallbacks et limites.
-4. Ne pas laisser de serveur en cours.
+4. Ne pas lancer ni laisser de serveur en cours.
 
 ## Nettoyage Repo
 
