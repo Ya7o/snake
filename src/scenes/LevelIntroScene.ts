@@ -38,13 +38,10 @@ export class LevelIntroScene extends Phaser.Scene {
       }
     }
 
-    const pairs: Array<[string, string]> = [
-      [`db_${uid}_pickup01`, `assets/universes/${uid}/pickup_01.png`],
-      [`db_${uid}_boss`,     `assets/universes/${uid}/boss.png`],
-    ];
-    for (const [key, path] of pairs) {
-      if (!this.textures.exists(key)) this.load.image(key, path);
-    }
+    const isBoss = level.type === 'boss';
+    const badgeKey = isBoss ? `db_${uid}_boss` : `db_${uid}_pickup01`;
+    const badgePath = isBoss ? `assets/universes/${uid}/boss.png` : `assets/universes/${uid}/pickup_01.png`;
+    if (!this.textures.exists(badgeKey)) this.load.image(badgeKey, badgePath);
   }
 
   create(data: LevelIntroData): void {

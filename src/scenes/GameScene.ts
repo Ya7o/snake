@@ -104,10 +104,12 @@ export class GameScene extends Phaser.Scene {
       [`db_${uid}_pickup02`,   `${base}/pickup_02.png`],
       [`db_${uid}_obstacle01`, `${base}/obstacle_01.png`],
       [`db_${uid}_obstacle02`, `${base}/obstacle_02.png`],
-      [`db_${uid}_boss`,       `${base}/boss.png`],
       [`db_${uid}_frame`,      `${base}/frame_tile.png`],
       [`db_${uid}_hudPanel`,   `${base}/hud_panel.png`],
     ];
+    if (this.levelConfig.type === 'boss') {
+      assetKeys.push([`db_${uid}_boss`, `${base}/boss.png`]);
+    }
     for (const [key, path] of assetKeys) {
       if (!this.textures.exists(key)) this.load.image(key, path);
     }
