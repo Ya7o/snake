@@ -1,4 +1,4 @@
-import { BaseMechanic, ExtraEntity, MechanicUpdate } from './BaseMechanic';
+import { BaseMechanic, DangerCell, ExtraEntity, MechanicUpdate } from './BaseMechanic';
 import { Cell, cellKey } from '../core/Grid';
 import { Grid } from '../core/Grid';
 
@@ -51,8 +51,6 @@ export class OutRunLaneMechanic extends BaseMechanic {
 
   tick(_tickCount: number): MechanicUpdate {
     this.spawnTimer++;
-    let hitDanger = false;
-    const head = this.ctx.snake.body[0];
 
     // Scroll traffic down
     if (this.spawnTimer % 2 === 0) {
@@ -61,11 +59,6 @@ export class OutRunLaneMechanic extends BaseMechanic {
         t.ttl--;
       }
       this.traffic = this.traffic.filter(t => t.ttl > 0 && t.cell.row < this.ctx.grid.rows);
-    }
-
-    // Collision
-    for (const t of this.traffic) {
-      if (t.cell.col === head.col && t.cell.row === head.row) hitDanger = true;
     }
 
     // Spawn traffic at top every 10 ticks
@@ -79,7 +72,7 @@ export class OutRunLaneMechanic extends BaseMechanic {
       }
     }
 
-    return { hitDanger };
+    return {};
   }
 
   onPickupCollected(_cell: Cell): MechanicUpdate {
@@ -91,6 +84,10 @@ export class OutRunLaneMechanic extends BaseMechanic {
     return this.traffic.map(t => ({
       type: 'trafficBlock', cell: t.cell, state: 'moving'
     }));
+  }
+
+  getDangerCells(): DangerCell[] {
+    return this.traffic.map(t => ({ ...t.cell, source: 'laneDrift', lethal: true }));
   }
 
   getHudExtra(): string { return 'PASSE LES BALISES'; }

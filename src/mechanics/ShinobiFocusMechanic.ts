@@ -1,4 +1,4 @@
-import { BaseMechanic, ExtraEntity, MechanicUpdate } from './BaseMechanic';
+import { BaseMechanic, DangerCell, ExtraEntity, MechanicUpdate } from './BaseMechanic';
 import { Cell, cellKey } from '../core/Grid';
 import { Grid } from '../core/Grid';
 
@@ -36,10 +36,7 @@ export class ShinobiFocusMechanic extends BaseMechanic {
   onPickupCollected(cell: Cell): MechanicUpdate {
     const t = this.targets.find(t => t.cell.col === cell.col && t.cell.row === cell.row);
     this.spawnTargets();
-    if (t && !t.real) {
-      // decoy collected = danger (fake "death" — we signal hitDanger)
-      return { hitDanger: true };
-    }
+    if (t && !t.real) return {};
     return {};
   }
 
@@ -54,6 +51,12 @@ export class ShinobiFocusMechanic extends BaseMechanic {
   // Return real target as pickup cell
   getRealTargetPickups(): Cell[] {
     return this.targets.filter(t => t.real).map(t => t.cell);
+  }
+
+  getDangerCells(): DangerCell[] {
+    return this.targets
+      .filter(t => !t.real)
+      .map(t => ({ ...t.cell, source: 'focusMode', lethal: true }));
   }
 
   getHudExtra(): string { return 'VRAIE CIBLE'; }

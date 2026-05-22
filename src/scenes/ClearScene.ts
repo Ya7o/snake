@@ -1,25 +1,40 @@
 import Phaser from 'phaser';
-import { SCENES } from '../config/constants';
-import { getLevelById } from '../config/levels';
+import { CASTLE_RESULT_SCREEN_ASSETS, SCENES } from '../config/constants';
+import { getLevelById, resolveLevelId } from '../config/levels';
 import { UNIVERSES } from '../config/universes';
 import { MAP_NODES } from '../config/mapNodes';
-import { ARCADE_FONT, UI_FONT, addMobileButton, drawConsoleFrame, addScanlines, flashScreen } from '../render/VfxUtils';
+import { RESULT_SCREEN_LAYOUT, CASTLE_RESULT_THEME, getUniverseButtons } from '../ui/RuntimeUILayout';
+import { ARCADE_FONT, UI_FONT, addMobileButton, drawConsoleFrame, flashScreen } from '../render/VfxUtils';
 
 export interface ClearData {
   levelId: string;
 }
 
 export class ClearScene extends Phaser.Scene {
+  private levelId = 'castle_normal';
+
   constructor() {
     super(SCENES.CLEAR);
+  }
+
+  init(data: ClearData): void {
+    this.levelId = resolveLevelId(data);
+  }
+
+  preload(): void {
+    const level = getLevelById(this.levelId);
+    if (level?.universeId === 'castle' && !this.textures.exists(CASTLE_RESULT_SCREEN_ASSETS.clear.key)) {
+      this.load.image(CASTLE_RESULT_SCREEN_ASSETS.clear.key, CASTLE_RESULT_SCREEN_ASSETS.clear.url);
+    }
   }
 
   create(data: ClearData): void {
     const { width, height } = this.scale;
     const W = width, H = height;
-    const levelId = data?.levelId ?? 'castle_normal';
+    const levelId = resolveLevelId(data) || this.levelId;
     const level = getLevelById(levelId);
     const universe = level ? UNIVERSES[level.universeId] : null;
+    const isCastle = level?.universeId === 'castle';
     const bgColor   = universe ? parseInt(universe.palette.bg.replace('#', ''), 16) : 0x000000;
     const accentStr = universe?.palette.accent ?? '#ffd86b';
     const accentHex = parseInt(accentStr.replace('#', ''), 16);
@@ -27,6 +42,11 @@ export class ClearScene extends Phaser.Scene {
 
     // Background
     this.add.rectangle(W / 2, H / 2, W, H, bgColor).setDepth(0);
+    if (isCastle && this.textures.exists(CASTLE_RESULT_SCREEN_ASSETS.clear.key)) {
+      const bg = this.add.image(W / 2, H / 2, CASTLE_RESULT_SCREEN_ASSETS.clear.key).setDepth(1);
+      bg.setScale(Math.max(W / bg.width, H / bg.height));
+      this.add.rectangle(W / 2, H / 2, W, H, 0x080416, 0.12).setDepth(2);
+    }
 
     // Gold flash on enter
     flashScreen(this, accentHex, 0.6, 350);
@@ -58,20 +78,33 @@ export class ClearScene extends Phaser.Scene {
       },
     });
 
-    // Console frame
-    drawConsoleFrame(this, W * 0.06, H * 0.07, W * 0.88, H * 0.86, accentHex, primaryHex, 4);
+    if (!isCastle) {
+      // Console frame
+      drawConsoleFrame(this, W * 0.06, H * 0.07, W * 0.88, H * 0.86, accentHex, primaryHex, 4);
+    }
+
+    const L = RESULT_SCREEN_LAYOUT;
+    const CT = CASTLE_RESULT_THEME;
+    const buttons = getUniverseButtons(level?.universeId ?? 'castle');
 
     // Success title
-    this.add.text(W / 2 + 3, H * 0.22 + 3, 'BRAVO !', {
+    const title = level?.type === 'boss' ? 'BOSS CLEAR' : 'STAGE CLEAR';
+    const subTitle = level?.id === 'castle_normal'
+      ? 'Castle Boss débloqué'
+      : level?.id === 'castle_boss'
+        ? 'Monde 1 terminé'
+        : null;
+
+    this.add.text(W / 2 + 3, H * L.titleY + 3, title, {
       fontFamily: ARCADE_FONT,
       fontSize: `${Math.min(28, Math.floor(W * 0.08))}px`,
       color: '#886600',
     }).setOrigin(0.5).setDepth(5);
 
-    const clearTxt = this.add.text(W / 2, H * 0.22, 'BRAVO !', {
+    const clearTxt = this.add.text(W / 2, H * L.titleY, title, {
       fontFamily: ARCADE_FONT,
       fontSize: `${Math.min(28, Math.floor(W * 0.08))}px`,
-      color: accentStr,
+      color: isCastle ? CT.titleClear : accentStr,
     }).setOrigin(0.5).setDepth(6);
 
     this.tweens.add({
@@ -83,24 +116,35 @@ export class ClearScene extends Phaser.Scene {
       ease: 'Sine.easeInOut',
     });
 
-    // Universe name
-    if (universe) {
-      this.add.text(W / 2, H * 0.36, universe.name.toUpperCase(), {
-        fontFamily: ARCADE_FONT,
-        fontSize: `${Math.min(8, Math.floor(W * 0.022))}px`,
+    // Universe name (non-Castle only)
+    if (universe && !isCastle) {
+      this.add.text(W / 2, H * L.subtitleY, universe.name.toUpperCase(), {
+        fontFamily: UI_FONT,
+        fontSize: `${Math.min(13, Math.floor(W * 0.034))}px`,
+        fontStyle: '700',
         color: universe.palette.primary,
       }).setOrigin(0.5).setDepth(6);
     }
 
-    // Boss defeated badge
-    if (level?.type === 'boss') {
+    if (subTitle) {
+      this.add.text(W / 2, H * L.subtitleY, subTitle, {
+        fontFamily: UI_FONT,
+        fontSize: `${Math.min(isCastle ? 18 : 15, Math.floor(W * (isCastle ? 0.046 : 0.038)))}px`,
+        fontStyle: '800',
+        color: '#ffffff',
+      }).setOrigin(0.5).setDepth(6);
+    }
+
+    // Boss defeated badge (non-Castle universes with no subTitle)
+    if (level?.type === 'boss' && !subTitle) {
       const badgeGfx = this.add.graphics().setDepth(5);
       badgeGfx.fillStyle(0xe74c3c, 0.9);
-      badgeGfx.fillRoundedRect(W / 2 - 70, H * 0.43, 140, 22, 4);
+      badgeGfx.fillRoundedRect(W / 2 - 70, H * L.subtitleY + 8, 140, 22, 4);
 
-      this.add.text(W / 2, H * 0.441, 'BOSS VAINCU !', {
-        fontFamily: ARCADE_FONT,
-        fontSize: '10px',
+      this.add.text(W / 2, H * L.subtitleY + 19, 'BOSS VAINCU !', {
+        fontFamily: UI_FONT,
+        fontSize: '13px',
+        fontStyle: '800',
         color: '#ffffff',
       }).setOrigin(0.5).setDepth(6);
     }
@@ -112,7 +156,7 @@ export class ClearScene extends Phaser.Scene {
     const nextLevel = nextNode ? getLevelById(nextNode.levelId) : null;
 
     if (nextLevel) {
-      this.add.text(W / 2, H * 0.58, nextLevel.name.toUpperCase(), {
+      this.add.text(W / 2, H * L.contextY, nextLevel.name.toUpperCase(), {
         fontFamily: UI_FONT,
         fontSize: `${Math.min(17, Math.floor(W * 0.044))}px`,
         fontStyle: '700',
@@ -121,15 +165,15 @@ export class ClearScene extends Phaser.Scene {
 
       addMobileButton(this, {
         x: W / 2,
-        y: H * 0.72,
-        width: Math.min(260, W * 0.72),
-        height: Math.max(52, Math.min(60, H * 0.08)),
-        label: 'SUIVANT',
+        y: H * L.primaryButtonY,
+        width: Math.min(260, W * L.primaryButtonW),
+        height: L.primaryButtonH,
+        label: isCastle ? 'CONTINUER' : 'SUIVANT',
         primary: true,
-        fillColor: 0x173018,
-        pressedFillColor: 0x24502a,
-        strokeColor: accentHex,
-        textColor: '#ffffff',
+        fillColor: buttons.primaryFill,
+        pressedFillColor: buttons.primaryPressed,
+        strokeColor: buttons.primaryStroke,
+        textColor: buttons.primaryText,
         onClick: () => {
           this.cameras.main.fadeOut(200, 0, 0, 0);
           this.cameras.main.once('camerafadeoutcomplete', () => {
@@ -138,25 +182,32 @@ export class ClearScene extends Phaser.Scene {
         },
       });
     } else {
-      this.add.text(W / 2, H * 0.66, 'TOUS LES NIVEAUX', {
-        fontFamily: ARCADE_FONT, fontSize: `${Math.min(9, Math.floor(W * 0.025))}px`, color: accentStr
-      }).setOrigin(0.5).setDepth(6);
-      this.add.text(W / 2, H * 0.73, 'TERMINÉS !', {
-        fontFamily: ARCADE_FONT, fontSize: `${Math.min(9, Math.floor(W * 0.025))}px`, color: accentStr
+      this.add.text(W / 2, H * L.contextY, 'TOUS LES NIVEAUX\nTERMINÉS !', {
+        fontFamily: UI_FONT,
+        fontSize: `${Math.min(15, Math.floor(W * 0.038))}px`,
+        fontStyle: '800',
+        color: accentStr,
+        align: 'center',
+        lineSpacing: 4,
       }).setOrigin(0.5).setDepth(6);
     }
+
+    // Separator between primary and secondary buttons — mirrors GameOverScene layout
+    const sep = this.add.graphics().setDepth(5);
+    sep.lineStyle(1, buttons.primaryFill, 0.35);
+    sep.lineBetween(W * 0.2, H * L.separatorY, W * 0.8, H * L.separatorY);
 
     // Map button
     addMobileButton(this, {
       x: W / 2,
-      y: H * 0.86,
-      width: Math.min(210, W * 0.58),
-      height: 46,
+      y: H * L.secondaryButtonY,
+      width: Math.min(210, W * L.secondaryButtonW),
+      height: L.secondaryButtonH,
       label: 'CARTE',
-      fillColor: 0x0d1020,
-      pressedFillColor: 0x171b34,
-      strokeColor: 0x555577,
-      textColor: '#b8b8cc',
+      fillColor: buttons.secondaryFill,
+      pressedFillColor: buttons.secondaryPressed,
+      strokeColor: buttons.secondaryStroke,
+      textColor: buttons.secondaryText,
       onClick: () => {
         this.cameras.main.fadeOut(200, 0, 0, 0);
         this.cameras.main.once('camerafadeoutcomplete', () => {
@@ -165,7 +216,6 @@ export class ClearScene extends Phaser.Scene {
       },
     });
 
-    addScanlines(this, 0.04, 20);
     this.cameras.main.fadeIn(200, 0, 0, 0);
   }
 }

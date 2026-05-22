@@ -1,5 +1,5 @@
-import { BaseBoss } from './BaseBoss';
-import { ExtraEntity, MechanicUpdate } from '../BaseMechanic';
+import { BaseBoss, BossHitResult } from './BaseBoss';
+import { DangerCell, ExtraEntity, MechanicUpdate } from '../BaseMechanic';
 import { Cell } from '../../core/Grid';
 
 // Turbo Rival: rival moves on lanes; turbo zone appears — enter to hit
@@ -39,29 +39,6 @@ export class TurboRivalBoss extends BaseBoss {
     for (const tz of this.turboZones) tz.ttl--;
     this.turboZones = this.turboZones.filter(tz => tz.ttl > 0);
 
-    const head = this.ctx.snake.body[0];
-
-    // Check turbo hit
-    for (const tz of this.turboZones) {
-      if (tz.cell.col === head.col && tz.cell.row === head.row) {
-        // turbo entered — check if on rival
-        if (head.col === this.rivalCell.col && head.row === this.rivalCell.row - 1) {
-          this.registerHit();
-          this.turboZones = [];
-        }
-      }
-    }
-
-    // Direct rival collision = danger
-    if (head.col === this.rivalCell.col && head.row === this.rivalCell.row) {
-      const inTurbo = this.turboZones.some(tz => tz.cell.col === head.col && tz.cell.row === head.row + 1);
-      if (!inTurbo) return { hitDanger: true };
-      else {
-        this.registerHit();
-        this.turboZones = [];
-      }
-    }
-
     return {};
   }
 
@@ -73,5 +50,22 @@ export class TurboRivalBoss extends BaseBoss {
       entities.push({ type: 'turboZone', cell: tz.cell, state: 'active' });
     }
     return entities;
+  }
+
+  getDangerCells(): DangerCell[] {
+    const inTurbo = this.turboZones.some(tz => tz.cell.col === this.rivalCell.col && tz.cell.row === this.rivalCell.row + 1);
+    return inTurbo ? [] : [{ ...this.rivalCell, source: 'turboRival', lethal: true }];
+  }
+
+  getWeakPoints(): Cell[] {
+    return this.turboZones.map(tz => tz.cell);
+  }
+
+  onWeakPointHit(cell: Cell): BossHitResult {
+    const turboZone = this.turboZones.find(tz => tz.cell.col === cell.col && tz.cell.row === cell.row);
+    if (!turboZone) return { hit: false, defeated: this.isDefeated() };
+    const result = super.onWeakPointHit(cell);
+    if (result.hit) this.turboZones = [];
+    return result;
   }
 }

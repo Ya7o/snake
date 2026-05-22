@@ -23,12 +23,21 @@ export interface MechanicUpdate {
   extraData?: Record<string, unknown>;
 }
 
+export interface DangerCell extends Cell {
+  source?: string;
+  lethal?: boolean;
+}
+
 export abstract class BaseMechanic {
   protected ctx!: MechanicContext;
 
   init(ctx: MechanicContext): void {
     this.ctx = ctx;
     this.onInit();
+  }
+
+  syncContext(patch: Partial<MechanicContext>): void {
+    this.ctx = { ...this.ctx, ...patch };
   }
 
   protected abstract onInit(): void;
@@ -44,15 +53,27 @@ export abstract class BaseMechanic {
     return [];
   }
 
+  getDangerCells(): DangerCell[] {
+    return [];
+  }
+
   // HUD text beyond score/quota
   getHudExtra(): string {
     return '';
   }
 }
 
+export type EntityState =
+  | 'ghost' | 'warning' | 'active' | 'static' | 'inactive'
+  | 'idle' | 'moving' | 'attacking' | 'vulnerable' | 'hit' | 'defeated'
+  | 'danger' | 'ready' | 'decoy' | 'real' | 'orb' | 'body'
+  | 'highlighted' | 'shadow'
+  | 'pressure' | 'closed' | 'opening' | 'open'
+  | 'attack_window' | 'counter';
+
 export interface ExtraEntity {
   type: string;
   cell: Cell;
-  state: string;
+  state: EntityState;
   data?: Record<string, unknown>;
 }

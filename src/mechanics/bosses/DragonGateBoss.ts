@@ -1,5 +1,5 @@
-import { BaseBoss } from './BaseBoss';
-import { ExtraEntity, MechanicUpdate } from '../BaseMechanic';
+import { BaseBoss, BossHitResult } from './BaseBoss';
+import { DangerCell, ExtraEntity, MechanicUpdate } from '../BaseMechanic';
 import { Cell } from '../../core/Grid';
 
 // Dragon Gate: gate opens for a brief finish window; outside = danger zone
@@ -19,29 +19,15 @@ export class DragonGateBoss extends BaseBoss {
   tick(_tickCount: number): MechanicUpdate {
     this.tickCooldown();
     this.phaseTimer++;
-    const head = this.ctx.snake.body[0];
 
     for (const dz of this.dangerZones) dz.ttl--;
     this.dangerZones = this.dangerZones.filter(dz => dz.ttl > 0);
-    for (const dz of this.dangerZones) {
-      if (dz.cell.col === head.col && dz.cell.row === head.row) return { hitDanger: true };
-    }
 
     if (this.gatePhase === 'closed') {
       if (this.phaseTimer > 25) { this.gatePhase = 'opening'; this.phaseTimer = 0; }
     } else if (this.gatePhase === 'opening') {
       if (this.phaseTimer > 8) { this.gatePhase = 'open'; this.phaseTimer = 0; }
     } else if (this.gatePhase === 'open') {
-      if (head.col === this.gateCell.col && head.row === this.gateCell.row) {
-        this.registerHit();
-        this.gatePhase = 'closed';
-        this.phaseTimer = 0;
-        this.gateCell = {
-          col: Math.floor(Math.random() * this.ctx.grid.cols),
-          row: Math.floor(Math.random() * this.ctx.grid.rows)
-        };
-        return {};
-      }
       if (this.phaseTimer > 12) {
         this.gatePhase = 'danger';
         this.phaseTimer = 0;
@@ -71,5 +57,29 @@ export class DragonGateBoss extends BaseBoss {
       entities.push({ type: 'dangerZone', cell: dz.cell, state: 'active' });
     }
     return entities;
+  }
+
+  getDangerCells(): DangerCell[] {
+    return this.dangerZones.map(dz => ({ ...dz.cell, source: 'dragonGate', lethal: true }));
+  }
+
+  getWeakPoints(): Cell[] {
+    return this.gatePhase === 'open' ? [this.gateCell] : [];
+  }
+
+  onWeakPointHit(cell: Cell): BossHitResult {
+    if (this.gatePhase !== 'open' || cell.col !== this.gateCell.col || cell.row !== this.gateCell.row) {
+      return { hit: false, defeated: this.isDefeated() };
+    }
+    const result = super.onWeakPointHit(cell);
+    if (result.hit && !result.defeated) {
+      this.gatePhase = 'closed';
+      this.phaseTimer = 0;
+      this.gateCell = {
+        col: Math.floor(Math.random() * this.ctx.grid.cols),
+        row: Math.floor(Math.random() * this.ctx.grid.rows)
+      };
+    }
+    return result;
   }
 }

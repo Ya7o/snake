@@ -11,11 +11,7 @@ export type UniverseRuntimeAssetSet = {
 };
 
 export const RUNTIME_UNIVERSE_ASSETS: Record<string, UniverseRuntimeAssetSet> = {
-  castle: {
-    pickup: "/assets/runtime/universes/castle/pickup_orb.png",
-    obstacle: "/assets/runtime/universes/castle/obstacle_blink_wall.png",
-    boss: "/assets/runtime/universes/castle/boss_witch_mirror.png",
-  },
+  // castle uses db_ assets (pickup_01/02, obstacle_01/02, boss) — no runtime override needed
   sonic: {
     pickup: "/assets/runtime/universes/sonic/pickup_ring.png",
     obstacle: "/assets/runtime/universes/sonic/obstacle_bumper.png",

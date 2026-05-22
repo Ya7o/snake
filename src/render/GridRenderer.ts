@@ -1,4 +1,5 @@
 import Phaser from 'phaser';
+import { GAMEPLAY_LAYERS } from '../ui/RuntimeUILayout';
 
 export interface GridLayout {
   x: number;
@@ -17,17 +18,21 @@ export function computeGridLayout(
   bottomH = 40,
   widthFactor = 0.96,
   minCellSize = 14,
+  verticalBias = 0.5,
 ): GridLayout {
-  const availW = screenW * widthFactor;
+  const sideMargin = Math.max(8, Math.floor(screenW * (1 - widthFactor) / 2));
+  const availW = screenW - sideMargin * 2;
   const availH = screenH - hudH - bottomH;
   const cellW = Math.floor(availW / cols);
   const cellH = Math.floor(availH / rows);
   const cellSize = Math.max(minCellSize, Math.min(cellW, cellH));
   const gridW = cellSize * cols;
   const gridH = cellSize * rows;
+  const remainingH = Math.max(0, availH - gridH);
+  const topGap = Math.max(6, Math.floor(remainingH * Phaser.Math.Clamp(verticalBias, 0, 1)));
   return {
     x: Math.floor((screenW - gridW) / 2),
-    y: hudH + Math.floor((availH - gridH) / 2),
+    y: hudH + topGap,
     cellSize,
     cols,
     rows
@@ -52,7 +57,7 @@ export class GridRenderer {
   private frameTiles: Phaser.GameObjects.Image[] = [];
 
   constructor(scene: Phaser.Scene, layout: GridLayout) {
-    this.gfx = scene.add.graphics();
+    this.gfx = scene.add.graphics().setDepth(GAMEPLAY_LAYERS.GRID);
     this.layout = layout;
   }
 
@@ -135,6 +140,8 @@ export class GridRenderer {
   }
 
   markDirty(): void { this.dirty = true; }
+
+  setDepth(depth: number): void { this.gfx.setDepth(depth); }
 
   getLayout(): GridLayout { return this.layout; }
 

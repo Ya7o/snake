@@ -1,5 +1,5 @@
-import { BaseBoss } from './BaseBoss';
-import { ExtraEntity, MechanicUpdate } from '../BaseMechanic';
+import { BaseBoss, BossHitResult } from './BaseBoss';
+import { DangerCell, ExtraEntity, MechanicUpdate } from '../BaseMechanic';
 import { Cell, cellKey } from '../../core/Grid';
 import { Grid } from '../../core/Grid';
 
@@ -47,8 +47,6 @@ export class NeighborhoodChaosBoss extends BaseBoss {
   tick(_tickCount: number): MechanicUpdate {
     this.tickCooldown();
     this.waveTimer++;
-    const head = this.ctx.snake.body[0];
-    let hitDanger = false;
 
     // Move obstacles
     for (const obs of this.obstacles) {
@@ -62,27 +60,9 @@ export class NeighborhoodChaosBoss extends BaseBoss {
           obs.cell = { col: nx, row: ny };
         }
       }
-      if (obs.cell.col === head.col && obs.cell.row === head.row) hitDanger = true;
     }
 
-    // Delivery check
-    if (this.hasPaper) {
-      for (const t of this.targets) {
-        if (t.active && t.cell.col === head.col && t.cell.row === head.row) {
-          t.active = false;
-          this.hasPaper = false;
-          this.deliveredInWave++;
-          if (this.deliveredInWave >= 2) {
-            this.registerHit();
-            this.wave = Math.min(2, this.wave + 1);
-            if (!this.isDefeated()) this.startWave();
-          }
-          break;
-        }
-      }
-    }
-
-    return { hitDanger };
+    return {};
   }
 
   onPickupCollected(_cell: Cell): MechanicUpdate {
@@ -99,6 +79,29 @@ export class NeighborhoodChaosBoss extends BaseBoss {
       if (t.active) entities.push({ type: 'bossTarget', cell: t.cell, state: this.hasPaper ? 'highlighted' : 'idle', data: { wave: this.wave } });
     }
     return entities;
+  }
+
+  getDangerCells(): DangerCell[] {
+    return this.obstacles.map(obs => ({ ...obs.cell, source: 'neighborhoodChaos', lethal: true }));
+  }
+
+  getWeakPoints(): Cell[] {
+    return this.hasPaper ? this.targets.filter(t => t.active).map(t => t.cell) : [];
+  }
+
+  onWeakPointHit(cell: Cell): BossHitResult {
+    const target = this.targets.find(t => t.active && t.cell.col === cell.col && t.cell.row === cell.row);
+    if (!this.hasPaper || !target) return { hit: false, defeated: this.isDefeated() };
+    target.active = false;
+    this.hasPaper = false;
+    this.deliveredInWave++;
+    if (this.deliveredInWave < 2) return { hit: true, defeated: this.isDefeated() };
+    const result = super.onWeakPointHit(cell);
+    if (result.hit && !result.defeated) {
+      this.wave = Math.min(2, this.wave + 1);
+      this.startWave();
+    }
+    return result;
   }
 
   getHudExtra(): string {

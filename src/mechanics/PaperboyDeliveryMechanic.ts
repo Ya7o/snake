@@ -1,4 +1,4 @@
-import { BaseMechanic, ExtraEntity, MechanicUpdate } from './BaseMechanic';
+import { BaseMechanic, DangerCell, ExtraEntity, MechanicUpdate } from './BaseMechanic';
 import { Cell, cellKey } from '../core/Grid';
 import { Grid } from '../core/Grid';
 
@@ -41,37 +41,30 @@ export class PaperboyDeliveryMechanic extends BaseMechanic {
   }
 
   tick(_tickCount: number): MechanicUpdate {
-    const head = this.ctx.snake.body[0];
-    let hitDanger = false;
-
     // Respawn targets when all delivered and not carrying paper
     if (!this.hasPaper && this.targets.every(t => !t.active)) {
       this.spawnTargets();
       this.spawnObstacles();
     }
 
-    // Check obstacle collision
-    for (const o of this.obstacles) {
-      if (o.col === head.col && o.row === head.row) hitDanger = true;
-    }
-
-    // If has paper, check if on target
-    if (this.hasPaper) {
-      for (const t of this.targets) {
-        if (t.active && t.cell.col === head.col && t.cell.row === head.row) {
-          t.active = false;
-          this.hasPaper = false;
-          return { hitDanger, score: 1 };
-        }
-      }
-    }
-
-    return { hitDanger };
+    return {};
   }
 
-  onPickupCollected(_cell: Cell): MechanicUpdate {
+  onPickupCollected(cell: Cell): MechanicUpdate {
+    if (this.hasPaper) {
+      const target = this.targets.find(t => t.active && t.cell.col === cell.col && t.cell.row === cell.row);
+      if (target) {
+        target.active = false;
+        this.hasPaper = false;
+        return { score: 1 };
+      }
+    }
     this.hasPaper = true;
     return {};
+  }
+
+  getDeliveryPickups(): Cell[] {
+    return this.hasPaper ? this.targets.filter(t => t.active).map(t => t.cell) : [];
   }
 
   getExtraEntities(): ExtraEntity[] {
@@ -83,6 +76,10 @@ export class PaperboyDeliveryMechanic extends BaseMechanic {
       entities.push({ type: 'routeObstacle', cell: o, state: 'static' });
     }
     return entities;
+  }
+
+  getDangerCells(): DangerCell[] {
+    return this.obstacles.map(cell => ({ ...cell, source: 'deliveryTargets', lethal: true }));
   }
 
   getHudExtra(): string {

@@ -2,6 +2,7 @@ import { LEVELS } from '../config/levels';
 import { MAP_NODES } from '../config/mapNodes';
 import { UNIVERSES, UNIVERSE_ORDER } from '../config/universes';
 import { createMechanic } from '../mechanics/MechanicFactory';
+import { runGameplayQAChecks } from './GameplayQAChecks';
 
 export interface QAResult {
   pass: boolean;
@@ -137,6 +138,8 @@ export function runQAChecks(): QAResult {
       ? unbalanced.map(u => `${u.uid}:${u.normal}N/${u.boss}B`).join(', ')
       : 'OK'
   });
+
+  checks.push(...runGameplayQAChecks());
 
   const allPass = checks.every(c => c.pass);
   if (typeof console !== 'undefined') {

@@ -109,7 +109,7 @@ export class UniverseFrameRenderer {
   }
 
   private createFullFrame(params: UniverseFrameRenderParams, key: string): void {
-    this.scene.textures.get(key).setFilter(Phaser.Textures.FilterMode.NEAREST);
+    this.scene.textures.get(key).setFilter(Phaser.Textures.FilterMode.LINEAR);
     const frame = this.scene.add.image(0, 0, key)
       .setAlpha(0.98)
       .setOrigin(0.5);

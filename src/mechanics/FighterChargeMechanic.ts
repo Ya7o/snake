@@ -1,4 +1,4 @@
-import { BaseMechanic, ExtraEntity, MechanicUpdate } from './BaseMechanic';
+import { BaseMechanic, DangerCell, ExtraEntity, MechanicUpdate } from './BaseMechanic';
 import { Cell, cellKey } from '../core/Grid';
 import { Grid } from '../core/Grid';
 
@@ -37,14 +37,7 @@ export class FighterChargeMechanic extends BaseMechanic {
     }
     if (this.chargeCount >= 4) this.chargeReady = true;
 
-    // Check spar zone collision
-    const head = this.ctx.snake.body[0];
-    let hitDanger = false;
-    for (const s of this.sparZones) {
-      if (s.col === head.col && s.row === head.row) hitDanger = true;
-    }
-
-    return { hitDanger };
+    return {};
   }
 
   onPickupCollected(_cell: Cell): MechanicUpdate {
@@ -64,6 +57,10 @@ export class FighterChargeMechanic extends BaseMechanic {
       entities.push({ type: 'chargeGlow', cell: this.ctx.snake.body[0], state: 'ready' });
     }
     return entities;
+  }
+
+  getDangerCells(): DangerCell[] {
+    return this.sparZones.map(cell => ({ ...cell, source: 'chargeMove', lethal: true }));
   }
 
   getHudExtra(): string {

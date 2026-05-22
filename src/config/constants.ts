@@ -1,5 +1,8 @@
 export const BACKGROUND_COLOR = '#05050a';
 
+// Set to true during development to unlock all levels on the world map
+export const DEV_UNLOCK_ALL = true;
+
 export const ASSET_KEYS = {
   WORLD_MAP: 'world_map',
 } as const;
@@ -20,7 +23,7 @@ export const SCENES = {
 
 export const WORLD_MAP_VIEW = {
   HEADER_H: 34,
-  FOOTER_H: 96,
+  FOOTER_H: 44,
   MAP_SAFE_PAD: 0,
   CROP_LEFT: 0,
   CROP_TOP: 0,
@@ -42,8 +45,8 @@ export const MOBILE_UI = {
   SAFE_BOTTOM: 18,
   LABEL_MIN: 12,
   CAPTION_MIN: 11,
-  BUTTON_FONT: 17,
-  SECONDARY_BUTTON_FONT: 14,
+  BUTTON_FONT: 15,
+  SECONDARY_BUTTON_FONT: 12,
 } as const;
 
 export const UNIVERSE_FRAME_ASSETS = {
@@ -55,6 +58,24 @@ export const UNIVERSE_FRAME_ASSETS = {
   shinobi: { key: 'frame-shinobi', url: 'assets/frames/shinobi/frame.png' },
   kombat: { key: 'frame-kombat', url: 'assets/frames/kombat/frame.png' },
   paperboy: { key: 'frame-paperboy', url: 'assets/frames/paperboy/frame.png' },
+} as const;
+
+export const UNIVERSE_LEVEL_INTRO_ASSETS = {
+  castle: { key: 'level-intro-castle', url: 'assets/level-intros/castle/intro.png' },
+  sonic: { key: 'level-intro-sonic', url: 'assets/level-intros/sonic/intro.png' },
+  streets: { key: 'level-intro-streets', url: 'assets/level-intros/streets/intro.png' },
+  fighter: { key: 'level-intro-fighter', url: 'assets/level-intros/fighter/intro.png' },
+  outrun: { key: 'level-intro-outrun', url: 'assets/level-intros/outrun/intro.png' },
+  shinobi: { key: 'level-intro-shinobi', url: 'assets/level-intros/shinobi/intro.png' },
+  kombat: { key: 'level-intro-kombat', url: 'assets/level-intros/kombat/intro.png' },
+  paperboy: { key: 'level-intro-paperboy', url: 'assets/level-intros/paperboy/intro.png' },
+} as const;
+
+export const CASTLE_RESULT_SCREEN_ASSETS = {
+  system:   { key: 'castle-bg-system',    url: 'assets/ui/castle/castle_system_bg.png' },
+  gameplay: { key: 'castle-bg-gameplay',  url: 'assets/ui/castle/castle_gameplay_bg.png' },
+  gameOver: { key: 'castle-result-game-over', url: 'assets/ui/castle/castle_game_over_bg.png' },
+  clear:    { key: 'castle-result-clear', url: 'assets/ui/castle/castle_clear_bg.png' },
 } as const;
 
 export const UNIVERSE_DISPLAY_NAMES = {

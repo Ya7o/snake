@@ -1,4 +1,4 @@
-import { BaseMechanic, ExtraEntity, MechanicUpdate } from './BaseMechanic';
+import { BaseMechanic, DangerCell, ExtraEntity, MechanicUpdate } from './BaseMechanic';
 import { Cell, cellKey } from '../core/Grid';
 import { Grid } from '../core/Grid';
 
@@ -17,8 +17,6 @@ export class KombatFatalMechanic extends BaseMechanic {
 
   tick(_tickCount: number): MechanicUpdate {
     this.spawnTimer++;
-    let hitDanger = false;
-    const head = this.ctx.snake.body[0];
 
     for (const z of this.zones) {
       z.ticksLeft--;
@@ -29,9 +27,6 @@ export class KombatFatalMechanic extends BaseMechanic {
         } else {
           z.ticksLeft = -1; // remove
         }
-      }
-      if (z.state === 'active' && z.cell.col === head.col && z.cell.row === head.row) {
-        hitDanger = true;
       }
     }
     this.zones = this.zones.filter(z => z.ticksLeft >= 0);
@@ -45,13 +40,19 @@ export class KombatFatalMechanic extends BaseMechanic {
       if (cell) this.zones.push({ cell, state: 'warning', ticksLeft: 5 });
     }
 
-    return { hitDanger };
+    return {};
   }
 
   getExtraEntities(): ExtraEntity[] {
     return this.zones.map(z => ({
       type: 'fatalZone', cell: z.cell, state: z.state
     }));
+  }
+
+  getDangerCells(): DangerCell[] {
+    return this.zones
+      .filter(z => z.state === 'active')
+      .map(z => ({ ...z.cell, source: 'fatalZones', lethal: true }));
   }
 
   getHudExtra(): string { return 'ZONES FATALES'; }

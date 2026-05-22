@@ -2,11 +2,25 @@ import Phaser from 'phaser';
 import { SCENES } from '../config/constants';
 import { AudioSystem } from '../systems/AudioSystem';
 import { runQAChecks } from '../qa/QAChecks';
-import { ARCADE_FONT, drawConsoleFrame, addScanlines, drawDiagLines, drawGradientBg } from '../render/VfxUtils';
+import { ARCADE_FONT, UI_FONT, drawGradientBg } from '../render/VfxUtils';
+
+const TITLE_HUB_ASSETS = {
+  bg: { key: 'title_hub_bg', url: 'assets/ui/title/title_hub_bg.png' },
+};
 
 export class TitleScene extends Phaser.Scene {
   constructor() {
     super(SCENES.TITLE);
+  }
+
+  preload(): void {
+    this.load.on('loaderror', (file: Phaser.Loader.File) => {
+      console.error('[TitleScene] LOAD ERROR:', file.key, file.url);
+    });
+
+    if (!this.textures.exists(TITLE_HUB_ASSETS.bg.key)) {
+      this.load.image(TITLE_HUB_ASSETS.bg.key, TITLE_HUB_ASSETS.bg.url);
+    }
   }
 
   create(): void {
@@ -29,48 +43,36 @@ export class TitleScene extends Phaser.Scene {
     const { width, height } = this.scale;
     const W = width, H = height;
 
-    // Layer 0 — gradient background (deep purple → near-black)
-    drawGradientBg(this, 0x0d0428, 0x050510, 0);
-
-    // Layer 1 — diagonal lines (V3 title background)
-    drawDiagLines(this, 0x25134d, 0x0e2040, 1);
-
-    // Layer 2 — darkening vignette overlay
-    const vignette = this.add.graphics().setDepth(2);
-    vignette.fillStyle(0x000000, 0.35);
-    vignette.fillRect(0, 0, W, H);
-
-    // Layer 3 — stars
-    const stars = this.add.graphics().setDepth(3);
-    for (let i = 0; i < 55; i++) {
-      const sx = Math.random() * W;
-      const sy = Math.random() * H;
-      const sr = Math.random() * 1.2 + 0.3;
-      stars.fillStyle(0xffffff, Math.random() * 0.5 + 0.15);
-      stars.fillCircle(sx, sy, sr);
+    // Layer 0 — background image or procedural fallback
+    if (this.textures.exists(TITLE_HUB_ASSETS.bg.key)) {
+      this.add.image(W / 2, H / 2, TITLE_HUB_ASSETS.bg.key)
+        .setDisplaySize(W, H)
+        .setDepth(0);
+      const overlay = this.add.graphics().setDepth(1);
+      overlay.fillStyle(0x000000, 0.38);
+      overlay.fillRect(0, 0, W, H);
+    } else {
+      drawGradientBg(this, 0x0d0428, 0x050510, 0);
+      const fallbackOverlay = this.add.graphics().setDepth(1);
+      fallbackOverlay.fillStyle(0x000000, 0.35);
+      fallbackOverlay.fillRect(0, 0, W, H);
     }
 
-    // Layer 4 — console frame
-    const frameX = W * 0.05, frameY = H * 0.06;
-    const frameW = W * 0.9, frameH = H * 0.88;
-    drawConsoleFrame(this, frameX, frameY, frameW, frameH, 0x9a61ff, 0x00d7c0, 4);
-
-    // Layer 5 — SNAKE title with glow
-    const titleY = H * 0.27;
-    // Glow shadow (slightly offset, low alpha)
-    this.add.text(W / 2 + 3, titleY + 3, 'SNAKE', {
+    // SNAKE title — dominant
+    const snakeFontSize = Math.min(46, Math.floor(W * 0.118));
+    const snakeY = H * 0.22;
+    this.add.text(W / 2 + 3, snakeY + 3, 'SNAKE', {
       fontFamily: ARCADE_FONT,
-      fontSize: `${Math.min(40, Math.floor(W * 0.115))}px`,
-      color: '#4a00aa',
+      fontSize: `${snakeFontSize}px`,
+      color: '#3a0099',
     }).setOrigin(0.5).setDepth(5);
 
-    const snakeText = this.add.text(W / 2, titleY, 'SNAKE', {
+    const snakeText = this.add.text(W / 2, snakeY, 'SNAKE', {
       fontFamily: ARCADE_FONT,
-      fontSize: `${Math.min(40, Math.floor(W * 0.115))}px`,
+      fontSize: `${snakeFontSize}px`,
       color: '#83ff63',
     }).setOrigin(0.5).setDepth(6);
 
-    // Oscillating scale animation like V3
     this.tweens.add({
       targets: snakeText,
       scaleX: 1.05,
@@ -81,50 +83,61 @@ export class TitleScene extends Phaser.Scene {
       ease: 'Sine.easeInOut',
     });
 
-    // DRIVE V4 subtitle
-    this.add.text(W / 2, H * 0.38, 'DRIVE V4', {
+    // DRIVE subtitle — no V4
+    const driveFontSize = Math.min(20, Math.floor(W * 0.052));
+    this.add.text(W / 2, H * 0.31, 'DRIVE', {
       fontFamily: ARCADE_FONT,
-      fontSize: `${Math.min(18, Math.floor(W * 0.05))}px`,
+      fontSize: `${driveFontSize}px`,
       color: '#ff6ccc',
     }).setOrigin(0.5).setDepth(6);
 
-    // Separator line
+    // Separator
     const sepGfx = this.add.graphics().setDepth(6);
-    sepGfx.lineStyle(2, 0x9a61ff, 0.8);
-    sepGfx.lineBetween(W * 0.2, H * 0.455, W * 0.8, H * 0.455);
+    sepGfx.lineStyle(1, 0x9a61ff, 0.6);
+    sepGfx.lineBetween(W * 0.25, H * 0.365, W * 0.75, H * 0.365);
 
-    // Stats line
-    this.add.text(W / 2, H * 0.495, '8 MONDES  ·  16 NIVEAUX  ·  8 BOSS', {
-      fontFamily: ARCADE_FONT,
-      fontSize: `${Math.min(11, Math.floor(W * 0.028))}px`,
+    // Stats — UI_FONT pour lisibilité, pas pixel
+    this.add.text(W / 2, H * 0.40, '8 MONDES · 16 NIVEAUX\n8 BOSS À DÉBLOQUER', {
+      fontFamily: UI_FONT,
+      fontSize: `${Math.min(14, Math.floor(W * 0.036))}px`,
+      fontStyle: '700',
       color: '#d9d9e8',
+      align: 'center',
+      lineSpacing: 6,
     }).setOrigin(0.5).setDepth(6);
 
-    // TOUCHER POUR JOUER — pulsing
-    const tapText = this.add.text(W / 2, H * 0.68, 'TOUCHER POUR JOUER', {
-      fontFamily: ARCADE_FONT,
-      fontSize: `${Math.min(13, Math.floor(W * 0.035))}px`,
+    // CTA capsule
+    const ctaY = H * 0.74;
+    const ctaW = Math.min(W * 0.72, 270);
+    const ctaH = 40;
+    const ctaGfx = this.add.graphics().setDepth(6);
+    ctaGfx.fillStyle(0x08041a, 0.82);
+    ctaGfx.fillRoundedRect(W / 2 - ctaW / 2, ctaY - ctaH / 2, ctaW, ctaH, 10);
+    ctaGfx.lineStyle(2, 0x00d7c0, 1);
+    ctaGfx.strokeRoundedRect(W / 2 - ctaW / 2, ctaY - ctaH / 2, ctaW, ctaH, 10);
+
+    const tapText = this.add.text(W / 2, ctaY, 'TOUCHER POUR JOUER', {
+      fontFamily: UI_FONT,
+      fontSize: `${Math.min(16, Math.floor(W * 0.042))}px`,
+      fontStyle: '700',
       color: '#ffe66a',
-    }).setOrigin(0.5).setDepth(6);
+    }).setOrigin(0.5).setDepth(7);
 
     this.tweens.add({
       targets: tapText,
-      alpha: 0.15,
-      duration: 650,
+      alpha: 0.2,
+      duration: 800,
       yoyo: true,
       repeat: -1,
       ease: 'Sine.easeInOut',
     });
 
-    // Version
-    this.add.text(W / 2, H * 0.93, 'SNAKE DRIVE V4', {
-      fontFamily: ARCADE_FONT,
-      fontSize: `${Math.min(10, Math.floor(W * 0.026))}px`,
-      color: '#333355',
+    // Footer — tiny build marker
+    this.add.text(W / 2, H * 0.965, 'PROTOTYPE BUILD', {
+      fontFamily: UI_FONT,
+      fontSize: `${Math.min(10, Math.floor(W * 0.025))}px`,
+      color: '#2a2244',
     }).setOrigin(0.5).setDepth(6);
-
-    // Scanlines on top
-    addScanlines(this, 0.05, 20);
 
     // Input
     let titleStarted = false;
@@ -143,7 +156,7 @@ export class TitleScene extends Phaser.Scene {
       this.input.keyboard.once('keydown', startGame);
     }
 
-    // Fade in
     this.cameras.main.fadeIn(400, 0, 0, 0);
   }
+
 }

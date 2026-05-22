@@ -4,7 +4,7 @@ import { MAP_NODES } from '../config/mapNodes';
 import { getLevelById } from '../config/levels';
 import { UNIVERSES } from '../config/universes';
 import { SaveSystem } from '../systems/SaveSystem';
-import { UI_FONT, addScanlines } from '../render/VfxUtils';
+import { UI_FONT } from '../render/VfxUtils';
 
 // Source map dimensions — updated from texture metadata if available
 const MAP_IMG_W = 1448;
@@ -38,6 +38,7 @@ export class WorldMapScene extends Phaser.Scene {
 
   // Selection (tap = select, double tap = launch)
   private selectedLevelId: string | null = null;
+  private selectedNodeUnlocked = false;
   private lastTapNodeId: string | null = null;
 
   // Footer UI
@@ -149,6 +150,7 @@ export class WorldMapScene extends Phaser.Scene {
       if (!level) continue;
 
       const isUnlocked = saveData.unlockedNodes.includes(node.id);
+      const isCleared = saveData.clearedLevels.includes(node.levelId);
       const isBoss     = level.type === 'boss';
 
       const r = isBoss ? WORLD_MAP_VIEW.NODE_R_BOSS : WORLD_MAP_VIEW.NODE_R_NORMAL;
@@ -162,6 +164,16 @@ export class WorldMapScene extends Phaser.Scene {
         const circleGfx = this.add.graphics();
         this.drawMapCoin(circleGfx, r);
         nodeContainer.add(circleGfx);
+      }
+
+      if (!isUnlocked) {
+        const lockedGfx = this.add.graphics();
+        this.drawLockedNodeMarker(lockedGfx, r);
+        nodeContainer.add(lockedGfx);
+      } else if (isCleared) {
+        const clearedGfx = this.add.graphics();
+        this.drawClearedNodeMarker(clearedGfx, r);
+        nodeContainer.add(clearedGfx);
       }
 
       const hlGfx = this.add.graphics();
@@ -265,15 +277,18 @@ export class WorldMapScene extends Phaser.Scene {
     sepGfx.lineStyle(1, 0x2a3050, 1);
     sepGfx.lineBetween(0, footerY, W, footerY);
 
-    // Level name — top of footer
-    this.footerLevelTxt = this.add.text(W * 0.5, footerY + 18, 'CHOISIS UN NIVEAU', {
+    // Compact footer: level name centered
+    this.footerLevelTxt = this.add.text(W / 2, footerY + WORLD_MAP_VIEW.FOOTER_H / 2, 'CHOISIS UN NIVEAU', {
       fontFamily: UI_FONT,
       fontSize: `${Math.min(13, Math.floor(W * 0.033))}px`,
       fontStyle: '700',
       color: '#666688',
+      align: 'center',
     }).setOrigin(0.5, 0.5).setDepth(7);
 
-    addScanlines(this, 0.035, 30);
+    const firstUnlocked = MAP_NODES.find(node => saveData.unlockedNodes.includes(node.id)) ?? MAP_NODES[0];
+    if (firstUnlocked) this.selectNode(firstUnlocked.levelId, firstUnlocked.id, saveData.unlockedNodes.includes(firstUnlocked.id));
+
     this.cameras.main.fadeIn(280, 0, 0, 0);
     this.events.once(Phaser.Scenes.Events.SHUTDOWN, () => this.doShutdown());
   }
@@ -340,17 +355,20 @@ export class WorldMapScene extends Phaser.Scene {
   }
 
   private selectNode(levelId: string, nodeId: string, isUnlocked: boolean): void {
-    this.selectedLevelId = isUnlocked ? levelId : null;
+    this.selectedLevelId = levelId;
+    this.selectedNodeUnlocked = isUnlocked;
     const level = getLevelById(levelId);
     if (!level) return;
     const universe = UNIVERSES[level.universeId];
 
     // Footer update
     if (isUnlocked) {
-      this.footerLevelTxt.setText(level.name.toUpperCase()).setColor(universe.palette.accent);
+      const typeLabel = level.type === 'boss' ? 'BOSS' : 'NIVEAU';
+      this.footerLevelTxt.setText(`${level.name.toUpperCase()} - ${typeLabel}`).setColor(universe.palette.accent);
     } else {
       this.footerLevelTxt.setText('VERROUILLÉ').setColor('#777788');
     }
+    this.updateFooterButton(isUnlocked, universe.palette.accent);
 
     // Highlight selected node, clear others
     for (const [nid, hl] of this.nodeHighlights.entries()) {
@@ -385,6 +403,10 @@ export class WorldMapScene extends Phaser.Scene {
     this.cameras.main.once('camerafadeoutcomplete', () => {
       this.scene.start(SCENES.LEVEL_INTRO, { levelId });
     });
+  }
+
+  private updateFooterButton(_isUnlocked: boolean, _accent: string): void {
+    // no button — launch via double-tap on node
   }
 
   private updateNodeScreenScale(): void {
@@ -430,6 +452,25 @@ export class WorldMapScene extends Phaser.Scene {
     gfx.beginPath();
     gfx.arc(-r * 0.05, -r * 0.08, r * 0.66, Phaser.Math.DegToRad(205), Phaser.Math.DegToRad(325), false);
     gfx.strokePath();
+  }
+
+  private drawLockedNodeMarker(gfx: Phaser.GameObjects.Graphics, r: number): void {
+    const markerR = r + 4;
+    gfx.fillStyle(0x03040a, 0.72);
+    gfx.fillCircle(0, 0, markerR);
+    gfx.lineStyle(2, 0x8a8fa8, 0.85);
+    gfx.strokeCircle(0, 0, markerR);
+    gfx.lineBetween(-markerR * 0.45, -markerR * 0.45, markerR * 0.45, markerR * 0.45);
+    gfx.lineBetween(markerR * 0.45, -markerR * 0.45, -markerR * 0.45, markerR * 0.45);
+  }
+
+  private drawClearedNodeMarker(gfx: Phaser.GameObjects.Graphics, r: number): void {
+    const markerR = r + 5;
+    gfx.lineStyle(2, 0x7cff9d, 0.95);
+    gfx.strokeCircle(0, 0, markerR);
+    gfx.lineStyle(2, 0xffffff, 0.85);
+    gfx.lineBetween(-markerR * 0.45, 0, -markerR * 0.1, markerR * 0.34);
+    gfx.lineBetween(-markerR * 0.1, markerR * 0.34, markerR * 0.52, -markerR * 0.38);
   }
 
   private drawProceduralMap(mapW: number, mapH: number): void {

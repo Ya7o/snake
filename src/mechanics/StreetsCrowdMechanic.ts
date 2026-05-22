@@ -1,4 +1,4 @@
-import { BaseMechanic, ExtraEntity, MechanicUpdate } from './BaseMechanic';
+import { BaseMechanic, DangerCell, ExtraEntity, MechanicUpdate } from './BaseMechanic';
 import { Cell, cellKey } from '../core/Grid';
 import { Grid } from '../core/Grid';
 
@@ -16,8 +16,6 @@ export class StreetsCrowdMechanic extends BaseMechanic {
 
   tick(_tickCount: number): MechanicUpdate {
     this.spawnTimer++;
-    let hitDanger = false;
-    const head = this.ctx.snake.body[0];
 
     // Move blockers every 3 ticks
     if (this.spawnTimer % 3 === 0) {
@@ -37,13 +35,6 @@ export class StreetsCrowdMechanic extends BaseMechanic {
     for (const b of this.blockers) b.ttl--;
     this.blockers = this.blockers.filter(b => b.ttl > 0);
 
-    // Check collision
-    for (const b of this.blockers) {
-      if (b.cell.col === head.col && b.cell.row === head.row) {
-        hitDanger = true;
-      }
-    }
-
     // Spawn blockers every 15 ticks, max 4
     if (this.spawnTimer % 15 === 0 && this.blockers.length < 4) {
       const occupied = new Set<string>(this.ctx.snake.body.map(c => cellKey(c)));
@@ -57,7 +48,7 @@ export class StreetsCrowdMechanic extends BaseMechanic {
       }
     }
 
-    return { hitDanger };
+    return {};
   }
 
   getExtraEntities(): ExtraEntity[] {
@@ -66,6 +57,10 @@ export class StreetsCrowdMechanic extends BaseMechanic {
       cell: b.cell,
       state: b.moving ? 'moving' : 'static',
     }));
+  }
+
+  getDangerCells(): DangerCell[] {
+    return this.blockers.map(b => ({ ...b.cell, source: 'crowdBlockers', lethal: true }));
   }
 
   getHudExtra(): string { return 'FOULE MOBILE'; }

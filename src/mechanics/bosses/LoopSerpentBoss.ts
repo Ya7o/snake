@@ -1,5 +1,5 @@
-import { BaseBoss } from './BaseBoss';
-import { ExtraEntity, MechanicUpdate } from '../BaseMechanic';
+import { BaseBoss, BossHitResult } from './BaseBoss';
+import { DangerCell, ExtraEntity, MechanicUpdate } from '../BaseMechanic';
 import { Cell } from '../../core/Grid';
 
 // Boss moves in a loop; hit the orb at the tail end
@@ -42,22 +42,6 @@ export class LoopSerpentBoss extends BaseBoss {
       if (this.bossBody.length > 3) this.bossBody.pop();
     }
 
-    const head = this.ctx.snake.body[0];
-    // Orb (vulnerable) = last boss body cell
-    const orb = this.bossBody[this.bossBody.length - 1];
-    if (orb && head.col === orb.col && head.row === orb.row) {
-      this.registerHit();
-      if (!this.isDefeated()) this.buildLoop();
-      return {};
-    }
-
-    // Body = danger
-    for (const bc of this.bossBody.slice(0, -1)) {
-      if (bc.col === head.col && bc.row === head.row) {
-        return { hitDanger: true };
-      }
-    }
-
     return {};
   }
 
@@ -68,5 +52,26 @@ export class LoopSerpentBoss extends BaseBoss {
       state: i === this.bossBody.length - 1 ? 'orb' : 'body',
       data: { hp: this.hp }
     }));
+  }
+
+  getDangerCells(): DangerCell[] {
+    return this.bossBody
+      .slice(0, -1)
+      .map(cell => ({ ...cell, source: 'loopSerpent', lethal: true }));
+  }
+
+  getWeakPoints(): Cell[] {
+    const orb = this.bossBody[this.bossBody.length - 1];
+    return orb ? [orb] : [];
+  }
+
+  onWeakPointHit(cell: Cell): BossHitResult {
+    const orb = this.bossBody[this.bossBody.length - 1];
+    if (!orb || orb.col !== cell.col || orb.row !== cell.row) {
+      return { hit: false, defeated: this.isDefeated() };
+    }
+    const result = super.onWeakPointHit(cell);
+    if (result.hit && !result.defeated) this.buildLoop();
+    return result;
   }
 }

@@ -1,5 +1,6 @@
 import { MAP_NODES } from '../config/mapNodes';
 import { LEVELS } from '../config/levels';
+import { DEV_UNLOCK_ALL } from '../config/constants';
 
 const SAVE_KEY = 'snakeDriveV4_save';
 
@@ -8,10 +9,14 @@ export interface SaveData {
   unlockedNodes: string[];   // map node IDs unlocked
 }
 
+function firstNodeId(): string {
+  return MAP_NODES[0]?.id ?? 'node_1';
+}
+
 function defaultSave(): SaveData {
   return {
     clearedLevels: [],
-    unlockedNodes: MAP_NODES.map(node => node.id),
+    unlockedNodes: [firstNodeId()],
   };
 }
 
@@ -30,9 +35,7 @@ function sanitizeSave(value: unknown): SaveData {
     ? raw.unlockedNodes.filter((id): id is string => typeof id === 'string' && validNodeIds.has(id))
     : [];
 
-  for (const node of MAP_NODES) {
-    if (!unlockedNodes.includes(node.id)) unlockedNodes.push(node.id);
-  }
+  if (unlockedNodes.length === 0) unlockedNodes.push(firstNodeId());
 
   return {
     clearedLevels: [...new Set(clearedLevels)],
@@ -42,6 +45,12 @@ function sanitizeSave(value: unknown): SaveData {
 
 export const SaveSystem = {
   load(): SaveData {
+    if (DEV_UNLOCK_ALL) {
+      return {
+        clearedLevels: LEVELS.map(l => l.id),
+        unlockedNodes: MAP_NODES.map(n => n.id),
+      };
+    }
     try {
       const raw = localStorage.getItem(SAVE_KEY);
       if (!raw) return defaultSave();

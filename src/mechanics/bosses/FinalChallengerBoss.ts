@@ -1,5 +1,5 @@
-import { BaseBoss } from './BaseBoss';
-import { ExtraEntity, MechanicUpdate } from '../BaseMechanic';
+import { BaseBoss, BossHitResult } from './BaseBoss';
+import { DangerCell, ExtraEntity, MechanicUpdate } from '../BaseMechanic';
 import { Cell, cellKey } from '../../core/Grid';
 import { Grid } from '../../core/Grid';
 
@@ -22,27 +22,13 @@ export class FinalChallengerBoss extends BaseBoss {
   tick(_tickCount: number): MechanicUpdate {
     this.tickCooldown();
     this.phaseTimer++;
-    const head = this.ctx.snake.body[0];
-
     // Decrement counter zones
     for (const cz of this.counterZones) cz.ttl--;
     this.counterZones = this.counterZones.filter(cz => cz.ttl > 0);
-    for (const cz of this.counterZones) {
-      if (cz.cell.col === head.col && cz.cell.row === head.row) return { hitDanger: true };
-    }
 
     if (this.roundPhase === 'idle') {
       if (this.phaseTimer > 20) { this.roundPhase = 'attack_window'; this.phaseTimer = 0; }
     } else if (this.roundPhase === 'attack_window') {
-      if (head.col === this.bossCell.col && head.row === this.bossCell.row) {
-        this.registerHit();
-        this.roundPhase = 'idle';
-        this.phaseTimer = 0;
-        const occ = new Set<string>(this.ctx.snake.body.map(c => cellKey(c)));
-        const cell = this.grid.randomFreeCell(occ);
-        if (cell) this.bossCell = cell;
-        return {};
-      }
       if (this.phaseTimer > 12) {
         // missed — counter attack
         this.roundPhase = 'counter';
@@ -68,6 +54,29 @@ export class FinalChallengerBoss extends BaseBoss {
       entities.push({ type: 'counterZone', cell: cz.cell, state: 'danger' });
     }
     return entities;
+  }
+
+  getDangerCells(): DangerCell[] {
+    return this.counterZones.map(cz => ({ ...cz.cell, source: 'finalChallenger', lethal: true }));
+  }
+
+  getWeakPoints(): Cell[] {
+    return this.roundPhase === 'attack_window' ? [this.bossCell] : [];
+  }
+
+  onWeakPointHit(cell: Cell): BossHitResult {
+    if (this.roundPhase !== 'attack_window' || cell.col !== this.bossCell.col || cell.row !== this.bossCell.row) {
+      return { hit: false, defeated: this.isDefeated() };
+    }
+    const result = super.onWeakPointHit(cell);
+    if (result.hit && !result.defeated) {
+      this.roundPhase = 'idle';
+      this.phaseTimer = 0;
+      const occ = new Set<string>(this.ctx.snake.body.map(c => cellKey(c)));
+      const nextCell = this.grid.randomFreeCell(occ);
+      if (nextCell) this.bossCell = nextCell;
+    }
+    return result;
   }
 
   getHudExtra(): string {

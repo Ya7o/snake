@@ -17,9 +17,8 @@ const config: Phaser.Types.Core.GameConfig = {
     autoCenter: Phaser.Scale.CENTER_BOTH
   },
   render: {
-    antialias: true,        // functional UI/text stays readable on Android
-    pixelArt: false,        // pixel assets opt into crisp sizing in renderers
-    roundPixels: false,     // avoid stair-stepped text and button edges
+    antialias: true,
+    roundPixels: false,
     powerPreference: 'high-performance',
   },
   input: {

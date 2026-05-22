@@ -1,5 +1,5 @@
-import { BaseBoss } from './BaseBoss';
-import { ExtraEntity, MechanicUpdate } from '../BaseMechanic';
+import { BaseBoss, BossHitResult } from './BaseBoss';
+import { DangerCell, ExtraEntity, MechanicUpdate } from '../BaseMechanic';
 import { Cell, cellKey } from '../../core/Grid';
 import { Grid } from '../../core/Grid';
 
@@ -33,30 +33,13 @@ export class CrimeLordBoss extends BaseBoss {
     this.tickCooldown();
     this.phaseTimer++;
 
-    const head = this.ctx.snake.body[0];
-
     if (this.currentPhase === 'pressure') {
-      // Check pressure collision
-      for (const z of this.pressureZones) {
-        if (z.col === head.col && z.row === head.row) return { hitDanger: true };
-      }
       if (this.phaseTimer > 20) {
         this.currentPhase = 'vulnerable';
         this.phaseTimer = 0;
         this.pressureZones = [];
       }
     } else {
-      // Vulnerable — check hit on boss cell
-      if (head.col === this.bossCell.col && head.row === this.bossCell.row) {
-        this.registerHit();
-        this.currentPhase = 'pressure';
-        this.phaseTimer = 0;
-        this.spawnPressure();
-        // Move boss
-        const occ = new Set<string>(this.ctx.snake.body.map(c => cellKey(c)));
-        const cell = this.grid.randomFreeCell(occ);
-        if (cell) this.bossCell = cell;
-      }
       if (this.phaseTimer > 15) {
         this.currentPhase = 'pressure';
         this.phaseTimer = 0;
@@ -75,5 +58,34 @@ export class CrimeLordBoss extends BaseBoss {
       entities.push({ type: 'pressureZone', cell: { col: z.col, row: z.row }, state: 'active' });
     }
     return entities;
+  }
+
+  getDangerCells(): DangerCell[] {
+    return this.pressureZones.map(z => ({
+      col: z.col,
+      row: z.row,
+      source: 'crimeLord',
+      lethal: true,
+    }));
+  }
+
+  getWeakPoints(): Cell[] {
+    return this.currentPhase === 'vulnerable' ? [this.bossCell] : [];
+  }
+
+  onWeakPointHit(cell: Cell): BossHitResult {
+    if (this.currentPhase !== 'vulnerable' || cell.col !== this.bossCell.col || cell.row !== this.bossCell.row) {
+      return { hit: false, defeated: this.isDefeated() };
+    }
+    const result = super.onWeakPointHit(cell);
+    if (result.hit && !result.defeated) {
+      this.currentPhase = 'pressure';
+      this.phaseTimer = 0;
+      this.spawnPressure();
+      const occ = new Set<string>(this.ctx.snake.body.map(c => cellKey(c)));
+      const nextCell = this.grid.randomFreeCell(occ);
+      if (nextCell) this.bossCell = nextCell;
+    }
+    return result;
   }
 }

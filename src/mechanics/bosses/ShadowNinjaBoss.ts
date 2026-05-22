@@ -1,5 +1,5 @@
-import { BaseBoss } from './BaseBoss';
-import { ExtraEntity, MechanicUpdate } from '../BaseMechanic';
+import { BaseBoss, BossHitResult } from './BaseBoss';
+import { DangerCell, ExtraEntity, MechanicUpdate } from '../BaseMechanic';
 import { Cell, cellKey } from '../../core/Grid';
 import { Grid } from '../../core/Grid';
 
@@ -44,19 +44,6 @@ export class ShadowNinjaBoss extends BaseBoss {
       if (real) { real.revealed = true; real.revealTicks = 6; }
     }
 
-    const head = this.ctx.snake.body[0];
-    for (const cl of this.clones) {
-      if (cl.cell.col === head.col && cl.cell.row === head.row) {
-        if (cl.real) {
-          this.registerHit();
-          this.spawnClones();
-          return {};
-        } else {
-          return { hitDanger: true };
-        }
-      }
-    }
-
     return {};
   }
 
@@ -67,5 +54,23 @@ export class ShadowNinjaBoss extends BaseBoss {
       state: cl.real && cl.revealed ? 'real' : 'shadow',
       data: { hp: this.hp }
     }));
+  }
+
+  getDangerCells(): DangerCell[] {
+    return this.clones
+      .filter(cl => !cl.real)
+      .map(cl => ({ ...cl.cell, source: 'shadowNinja', lethal: true }));
+  }
+
+  getWeakPoints(): Cell[] {
+    return this.clones.filter(cl => cl.real).map(cl => cl.cell);
+  }
+
+  onWeakPointHit(cell: Cell): BossHitResult {
+    const clone = this.clones.find(cl => cl.real && cl.cell.col === cell.col && cl.cell.row === cell.row);
+    if (!clone) return { hit: false, defeated: this.isDefeated() };
+    const result = super.onWeakPointHit(cell);
+    if (result.hit && !result.defeated) this.spawnClones();
+    return result;
   }
 }
