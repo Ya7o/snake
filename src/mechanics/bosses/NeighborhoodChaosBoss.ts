@@ -105,6 +105,7 @@ export class NeighborhoodChaosBoss extends BaseBoss {
   }
 
   getHudExtra(): string {
-    return `${super.getHudExtra()} V${this.wave + 1}`;
+    if (this.hasPaper) return 'LIVRE';
+    return `VAGUE ${this.wave + 1}/3`;
   }
 }

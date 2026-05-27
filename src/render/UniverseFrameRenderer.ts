@@ -25,8 +25,9 @@ export class UniverseFrameRenderer {
   constructor(private scene: Phaser.Scene) {}
 
   render(params: UniverseFrameRenderParams): void {
-    const asset = UNIVERSE_FRAME_ASSETS[params.universeId];
-    const key = this.scene.textures.exists(asset.key) ? asset.key : null;
+    const assetKey = params.universeId as keyof typeof UNIVERSE_FRAME_ASSETS;
+    const asset = UNIVERSE_FRAME_ASSETS[assetKey];
+    const key = asset && this.scene.textures.exists(asset.key) ? asset.key : null;
 
     const mode = key && this.shouldUseFullFrame(params.universeId, key) ? 'full' : key ? 'tile' : 'fallback';
 

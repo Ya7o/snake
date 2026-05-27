@@ -8,6 +8,19 @@ import { GameScene } from './scenes/GameScene';
 import { ClearScene } from './scenes/ClearScene';
 import { GameOverScene } from './scenes/GameOverScene';
 
+const RENDER_RESOLUTION = Math.min(window.devicePixelRatio || 1, 2);
+
+const originalTextFactory = Phaser.GameObjects.GameObjectFactory.prototype.text;
+Phaser.GameObjects.GameObjectFactory.prototype.text = function textWithReadableResolution(
+  x: number,
+  y: number,
+  text: string | string[],
+  style?: Phaser.Types.GameObjects.Text.TextStyle,
+): Phaser.GameObjects.Text {
+  const readableStyle = { ...style, resolution: RENDER_RESOLUTION };
+  return originalTextFactory.call(this, Math.round(x), Math.round(y), text, readableStyle);
+};
+
 const config: Phaser.Types.Core.GameConfig = {
   type: Phaser.AUTO,
   parent: 'app',
@@ -18,7 +31,7 @@ const config: Phaser.Types.Core.GameConfig = {
   },
   render: {
     antialias: true,
-    roundPixels: false,
+    roundPixels: true,
     powerPreference: 'high-performance',
   },
   input: {

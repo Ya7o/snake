@@ -1,5 +1,5 @@
 import Phaser from 'phaser';
-import { CASTLE_RESULT_SCREEN_ASSETS, SCENES } from '../config/constants';
+import { UNIVERSE_RESULT_SCREEN_ASSETS, SCENES } from '../config/constants';
 import { getLevelById, resolveLevelId } from '../config/levels';
 import { UNIVERSES } from '../config/universes';
 import { MAP_NODES } from '../config/mapNodes';
@@ -23,8 +23,10 @@ export class ClearScene extends Phaser.Scene {
 
   preload(): void {
     const level = getLevelById(this.levelId);
-    if (level?.universeId === 'castle' && !this.textures.exists(CASTLE_RESULT_SCREEN_ASSETS.clear.key)) {
-      this.load.image(CASTLE_RESULT_SCREEN_ASSETS.clear.key, CASTLE_RESULT_SCREEN_ASSETS.clear.url);
+    if (!level) return;
+    const univBg = UNIVERSE_RESULT_SCREEN_ASSETS[level.universeId];
+    if (univBg && !this.textures.exists(univBg.clear.key)) {
+      this.load.image(univBg.clear.key, univBg.clear.url);
     }
   }
 
@@ -42,10 +44,11 @@ export class ClearScene extends Phaser.Scene {
 
     // Background
     this.add.rectangle(W / 2, H / 2, W, H, bgColor).setDepth(0);
-    if (isCastle && this.textures.exists(CASTLE_RESULT_SCREEN_ASSETS.clear.key)) {
-      const bg = this.add.image(W / 2, H / 2, CASTLE_RESULT_SCREEN_ASSETS.clear.key).setDepth(1);
+    const univBg = UNIVERSE_RESULT_SCREEN_ASSETS[level?.universeId ?? ''];
+    if (univBg && this.textures.exists(univBg.clear.key)) {
+      const bg = this.add.image(W / 2, H / 2, univBg.clear.key).setDepth(1);
       bg.setScale(Math.max(W / bg.width, H / bg.height));
-      this.add.rectangle(W / 2, H / 2, W, H, 0x080416, 0.12).setDepth(2);
+      this.add.rectangle(W / 2, H / 2, W, H, 0x000000, 0.14).setDepth(2);
     }
 
     // Gold flash on enter
@@ -105,11 +108,13 @@ export class ClearScene extends Phaser.Scene {
       fontFamily: ARCADE_FONT,
       fontSize: `${Math.min(28, Math.floor(W * 0.08))}px`,
       color: isCastle ? CT.titleClear : accentStr,
+      stroke: '#000000',
+      strokeThickness: isCastle ? 1 : 3,
     }).setOrigin(0.5).setDepth(6);
 
     this.tweens.add({
       targets: clearTxt,
-      scaleX: 1.06, scaleY: 1.06,
+      alpha: 0.78,
       duration: 700,
       yoyo: true,
       repeat: -1,
@@ -123,6 +128,8 @@ export class ClearScene extends Phaser.Scene {
         fontSize: `${Math.min(13, Math.floor(W * 0.034))}px`,
         fontStyle: '700',
         color: universe.palette.primary,
+        stroke: '#000000',
+        strokeThickness: 2,
       }).setOrigin(0.5).setDepth(6);
     }
 
@@ -160,7 +167,9 @@ export class ClearScene extends Phaser.Scene {
         fontFamily: UI_FONT,
         fontSize: `${Math.min(17, Math.floor(W * 0.044))}px`,
         fontStyle: '700',
-        color: '#d8d8e8',
+        color: '#ffffff',
+        stroke: '#000000',
+        strokeThickness: 3,
       }).setOrigin(0.5).setDepth(6);
 
       addMobileButton(this, {
@@ -182,11 +191,18 @@ export class ClearScene extends Phaser.Scene {
         },
       });
     } else {
+      const endFontSize = Math.min(15, Math.floor(W * 0.038));
+      const endBlockH = endFontSize * 2 + 4 + 16;
+      const endBacking = this.add.graphics().setDepth(5);
+      endBacking.fillStyle(0x000000, 0.48);
+      endBacking.fillRoundedRect(W * 0.12, H * L.contextY - endBlockH / 2, W * 0.76, endBlockH, 6);
       this.add.text(W / 2, H * L.contextY, 'TOUS LES NIVEAUX\nTERMINÉS !', {
         fontFamily: UI_FONT,
-        fontSize: `${Math.min(15, Math.floor(W * 0.038))}px`,
+        fontSize: `${endFontSize}px`,
         fontStyle: '800',
-        color: accentStr,
+        color: '#ffffff',
+        stroke: '#000000',
+        strokeThickness: 3,
         align: 'center',
         lineSpacing: 4,
       }).setOrigin(0.5).setDepth(6);

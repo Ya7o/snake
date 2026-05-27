@@ -1,5 +1,6 @@
 import Phaser from 'phaser';
 import { MOBILE_UI } from '../config/constants';
+import { AudioSystem } from '../systems/AudioSystem';
 
 export const ARCADE_FONT = '"Press Start 2P", monospace';
 export const UI_FONT = 'Arial, Helvetica, sans-serif';
@@ -105,22 +106,25 @@ export function addMobileButton(scene: Phaser.Scene, options: MobileButtonOption
   hit.on('pointerover', () => { if (!isPressed) container.setAlpha(0.88); });
   hit.on('pointerout', () => {
     isPressed = false;
-    container.setScale(1);
+    container.setY(options.y);
     container.setAlpha(1);
     draw(false);
   });
   hit.on('pointerdown', () => {
     isPressed = true;
-    container.setScale(0.95);
+    container.setY(options.y + 1);
     draw(true);
   });
   hit.on('pointerup', () => {
     const shouldClick = isPressed;
     isPressed = false;
-    container.setScale(1);
+    container.setY(options.y);
     container.setAlpha(1);
     draw(false);
-    if (shouldClick) options.onClick();
+    if (shouldClick) {
+      AudioSystem.uiButton();
+      options.onClick();
+    }
   });
 
   return container;
@@ -161,22 +165,6 @@ export function drawConsoleFrame(
     gfx.fillRect(cx, cy, sq, sq);
   }
 
-  return gfx;
-}
-
-/**
- * Add a scanline overlay over the full scene — subtle CRT effect.
- * 907 — on mobile (touch device) uses a sparser step to reduce fill cost.
- */
-export function addScanlines(scene: Phaser.Scene, alpha = 0.06, depth = 50): Phaser.GameObjects.Graphics {
-  const { width, height } = scene.scale;
-  const isMobile = ('ontouchstart' in window) || navigator.maxTouchPoints > 0;
-  const step = isMobile ? 6 : 3; // coarser scanlines on mobile
-  const gfx = scene.add.graphics().setDepth(depth).setScrollFactor(0);
-  gfx.fillStyle(0x000000, alpha);
-  for (let y = 0; y < height; y += step) {
-    gfx.fillRect(0, y, width, 1);
-  }
   return gfx;
 }
 

@@ -22,9 +22,11 @@ export class CrimeLordBoss extends BaseBoss {
 
   private spawnPressure(): void {
     this.pressureZones = [];
-    // horizontal row attack
     const row = Math.floor(Math.random() * this.ctx.grid.rows);
-    for (let c = 0; c < this.ctx.grid.cols; c++) {
+    // Partial-width pressure zone (~60%) to leave at least one escape lane
+    const dangerWidth = Math.max(4, Math.floor(this.ctx.grid.cols * 0.6));
+    const startCol = Math.floor(Math.random() * (this.ctx.grid.cols - dangerWidth + 1));
+    for (let c = startCol; c < startCol + dangerWidth; c++) {
       this.pressureZones.push({ col: c, row });
     }
   }
@@ -87,5 +89,9 @@ export class CrimeLordBoss extends BaseBoss {
       if (nextCell) this.bossCell = nextCell;
     }
     return result;
+  }
+
+  getHudExtra(): string {
+    return this.currentPhase === 'vulnerable' ? 'FENÊTRE' : 'DANGER';
   }
 }

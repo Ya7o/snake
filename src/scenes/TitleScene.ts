@@ -75,8 +75,7 @@ export class TitleScene extends Phaser.Scene {
 
     this.tweens.add({
       targets: snakeText,
-      scaleX: 1.05,
-      scaleY: 1.02,
+      alpha: 0.78,
       duration: 900,
       yoyo: true,
       repeat: -1,
@@ -145,6 +144,7 @@ export class TitleScene extends Phaser.Scene {
       if (titleStarted) return;
       titleStarted = true;
       AudioSystem.resume();
+      AudioSystem.uiButton();
       this.cameras.main.fadeOut(200, 0, 0, 0);
       this.cameras.main.once('camerafadeoutcomplete', () => {
         this.scene.start(SCENES.WORLD_MAP);

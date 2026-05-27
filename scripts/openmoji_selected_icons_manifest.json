@@ -1,0 +1,727 @@
+{
+  "sourceCloneDefault": "snake/tmp/emoticon",
+  "alternateSourcePaths": [
+    "tmp/emoticon",
+    "/tmp/openmoji",
+    "snake/tmp/openmoji"
+  ],
+  "preferredAssetRoot": "public/assets/openmoji",
+  "version": "v3-castle-quick-wins-expanded",
+  "notes": [
+    "OpenMoji exported SVGs are usually in color/svg and named by Unicode codepoint.",
+    "Some files may include FE0F variation selector; the copy script tests candidates.",
+    "V3 supersedes V2 by adding Castle quick wins: key, pause, shield, bonus/perfect star.",
+    "If an icon is missing, keep a documented fallback and do not block the build unless critical."
+  ],
+  "world": {
+    "castle": {
+      "emoji": "🏰",
+      "filenames": [
+        "1F3F0.svg"
+      ],
+      "fallbacks": [
+        "1F52E.svg",
+        "2728.svg"
+      ]
+    },
+    "speed": {
+      "emoji": "💍",
+      "filenames": [
+        "1F48D.svg"
+      ],
+      "fallbacks": [
+        "26A1.svg",
+        "1F300.svg"
+      ]
+    },
+    "streets": {
+      "emoji": "🌆",
+      "filenames": [
+        "1F306.svg"
+      ],
+      "fallbacks": [
+        "1F9F1.svg",
+        "1F3D9.svg",
+        "1F303.svg"
+      ]
+    },
+    "fighter": {
+      "emoji": "🥋",
+      "filenames": [
+        "1F94B.svg"
+      ],
+      "fallbacks": [
+        "1F44A.svg",
+        "1F4AA.svg"
+      ]
+    },
+    "outrun": {
+      "emoji": "🚗",
+      "filenames": [
+        "1F697.svg"
+      ],
+      "fallbacks": [
+        "1F305.svg",
+        "1F6E3.svg",
+        "1F6E3-FE0F.svg"
+      ]
+    },
+    "shinobi": {
+      "emoji": "🥷",
+      "filenames": [
+        "1F977.svg"
+      ],
+      "fallbacks": [
+        "1F319.svg",
+        "1F3EF.svg"
+      ]
+    },
+    "kombat": {
+      "emoji": "🐉",
+      "filenames": [
+        "1F409.svg"
+      ],
+      "fallbacks": [
+        "1F525.svg",
+        "1F480.svg"
+      ]
+    },
+    "paperboy": {
+      "emoji": "🗞️",
+      "filenames": [
+        "1F5DE.svg",
+        "1F5DE-FE0F.svg"
+      ],
+      "fallbacks": [
+        "1F4F0.svg",
+        "1F4EB.svg",
+        "1F6B2.svg"
+      ]
+    }
+  },
+  "hud": {
+    "magic": {
+      "emoji": "✨",
+      "filenames": [
+        "2728.svg"
+      ],
+      "fallbacks": [
+        "1F48E.svg",
+        "1F31F.svg"
+      ]
+    },
+    "boss": {
+      "emoji": "💀",
+      "filenames": [
+        "1F480.svg"
+      ],
+      "fallbacks": [
+        "1F409.svg",
+        "1F525.svg"
+      ]
+    },
+    "danger": {
+      "emoji": "⚠️",
+      "filenames": [
+        "26A0.svg",
+        "26A0-FE0F.svg"
+      ],
+      "fallbacks": [
+        "1F525.svg"
+      ]
+    },
+    "stage": {
+      "emoji": "🚩",
+      "filenames": [
+        "1F6A9.svg"
+      ],
+      "fallbacks": [
+        "1F5FA.svg",
+        "1F5FA-FE0F.svg"
+      ]
+    },
+    "clear": {
+      "emoji": "🏆",
+      "filenames": [
+        "1F3C6.svg"
+      ],
+      "fallbacks": [
+        "2728.svg"
+      ]
+    },
+    "retry": {
+      "emoji": "🔄",
+      "filenames": [
+        "1F504.svg"
+      ],
+      "fallbacks": [
+        "1F501.svg"
+      ]
+    },
+    "score": {
+      "emoji": "💎",
+      "filenames": [
+        "1F48E.svg"
+      ],
+      "fallbacks": [
+        "1FA99.svg"
+      ]
+    },
+    "locked": {
+      "emoji": "🔒",
+      "filenames": [
+        "1F512.svg"
+      ],
+      "fallbacks": [
+        "26D4.svg"
+      ]
+    },
+    "unlocked": {
+      "emoji": "🔓",
+      "filenames": [
+        "1F513.svg"
+      ],
+      "fallbacks": [
+        "2705.svg"
+      ]
+    },
+    "pause": {
+      "emoji": "⏸️",
+      "filenames": [
+        "23F8.svg",
+        "23F8-FE0F.svg"
+      ],
+      "fallbacks": [
+        "275A.svg",
+        "23EF.svg",
+        "23EF-FE0F.svg"
+      ]
+    },
+    "play": {
+      "emoji": "▶️",
+      "filenames": [
+        "25B6.svg",
+        "25B6-FE0F.svg"
+      ],
+      "fallbacks": [
+        "23EF.svg",
+        "23EF-FE0F.svg"
+      ]
+    },
+    "home": {
+      "emoji": "🏠",
+      "filenames": [
+        "1F3E0.svg"
+      ],
+      "fallbacks": [
+        "1F3E1.svg"
+      ]
+    },
+    "key": {
+      "emoji": "🗝️",
+      "filenames": [
+        "1F5DD.svg",
+        "1F5DD-FE0F.svg"
+      ],
+      "fallbacks": [
+        "1F511.svg"
+      ]
+    },
+    "shield": {
+      "emoji": "🛡️",
+      "filenames": [
+        "1F6E1.svg",
+        "1F6E1-FE0F.svg"
+      ],
+      "fallbacks": [
+        "2694.svg",
+        "2694-FE0F.svg"
+      ]
+    },
+    "bonus": {
+      "emoji": "🌟",
+      "filenames": [
+        "1F31F.svg"
+      ],
+      "fallbacks": [
+        "2B50.svg",
+        "2728.svg"
+      ]
+    }
+  },
+  "pickups": {
+    "magic_star": {
+      "emoji": "✨",
+      "filenames": [
+        "2728.svg"
+      ],
+      "fallbacks": [
+        "1F31F.svg"
+      ]
+    },
+    "orb": {
+      "emoji": "🔮",
+      "filenames": [
+        "1F52E.svg"
+      ],
+      "fallbacks": [
+        "1F31F.svg"
+      ]
+    },
+    "gem": {
+      "emoji": "💎",
+      "filenames": [
+        "1F48E.svg"
+      ],
+      "fallbacks": [
+        "1F539.svg"
+      ]
+    },
+    "ring": {
+      "emoji": "💍",
+      "filenames": [
+        "1F48D.svg"
+      ],
+      "fallbacks": [
+        "1FA99.svg"
+      ]
+    },
+    "newspaper": {
+      "emoji": "🗞️",
+      "filenames": [
+        "1F5DE.svg",
+        "1F5DE-FE0F.svg"
+      ],
+      "fallbacks": [
+        "1F4F0.svg"
+      ]
+    },
+    "turbo": {
+      "emoji": "⚡",
+      "filenames": [
+        "26A1.svg"
+      ],
+      "fallbacks": [
+        "1F680.svg"
+      ]
+    },
+    "warning": {
+      "emoji": "⚠️",
+      "filenames": [
+        "26A0.svg",
+        "26A0-FE0F.svg"
+      ],
+      "fallbacks": [
+        "1F525.svg"
+      ]
+    },
+    "key": {
+      "emoji": "🗝️",
+      "filenames": [
+        "1F5DD.svg",
+        "1F5DD-FE0F.svg"
+      ],
+      "fallbacks": [
+        "1F511.svg"
+      ]
+    },
+    "shield": {
+      "emoji": "🛡️",
+      "filenames": [
+        "1F6E1.svg",
+        "1F6E1-FE0F.svg"
+      ],
+      "fallbacks": [
+        "2694.svg",
+        "2694-FE0F.svg"
+      ]
+    },
+    "bonus_star": {
+      "emoji": "🌟",
+      "filenames": [
+        "1F31F.svg"
+      ],
+      "fallbacks": [
+        "2B50.svg",
+        "2728.svg"
+      ]
+    },
+    "perfect_star": {
+      "emoji": "⭐",
+      "filenames": [
+        "2B50.svg"
+      ],
+      "fallbacks": [
+        "1F31F.svg",
+        "2728.svg"
+      ]
+    }
+  },
+  "obstacles": {
+    "stone": {
+      "emoji": "🪨",
+      "filenames": [
+        "1FAA8.svg"
+      ],
+      "fallbacks": [
+        "1F9F1.svg",
+        "26F0.svg",
+        "26F0-FE0F.svg"
+      ]
+    },
+    "brick": {
+      "emoji": "🧱",
+      "filenames": [
+        "1F9F1.svg"
+      ],
+      "fallbacks": [
+        "1FAA8.svg",
+        "26F0.svg"
+      ]
+    },
+    "thorn": {
+      "emoji": "🌵",
+      "filenames": [
+        "1F335.svg"
+      ],
+      "fallbacks": [
+        "1F33F.svg",
+        "1F331.svg"
+      ]
+    },
+    "barrel": {
+      "emoji": "🛢️",
+      "filenames": [
+        "1F6E2.svg",
+        "1F6E2-FE0F.svg"
+      ],
+      "fallbacks": [
+        "1F6A7.svg"
+      ]
+    },
+    "cone": {
+      "emoji": "🚧",
+      "filenames": [
+        "1F6A7.svg"
+      ],
+      "fallbacks": [
+        "26A0.svg"
+      ]
+    },
+    "mailbox": {
+      "emoji": "📫",
+      "filenames": [
+        "1F4EB.svg"
+      ],
+      "fallbacks": [
+        "1F4EC.svg",
+        "1F4EA.svg"
+      ]
+    },
+    "roadblock": {
+      "emoji": "⛔",
+      "filenames": [
+        "26D4.svg"
+      ],
+      "fallbacks": [
+        "1F6A7.svg",
+        "26A0.svg"
+      ]
+    },
+    "door": {
+      "emoji": "🚪",
+      "filenames": [
+        "1F6AA.svg"
+      ],
+      "fallbacks": [
+        "1F3F0.svg",
+        "1F3E0.svg"
+      ]
+    },
+    "lock": {
+      "emoji": "🔒",
+      "filenames": [
+        "1F512.svg"
+      ],
+      "fallbacks": [
+        "26D4.svg"
+      ]
+    }
+  },
+  "danger": {
+    "fire": {
+      "emoji": "🔥",
+      "filenames": [
+        "1F525.svg"
+      ],
+      "fallbacks": [
+        "26A0.svg",
+        "26A0-FE0F.svg"
+      ]
+    },
+    "warning": {
+      "emoji": "⚠️",
+      "filenames": [
+        "26A0.svg",
+        "26A0-FE0F.svg"
+      ],
+      "fallbacks": [
+        "1F525.svg"
+      ]
+    },
+    "cyclone": {
+      "emoji": "🌀",
+      "filenames": [
+        "1F300.svg"
+      ],
+      "fallbacks": [
+        "1F52E.svg"
+      ]
+    },
+    "skull": {
+      "emoji": "💀",
+      "filenames": [
+        "1F480.svg"
+      ],
+      "fallbacks": [
+        "2620.svg",
+        "2620-FE0F.svg"
+      ]
+    },
+    "lightning": {
+      "emoji": "⚡",
+      "filenames": [
+        "26A1.svg"
+      ],
+      "fallbacks": [
+        "1F525.svg"
+      ]
+    },
+    "biohazard": {
+      "emoji": "☣️",
+      "filenames": [
+        "2623.svg",
+        "2623-FE0F.svg"
+      ],
+      "fallbacks": [
+        "26A0.svg",
+        "1F480.svg"
+      ]
+    },
+    "locked": {
+      "emoji": "🔒",
+      "filenames": [
+        "1F512.svg"
+      ],
+      "fallbacks": [
+        "26D4.svg"
+      ]
+    },
+    "shield_break": {
+      "emoji": "🛡️",
+      "filenames": [
+        "1F6E1.svg",
+        "1F6E1-FE0F.svg"
+      ],
+      "fallbacks": [
+        "26A0.svg"
+      ]
+    }
+  },
+  "boss": {
+    "skull": {
+      "emoji": "💀",
+      "filenames": [
+        "1F480.svg"
+      ],
+      "fallbacks": [
+        "2620.svg",
+        "2620-FE0F.svg"
+      ]
+    },
+    "dragon": {
+      "emoji": "🐉",
+      "filenames": [
+        "1F409.svg"
+      ],
+      "fallbacks": [
+        "1F525.svg"
+      ]
+    },
+    "crystal_ball": {
+      "emoji": "🔮",
+      "filenames": [
+        "1F52E.svg"
+      ],
+      "fallbacks": [
+        "1F300.svg",
+        "2728.svg"
+      ]
+    },
+    "portal": {
+      "emoji": "🌀",
+      "filenames": [
+        "1F300.svg"
+      ],
+      "fallbacks": [
+        "1F52E.svg"
+      ]
+    },
+    "crossed_swords": {
+      "emoji": "⚔️",
+      "filenames": [
+        "2694.svg",
+        "2694-FE0F.svg"
+      ],
+      "fallbacks": [
+        "1F5E1.svg",
+        "1F5E1-FE0F.svg"
+      ]
+    },
+    "crown": {
+      "emoji": "👑",
+      "filenames": [
+        "1F451.svg"
+      ],
+      "fallbacks": [
+        "1F3C6.svg"
+      ]
+    },
+    "key": {
+      "emoji": "🗝️",
+      "filenames": [
+        "1F5DD.svg",
+        "1F5DD-FE0F.svg"
+      ],
+      "fallbacks": [
+        "1F511.svg"
+      ]
+    },
+    "shield": {
+      "emoji": "🛡️",
+      "filenames": [
+        "1F6E1.svg",
+        "1F6E1-FE0F.svg"
+      ],
+      "fallbacks": [
+        "2694.svg",
+        "2694-FE0F.svg"
+      ]
+    },
+    "bonus_star": {
+      "emoji": "🌟",
+      "filenames": [
+        "1F31F.svg"
+      ],
+      "fallbacks": [
+        "2B50.svg",
+        "2728.svg"
+      ]
+    }
+  },
+  "result": {
+    "victory": {
+      "emoji": "🏆",
+      "filenames": [
+        "1F3C6.svg"
+      ],
+      "fallbacks": [
+        "2728.svg"
+      ]
+    },
+    "defeat": {
+      "emoji": "💀",
+      "filenames": [
+        "1F480.svg"
+      ],
+      "fallbacks": [
+        "26A0.svg",
+        "26A0-FE0F.svg"
+      ]
+    },
+    "continue": {
+      "emoji": "▶️",
+      "filenames": [
+        "25B6.svg",
+        "25B6-FE0F.svg"
+      ],
+      "fallbacks": [
+        "2705.svg"
+      ]
+    },
+    "home": {
+      "emoji": "🏠",
+      "filenames": [
+        "1F3E0.svg"
+      ],
+      "fallbacks": [
+        "1F3E1.svg"
+      ]
+    },
+    "pause": {
+      "emoji": "⏸️",
+      "filenames": [
+        "23F8.svg",
+        "23F8-FE0F.svg"
+      ],
+      "fallbacks": [
+        "23EF.svg",
+        "23EF-FE0F.svg"
+      ]
+    },
+    "key": {
+      "emoji": "🗝️",
+      "filenames": [
+        "1F5DD.svg",
+        "1F5DD-FE0F.svg"
+      ],
+      "fallbacks": [
+        "1F511.svg"
+      ]
+    },
+    "shield": {
+      "emoji": "🛡️",
+      "filenames": [
+        "1F6E1.svg",
+        "1F6E1-FE0F.svg"
+      ],
+      "fallbacks": [
+        "2694.svg",
+        "2694-FE0F.svg"
+      ]
+    },
+    "perfect": {
+      "emoji": "🌟",
+      "filenames": [
+        "1F31F.svg"
+      ],
+      "fallbacks": [
+        "2B50.svg",
+        "2728.svg"
+      ]
+    }
+  },
+  "castleV1": {
+    "world": "world/castle.svg",
+    "stage": "hud/stage.svg",
+    "pickupPrimary": "pickups/magic_star.svg",
+    "bonusGem": "pickups/gem.svg",
+    "rareOrb": "pickups/orb.svg",
+    "bonusStar": "pickups/bonus_star.svg",
+    "perfectStar": "pickups/perfect_star.svg",
+    "keyUnlock": "pickups/key.svg",
+    "shieldPowerup": "pickups/shield.svg",
+    "obstacleFixed": "obstacles/brick.svg",
+    "obstacleAlt": "obstacles/stone.svg",
+    "obstacleDoor": "obstacles/door.svg",
+    "dangerPrimary": "danger/fire.svg",
+    "dangerWarning": "danger/warning.svg",
+    "bossEvent": "boss/crystal_ball.svg",
+    "bossDanger": "boss/skull.svg",
+    "bossReward": "boss/crown.svg",
+    "pause": "hud/pause.svg",
+    "play": "hud/play.svg",
+    "home": "hud/home.svg",
+    "clear": "hud/clear.svg"
+  }
+}

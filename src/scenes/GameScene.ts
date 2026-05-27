@@ -1,5 +1,5 @@
 import Phaser from 'phaser';
-import { SCENES, UNIVERSE_FRAME_ASSETS, CASTLE_RESULT_SCREEN_ASSETS } from '../config/constants';
+import { SCENES, UNIVERSE_RESULT_SCREEN_ASSETS } from '../config/constants';
 import { LevelConfig } from '../config/types';
 import { getLevelById, resolveLevelId } from '../config/levels';
 import { UNIVERSES } from '../config/universes';
@@ -14,20 +14,20 @@ import { ShinobiFocusMechanic } from '../mechanics/ShinobiFocusMechanic';
 import { OutRunLaneMechanic } from '../mechanics/OutRunLaneMechanic';
 import { PaperboyDeliveryMechanic } from '../mechanics/PaperboyDeliveryMechanic';
 import { BaseBoss } from '../mechanics/bosses/BaseBoss';
-import { GridRenderer, computeGridLayout, GridLayout } from '../render/GridRenderer';
+import { GridRenderer, computeGridLayout, GridLayout, cellToPixel } from '../render/GridRenderer';
 import { SnakeRenderer } from '../render/SnakeRenderer';
 import { PickupRenderer } from '../render/PickupRenderer';
 import { ObstacleRenderer } from '../render/ObstacleRenderer';
 import { HUDRenderer } from '../render/HUDRenderer';
-import { UniverseFrameRenderer } from '../render/UniverseFrameRenderer';
 import { InputSystem } from '../systems/InputSystem';
 import { AudioSystem } from '../systems/AudioSystem';
 import { SaveSystem } from '../systems/SaveSystem';
 import { MAP_NODES } from '../config/mapNodes';
-import { flashScreen, addScanlines } from '../render/VfxUtils';
+import { flashScreen } from '../render/VfxUtils';
 import { preloadRuntimeAssets, getRuntimeTextureKey } from '../systems/RuntimeAssetResolver';
 import { drawCastleRuntimeBoardPanel, logCastleRuntimeLayers } from '../ui/CastleRuntimeLayering';
 import { GAMEPLAY_HUD, GAMEPLAY_LAYERS } from '../ui/RuntimeUILayout';
+import { CASTLE_OPENMOJI_ICON_ASSETS, CASTLE_OPENMOJI_ICONS } from '../ui/OpenMojiIconRegistry';
 
 const GRID_COLS = 16;
 const GRID_ROWS = 20;
@@ -38,7 +38,7 @@ const FRAME_GRID_WIDTH: Record<string, number> = {
   sonic: 0.94,
   streets: 0.94,
   fighter: 0.94,
-  outrun: 0.72,
+  outrun: 0.78,
   shinobi: 0.94,
   kombat: 0.94,
   paperboy: 0.94,
@@ -48,7 +48,7 @@ const FRAME_GRID_Y_BIAS: Record<string, number> = {
   sonic: 0.18,
   streets: 0.22,
   fighter: 0.22,
-  outrun: 0.08,
+  outrun: 0.42,
   shinobi: 0.22,
   kombat: 0.22,
   paperboy: 0.22,
@@ -84,8 +84,8 @@ export class GameScene extends Phaser.Scene {
   private pickupRenderer!: PickupRenderer;
   private obstacleRenderer!: ObstacleRenderer;
   private hudRenderer!: HUDRenderer;
-  private universeFrameRenderer!: UniverseFrameRenderer;
   private inputSys!: InputSystem;
+  private castlePickupGlow?: Phaser.GameObjects.Graphics;
 
   constructor() {
     super(SCENES.GAME);
@@ -98,34 +98,33 @@ export class GameScene extends Phaser.Scene {
 
   preload(): void {
     const uid = this.levelConfig.universeId;
-    const base = `assets/universes/${uid}`;
-    const assetKeys: Array<[string, string]> = [
-      [`db_${uid}_pickup01`,   `${base}/pickup_01.png`],
-      [`db_${uid}_pickup02`,   `${base}/pickup_02.png`],
-      [`db_${uid}_obstacle01`, `${base}/obstacle_01.png`],
-      [`db_${uid}_obstacle02`, `${base}/obstacle_02.png`],
-      [`db_${uid}_frame`,      `${base}/frame_tile.png`],
-      [`db_${uid}_hudPanel`,   `${base}/hud_panel.png`],
-    ];
-    if (this.levelConfig.type === 'boss') {
-      assetKeys.push([`db_${uid}_boss`, `${base}/boss.png`]);
+
+    // Generic background for all universes
+    const univBg = UNIVERSE_RESULT_SCREEN_ASSETS[uid];
+    if (univBg && !this.textures.exists(univBg.gameplay.key)) {
+      this.load.image(univBg.gameplay.key, univBg.gameplay.url);
     }
-    for (const [key, path] of assetKeys) {
-      if (!this.textures.exists(key)) this.load.image(key, path);
-    }
-    // rt_ only for non-castle universes (castle uses db_ assets exclusively)
-    // Codex_ skipped: all universes have db_ or rt_ assets — codex is unreachable dead weight
-    if (uid !== 'castle') {
-      preloadRuntimeAssets(this, uid);
-    }
-    // Load only the active universe frame — not all 8
-    const frameAsset = UNIVERSE_FRAME_ASSETS[uid as keyof typeof UNIVERSE_FRAME_ASSETS];
-    if (frameAsset && !this.textures.exists(frameAsset.key)) {
-      this.load.image(frameAsset.key, frameAsset.url);
-    }
+
     if (uid === 'castle') {
-      const gpAsset = CASTLE_RESULT_SCREEN_ASSETS.gameplay;
-      if (!this.textures.exists(gpAsset.key)) this.load.image(gpAsset.key, gpAsset.url);
+      for (const icon of CASTLE_OPENMOJI_ICON_ASSETS) {
+        if (!this.textures.exists(icon.key)) this.load.svg(icon.key, icon.url, { width: 64, height: 64 });
+      }
+    } else {
+      const base = `assets/universes/${uid}`;
+      const isBoss = this.levelConfig.type === 'boss';
+      const assetKeys: Array<[string, string]> = [
+        [`db_${uid}_pickup01`,   `${base}/pickup_01.png`],
+        [`db_${uid}_pickup02`,   `${base}/pickup_02.png`],
+        [`db_${uid}_obstacle01`, `${base}/obstacle_01.png`],
+        [`db_${uid}_hudPanel`,   `${base}/hud_panel.png`],
+      ];
+      if (isBoss) {
+        assetKeys.push([`db_${uid}_boss`, `${base}/boss.png`]);
+      }
+      for (const [key, path] of assetKeys) {
+        if (!this.textures.exists(key)) this.load.image(key, path);
+      }
+      preloadRuntimeAssets(this, uid, isBoss);
     }
   }
 
@@ -141,10 +140,13 @@ export class GameScene extends Phaser.Scene {
     this.colorAccent  = parseInt(palette.accent.replace('#', ''), 16);
 
     this.add.rectangle(width / 2, height / 2, width, height, this.colorBg).setDepth(GAMEPLAY_LAYERS.BACKGROUND_FILL);
-
-    if (this.levelConfig.universeId === 'castle' && this.textures.exists(CASTLE_RESULT_SCREEN_ASSETS.gameplay.key)) {
-      const gpBg = this.add.image(width / 2, height / 2, CASTLE_RESULT_SCREEN_ASSETS.gameplay.key).setDepth(GAMEPLAY_LAYERS.BACKGROUND_IMAGE);
-      gpBg.setScale(Math.min(width / gpBg.width, height / gpBg.height));
+    const univBg = UNIVERSE_RESULT_SCREEN_ASSETS[this.levelConfig.universeId];
+    if (univBg && this.textures.exists(univBg.gameplay.key)) {
+      const bg = this.add.image(width / 2, height / 2, univBg.gameplay.key)
+        .setDepth(GAMEPLAY_LAYERS.BACKGROUND_IMAGE);
+      bg.setScale(Math.max(width / bg.width, height / bg.height));
+      this.add.rectangle(width / 2, height / 2, width, height, 0x000000, 0.14)
+        .setDepth(GAMEPLAY_LAYERS.BACKGROUND_IMAGE + 1);
     }
 
     this.gridCols = this.levelConfig.universeId === 'castle' ? CASTLE_GRID_COLS : GRID_COLS;
@@ -153,6 +155,13 @@ export class GameScene extends Phaser.Scene {
     const frameAwareWidth = FRAME_GRID_WIDTH[this.levelConfig.universeId] ?? 0.96;
     const frameAwareYBias = FRAME_GRID_Y_BIAS[this.levelConfig.universeId] ?? 0.22;
     this.layout = computeGridLayout(width, height, this.gridCols, this.gridRows, GAMEPLAY_HUD.HEIGHT, 24, frameAwareWidth, 12, frameAwareYBias);
+    if (this.levelConfig.universeId === 'castle') {
+      const breathing = 8;
+      const gridHeight = this.layout.cellSize * this.layout.rows;
+      if (this.layout.y + gridHeight + breathing <= height - 10) {
+        this.layout = { ...this.layout, y: this.layout.y + breathing };
+      }
+    }
 
     // 906 — compute asset keys before renderer creation
     const uid        = this.levelConfig.universeId;
@@ -160,7 +169,6 @@ export class GameScene extends Phaser.Scene {
     const pickup2Key = `db_${uid}_pickup02`;
     const bossKey    = `db_${uid}_boss`;
     const obstacleKey = `db_${uid}_obstacle01`;
-    const frameKey   = `db_${uid}_frame`;
     const hudKey     = `db_${uid}_hudPanel`;
 
     // Renderers
@@ -170,26 +178,57 @@ export class GameScene extends Phaser.Scene {
     this.obstacleRenderer = new ObstacleRenderer(this);
     const readableHudPanelKey = uid === 'castle' ? undefined : this.textures.exists(hudKey) ? hudKey : undefined;
     this.hudRenderer     = new HUDRenderer(this, palette.accent, readableHudPanelKey, uid === 'castle');
-    this.universeFrameRenderer = new UniverseFrameRenderer(this);
+    if (uid === 'castle') {
+      this.styleCastleRuntimeHud();
+      this.castlePickupGlow = this.add.graphics().setDepth(GAMEPLAY_LAYERS.GAMEPLAY_OBJECTS + 1);
+    }
     this.gridRenderer.setDepth(GAMEPLAY_LAYERS.GRID);
     this.obstacleRenderer.setDepth(GAMEPLAY_LAYERS.GAMEPLAY_OBJECTS);
     this.pickupRenderer.setDepth(GAMEPLAY_LAYERS.GAMEPLAY_OBJECTS + 2);
     this.snakeRenderer.setDepth(GAMEPLAY_LAYERS.GAMEPLAY_OBJECTS + 4);
 
     // Wire asset textures to renderers
-    if (this.textures.exists(pickupKey))  this.pickupRenderer.setTextureKey(pickupKey);
-    if (this.textures.exists(pickup2Key)) this.pickupRenderer.setSecondaryTextureKey(pickup2Key);
+    if (uid === 'castle' && this.textures.exists(CASTLE_OPENMOJI_ICONS.pickupPrimary.key)) {
+      this.pickupRenderer.setTextureKey(CASTLE_OPENMOJI_ICONS.pickupPrimary.key);
+      if (this.textures.exists(CASTLE_OPENMOJI_ICONS.pickupSecondary.key)) {
+        this.pickupRenderer.setSecondaryTextureKey(CASTLE_OPENMOJI_ICONS.pickupSecondary.key);
+      }
+    } else {
+      if (this.textures.exists(pickupKey))  this.pickupRenderer.setTextureKey(pickupKey);
+      if (this.textures.exists(pickup2Key)) this.pickupRenderer.setSecondaryTextureKey(pickup2Key);
+    }
     this.pickupRenderer.setUniverseId(uid);
-    if (this.textures.exists(bossKey))    this.obstacleRenderer.setBossTextureKey(bossKey);
-    if (this.textures.exists(obstacleKey)) this.obstacleRenderer.setObstacleTextureKey(obstacleKey);
+    if (uid === 'castle') {
+      this.obstacleRenderer.setEntityTextureResolver(entity => {
+        if (entity.type === 'blinkWall') {
+          if (entity.state === 'ghost') return CASTLE_OPENMOJI_ICONS.obstacleAlt.key;
+          if (entity.state === 'warning') return CASTLE_OPENMOJI_ICONS.warningImpact.key;
+          return CASTLE_OPENMOJI_ICONS.dangerPrimary.key;
+        }
+        if (entity.type === 'witchMirror') {
+          if (entity.state === 'warning') return CASTLE_OPENMOJI_ICONS.warningImpact.key;
+          if (entity.state === 'attacking') return CASTLE_OPENMOJI_ICONS.bossDanger.key;
+          if (entity.state === 'vulnerable' || entity.state === 'hit' || entity.state === 'defeated') {
+            return CASTLE_OPENMOJI_ICONS.bossReward.key;
+          }
+          return CASTLE_OPENMOJI_ICONS.boss.key;
+        }
+        return null;
+      });
+    } else {
+      if (this.textures.exists(bossKey))    this.obstacleRenderer.setBossTextureKey(bossKey);
+      if (this.textures.exists(obstacleKey)) this.obstacleRenderer.setObstacleTextureKey(obstacleKey);
+    }
 
-    // rt_ fallback only — never override a db_ asset that is already wired
-    const rtPickup = getRuntimeTextureKey(this, uid, 'pickup');
-    if (rtPickup && !this.textures.exists(pickupKey)) this.pickupRenderer.setTextureKey(rtPickup);
-    const rtObstacle = getRuntimeTextureKey(this, uid, 'obstacle');
-    if (rtObstacle && !this.textures.exists(obstacleKey)) this.obstacleRenderer.setObstacleTextureKey(rtObstacle);
-    const rtBoss = getRuntimeTextureKey(this, uid, 'boss');
-    if (rtBoss && !this.textures.exists(bossKey)) this.obstacleRenderer.setBossTextureKey(rtBoss);
+    // rt_ fallback only — never used by Castle, which is OpenMoji/procedural in gameplay.
+    if (uid !== 'castle') {
+      const rtPickup = getRuntimeTextureKey(this, uid, 'pickup');
+      if (rtPickup && !this.textures.exists(pickupKey)) this.pickupRenderer.setTextureKey(rtPickup);
+      const rtObstacle = getRuntimeTextureKey(this, uid, 'obstacle');
+      if (rtObstacle && !this.textures.exists(obstacleKey)) this.obstacleRenderer.setObstacleTextureKey(rtObstacle);
+      const rtBoss = getRuntimeTextureKey(this, uid, 'boss');
+      if (rtBoss && !this.textures.exists(bossKey)) this.obstacleRenderer.setBossTextureKey(rtBoss);
+    }
 
     const gridBounds = new Phaser.Geom.Rectangle(
       this.layout.x,
@@ -203,15 +242,6 @@ export class GameScene extends Phaser.Scene {
 
     // Grid is STATIC — draw once here, never again in the game loop
     this.gridRenderer.draw(uid === 'castle' ? 0x090613 : this.colorBg, this.colorPrimary);
-    // Castle uses castle_gameplay_bg for atmosphere — skip legacy full-frame asset
-    // which contains baked HUD/header that conflicts with runtime ownership.
-    if (uid !== 'castle') {
-      this.universeFrameRenderer.render({
-        universeId: uid,
-        gridBounds,
-        depth: GAMEPLAY_LAYERS.BOARD_PANEL,
-      });
-    }
 
     // Debug overlay ?debugAssets=1
     if (new URLSearchParams(window.location.search).get('debugAssets') === '1') {
@@ -243,18 +273,65 @@ export class GameScene extends Phaser.Scene {
     });
 
     this.spawnInitialPickup();
+    if (uid === 'castle') this.renderGameState();
 
     this.inputSys = new InputSystem(this);
     this.inputSys.bind(this.snake);
 
-    addScanlines(this, 0.018, GAMEPLAY_LAYERS.SCREEN_FX);
     this.cameras.main.fadeIn(250, 0, 0, 0);
 
     // Cleanup on scene shutdown to avoid listener accumulation on retry
     this.events.once(Phaser.Scenes.Events.SHUTDOWN, () => {
       this.inputSys?.destroy();
-      this.universeFrameRenderer?.destroy();
+      this.castlePickupGlow?.destroy();
+      this.castlePickupGlow = undefined;
     });
+  }
+
+  private styleCastleRuntimeHud(): void {
+    const hud = this.hudRenderer as unknown as {
+      capsuleGfx?: Phaser.GameObjects.Graphics | null;
+      universeTxt?: Phaser.GameObjects.Text;
+      ruleTxt?: Phaser.GameObjects.Text;
+      scoreTxt?: Phaser.GameObjects.Text;
+    };
+    const capsuleGfx = hud.capsuleGfx;
+    if (!capsuleGfx) return;
+
+    const w = this.scale.width;
+    const hudH = GAMEPLAY_HUD.HEIGHT;
+    const gap = 7;
+    const capW = Math.floor((w - gap * 4) / 3);
+    const capH = 32;
+    const capY = Math.floor((hudH - capH) / 2);
+    const radius = 7;
+
+    capsuleGfx.clear();
+    capsuleGfx.fillStyle(0x05020a, 0.32);
+    capsuleGfx.fillRoundedRect(3, capY - 3, w - 6, capH + 6, radius + 3);
+    capsuleGfx.lineStyle(1, 0xa94cff, 0.18);
+    capsuleGfx.lineBetween(10, capY + capH + 4, w - 10, capY + capH + 4);
+    for (let i = 0; i < 3; i++) {
+      const x = gap + i * (capW + gap);
+      capsuleGfx.fillStyle(0x12071d, 0.66);
+      capsuleGfx.fillRoundedRect(x, capY, capW, capH, radius);
+      capsuleGfx.fillStyle(0xf6c45c, 0.055);
+      capsuleGfx.fillRoundedRect(x + 2, capY + 2, capW - 4, Math.max(5, Math.floor(capH * 0.34)), radius - 2);
+      capsuleGfx.lineStyle(1, 0xf6c45c, 0.48);
+      capsuleGfx.strokeRoundedRect(x, capY, capW, capH, radius);
+      capsuleGfx.lineStyle(1, 0xa94cff, 0.26);
+      capsuleGfx.strokeRoundedRect(x + 2, capY + 2, capW - 4, capH - 4, Math.max(4, radius - 2));
+    }
+
+    const textShadow = [1, 1, '#05020a', 2, true, true] as const;
+    for (const txt of [hud.universeTxt, hud.ruleTxt, hud.scoreTxt]) {
+      txt?.setY(Math.floor(hudH / 2));
+      txt?.setPadding(4, 2, 4, 2);
+      txt?.setShadow(...textShadow);
+    }
+    hud.universeTxt?.setColor('#f6c45c').setFontSize(10);
+    hud.ruleTxt?.setColor('#eee7ff').setFontSize(12);
+    hud.scoreTxt?.setColor('#fff2a8').setFontSize(11);
   }
 
   private createDebugAssetsOverlay(uid: string): void {
@@ -294,6 +371,7 @@ export class GameScene extends Phaser.Scene {
 
     // Pickup animation runs EVERY FRAME (60fps) — independent of game logic tick
     const activePickups = this.getActivePickups();
+    if (this.levelConfig.universeId === 'castle') this.drawCastlePickupGlow(activePickups, time);
     this.pickupRenderer.draw(activePickups, this.layout, this.colorAccent, time);
 
     // Fixed-step accumulator — game logic runs at speedMs interval regardless of FPS
@@ -313,7 +391,6 @@ export class GameScene extends Phaser.Scene {
     const result    = stepSnake(this.snake, this.gridCols, this.gridRows, pickupSet, wallSet);
 
     if (result.hitWall || result.hitSelf) {
-      AudioSystem.gameover();
       this.triggerGameOver();
       return;
     }
@@ -359,6 +436,24 @@ export class GameScene extends Phaser.Scene {
       return [...this.pickups, ...(this.mechanic as PaperboyDeliveryMechanic).getDeliveryPickups()];
     }
     return this.pickups;
+  }
+
+  private drawCastlePickupGlow(pickups: Cell[], time: number): void {
+    const glow = this.castlePickupGlow;
+    if (!glow) return;
+
+    glow.clear();
+    const pulse = Math.sin(time / 360) * 0.5 + 0.5;
+    const cs = this.layout.cellSize;
+    for (const pickup of pickups) {
+      const { px, py } = cellToPixel(this.layout, pickup.col, pickup.row);
+      glow.fillStyle(0xf6c45c, 0.20 + 0.08 * pulse);
+      glow.fillCircle(px, py, cs * (0.88 + 0.10 * pulse));
+      glow.fillStyle(0xa94cff, 0.14 + 0.05 * pulse);
+      glow.fillCircle(px, py, cs * (0.62 + 0.06 * pulse));
+      glow.lineStyle(Math.max(1, Math.floor(cs * 0.06)), 0xfff0a8, 0.32 + 0.08 * pulse);
+      glow.strokeCircle(px, py, cs * 0.52);
+    }
   }
 
   private spawnNextPickup(): void {
@@ -418,7 +513,7 @@ export class GameScene extends Phaser.Scene {
     if (!hitResult.hit) return false;
     flashScreen(this, 0xffffff, 0.32, 160, GAMEPLAY_LAYERS.SCREEN_FX);
     this.cameras.main.shake(110, 0.006);
-    // TODO audio: play boss-hit cue when a dedicated audio cue exists.
+    AudioSystem.bossHit();
     this.syncMechanicCtx();
     return true;
   }
@@ -445,7 +540,7 @@ export class GameScene extends Phaser.Scene {
     const boss = isBoss ? (this.mechanic as BaseBoss) : null;
     const isCastle = this.levelConfig.universeId === 'castle';
     this.hudRenderer.update(
-      isCastle && isBoss ? 'CASTLE BOSS' : UNIVERSES[this.levelConfig.universeId].shortName,
+      isCastle ? (isBoss ? 'CASTLE BOSS' : 'CASTLE') : UNIVERSES[this.levelConfig.universeId].shortName,
       this.levelConfig.ruleText,
       isBoss ? boss!.getHp() : this.score,
       isBoss ? boss!.getMaxHp() : this.levelConfig.quota,
@@ -469,7 +564,11 @@ export class GameScene extends Phaser.Scene {
 
   private triggerClear(): void {
     this.cleared = true;
-    AudioSystem.clear();
+    if (this.mechanic instanceof BaseBoss) {
+      AudioSystem.bossClear();
+    } else {
+      AudioSystem.clear();
+    }
     this.cameras.main.shake(90, 0.004);
     flashScreen(this, this.colorAccent, 0.45, 350, GAMEPLAY_LAYERS.SCREEN_FX);
     const currentNode = MAP_NODES.find(n => n.levelId === this.levelConfig.id);

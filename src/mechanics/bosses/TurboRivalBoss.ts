@@ -2,19 +2,27 @@ import { BaseBoss, BossHitResult } from './BaseBoss';
 import { DangerCell, ExtraEntity, MechanicUpdate } from '../BaseMechanic';
 import { Cell } from '../../core/Grid';
 
-// Turbo Rival: rival moves on lanes; turbo zone appears — enter to hit
+// Turbo Rival: moves between 3 fixed lanes; turbo zone is the attack window
 interface TurboZone { cell: Cell; ttl: number }
 
 export class TurboRivalBoss extends BaseBoss {
   private rivalCell!: Cell;
-  private rivalLane = 0;
+  private rivalLane = 1; // 0=left 1=center 2=right
+  private lanes: number[] = [];
   private moveTimer = 0;
   private turboZones: TurboZone[] = [];
   private turboTimer = 0;
 
   protected onInit(): void {
+    const cols = this.ctx.grid.cols;
+    // Three evenly-spaced lanes
+    this.lanes = [
+      Math.floor(cols / 4),
+      Math.floor(cols / 2),
+      Math.floor((3 * cols) / 4),
+    ];
     this.rivalLane = 1;
-    this.rivalCell = { col: Math.floor(this.ctx.grid.cols / 2), row: 2 };
+    this.rivalCell = { col: this.lanes[this.rivalLane], row: 2 };
   }
 
   tick(_tickCount: number): MechanicUpdate {
@@ -22,18 +30,19 @@ export class TurboRivalBoss extends BaseBoss {
     this.moveTimer++;
     this.turboTimer++;
 
-    // Move rival horizontally
-    if (this.moveTimer % 5 === 0) {
-      const step = Math.random() < 0.5 ? -1 : 1;
-      const newCol = Math.max(0, Math.min(this.ctx.grid.cols - 1, this.rivalCell.col + step));
-      this.rivalCell = { col: newCol, row: this.rivalCell.row };
+    // Move rival to an adjacent lane every 8 ticks
+    if (this.moveTimer % 8 === 0) {
+      const dir = Math.random() < 0.5 ? -1 : 1;
+      this.rivalLane = Math.max(0, Math.min(2, this.rivalLane + dir));
+      this.rivalCell = { col: this.lanes[this.rivalLane], row: this.rivalCell.row };
     }
 
-    // Spawn turbo zone every 25 ticks
+    // Spawn turbo zone every 25 ticks — one row ahead (lower row index = towards top)
     if (this.turboTimer % 25 === 0) {
+      const turboRow = Math.max(0, this.rivalCell.row - 1);
       this.turboZones.push({
-        cell: { col: this.rivalCell.col, row: this.rivalCell.row + 1 },
-        ttl: 10
+        cell: { col: this.rivalCell.col, row: turboRow },
+        ttl: 12,
       });
     }
     for (const tz of this.turboZones) tz.ttl--;
@@ -44,7 +53,7 @@ export class TurboRivalBoss extends BaseBoss {
 
   getExtraEntities(): ExtraEntity[] {
     const entities: ExtraEntity[] = [
-      { type: 'turboRival', cell: this.rivalCell, state: 'moving', data: { hp: this.hp } }
+      { type: 'turboRival', cell: this.rivalCell, state: 'moving', data: { hp: this.hp } },
     ];
     for (const tz of this.turboZones) {
       entities.push({ type: 'turboZone', cell: tz.cell, state: 'active' });
@@ -52,11 +61,12 @@ export class TurboRivalBoss extends BaseBoss {
     return entities;
   }
 
+  // Rival is always danger — entering its cell is lethal
   getDangerCells(): DangerCell[] {
-    const inTurbo = this.turboZones.some(tz => tz.cell.col === this.rivalCell.col && tz.cell.row === this.rivalCell.row + 1);
-    return inTurbo ? [] : [{ ...this.rivalCell, source: 'turboRival', lethal: true }];
+    return [{ ...this.rivalCell, source: 'turboRival', lethal: true }];
   }
 
+  // TurboZone is the weakpoint / attack window
   getWeakPoints(): Cell[] {
     return this.turboZones.map(tz => tz.cell);
   }
@@ -67,5 +77,10 @@ export class TurboRivalBoss extends BaseBoss {
     const result = super.onWeakPointHit(cell);
     if (result.hit) this.turboZones = [];
     return result;
+  }
+
+  getHudExtra(): string {
+    if (this.turboZones.length > 0) return 'TURBO → FRAPPE';
+    return 'ÉVITE';
   }
 }

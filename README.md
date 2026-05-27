@@ -40,6 +40,14 @@ Les assets gameplay consommés par les renderers sont dans :
 public/assets/universes/[univers]/
 ```
 
+Les petits tokens d'interface dans `public/assets/openmoji/` utilisent une selection d'assets OpenMoji.
+
+## Credits
+
+Selected emoji/icon assets by OpenMoji, the open-source emoji and icon project.
+License: CC BY-SA 4.0.
+https://openmoji.org/
+
 ## Règles Produit
 
 - Mobile portrait prioritaire.

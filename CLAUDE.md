@@ -32,6 +32,7 @@ Le projet n'est plus à créer from scratch : il possède déjà une build jouab
 13. Si un asset manque, fallback procédural obligatoire.
 14. Claude peut lancer `npm run dev` (port 5173) pour ses propres tests de validation, puis l'arrêter immédiatement après. L'utilisateur garde la main sur les serveurs de développement longue durée.
 15. WorldMap : ne jamais réintroduire de bouton `JOUER` dans le footer. Le lancement se fait par double tap/retap du badge de niveau; afficher seulement une consigne texte si nécessaire.
+16. Précharger uniquement les assets nécessaires à l'écran et au niveau courant; ne pas charger `boss.png` sur un niveau normal.
 
 ## Structure Actuelle
 
@@ -49,28 +50,27 @@ Le projet n'est plus à créer from scratch : il possède déjà une build jouab
 
 ## Assets Et Design
 
-Les sources design sont déjà triées par univers :
+Les sources design sont déjà triées par univers dans `design_boards/[univers]/`.
 
-- `design_boards/castle/`
-- `design_boards/sonic/`
-- `design_boards/streets/`
-- `design_boards/fighter/`
-- `design_boards/outrun/`
-- `design_boards/shinobi/`
-- `design_boards/kombat/`
-- `design_boards/paperboy/`
-
-Les cadres gameplay complets sont copiés vers :
+Structure `public/assets/` (ne pas réintroduire les dossiers supprimés) :
 
 ```text
-public/assets/frames/[univers]/frame.png
+frames/[univers]/frame.png          — cadres gameplay
+level-intros/[univers]/intro.png    — backgrounds LevelIntroScene (8 univers)
+ui/castle/castle_*.png              — 4 backgrounds Castle (system, gameplay, clear, game_over)
+universes/[univers]/                — db_ assets : pickup_01/02, obstacle_01/02, boss, frame_tile, hud_panel
+runtime/universes/[7 univers]/      — rt_ assets (sonic, streets, fighter, outrun, shinobi, kombat, paperboy)
+map/world_map.png
+ui/title_hub_bg.png
 ```
 
-Les assets consommés par gameplay/HUD sont dans :
+Pipeline de priorité : `db_` > `rt_` > fallback procédural. Pas de tier codex.
 
-```text
-public/assets/universes/[univers]/
-```
+**Supprimés et à ne pas réintroduire :**
+- `menu-backgrounds/` — 8 PNGs remplacés par `level-intros/`
+- `runtime/universes/castle/` — castle utilise db_ exclusivement
+- `universe_asset_bank/` — système codex supprimé
+- `developer-assets/` — assets dev hors build
 
 ## Mécaniques Obligatoires
 
@@ -98,6 +98,11 @@ Après modification :
 3. Signaler les fallbacks et limites.
 4. Arrêter le serveur de test après usage (ne pas laisser de serveur actif).
 
+## État Dev (2026-05-22)
+
+- `DEV_UNLOCK_ALL = true` dans `src/config/constants.ts` — tous les niveaux débloqués. Passer à `false` avant release.
+- Build propre : 0 erreur TypeScript, 58 modules.
+
 ## Nettoyage Repo
 
 Ne pas réintroduire :
@@ -106,6 +111,7 @@ Ne pas réintroduire :
 - prototypes HTML monofichier V3 ;
 - dossiers `_incoming` une fois les assets triés ;
 - gros packs de tickets déjà appliqués ;
-- captures dupliquées sans usage documentaire.
+- captures dupliquées sans usage documentaire ;
+- `menu-backgrounds/`, `universe_asset_bank/`, `developer-assets/`, `runtime/castle/` (voir `docs/18_REPO_CLEANUP_LOG.md`).
 
 Si un nouveau ticket pack arrive, extraire seulement les tickets utiles puis documenter l'état dans `docs/`.

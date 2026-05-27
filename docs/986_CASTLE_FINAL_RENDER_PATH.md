@@ -30,6 +30,29 @@ Castle visual identity now comes from:
 - the runtime grid border
 - `HUDRenderer`
 
+Castle asset loading is level-aware:
+
+- Normal Castle gameplay preloads pickups, obstacles, runtime frame/hud assets,
+  and `assets/ui/castle/castle_gameplay_bg.png`.
+- Castle boss gameplay additionally preloads `assets/universes/castle/boss.png`.
+- Normal Castle gameplay must not preload the boss image just because the
+  universe has a boss asset.
+
+## Level Intro
+
+Castle level intro uses `assets/ui/castle/castle_system_bg.png` as the screen
+background.
+
+The mission-card badge is the only universe object asset loaded by
+`LevelIntroScene`:
+
+- `castle_normal` loads `assets/universes/castle/pickup_01.png`.
+- `castle_boss` loads `assets/universes/castle/boss.png`.
+
+This keeps the browser Network panel aligned with what the intro can actually
+render: normal intros do not fetch `boss.png`, and boss intros do not fetch
+`pickup_01.png` unless it was already cached by a previous scene.
+
 ## HUD
 
 `HUDRenderer` owns the gameplay HUD for Castle.

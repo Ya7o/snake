@@ -1,5 +1,5 @@
 import Phaser from 'phaser';
-import { CASTLE_RESULT_SCREEN_ASSETS, SCENES } from '../config/constants';
+import { UNIVERSE_RESULT_SCREEN_ASSETS, SCENES } from '../config/constants';
 import { getLevelById, resolveLevelId } from '../config/levels';
 import { UNIVERSES } from '../config/universes';
 import { RESULT_SCREEN_LAYOUT, CASTLE_RESULT_THEME, getUniverseButtons } from '../ui/RuntimeUILayout';
@@ -22,8 +22,10 @@ export class GameOverScene extends Phaser.Scene {
 
   preload(): void {
     const level = getLevelById(this.levelId);
-    if (level?.universeId === 'castle' && !this.textures.exists(CASTLE_RESULT_SCREEN_ASSETS.gameOver.key)) {
-      this.load.image(CASTLE_RESULT_SCREEN_ASSETS.gameOver.key, CASTLE_RESULT_SCREEN_ASSETS.gameOver.url);
+    if (!level) return;
+    const univBg = UNIVERSE_RESULT_SCREEN_ASSETS[level.universeId];
+    if (univBg && !this.textures.exists(univBg.gameOver.key)) {
+      this.load.image(univBg.gameOver.key, univBg.gameOver.url);
     }
   }
 
@@ -39,10 +41,11 @@ export class GameOverScene extends Phaser.Scene {
 
     // Background
     this.add.rectangle(W / 2, H / 2, W, H, bgColor).setDepth(0);
-    if (isCastle && this.textures.exists(CASTLE_RESULT_SCREEN_ASSETS.gameOver.key)) {
-      const bg = this.add.image(W / 2, H / 2, CASTLE_RESULT_SCREEN_ASSETS.gameOver.key).setDepth(1);
+    const univBg = UNIVERSE_RESULT_SCREEN_ASSETS[level?.universeId ?? ''];
+    if (univBg && this.textures.exists(univBg.gameOver.key)) {
+      const bg = this.add.image(W / 2, H / 2, univBg.gameOver.key).setDepth(1);
       bg.setScale(Math.max(W / bg.width, H / bg.height));
-      this.add.rectangle(W / 2, H / 2, W, H, 0x120518, 0.18).setDepth(2);
+      this.add.rectangle(W / 2, H / 2, W, H, 0x000000, 0.16).setDepth(2);
     }
 
     // Red flash on death

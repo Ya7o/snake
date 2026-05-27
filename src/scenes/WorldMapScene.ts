@@ -4,6 +4,7 @@ import { MAP_NODES } from '../config/mapNodes';
 import { getLevelById } from '../config/levels';
 import { UNIVERSES } from '../config/universes';
 import { SaveSystem } from '../systems/SaveSystem';
+import { AudioSystem } from '../systems/AudioSystem';
 import { UI_FONT } from '../render/VfxUtils';
 
 // Source map dimensions — updated from texture metadata if available
@@ -350,6 +351,7 @@ export class WorldMapScene extends Phaser.Scene {
 
     this.selectNode(levelId, nodeId, isUnlocked);
     if (isUnlocked && isDoubleTap) {
+      AudioSystem.uiButton();
       this.launchLevel(levelId);
     }
   }

@@ -63,14 +63,19 @@ export class ShadowNinjaBoss extends BaseBoss {
   }
 
   getWeakPoints(): Cell[] {
-    return this.clones.filter(cl => cl.real).map(cl => cl.cell);
+    return this.clones.filter(cl => cl.real && cl.revealed).map(cl => cl.cell);
   }
 
   onWeakPointHit(cell: Cell): BossHitResult {
-    const clone = this.clones.find(cl => cl.real && cl.cell.col === cell.col && cl.cell.row === cell.row);
+    const clone = this.clones.find(cl => cl.real && cl.revealed && cl.cell.col === cell.col && cl.cell.row === cell.row);
     if (!clone) return { hit: false, defeated: this.isDefeated() };
     const result = super.onWeakPointHit(cell);
     if (result.hit && !result.defeated) this.spawnClones();
     return result;
+  }
+
+  getHudExtra(): string {
+    const revealed = this.clones.some(cl => cl.real && cl.revealed);
+    return revealed ? 'FRAPPE' : 'OBSERVE';
   }
 }

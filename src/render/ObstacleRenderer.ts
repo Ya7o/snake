@@ -17,6 +17,10 @@ const OBSTACLE_IMAGE_TYPES = new Set([
   'routeObstacle',
 ]);
 
+const OPENMOJI_GAMEPLAY_ICON_SCALE = 1.9;
+
+type EntityTextureResolver = (entity: ExtraEntity) => string | null;
+
 const ENTITY_COLORS: Record<string, Record<string, number>> = {
   blinkWall:      { ghost: 0x4a235a, warning: 0xf39c12, active: 0xe74c3c },
   chainRing:      { active: 0xf9ca24, inactive: 0x5d4e00 },
@@ -53,6 +57,7 @@ export class ObstacleRenderer {
   private obstacleTextureKey: string | null = null;
   private obstaclePool: Phaser.GameObjects.Image[] = [];
   private obstacleBlendMode: number = Phaser.BlendModes.NORMAL;
+  private entityTextureResolver: EntityTextureResolver | null = null;
   private depth: number = GAMEPLAY_LAYERS.GAMEPLAY_OBJECTS;
 
   constructor(scene: Phaser.Scene) {
@@ -85,6 +90,11 @@ export class ObstacleRenderer {
     for (const img of this.obstaclePool) img.setBlendMode(mode);
   }
 
+  setEntityTextureResolver(resolver: EntityTextureResolver | null): void {
+    this.entityTextureResolver = resolver;
+    this.clearObstaclePool();
+  }
+
   setDepth(depth: number): void {
     this.depth = depth;
     this.gfx.setDepth(depth);
@@ -110,9 +120,24 @@ export class ObstacleRenderer {
       const colorMap = ENTITY_COLORS[e.type];
       const color = colorMap ? (colorMap[e.state] ?? 0x888888) : 0x888888;
       const size = cs - pad * 2;
+      const entityTextureKey = this.entityTextureResolver?.(e) ?? null;
+      const hasEntityTexture = !!(entityTextureKey && this.scene.textures.exists(entityTextureKey));
 
       const isBossType = BOSS_ENTITY_TYPES.has(e.type);
-      if (isBossType && hasBossTexture) {
+      if (hasEntityTexture) {
+        const alpha = this.entityAlpha(e);
+        if (obsPoolIdx >= this.obstaclePool.length) {
+          this.obstaclePool.push(
+            this.scene.add.image(px, py, entityTextureKey!).setDepth(this.depth + 1).setBlendMode(this.obstacleBlendMode),
+          );
+        }
+        const img = this.obstaclePool[obsPoolIdx];
+        img.setTexture(entityTextureKey!).setPosition(px, py)
+          .setDisplaySize(cs * OPENMOJI_GAMEPLAY_ICON_SCALE, cs * OPENMOJI_GAMEPLAY_ICON_SCALE)
+          .setAlpha(e.type === 'witchMirror' ? this.witchMirrorAlpha(e.state) : alpha)
+          .setVisible(true);
+        obsPoolIdx++;
+      } else if (isBossType && hasBossTexture) {
         // Rendu image pour boss — glow procédural + sprite
         this.drawBossTelegraph(e, px, py, size, color);
         const imgId = `${e.type}_${e.cell.col}_${e.cell.row}`;

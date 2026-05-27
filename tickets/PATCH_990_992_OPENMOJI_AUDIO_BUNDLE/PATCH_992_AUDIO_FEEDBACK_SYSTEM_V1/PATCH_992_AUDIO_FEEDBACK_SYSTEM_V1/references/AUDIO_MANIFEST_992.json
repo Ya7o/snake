@@ -1,0 +1,53 @@
+{
+  "patch": "PATCH_992_AUDIO_FEEDBACK_SYSTEM_V1",
+  "status": "V1 necessary sounds only",
+  "format": "WAV mono 44.1kHz",
+  "license": "Generated placeholder sounds for this project; no third-party samples used.",
+  "integrateNow": [
+    {
+      "file": "assets/audio/pickup_magic.wav",
+      "event": "Snake collects Castle magic pickup."
+    },
+    {
+      "file": "assets/audio/collision_hit.wav",
+      "event": "Snake collision/death."
+    },
+    {
+      "file": "assets/audio/stage_clear.wav",
+      "event": "Stage completed."
+    },
+    {
+      "file": "assets/audio/ui_button.wav",
+      "event": "Button press / menu action."
+    },
+    {
+      "file": "assets/audio/danger_alert.wav",
+      "event": "Danger appears / warning state."
+    }
+  ],
+  "doNotIntegrateYet": [
+    {
+      "file": "assets/audio/boss_event.wav",
+      "reservedFor": "Reserved for later boss event."
+    },
+    {
+      "file": "assets/audio/bonus_pickup.wav",
+      "reservedFor": "Reserved for later bonus gem/star."
+    },
+    {
+      "file": "assets/audio/shield_pickup.wav",
+      "reservedFor": "Reserved for later shield power-up."
+    },
+    {
+      "file": "assets/audio/key_unlock.wav",
+      "reservedFor": "Reserved for later key/unlock."
+    }
+  ],
+  "runtimeKeys": {
+    "pickupMagic": "assets/audio/pickup_magic.wav",
+    "collisionHit": "assets/audio/collision_hit.wav",
+    "stageClear": "assets/audio/stage_clear.wav",
+    "uiButton": "assets/audio/ui_button.wav",
+    "dangerAlert": "assets/audio/danger_alert.wav"
+  }
+}

@@ -1,0 +1,884 @@
+{
+  "source": "github-raw-fallback",
+  "destinationRoot": "public/assets/openmoji",
+  "report": [
+    {
+      "group": "world",
+      "key": "castle",
+      "status": "copied",
+      "sourceFile": "1F3F0.svg",
+      "url": "https://raw.githubusercontent.com/hfg-gmuend/openmoji/master/color/svg/1F3F0.svg",
+      "destination": "public/assets/openmoji/world/castle.svg",
+      "tried": [
+        "1F3F0.svg",
+        "1F52E.svg",
+        "2728.svg"
+      ]
+    },
+    {
+      "group": "world",
+      "key": "speed",
+      "status": "copied",
+      "sourceFile": "1F48D.svg",
+      "url": "https://raw.githubusercontent.com/hfg-gmuend/openmoji/master/color/svg/1F48D.svg",
+      "destination": "public/assets/openmoji/world/speed.svg",
+      "tried": [
+        "1F48D.svg",
+        "26A1.svg",
+        "1F300.svg"
+      ]
+    },
+    {
+      "group": "world",
+      "key": "streets",
+      "status": "copied",
+      "sourceFile": "1F306.svg",
+      "url": "https://raw.githubusercontent.com/hfg-gmuend/openmoji/master/color/svg/1F306.svg",
+      "destination": "public/assets/openmoji/world/streets.svg",
+      "tried": [
+        "1F306.svg",
+        "1F9F1.svg",
+        "1F3D9.svg",
+        "1F303.svg"
+      ]
+    },
+    {
+      "group": "world",
+      "key": "fighter",
+      "status": "copied",
+      "sourceFile": "1F94B.svg",
+      "url": "https://raw.githubusercontent.com/hfg-gmuend/openmoji/master/color/svg/1F94B.svg",
+      "destination": "public/assets/openmoji/world/fighter.svg",
+      "tried": [
+        "1F94B.svg",
+        "1F44A.svg",
+        "1F4AA.svg"
+      ]
+    },
+    {
+      "group": "world",
+      "key": "outrun",
+      "status": "copied",
+      "sourceFile": "1F697.svg",
+      "url": "https://raw.githubusercontent.com/hfg-gmuend/openmoji/master/color/svg/1F697.svg",
+      "destination": "public/assets/openmoji/world/outrun.svg",
+      "tried": [
+        "1F697.svg",
+        "1F305.svg",
+        "1F6E3.svg",
+        "1F6E3-FE0F.svg"
+      ]
+    },
+    {
+      "group": "world",
+      "key": "shinobi",
+      "status": "copied",
+      "sourceFile": "1F977.svg",
+      "url": "https://raw.githubusercontent.com/hfg-gmuend/openmoji/master/color/svg/1F977.svg",
+      "destination": "public/assets/openmoji/world/shinobi.svg",
+      "tried": [
+        "1F977.svg",
+        "1F319.svg",
+        "1F3EF.svg"
+      ]
+    },
+    {
+      "group": "world",
+      "key": "kombat",
+      "status": "copied",
+      "sourceFile": "1F409.svg",
+      "url": "https://raw.githubusercontent.com/hfg-gmuend/openmoji/master/color/svg/1F409.svg",
+      "destination": "public/assets/openmoji/world/kombat.svg",
+      "tried": [
+        "1F409.svg",
+        "1F525.svg",
+        "1F480.svg"
+      ]
+    },
+    {
+      "group": "world",
+      "key": "paperboy",
+      "status": "copied",
+      "sourceFile": "1F5DE.svg",
+      "url": "https://raw.githubusercontent.com/hfg-gmuend/openmoji/master/color/svg/1F5DE.svg",
+      "destination": "public/assets/openmoji/world/paperboy.svg",
+      "tried": [
+        "1F5DE.svg",
+        "1F5DE-FE0F.svg",
+        "1F4F0.svg",
+        "1F4EB.svg",
+        "1F6B2.svg"
+      ]
+    },
+    {
+      "group": "hud",
+      "key": "magic",
+      "status": "copied",
+      "sourceFile": "2728.svg",
+      "url": "https://raw.githubusercontent.com/hfg-gmuend/openmoji/master/color/svg/2728.svg",
+      "destination": "public/assets/openmoji/hud/magic.svg",
+      "tried": [
+        "2728.svg",
+        "1F48E.svg",
+        "1F31F.svg"
+      ]
+    },
+    {
+      "group": "hud",
+      "key": "boss",
+      "status": "copied",
+      "sourceFile": "1F480.svg",
+      "url": "https://raw.githubusercontent.com/hfg-gmuend/openmoji/master/color/svg/1F480.svg",
+      "destination": "public/assets/openmoji/hud/boss.svg",
+      "tried": [
+        "1F480.svg",
+        "1F409.svg",
+        "1F525.svg"
+      ]
+    },
+    {
+      "group": "hud",
+      "key": "danger",
+      "status": "copied",
+      "sourceFile": "26A0.svg",
+      "url": "https://raw.githubusercontent.com/hfg-gmuend/openmoji/master/color/svg/26A0.svg",
+      "destination": "public/assets/openmoji/hud/danger.svg",
+      "tried": [
+        "26A0.svg",
+        "26A0-FE0F.svg",
+        "1F525.svg"
+      ]
+    },
+    {
+      "group": "hud",
+      "key": "stage",
+      "status": "copied",
+      "sourceFile": "1F6A9.svg",
+      "url": "https://raw.githubusercontent.com/hfg-gmuend/openmoji/master/color/svg/1F6A9.svg",
+      "destination": "public/assets/openmoji/hud/stage.svg",
+      "tried": [
+        "1F6A9.svg",
+        "1F5FA.svg",
+        "1F5FA-FE0F.svg"
+      ]
+    },
+    {
+      "group": "hud",
+      "key": "clear",
+      "status": "copied",
+      "sourceFile": "1F3C6.svg",
+      "url": "https://raw.githubusercontent.com/hfg-gmuend/openmoji/master/color/svg/1F3C6.svg",
+      "destination": "public/assets/openmoji/hud/clear.svg",
+      "tried": [
+        "1F3C6.svg",
+        "2728.svg"
+      ]
+    },
+    {
+      "group": "hud",
+      "key": "retry",
+      "status": "copied",
+      "sourceFile": "1F504.svg",
+      "url": "https://raw.githubusercontent.com/hfg-gmuend/openmoji/master/color/svg/1F504.svg",
+      "destination": "public/assets/openmoji/hud/retry.svg",
+      "tried": [
+        "1F504.svg",
+        "1F501.svg"
+      ]
+    },
+    {
+      "group": "hud",
+      "key": "score",
+      "status": "copied",
+      "sourceFile": "1F48E.svg",
+      "url": "https://raw.githubusercontent.com/hfg-gmuend/openmoji/master/color/svg/1F48E.svg",
+      "destination": "public/assets/openmoji/hud/score.svg",
+      "tried": [
+        "1F48E.svg",
+        "1FA99.svg"
+      ]
+    },
+    {
+      "group": "hud",
+      "key": "locked",
+      "status": "copied",
+      "sourceFile": "1F512.svg",
+      "url": "https://raw.githubusercontent.com/hfg-gmuend/openmoji/master/color/svg/1F512.svg",
+      "destination": "public/assets/openmoji/hud/locked.svg",
+      "tried": [
+        "1F512.svg",
+        "26D4.svg"
+      ]
+    },
+    {
+      "group": "hud",
+      "key": "unlocked",
+      "status": "copied",
+      "sourceFile": "1F513.svg",
+      "url": "https://raw.githubusercontent.com/hfg-gmuend/openmoji/master/color/svg/1F513.svg",
+      "destination": "public/assets/openmoji/hud/unlocked.svg",
+      "tried": [
+        "1F513.svg",
+        "2705.svg"
+      ]
+    },
+    {
+      "group": "hud",
+      "key": "pause",
+      "status": "copied",
+      "sourceFile": "23F8.svg",
+      "url": "https://raw.githubusercontent.com/hfg-gmuend/openmoji/master/color/svg/23F8.svg",
+      "destination": "public/assets/openmoji/hud/pause.svg",
+      "tried": [
+        "23F8.svg",
+        "23F8-FE0F.svg",
+        "275A.svg",
+        "23EF.svg",
+        "23EF-FE0F.svg"
+      ]
+    },
+    {
+      "group": "hud",
+      "key": "play",
+      "status": "copied",
+      "sourceFile": "25B6.svg",
+      "url": "https://raw.githubusercontent.com/hfg-gmuend/openmoji/master/color/svg/25B6.svg",
+      "destination": "public/assets/openmoji/hud/play.svg",
+      "tried": [
+        "25B6.svg",
+        "25B6-FE0F.svg",
+        "23EF.svg",
+        "23EF-FE0F.svg"
+      ]
+    },
+    {
+      "group": "hud",
+      "key": "home",
+      "status": "copied",
+      "sourceFile": "1F3E0.svg",
+      "url": "https://raw.githubusercontent.com/hfg-gmuend/openmoji/master/color/svg/1F3E0.svg",
+      "destination": "public/assets/openmoji/hud/home.svg",
+      "tried": [
+        "1F3E0.svg",
+        "1F3E1.svg"
+      ]
+    },
+    {
+      "group": "hud",
+      "key": "key",
+      "status": "copied",
+      "sourceFile": "1F5DD.svg",
+      "url": "https://raw.githubusercontent.com/hfg-gmuend/openmoji/master/color/svg/1F5DD.svg",
+      "destination": "public/assets/openmoji/hud/key.svg",
+      "tried": [
+        "1F5DD.svg",
+        "1F5DD-FE0F.svg",
+        "1F511.svg"
+      ]
+    },
+    {
+      "group": "hud",
+      "key": "shield",
+      "status": "copied",
+      "sourceFile": "1F6E1.svg",
+      "url": "https://raw.githubusercontent.com/hfg-gmuend/openmoji/master/color/svg/1F6E1.svg",
+      "destination": "public/assets/openmoji/hud/shield.svg",
+      "tried": [
+        "1F6E1.svg",
+        "1F6E1-FE0F.svg",
+        "2694.svg",
+        "2694-FE0F.svg"
+      ]
+    },
+    {
+      "group": "hud",
+      "key": "bonus",
+      "status": "copied",
+      "sourceFile": "1F31F.svg",
+      "url": "https://raw.githubusercontent.com/hfg-gmuend/openmoji/master/color/svg/1F31F.svg",
+      "destination": "public/assets/openmoji/hud/bonus.svg",
+      "tried": [
+        "1F31F.svg",
+        "2B50.svg",
+        "2728.svg"
+      ]
+    },
+    {
+      "group": "pickups",
+      "key": "magic_star",
+      "status": "copied",
+      "sourceFile": "2728.svg",
+      "url": "https://raw.githubusercontent.com/hfg-gmuend/openmoji/master/color/svg/2728.svg",
+      "destination": "public/assets/openmoji/pickups/magic_star.svg",
+      "tried": [
+        "2728.svg",
+        "1F31F.svg"
+      ]
+    },
+    {
+      "group": "pickups",
+      "key": "orb",
+      "status": "copied",
+      "sourceFile": "1F52E.svg",
+      "url": "https://raw.githubusercontent.com/hfg-gmuend/openmoji/master/color/svg/1F52E.svg",
+      "destination": "public/assets/openmoji/pickups/orb.svg",
+      "tried": [
+        "1F52E.svg",
+        "1F31F.svg"
+      ]
+    },
+    {
+      "group": "pickups",
+      "key": "gem",
+      "status": "copied",
+      "sourceFile": "1F48E.svg",
+      "url": "https://raw.githubusercontent.com/hfg-gmuend/openmoji/master/color/svg/1F48E.svg",
+      "destination": "public/assets/openmoji/pickups/gem.svg",
+      "tried": [
+        "1F48E.svg",
+        "1F539.svg"
+      ]
+    },
+    {
+      "group": "pickups",
+      "key": "ring",
+      "status": "copied",
+      "sourceFile": "1F48D.svg",
+      "url": "https://raw.githubusercontent.com/hfg-gmuend/openmoji/master/color/svg/1F48D.svg",
+      "destination": "public/assets/openmoji/pickups/ring.svg",
+      "tried": [
+        "1F48D.svg",
+        "1FA99.svg"
+      ]
+    },
+    {
+      "group": "pickups",
+      "key": "newspaper",
+      "status": "copied",
+      "sourceFile": "1F5DE.svg",
+      "url": "https://raw.githubusercontent.com/hfg-gmuend/openmoji/master/color/svg/1F5DE.svg",
+      "destination": "public/assets/openmoji/pickups/newspaper.svg",
+      "tried": [
+        "1F5DE.svg",
+        "1F5DE-FE0F.svg",
+        "1F4F0.svg"
+      ]
+    },
+    {
+      "group": "pickups",
+      "key": "turbo",
+      "status": "copied",
+      "sourceFile": "26A1.svg",
+      "url": "https://raw.githubusercontent.com/hfg-gmuend/openmoji/master/color/svg/26A1.svg",
+      "destination": "public/assets/openmoji/pickups/turbo.svg",
+      "tried": [
+        "26A1.svg",
+        "1F680.svg"
+      ]
+    },
+    {
+      "group": "pickups",
+      "key": "warning",
+      "status": "copied",
+      "sourceFile": "26A0.svg",
+      "url": "https://raw.githubusercontent.com/hfg-gmuend/openmoji/master/color/svg/26A0.svg",
+      "destination": "public/assets/openmoji/pickups/warning.svg",
+      "tried": [
+        "26A0.svg",
+        "26A0-FE0F.svg",
+        "1F525.svg"
+      ]
+    },
+    {
+      "group": "pickups",
+      "key": "key",
+      "status": "copied",
+      "sourceFile": "1F5DD.svg",
+      "url": "https://raw.githubusercontent.com/hfg-gmuend/openmoji/master/color/svg/1F5DD.svg",
+      "destination": "public/assets/openmoji/pickups/key.svg",
+      "tried": [
+        "1F5DD.svg",
+        "1F5DD-FE0F.svg",
+        "1F511.svg"
+      ]
+    },
+    {
+      "group": "pickups",
+      "key": "shield",
+      "status": "copied",
+      "sourceFile": "1F6E1.svg",
+      "url": "https://raw.githubusercontent.com/hfg-gmuend/openmoji/master/color/svg/1F6E1.svg",
+      "destination": "public/assets/openmoji/pickups/shield.svg",
+      "tried": [
+        "1F6E1.svg",
+        "1F6E1-FE0F.svg",
+        "2694.svg",
+        "2694-FE0F.svg"
+      ]
+    },
+    {
+      "group": "pickups",
+      "key": "bonus_star",
+      "status": "copied",
+      "sourceFile": "1F31F.svg",
+      "url": "https://raw.githubusercontent.com/hfg-gmuend/openmoji/master/color/svg/1F31F.svg",
+      "destination": "public/assets/openmoji/pickups/bonus_star.svg",
+      "tried": [
+        "1F31F.svg",
+        "2B50.svg",
+        "2728.svg"
+      ]
+    },
+    {
+      "group": "pickups",
+      "key": "perfect_star",
+      "status": "copied",
+      "sourceFile": "2B50.svg",
+      "url": "https://raw.githubusercontent.com/hfg-gmuend/openmoji/master/color/svg/2B50.svg",
+      "destination": "public/assets/openmoji/pickups/perfect_star.svg",
+      "tried": [
+        "2B50.svg",
+        "1F31F.svg",
+        "2728.svg"
+      ]
+    },
+    {
+      "group": "obstacles",
+      "key": "stone",
+      "status": "copied",
+      "sourceFile": "1FAA8.svg",
+      "url": "https://raw.githubusercontent.com/hfg-gmuend/openmoji/master/color/svg/1FAA8.svg",
+      "destination": "public/assets/openmoji/obstacles/stone.svg",
+      "tried": [
+        "1FAA8.svg",
+        "1F9F1.svg",
+        "26F0.svg",
+        "26F0-FE0F.svg"
+      ]
+    },
+    {
+      "group": "obstacles",
+      "key": "brick",
+      "status": "copied",
+      "sourceFile": "1F9F1.svg",
+      "url": "https://raw.githubusercontent.com/hfg-gmuend/openmoji/master/color/svg/1F9F1.svg",
+      "destination": "public/assets/openmoji/obstacles/brick.svg",
+      "tried": [
+        "1F9F1.svg",
+        "1FAA8.svg",
+        "26F0.svg"
+      ]
+    },
+    {
+      "group": "obstacles",
+      "key": "thorn",
+      "status": "copied",
+      "sourceFile": "1F335.svg",
+      "url": "https://raw.githubusercontent.com/hfg-gmuend/openmoji/master/color/svg/1F335.svg",
+      "destination": "public/assets/openmoji/obstacles/thorn.svg",
+      "tried": [
+        "1F335.svg",
+        "1F33F.svg",
+        "1F331.svg"
+      ]
+    },
+    {
+      "group": "obstacles",
+      "key": "barrel",
+      "status": "copied",
+      "sourceFile": "1F6E2.svg",
+      "url": "https://raw.githubusercontent.com/hfg-gmuend/openmoji/master/color/svg/1F6E2.svg",
+      "destination": "public/assets/openmoji/obstacles/barrel.svg",
+      "tried": [
+        "1F6E2.svg",
+        "1F6E2-FE0F.svg",
+        "1F6A7.svg"
+      ]
+    },
+    {
+      "group": "obstacles",
+      "key": "cone",
+      "status": "copied",
+      "sourceFile": "1F6A7.svg",
+      "url": "https://raw.githubusercontent.com/hfg-gmuend/openmoji/master/color/svg/1F6A7.svg",
+      "destination": "public/assets/openmoji/obstacles/cone.svg",
+      "tried": [
+        "1F6A7.svg",
+        "26A0.svg"
+      ]
+    },
+    {
+      "group": "obstacles",
+      "key": "mailbox",
+      "status": "copied",
+      "sourceFile": "1F4EB.svg",
+      "url": "https://raw.githubusercontent.com/hfg-gmuend/openmoji/master/color/svg/1F4EB.svg",
+      "destination": "public/assets/openmoji/obstacles/mailbox.svg",
+      "tried": [
+        "1F4EB.svg",
+        "1F4EC.svg",
+        "1F4EA.svg"
+      ]
+    },
+    {
+      "group": "obstacles",
+      "key": "roadblock",
+      "status": "copied",
+      "sourceFile": "26D4.svg",
+      "url": "https://raw.githubusercontent.com/hfg-gmuend/openmoji/master/color/svg/26D4.svg",
+      "destination": "public/assets/openmoji/obstacles/roadblock.svg",
+      "tried": [
+        "26D4.svg",
+        "1F6A7.svg",
+        "26A0.svg"
+      ]
+    },
+    {
+      "group": "obstacles",
+      "key": "door",
+      "status": "copied",
+      "sourceFile": "1F6AA.svg",
+      "url": "https://raw.githubusercontent.com/hfg-gmuend/openmoji/master/color/svg/1F6AA.svg",
+      "destination": "public/assets/openmoji/obstacles/door.svg",
+      "tried": [
+        "1F6AA.svg",
+        "1F3F0.svg",
+        "1F3E0.svg"
+      ]
+    },
+    {
+      "group": "obstacles",
+      "key": "lock",
+      "status": "copied",
+      "sourceFile": "1F512.svg",
+      "url": "https://raw.githubusercontent.com/hfg-gmuend/openmoji/master/color/svg/1F512.svg",
+      "destination": "public/assets/openmoji/obstacles/lock.svg",
+      "tried": [
+        "1F512.svg",
+        "26D4.svg"
+      ]
+    },
+    {
+      "group": "danger",
+      "key": "fire",
+      "status": "copied",
+      "sourceFile": "1F525.svg",
+      "url": "https://raw.githubusercontent.com/hfg-gmuend/openmoji/master/color/svg/1F525.svg",
+      "destination": "public/assets/openmoji/danger/fire.svg",
+      "tried": [
+        "1F525.svg",
+        "26A0.svg",
+        "26A0-FE0F.svg"
+      ]
+    },
+    {
+      "group": "danger",
+      "key": "warning",
+      "status": "copied",
+      "sourceFile": "26A0.svg",
+      "url": "https://raw.githubusercontent.com/hfg-gmuend/openmoji/master/color/svg/26A0.svg",
+      "destination": "public/assets/openmoji/danger/warning.svg",
+      "tried": [
+        "26A0.svg",
+        "26A0-FE0F.svg",
+        "1F525.svg"
+      ]
+    },
+    {
+      "group": "danger",
+      "key": "cyclone",
+      "status": "copied",
+      "sourceFile": "1F300.svg",
+      "url": "https://raw.githubusercontent.com/hfg-gmuend/openmoji/master/color/svg/1F300.svg",
+      "destination": "public/assets/openmoji/danger/cyclone.svg",
+      "tried": [
+        "1F300.svg",
+        "1F52E.svg"
+      ]
+    },
+    {
+      "group": "danger",
+      "key": "skull",
+      "status": "copied",
+      "sourceFile": "1F480.svg",
+      "url": "https://raw.githubusercontent.com/hfg-gmuend/openmoji/master/color/svg/1F480.svg",
+      "destination": "public/assets/openmoji/danger/skull.svg",
+      "tried": [
+        "1F480.svg",
+        "2620.svg",
+        "2620-FE0F.svg"
+      ]
+    },
+    {
+      "group": "danger",
+      "key": "lightning",
+      "status": "copied",
+      "sourceFile": "26A1.svg",
+      "url": "https://raw.githubusercontent.com/hfg-gmuend/openmoji/master/color/svg/26A1.svg",
+      "destination": "public/assets/openmoji/danger/lightning.svg",
+      "tried": [
+        "26A1.svg",
+        "1F525.svg"
+      ]
+    },
+    {
+      "group": "danger",
+      "key": "biohazard",
+      "status": "copied",
+      "sourceFile": "2623.svg",
+      "url": "https://raw.githubusercontent.com/hfg-gmuend/openmoji/master/color/svg/2623.svg",
+      "destination": "public/assets/openmoji/danger/biohazard.svg",
+      "tried": [
+        "2623.svg",
+        "2623-FE0F.svg",
+        "26A0.svg",
+        "1F480.svg"
+      ]
+    },
+    {
+      "group": "danger",
+      "key": "locked",
+      "status": "copied",
+      "sourceFile": "1F512.svg",
+      "url": "https://raw.githubusercontent.com/hfg-gmuend/openmoji/master/color/svg/1F512.svg",
+      "destination": "public/assets/openmoji/danger/locked.svg",
+      "tried": [
+        "1F512.svg",
+        "26D4.svg"
+      ]
+    },
+    {
+      "group": "danger",
+      "key": "shield_break",
+      "status": "copied",
+      "sourceFile": "1F6E1.svg",
+      "url": "https://raw.githubusercontent.com/hfg-gmuend/openmoji/master/color/svg/1F6E1.svg",
+      "destination": "public/assets/openmoji/danger/shield_break.svg",
+      "tried": [
+        "1F6E1.svg",
+        "1F6E1-FE0F.svg",
+        "26A0.svg"
+      ]
+    },
+    {
+      "group": "boss",
+      "key": "skull",
+      "status": "copied",
+      "sourceFile": "1F480.svg",
+      "url": "https://raw.githubusercontent.com/hfg-gmuend/openmoji/master/color/svg/1F480.svg",
+      "destination": "public/assets/openmoji/boss/skull.svg",
+      "tried": [
+        "1F480.svg",
+        "2620.svg",
+        "2620-FE0F.svg"
+      ]
+    },
+    {
+      "group": "boss",
+      "key": "dragon",
+      "status": "copied",
+      "sourceFile": "1F409.svg",
+      "url": "https://raw.githubusercontent.com/hfg-gmuend/openmoji/master/color/svg/1F409.svg",
+      "destination": "public/assets/openmoji/boss/dragon.svg",
+      "tried": [
+        "1F409.svg",
+        "1F525.svg"
+      ]
+    },
+    {
+      "group": "boss",
+      "key": "crystal_ball",
+      "status": "copied",
+      "sourceFile": "1F52E.svg",
+      "url": "https://raw.githubusercontent.com/hfg-gmuend/openmoji/master/color/svg/1F52E.svg",
+      "destination": "public/assets/openmoji/boss/crystal_ball.svg",
+      "tried": [
+        "1F52E.svg",
+        "1F300.svg",
+        "2728.svg"
+      ]
+    },
+    {
+      "group": "boss",
+      "key": "portal",
+      "status": "copied",
+      "sourceFile": "1F300.svg",
+      "url": "https://raw.githubusercontent.com/hfg-gmuend/openmoji/master/color/svg/1F300.svg",
+      "destination": "public/assets/openmoji/boss/portal.svg",
+      "tried": [
+        "1F300.svg",
+        "1F52E.svg"
+      ]
+    },
+    {
+      "group": "boss",
+      "key": "crossed_swords",
+      "status": "copied",
+      "sourceFile": "2694.svg",
+      "url": "https://raw.githubusercontent.com/hfg-gmuend/openmoji/master/color/svg/2694.svg",
+      "destination": "public/assets/openmoji/boss/crossed_swords.svg",
+      "tried": [
+        "2694.svg",
+        "2694-FE0F.svg",
+        "1F5E1.svg",
+        "1F5E1-FE0F.svg"
+      ]
+    },
+    {
+      "group": "boss",
+      "key": "crown",
+      "status": "copied",
+      "sourceFile": "1F451.svg",
+      "url": "https://raw.githubusercontent.com/hfg-gmuend/openmoji/master/color/svg/1F451.svg",
+      "destination": "public/assets/openmoji/boss/crown.svg",
+      "tried": [
+        "1F451.svg",
+        "1F3C6.svg"
+      ]
+    },
+    {
+      "group": "boss",
+      "key": "key",
+      "status": "copied",
+      "sourceFile": "1F5DD.svg",
+      "url": "https://raw.githubusercontent.com/hfg-gmuend/openmoji/master/color/svg/1F5DD.svg",
+      "destination": "public/assets/openmoji/boss/key.svg",
+      "tried": [
+        "1F5DD.svg",
+        "1F5DD-FE0F.svg",
+        "1F511.svg"
+      ]
+    },
+    {
+      "group": "boss",
+      "key": "shield",
+      "status": "copied",
+      "sourceFile": "1F6E1.svg",
+      "url": "https://raw.githubusercontent.com/hfg-gmuend/openmoji/master/color/svg/1F6E1.svg",
+      "destination": "public/assets/openmoji/boss/shield.svg",
+      "tried": [
+        "1F6E1.svg",
+        "1F6E1-FE0F.svg",
+        "2694.svg",
+        "2694-FE0F.svg"
+      ]
+    },
+    {
+      "group": "boss",
+      "key": "bonus_star",
+      "status": "copied",
+      "sourceFile": "1F31F.svg",
+      "url": "https://raw.githubusercontent.com/hfg-gmuend/openmoji/master/color/svg/1F31F.svg",
+      "destination": "public/assets/openmoji/boss/bonus_star.svg",
+      "tried": [
+        "1F31F.svg",
+        "2B50.svg",
+        "2728.svg"
+      ]
+    },
+    {
+      "group": "result",
+      "key": "victory",
+      "status": "copied",
+      "sourceFile": "1F3C6.svg",
+      "url": "https://raw.githubusercontent.com/hfg-gmuend/openmoji/master/color/svg/1F3C6.svg",
+      "destination": "public/assets/openmoji/result/victory.svg",
+      "tried": [
+        "1F3C6.svg",
+        "2728.svg"
+      ]
+    },
+    {
+      "group": "result",
+      "key": "defeat",
+      "status": "copied",
+      "sourceFile": "1F480.svg",
+      "url": "https://raw.githubusercontent.com/hfg-gmuend/openmoji/master/color/svg/1F480.svg",
+      "destination": "public/assets/openmoji/result/defeat.svg",
+      "tried": [
+        "1F480.svg",
+        "26A0.svg",
+        "26A0-FE0F.svg"
+      ]
+    },
+    {
+      "group": "result",
+      "key": "continue",
+      "status": "copied",
+      "sourceFile": "25B6.svg",
+      "url": "https://raw.githubusercontent.com/hfg-gmuend/openmoji/master/color/svg/25B6.svg",
+      "destination": "public/assets/openmoji/result/continue.svg",
+      "tried": [
+        "25B6.svg",
+        "25B6-FE0F.svg",
+        "2705.svg"
+      ]
+    },
+    {
+      "group": "result",
+      "key": "home",
+      "status": "copied",
+      "sourceFile": "1F3E0.svg",
+      "url": "https://raw.githubusercontent.com/hfg-gmuend/openmoji/master/color/svg/1F3E0.svg",
+      "destination": "public/assets/openmoji/result/home.svg",
+      "tried": [
+        "1F3E0.svg",
+        "1F3E1.svg"
+      ]
+    },
+    {
+      "group": "result",
+      "key": "pause",
+      "status": "copied",
+      "sourceFile": "23F8.svg",
+      "url": "https://raw.githubusercontent.com/hfg-gmuend/openmoji/master/color/svg/23F8.svg",
+      "destination": "public/assets/openmoji/result/pause.svg",
+      "tried": [
+        "23F8.svg",
+        "23F8-FE0F.svg",
+        "23EF.svg",
+        "23EF-FE0F.svg"
+      ]
+    },
+    {
+      "group": "result",
+      "key": "key",
+      "status": "copied",
+      "sourceFile": "1F5DD.svg",
+      "url": "https://raw.githubusercontent.com/hfg-gmuend/openmoji/master/color/svg/1F5DD.svg",
+      "destination": "public/assets/openmoji/result/key.svg",
+      "tried": [
+        "1F5DD.svg",
+        "1F5DD-FE0F.svg",
+        "1F511.svg"
+      ]
+    },
+    {
+      "group": "result",
+      "key": "shield",
+      "status": "copied",
+      "sourceFile": "1F6E1.svg",
+      "url": "https://raw.githubusercontent.com/hfg-gmuend/openmoji/master/color/svg/1F6E1.svg",
+      "destination": "public/assets/openmoji/result/shield.svg",
+      "tried": [
+        "1F6E1.svg",
+        "1F6E1-FE0F.svg",
+        "2694.svg",
+        "2694-FE0F.svg"
+      ]
+    },
+    {
+      "group": "result",
+      "key": "perfect",
+      "status": "copied",
+      "sourceFile": "1F31F.svg",
+      "url": "https://raw.githubusercontent.com/hfg-gmuend/openmoji/master/color/svg/1F31F.svg",
+      "destination": "public/assets/openmoji/result/perfect.svg",
+      "tried": [
+        "1F31F.svg",
+        "2B50.svg",
+        "2728.svg"
+      ]
+    }
+  ]
+}

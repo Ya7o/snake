@@ -50,7 +50,6 @@ export const MOBILE_UI = {
 } as const;
 
 export const UNIVERSE_FRAME_ASSETS = {
-  castle: { key: 'frame-castle', url: 'assets/frames/castle/frame.png' },
   sonic: { key: 'frame-sonic', url: 'assets/frames/sonic/frame.png' },
   streets: { key: 'frame-streets', url: 'assets/frames/streets/frame.png' },
   fighter: { key: 'frame-fighter', url: 'assets/frames/fighter/frame.png' },
@@ -71,12 +70,37 @@ export const UNIVERSE_LEVEL_INTRO_ASSETS = {
   paperboy: { key: 'level-intro-paperboy', url: 'assets/level-intros/paperboy/intro.png' },
 } as const;
 
-export const CASTLE_RESULT_SCREEN_ASSETS = {
-  system:   { key: 'castle-bg-system',    url: 'assets/ui/castle/castle_system_bg.png' },
-  gameplay: { key: 'castle-bg-gameplay',  url: 'assets/ui/castle/castle_gameplay_bg.png' },
-  gameOver: { key: 'castle-result-game-over', url: 'assets/ui/castle/castle_game_over_bg.png' },
-  clear:    { key: 'castle-result-clear', url: 'assets/ui/castle/castle_clear_bg.png' },
-} as const;
+interface BgSlot { key: string; url: string }
+export interface UniverseBgSet {
+  system: BgSlot;
+  bossSystem?: BgSlot;
+  gameplay: BgSlot;
+  gameOver: BgSlot;
+  clear: BgSlot;
+}
+
+const mk = (uid: string): UniverseBgSet => ({
+  system:     { key: `bg-${uid}-system`,    url: `assets/ui/${uid}/${uid}_system_bg.png` },
+  bossSystem: { key: `bg-${uid}-boss-sys`,  url: `assets/ui/${uid}/${uid}_boss_system_bg.png` },
+  gameplay:   { key: `bg-${uid}-gameplay`,  url: `assets/ui/${uid}/${uid}_gameplay_bg.png` },
+  gameOver:   { key: `bg-${uid}-gameover`,  url: `assets/ui/${uid}/${uid}_game_over_bg.png` },
+  clear:      { key: `bg-${uid}-clear`,     url: `assets/ui/${uid}/${uid}_clear_bg.png` },
+});
+
+export const UNIVERSE_RESULT_SCREEN_ASSETS: Record<string, UniverseBgSet> = {
+  castle:   mk('castle'),
+  sonic:    mk('sonic'),
+  streets:  mk('streets'),
+  fighter:  mk('fighter'),
+  outrun:   mk('outrun'),
+  shinobi:  mk('shinobi'),
+  kombat:   mk('kombat'),
+  paperboy: mk('paperboy'),
+};
+
+// Backward-compat aliases — external code that imports these still works
+export const CASTLE_RESULT_SCREEN_ASSETS = UNIVERSE_RESULT_SCREEN_ASSETS['castle'];
+export const OUTRUN_RESULT_SCREEN_ASSETS  = UNIVERSE_RESULT_SCREEN_ASSETS['outrun'];
 
 export const UNIVERSE_DISPLAY_NAMES = {
   castle: 'CASTLE OF ILLUSION',

@@ -74,4 +74,8 @@ export class LoopSerpentBoss extends BaseBoss {
     if (result.hit && !result.defeated) this.buildLoop();
     return result;
   }
+
+  getHudExtra(): string {
+    return 'FRAPPE';
+  }
 }

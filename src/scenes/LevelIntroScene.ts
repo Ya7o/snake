@@ -1,9 +1,10 @@
 import Phaser from 'phaser';
-import { SCENES, UNIVERSE_LEVEL_INTRO_ASSETS, CASTLE_RESULT_SCREEN_ASSETS } from '../config/constants';
+import { SCENES, UNIVERSE_RESULT_SCREEN_ASSETS } from '../config/constants';
 import { getLevelById, resolveLevelId } from '../config/levels';
 import { UNIVERSES } from '../config/universes';
 import { MENU_THEMES, MenuTheme } from '../config/menuThemes';
 import { ARCADE_FONT, UI_FONT, addMobileButton, flashScreen } from '../render/VfxUtils';
+import { CASTLE_OPENMOJI_ICON_ASSETS, getCastleOpenMojiBadge } from '../ui/OpenMojiIconRegistry';
 
 const clamp = (value: number, min: number, max: number): number => Math.max(min, Math.min(max, value));
 
@@ -27,21 +28,19 @@ export class LevelIntroScene extends Phaser.Scene {
     if (!level) return;
 
     const uid = level.universeId;
+    const isBoss = level.type === 'boss';
+    const univBg = UNIVERSE_RESULT_SCREEN_ASSETS[uid];
 
-    if (uid === 'castle') {
-      const sysAsset = CASTLE_RESULT_SCREEN_ASSETS.system;
-      if (!this.textures.exists(sysAsset.key)) this.load.image(sysAsset.key, sysAsset.url);
-    } else {
-      const introAsset = UNIVERSE_LEVEL_INTRO_ASSETS[uid as keyof typeof UNIVERSE_LEVEL_INTRO_ASSETS];
-      if (introAsset && !this.textures.exists(introAsset.key)) {
-        this.load.image(introAsset.key, introAsset.url);
-      }
+    if (univBg) {
+      const bgSlot = isBoss && univBg.bossSystem ? univBg.bossSystem : univBg.system;
+      if (!this.textures.exists(bgSlot.key)) this.load.image(bgSlot.key, bgSlot.url);
     }
 
-    const isBoss = level.type === 'boss';
-    const badgeKey = isBoss ? `db_${uid}_boss` : `db_${uid}_pickup01`;
-    const badgePath = isBoss ? `assets/universes/${uid}/boss.png` : `assets/universes/${uid}/pickup_01.png`;
-    if (!this.textures.exists(badgeKey)) this.load.image(badgeKey, badgePath);
+    if (uid === 'castle') {
+      for (const icon of CASTLE_OPENMOJI_ICON_ASSETS) {
+        if (!this.textures.exists(icon.key)) this.load.svg(icon.key, icon.url, { width: 64, height: 64 });
+      }
+    }
   }
 
   create(data: LevelIntroData): void {
@@ -58,9 +57,10 @@ export class LevelIntroScene extends Phaser.Scene {
     // ── Background ────────────────────────────────────────────────────────────
     this.add.rectangle(W / 2, H / 2, W, H, theme.colors.panelBg).setDepth(0);
 
-    const bgKey = isCastle
-      ? CASTLE_RESULT_SCREEN_ASSETS.system.key
-      : UNIVERSE_LEVEL_INTRO_ASSETS[level.universeId as keyof typeof UNIVERSE_LEVEL_INTRO_ASSETS]?.key;
+    const univBg = UNIVERSE_RESULT_SCREEN_ASSETS[level.universeId];
+    const bgKey = isBoss && univBg?.bossSystem
+      ? univBg.bossSystem.key
+      : univBg?.system.key;
     if (bgKey && this.textures.exists(bgKey)) {
       const bgImg = this.add.image(W / 2, H / 2, bgKey).setDepth(1);
       bgImg.setScale(Math.max(W / bgImg.width, H / bgImg.height));
@@ -149,7 +149,7 @@ export class LevelIntroScene extends Phaser.Scene {
         color: '#f7d77a',
         align: 'center',
       }).setOrigin(0.5, 0).setDepth(10);
-      textY += H < 720 ? 16 : 18;
+      textY += H < 720 ? 24 : 28;
     }
 
     if (isCastle) {
@@ -225,16 +225,17 @@ export class LevelIntroScene extends Phaser.Scene {
       }
     }
 
-    // Universe badge (pickup or boss icon) — top-right corner of panel
-    const uid = level.universeId;
-    const badgeKey = isBoss ? `db_${uid}_boss` : `db_${uid}_pickup01`;
-    if (this.textures.exists(badgeKey)) {
-      const badgeSize = Math.min(34, W * 0.09);
-      this.add.image(
-        panelX + panelW - badgeSize / 2 - 6,
-        infoPanelTopY + badgeSize / 2 + 6,
-        badgeKey,
-      ).setDisplaySize(badgeSize, badgeSize).setAlpha(0.72).setDepth(11);
+    // Universe badge — Castle only (OpenMoji icons already loaded for Castle)
+    if (isCastle) {
+      const badgeKey = getCastleOpenMojiBadge(level.type).key;
+      if (this.textures.exists(badgeKey)) {
+        const badgeSize = Math.min(34, W * 0.09);
+        this.add.image(
+          panelX + panelW - badgeSize / 2 - 6,
+          infoPanelTopY + badgeSize / 2 + 6,
+          badgeKey,
+        ).setDisplaySize(badgeSize, badgeSize).setAlpha(0.72).setDepth(11);
+      }
     }
 
     // ── Buttons ───────────────────────────────────────────────────────────────
