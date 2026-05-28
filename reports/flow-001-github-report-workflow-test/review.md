@@ -55,5 +55,6 @@ Aucune capture requise pour ce test.
 
 ## Liens GitHub
 
-- Commit : *(à compléter après push)*
-- PR : *(non applicable — push direct sur main)*
+- Commit : https://github.com/Ya7o/snake/commit/a88508b
+- PR : non applicable — push direct sur main
+- Fichier : https://github.com/Ya7o/snake/blob/main/reports/flow-001-github-report-workflow-test/review.md
