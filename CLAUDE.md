@@ -174,7 +174,7 @@ La tâche n'est **pas terminée** tant que :
 Toujours commit/push **depuis WSL**, jamais depuis PowerShell Windows :
 
 ```bash
-cd /mnt/c/Users/Boris/snake
+cd /mnt/c/Users/Boris/apps_ai/snake
 git status
 git add [fichiers attendus]
 git commit -m "PATCH XXXX — [message clair]"
