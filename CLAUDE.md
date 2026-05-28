@@ -193,7 +193,27 @@ npm run dev
 
 Raison : `node_modules` contient des binaires natifs. Installés depuis Windows → compatibles PowerShell uniquement. Installés depuis WSL → compatibles WSL uniquement. Mélanger les deux casse Rollup/Vite.
 
-### 6. Règles de scope
+### 6. Exigences d'environnement pour `npm run check`
+
+`npm run check` (TypeScript + Vite/Rollup build) peut échouer en OOM (Out of Memory) si la RAM disponible est insuffisante.
+
+**Avant de lancer `npm run check` :**
+- Fermer Chrome et les applications lourdes si peu de RAM est disponible.
+
+**Si OOM Node/Vite/Rollup :**
+1. Fermer les applications lourdes (Chrome, etc.).
+2. Relancer `npm run check`.
+3. Seulement si l'échec persiste après libération RAM, documenter les deux tentatives dans `review.md`.
+
+**À ne pas faire en cas d'OOM ponctuel :**
+- Ne pas modifier les options Vite/Rollup/Node tant que le build passe après libération RAM.
+- Ne pas ajouter `NODE_OPTIONS` ni modifier `vite.config` pour contourner un OOM temporaire.
+- Ne pas modifier `package.json` ni les scripts npm.
+
+**Warning connu et non bloquant :**
+- `chunk > 500 kB` — warning Rollup attendu, pas une erreur.
+
+### 7. Règles de scope
 
 - Pas de refactor global non demandé.
 - Pas de suppression non demandée.
