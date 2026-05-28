@@ -1,0 +1,62 @@
+PATCH 1027 — Clean Archive Restore Test Retry
+=============================================
+
+Archive testée :
+  /mnt/c/Users/Boris/snake/tmp/snake-drive-v4-clean-source.tar.gz
+  Taille : 137 MB (143 654 073 octets)
+  Entrées : 542
+
+Dossier d'extraction :
+  D:\tmp\snake-drive-v4-restore-test
+  (C: plein — 0 Go libre ; extraction réalisée sur D: — 19,65 Go libres)
+
+--- tar -tzf ---
+OK
+542 entrées listées sans erreur.
+
+--- Exclusions vérifiées ---
+.git/         : ABSENT (OK)
+node_modules/ : ABSENT (OK)
+dist/         : ABSENT (OK)
+tmp/          : ABSENT (OK)
+tickets/      : ABSENT (OK)
+design_boards/: ABSENT à la racine (OK)
+               Présent uniquement dans docs/design_boards/ (4 fichiers .md de documentation — acceptable)
+
+--- Extraction ---
+Outil : tar.exe natif Windows (C:\Windows\System32\tar.exe)
+Raison : tar via WSL vers chemin NTFS génère des erreurs "Cannot utime" et "Cannot write" ; tar Windows natif fonctionne sans erreur.
+Exit code : 0
+Résultat : OK
+
+--- Structure restaurée vérifiée ---
+src/                   : OK
+public/                : OK
+public/assets/         : OK (audio, frames, level-intros, map, openmoji, runtime, ui, universes)
+docs/                  : OK
+reports/               : OK
+package.json           : OK
+CLAUDE.md              : OK
+scripts/create-clean-source-archive.sh : OK
+
+--- npm install ---
+Commande : npm install (depuis PowerShell, D:\tmp\snake-drive-v4-restore-test)
+Résultat : OK
+  19 packages ajoutés
+  0 vulnérabilités
+  Durée : 3s
+
+--- npm run check ---
+Commande : npm run check (depuis PowerShell, D:\tmp\snake-drive-v4-restore-test)
+Résultat : OK
+  TypeScript : 0 erreur
+  Modules transformés : 60
+  Build time : 8.74s
+  Warning chunk > 500 kB : connu et non bloquant (attendu)
+
+--- Limites ---
+- C: plein (0 Go) — extraction réalisée sur D: au lieu de C:\tmp
+- tar WSL vers NTFS incompatible — workaround : tar Windows natif
+- npm install dépend du réseau (npm registry)
+- npm run check est RAM-dependent (risque OOM si RAM insuffisante)
+- Le test a été effectué dans un environnement Windows/WSL2
