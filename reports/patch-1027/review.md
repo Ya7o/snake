@@ -74,5 +74,6 @@ Aucune capture requise (tâche audit/build).
 
 ## Liens GitHub
 
-- Commit : (à compléter après push)
+- Commit : https://github.com/Ya7o/snake/commit/0f57e9b8c4b747f636016afb13ae61eec2126997
 - PR : aucun (patch direct sur main)
+- Review : https://github.com/Ya7o/snake/blob/main/reports/patch-1027/review.md
