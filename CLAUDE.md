@@ -98,10 +98,56 @@ Après modification :
 3. Signaler les fallbacks et limites.
 4. Arrêter le serveur de test après usage (ne pas laisser de serveur actif).
 
-## État Dev (2026-05-22)
+## Workflow GitHub-First (ChatGPT → Claude Code → GitHub)
+
+Chaque tâche doit produire un livrable GitHub contrôlable par ChatGPT.
+
+Pour PATCH XXXX, créer obligatoirement :
+
+```
+reports/patch-XXXX/review.md
+reports/patch-XXXX/screenshots/   ← si tâche visuelle
+reports/patch-XXXX/docs/          ← si documents complémentaires
+```
+
+Le fichier `review.md` doit contenir ces sections :
+
+```
+# Review
+## Objectif
+## Résultat
+## Fichiers modifiés
+## Tests / vérifications
+## Captures
+## Documents
+## Limites / risques
+## Liens GitHub
+```
+
+Toujours lancer `npm run check` et écrire le résultat dans `review.md`.
+
+Toujours commit/push **depuis WSL**, jamais depuis PowerShell Windows (chmod NTFS bloque) :
+
+```bash
+cd /mnt/c/Users/Boris/snake
+git status
+git add [fichiers attendus]
+git commit -m "PATCH XXXX — [message clair]"
+git push origin main
+```
+
+La tâche n'est pas terminée tant que :
+- `reports/patch-XXXX/review.md` n'existe pas ;
+- `npm run check` n'est pas documenté ;
+- le commit/push GitHub n'est pas fait ;
+- les captures attendues ne sont pas commitées si la tâche est visuelle.
+
+Voir le template complet : `docs/WORKFLOW_TEMPLATE.md`
+
+## État Dev (2026-05-28)
 
 - `DEV_UNLOCK_ALL = true` dans `src/config/constants.ts` — tous les niveaux débloqués. Passer à `false` avant release.
-- Build propre : 0 erreur TypeScript, 58 modules.
+- Build propre : 0 erreur TypeScript, 60 modules.
 
 ## Nettoyage Repo
 
