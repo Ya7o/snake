@@ -95,5 +95,6 @@ Aucune capture requise (tâche tooling sans interface visuelle).
 
 ## Liens GitHub
 
-- Commit : (voir ci-dessous après push)
+- Commit : https://github.com/Ya7o/snake/commit/152bb018cee7867b5d29b2c2811d74b63873673b
+- Review : https://github.com/Ya7o/snake/blob/main/reports/patch-1026/review.md
 - PR : N/A (push direct sur main)
