@@ -136,6 +136,16 @@ git commit -m "PATCH XXXX — [message clair]"
 git push origin main
 ```
 
+Toujours lancer `npm` **depuis PowerShell** (jamais depuis WSL) :
+
+```powershell
+npm run check
+npm install
+npm run dev
+```
+
+Raison : `node_modules` contient des binaires natifs. Installés depuis Windows → compatibles PowerShell uniquement. Installés depuis WSL → compatibles WSL uniquement. Mélanger les deux casse Rollup/Vite.
+
 La tâche n'est pas terminée tant que :
 - `reports/patch-XXXX/review.md` n'existe pas ;
 - `npm run check` n'est pas documenté ;
