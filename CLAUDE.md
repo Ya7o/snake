@@ -100,6 +100,26 @@ Après modification :
 
 ## Workflow GitHub-First (ChatGPT → Claude Code → GitHub)
 
+### 1. Mode de fonctionnement du projet
+
+Le projet utilise un flux GitHub-first en 10 étapes :
+
+1. ChatGPT prépare le cadrage de la tâche (prompt structuré).
+2. L'utilisateur envoie le prompt à Claude Code Dispatch depuis mobile.
+3. Claude Code exécute la tâche sur PC/WSL dans le repo local.
+4. Claude Code lance les vérifications demandées (`npm run check`).
+5. Claude Code crée un rapport standardisé dans `reports/patch-XXXX/review.md`.
+6. Claude Code ajoute les captures dans `reports/patch-XXXX/screenshots/` si la tâche est visuelle.
+7. Claude Code ajoute les documents complémentaires dans `reports/patch-XXXX/docs/` si nécessaire.
+8. Claude Code commit et push sur GitHub depuis WSL.
+9. L'utilisateur revient dans ChatGPT avec seulement : **`Contrôle PATCH XXXX`**.
+10. ChatGPT contrôle le résultat depuis GitHub.
+
+Le vrai livrable n'est jamais "Claude a fini".
+Le vrai livrable est : un commit GitHub + `reports/patch-XXXX/review.md` + `npm run check` documenté.
+
+### 2. Convention obligatoire de reporting
+
 Chaque tâche doit produire un livrable GitHub contrôlable par ChatGPT.
 
 Pour PATCH XXXX, créer obligatoirement :
@@ -110,10 +130,15 @@ reports/patch-XXXX/screenshots/   ← si tâche visuelle
 reports/patch-XXXX/docs/          ← si documents complémentaires
 ```
 
+Cette convention permet à l'utilisateur de dire simplement **`Contrôle PATCH XXXX`** à ChatGPT, qui retrouve tout depuis GitHub sans autre contexte.
+
+### 3. Contenu obligatoire de review.md
+
 Le fichier `review.md` doit contenir ces sections :
 
 ```
 # Review
+
 ## Objectif
 ## Résultat
 ## Fichiers modifiés
@@ -126,7 +151,27 @@ Le fichier `review.md` doit contenir ces sections :
 
 Toujours lancer `npm run check` et écrire le résultat dans `review.md`.
 
-Toujours commit/push **depuis WSL**, jamais depuis PowerShell Windows (chmod NTFS bloque) :
+### 4. Règles de fin de tâche
+
+Chaque tâche doit finir par :
+
+1. `npm run check` (depuis PowerShell) ;
+2. création de `reports/patch-XXXX/review.md` ;
+3. captures dans `screenshots/` si tâche visuelle ;
+4. `git status` pour vérifier le scope des fichiers modifiés ;
+5. commit depuis WSL ;
+6. push GitHub depuis WSL ;
+7. réponse finale avec liens GitHub (commit, PR si applicable, review.md).
+
+La tâche n'est **pas terminée** tant que :
+- `reports/patch-XXXX/review.md` n'existe pas ;
+- `npm run check` n'est pas documenté dans le rapport ;
+- le commit/push GitHub n'est pas fait ;
+- les captures attendues ne sont pas commitées si la tâche est visuelle.
+
+### 5. Environnement Git obligatoire (WSL uniquement)
+
+Toujours commit/push **depuis WSL**, jamais depuis PowerShell Windows :
 
 ```bash
 cd /mnt/c/Users/Boris/snake
@@ -135,6 +180,8 @@ git add [fichiers attendus]
 git commit -m "PATCH XXXX — [message clair]"
 git push origin main
 ```
+
+Raison : chmod / permissions NTFS peuvent bloquer les hooks Git sous PowerShell Windows.
 
 Toujours lancer `npm` **depuis PowerShell** (jamais depuis WSL) :
 
@@ -146,11 +193,19 @@ npm run dev
 
 Raison : `node_modules` contient des binaires natifs. Installés depuis Windows → compatibles PowerShell uniquement. Installés depuis WSL → compatibles WSL uniquement. Mélanger les deux casse Rollup/Vite.
 
-La tâche n'est pas terminée tant que :
-- `reports/patch-XXXX/review.md` n'existe pas ;
-- `npm run check` n'est pas documenté ;
-- le commit/push GitHub n'est pas fait ;
-- les captures attendues ne sont pas commitées si la tâche est visuelle.
+### 6. Règles de scope
+
+- Pas de refactor global non demandé.
+- Pas de suppression non demandée.
+- Pas de modification hors scope du ticket.
+- Documenter les limites au lieu d'improviser.
+- Les fichiers Markdown ne doivent pas être marqués exécutables.
+
+Si nécessaire après création de fichiers Markdown :
+
+```bash
+chmod -x CLAUDE.md reports/patch-XXXX/*.md
+```
 
 Voir le template complet : `docs/WORKFLOW_TEMPLATE.md`
 
