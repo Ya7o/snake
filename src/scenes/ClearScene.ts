@@ -91,11 +91,11 @@ export class ClearScene extends Phaser.Scene {
     const buttons = getUniverseButtons(level?.universeId ?? 'castle');
 
     // Success title
-    const title = level?.type === 'boss' ? 'BOSS CLEAR' : 'STAGE CLEAR';
+    const title = level?.type === 'boss' ? 'BOSS VAINCU' : 'NIVEAU RÉUSSI';
     const subTitle = level?.id === 'castle_normal'
-      ? 'Castle Boss débloqué'
+      ? 'BOSS DU CHÂTEAU DÉBLOQUÉ'
       : level?.id === 'castle_boss'
-        ? 'Monde 1 terminé'
+        ? 'MONDE 1 TERMINÉ'
         : null;
 
     this.add.text(W / 2 + 3, H * L.titleY + 3, title, {
@@ -196,7 +196,7 @@ export class ClearScene extends Phaser.Scene {
       const endBacking = this.add.graphics().setDepth(5);
       endBacking.fillStyle(0x000000, 0.48);
       endBacking.fillRoundedRect(W * 0.12, H * L.contextY - endBlockH / 2, W * 0.76, endBlockH, 6);
-      this.add.text(W / 2, H * L.contextY, 'TOUS LES NIVEAUX\nTERMINÉS !', {
+      this.add.text(W / 2, H * L.contextY, 'TOUS LES MONDES\nTERMINÉS !', {
         fontFamily: UI_FONT,
         fontSize: `${endFontSize}px`,
         fontStyle: '800',

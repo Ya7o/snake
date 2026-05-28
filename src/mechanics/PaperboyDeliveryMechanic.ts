@@ -83,7 +83,7 @@ export class PaperboyDeliveryMechanic extends BaseMechanic {
   }
 
   getHudExtra(): string {
-    return this.hasPaper ? 'LIVRER !' : 'PRENDS LE JOURNAL';
+    return this.hasPaper ? 'LIVRE !' : 'PRENDS LE JOURNAL';
   }
 
   getDeliveredCount(): number {

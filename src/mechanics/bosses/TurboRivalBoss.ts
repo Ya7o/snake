@@ -80,7 +80,7 @@ export class TurboRivalBoss extends BaseBoss {
   }
 
   getHudExtra(): string {
-    if (this.turboZones.length > 0) return 'TURBO → FRAPPE';
+    if (this.turboZones.length > 0) return 'FRAPPE MAINTENANT !';
     return 'ÉVITE';
   }
 }

@@ -85,7 +85,7 @@ export class DragonGateBoss extends BaseBoss {
 
   getHudExtra(): string {
     if (this.gatePhase === 'opening') return 'ATTENTION';
-    if (this.gatePhase === 'open') return 'FENÊTRE';
+    if (this.gatePhase === 'open') return 'ATTAQUE !';
     if (this.gatePhase === 'danger') return 'DANGER';
     return super.getHudExtra();
   }

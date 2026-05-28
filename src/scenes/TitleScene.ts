@@ -115,7 +115,7 @@ export class TitleScene extends Phaser.Scene {
     ctaGfx.lineStyle(2, 0x00d7c0, 1);
     ctaGfx.strokeRoundedRect(W / 2 - ctaW / 2, ctaY - ctaH / 2, ctaW, ctaH, 10);
 
-    const tapText = this.add.text(W / 2, ctaY, 'TOUCHER POUR JOUER', {
+    const tapText = this.add.text(W / 2, ctaY, 'APPUYER POUR JOUER', {
       fontFamily: UI_FONT,
       fontSize: `${Math.min(16, Math.floor(W * 0.042))}px`,
       fontStyle: '700',

@@ -84,8 +84,8 @@ export class LevelIntroScene extends Phaser.Scene {
     const actionTopY = btnRowY - btnH / 2;
     const panelGap = H < 720 ? 10 : 14;
     const panelBottomY = actionTopY - panelGap;
-    const desiredPanelTopY = isCastle ? H * 0.56 : H * 0.58;
-    const minPanelH = isCastle ? (isBoss ? 174 : 158) : (isBoss ? 120 : 108);
+    const desiredPanelTopY = isCastle ? H * 0.56 : (isBoss ? H * 0.54 : H * 0.58);
+    const minPanelH = isCastle ? (isBoss ? 174 : 158) : (isBoss ? 148 : 116);
     const infoPanelTopY = clamp(desiredPanelTopY, H * 0.46, panelBottomY - minPanelH);
     const panelH = Math.max(minPanelH, panelBottomY - infoPanelTopY);
 
@@ -116,7 +116,7 @@ export class LevelIntroScene extends Phaser.Scene {
     // ── Panel content ─────────────────────────────────────────────────────────
     const nameSize = Math.max(10, Math.min(13, Math.floor(W * 0.030)));
     const bodySize = Math.max(12, Math.min(15, Math.floor(W * 0.037)));
-    const contentBottomY = infoPanelTopY + panelH - 14;
+    const contentBottomY = infoPanelTopY + panelH - 18;
     let textY = infoPanelTopY + (H < 720 ? 12 : 16);
 
     if (isBoss) {
@@ -156,7 +156,7 @@ export class LevelIntroScene extends Phaser.Scene {
       const sectionLabelSize = Math.max(10, Math.min(12, Math.floor(W * 0.030)));
       const sectionTextSize = Math.max(12, Math.min(14, Math.floor(W * 0.035)));
       const objectiveText = isBoss
-        ? `Bats le miroir en ${level.bossHp ?? 3} touches.`
+        ? `Touche le miroir ${level.bossHp ?? 3} fois.`
         : `Collecte ${level.quota ?? 10} éclats magiques.`;
       const dangerText = isBoss
         ? 'Évite les reflets maudits.'
@@ -196,7 +196,7 @@ export class LevelIntroScene extends Phaser.Scene {
 
       // Objective / boss HP
       const infoStr = isBoss
-        ? `PV BOSS : ${level.bossHp ?? 3}`
+        ? `PV : ${level.bossHp ?? 3}`
         : `OBJECTIF : ${level.quota ?? 10}`;
       this.add.text(centerX, textY, infoStr, {
         fontFamily: 'Arial, sans-serif',

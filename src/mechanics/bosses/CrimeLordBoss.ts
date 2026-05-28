@@ -92,6 +92,6 @@ export class CrimeLordBoss extends BaseBoss {
   }
 
   getHudExtra(): string {
-    return this.currentPhase === 'vulnerable' ? 'FENÊTRE' : 'DANGER';
+    return this.currentPhase === 'vulnerable' ? 'ATTAQUE !' : 'DANGER';
   }
 }

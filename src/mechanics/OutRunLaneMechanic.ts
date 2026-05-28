@@ -90,5 +90,5 @@ export class OutRunLaneMechanic extends BaseMechanic {
     return this.traffic.map(t => ({ ...t.cell, source: 'laneDrift', lethal: true }));
   }
 
-  getHudExtra(): string { return 'PASSE LES BALISES'; }
+  getHudExtra(): string { return 'FRANCHIS LES BALISES'; }
 }

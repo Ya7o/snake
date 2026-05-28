@@ -1,5 +1,8 @@
 import Phaser from 'phaser';
 import { SCENES, ASSET_KEYS, ASSET_PATHS, WORLD_MAP_VIEW } from '../config/constants';
+// PATCH 1013A: world map uses new 16:9 minimap asset
+const WM_KEY  = ASSET_KEYS.WORLD_MAP_MINIMAP;
+const WM_PATH = ASSET_PATHS.WORLD_MAP_MINIMAP;
 import { MAP_NODES } from '../config/mapNodes';
 import { getLevelById } from '../config/levels';
 import { UNIVERSES } from '../config/universes';
@@ -8,8 +11,9 @@ import { AudioSystem } from '../systems/AudioSystem';
 import { UI_FONT } from '../render/VfxUtils';
 
 // Source map dimensions — updated from texture metadata if available
-const MAP_IMG_W = 1448;
-const MAP_IMG_H = 1086;
+// New minimap: world_map_minimap_16_9.png (1672x941)
+const MAP_IMG_W = 1672;
+const MAP_IMG_H = 941;
 
 export class WorldMapScene extends Phaser.Scene {
   private mapContainer!: Phaser.GameObjects.Container;
@@ -47,6 +51,10 @@ export class WorldMapScene extends Phaser.Scene {
   private lastTapAt = 0;
   private nodeHighlights = new Map<string, Phaser.GameObjects.Graphics>();
 
+  // Animated tweens
+  private selectionPulseTween: Phaser.Tweens.Tween | null = null;
+  private panTween: Phaser.Tweens.Tween | null = null;
+
   // Native touch — pinch zoom
   private nativeCanvas: HTMLCanvasElement | null = null;
   private pinchDist0  = 0;
@@ -67,12 +75,12 @@ export class WorldMapScene extends Phaser.Scene {
   }
 
   preload(): void {
-    if (!this.textures.exists(ASSET_KEYS.WORLD_MAP)) {
+    if (!this.textures.exists(WM_KEY)) {
       this.load.on('loaderror', (file: Phaser.Loader.File) => {
-        if (file.key === ASSET_KEYS.WORLD_MAP)
-          console.warn('[WorldMap] world_map.png introuvable — fallback procédural');
+        if (file.key === WM_KEY)
+          console.warn('[WorldMap] world_map_minimap_16_9.png introuvable — fallback procédural');
       });
-      this.load.image(ASSET_KEYS.WORLD_MAP, ASSET_PATHS.WORLD_MAP);
+      this.load.image(WM_KEY, WM_PATH);
     }
   }
 
@@ -86,10 +94,10 @@ export class WorldMapScene extends Phaser.Scene {
     this.mapAreaY = 0;
     this.mapAreaH = H - WORLD_MAP_VIEW.FOOTER_H;
 
-    const hasMapTex = this.textures.exists(ASSET_KEYS.WORLD_MAP);
+    const hasMapTex = this.textures.exists(WM_KEY);
     let imgW = MAP_IMG_W, imgH = MAP_IMG_H;
     if (hasMapTex) {
-      const src = this.textures.get(ASSET_KEYS.WORLD_MAP).getSourceImage() as HTMLImageElement;
+      const src = this.textures.get(WM_KEY).getSourceImage() as HTMLImageElement;
       if (src?.width > 0) { imgW = src.width; imgH = src.height; }
     }
     this.sourceW = imgW;
@@ -127,8 +135,8 @@ export class WorldMapScene extends Phaser.Scene {
 
     // ── Map image or fallback ─────────────────────────────────────────────
     if (hasMapTex) {
-      this.textures.get(ASSET_KEYS.WORLD_MAP).setFilter(Phaser.Textures.FilterMode.LINEAR);
-      const mapImg = this.add.image(0, 0, ASSET_KEYS.WORLD_MAP);
+      this.textures.get(WM_KEY).setFilter(Phaser.Textures.FilterMode.LINEAR);
+      const mapImg = this.add.image(0, 0, WM_KEY);
       mapImg.setCrop(this.cropX, this.cropY, this.cropW, this.cropH);
       mapImg.setScale(this.coverScale);
       this.mapContainer.add(mapImg);
@@ -191,6 +199,12 @@ export class WorldMapScene extends Phaser.Scene {
     // ── Drag ─────────────────────────────────────────────────────────────
     this.onPtrDown = (p: Phaser.Input.Pointer) => {
       if (p.id > 1) return;
+      if (this.panTween) {
+        this.panTween.stop();
+        this.panTween = null;
+        this.containerX = this.mapContainer.x;
+        this.containerY = this.mapContainer.y;
+      }
       this.dragStart  = { x: p.x, y: p.y };
       this.isDragging = false;
     };
@@ -252,21 +266,13 @@ export class WorldMapScene extends Phaser.Scene {
 
     this.mapContainer.setScale(this.currentZoom);
     this.updateNodeScreenScale();
-    if (H > W) {
-      // Portrait: anchor map to top-left corner, no centering.
-      const b = this.panBounds();
-      this.containerX = b.maxX;
-      this.containerY = b.maxY;
-      this.mapContainer.x = this.containerX;
-      this.mapContainer.y = this.containerY;
-    } else {
-      this.centerOnNode(MAP_NODES[0]?.id);
-    }
+    // Always center on first node (portrait or landscape); user pans to explore.
+    this.centerOnNode(MAP_NODES[0]?.id);
     this.clampContainer();
 
     // ── ?debugMap=1 ───────────────────────────────────────────────────────
     if (new URLSearchParams(window.location.search).get('debugMap') === '1') {
-      this.createDebugOverlay(hasMapTex, imgW, imgH);
+      this.createDebugOverlay(hasMapTex, imgW, imgH, WM_KEY);
     }
 
     // ── Footer panel ──────────────────────────────────────────────────────
@@ -350,6 +356,7 @@ export class WorldMapScene extends Phaser.Scene {
     this.lastTapAt = now;
 
     this.selectNode(levelId, nodeId, isUnlocked);
+    this.panToNode(nodeId);
     if (isUnlocked && isDoubleTap) {
       AudioSystem.uiButton();
       this.launchLevel(levelId);
@@ -366,26 +373,46 @@ export class WorldMapScene extends Phaser.Scene {
     // Footer update
     if (isUnlocked) {
       const typeLabel = level.type === 'boss' ? 'BOSS' : 'NIVEAU';
-      this.footerLevelTxt.setText(`${level.name.toUpperCase()} - ${typeLabel}`).setColor(universe.palette.accent);
+      this.footerLevelTxt.setText(`${level.name.toUpperCase()} · ${typeLabel}`).setColor(universe.palette.accent);
     } else {
       this.footerLevelTxt.setText('VERROUILLÉ').setColor('#777788');
     }
     this.updateFooterButton(isUnlocked, universe.palette.accent);
 
-    // Highlight selected node, clear others
+    // Stop previous pulse and clear all highlights
+    if (this.selectionPulseTween) { this.selectionPulseTween.stop(); this.selectionPulseTween = null; }
     for (const [nid, hl] of this.nodeHighlights.entries()) {
       if (nid === nodeId) {
         const isBossSelected = level.type === 'boss';
         hl.clear();
-        hl.lineStyle(2, isUnlocked ? 0xffd86b : 0x777788, isUnlocked ? 1 : 0.7);
+        // Soft glow halo
+        hl.fillStyle(isUnlocked ? 0xffd86b : 0x8888aa, 0.18);
+        hl.fillCircle(0, 0, WORLD_MAP_VIEW.NODE_R_HIT + 5);
+        // Outer ring
+        hl.lineStyle(2, isUnlocked ? 0xffffff : 0x555566, 0.65);
+        hl.strokeCircle(0, 0, WORLD_MAP_VIEW.NODE_R_HIT + 3);
+        // Inner shape (bright accent ring)
+        hl.lineStyle(3, isUnlocked ? 0xffd86b : 0x888899, 1.0);
         if (isBossSelected) {
-          this.drawStar(hl, 0, 0, WORLD_MAP_VIEW.NODE_R_HIT * 0.58, WORLD_MAP_VIEW.NODE_R_HIT * 0.28, false);
+          this.drawStar(hl, 0, 0, WORLD_MAP_VIEW.NODE_R_HIT * 0.55, WORLD_MAP_VIEW.NODE_R_HIT * 0.27, false);
         } else {
-          hl.strokeCircle(0, 0, WORLD_MAP_VIEW.NODE_R_HIT * 0.58);
+          hl.strokeCircle(0, 0, WORLD_MAP_VIEW.NODE_R_HIT * 0.55);
         }
-        hl.lineStyle(1, isUnlocked ? 0xffffff : 0x555566, 0.55);
-        hl.strokeCircle(0, 0, WORLD_MAP_VIEW.NODE_R_HIT * 0.75);
         hl.setVisible(true);
+        // Pulse animation on unlocked nodes
+        if (isUnlocked) {
+          hl.setAlpha(1);
+          this.selectionPulseTween = this.tweens.add({
+            targets: hl,
+            alpha: { from: 0.55, to: 1 },
+            duration: 680,
+            yoyo: true,
+            repeat: -1,
+            ease: 'Sine.easeInOut',
+          });
+        } else {
+          hl.setAlpha(0.7);
+        }
       } else {
         hl.setVisible(false);
       }
@@ -485,11 +512,11 @@ export class WorldMapScene extends Phaser.Scene {
     this.mapContainer.addAt(gfx, 0);
   }
 
-  private createDebugOverlay(hasTexture: boolean, imgW: number, imgH: number): void {
+  private createDebugOverlay(hasTexture: boolean, imgW: number, imgH: number, key = WM_KEY): void {
     const saveData = SaveSystem.load();
     const lines = [
       '[debugMap=1]',
-      `texture: ${hasTexture ? 'LOADED (' + imgW + 'x' + imgH + ')' : 'FALLBACK'}`,
+      `texture: ${hasTexture ? key + ' LOADED (' + imgW + 'x' + imgH + ')' : 'FALLBACK'}`,
       `cover scale: ${this.coverScale.toFixed(3)}`,
       `display: ${this.displayW}x${this.displayH}`,
       `initialZoom: ${this.currentZoom}  range: ${this.zoomMin}..${this.zoomMax}`,
@@ -502,7 +529,36 @@ export class WorldMapScene extends Phaser.Scene {
     }).setDepth(30).setScrollFactor(0);
   }
 
+  private panToNode(nodeId: string): void {
+    const node = MAP_NODES.find(n => n.id === nodeId);
+    if (!node) return;
+
+    const W = this.scale.width;
+    const targetX = W / 2 - this.mapX(node.x) * this.currentZoom;
+    const targetY = this.mapAreaY + this.mapAreaH / 2 - this.mapY(node.y) * this.currentZoom;
+
+    const b = this.panBounds();
+    const clampedX = Phaser.Math.Clamp(targetX, b.minX, b.maxX);
+    const clampedY = Phaser.Math.Clamp(targetY, b.minY, b.maxY);
+
+    if (this.panTween) { this.panTween.stop(); }
+    this.panTween = this.tweens.add({
+      targets: this.mapContainer,
+      x: clampedX,
+      y: clampedY,
+      duration: 300,
+      ease: 'Quad.easeOut',
+      onComplete: () => {
+        this.containerX = this.mapContainer.x;
+        this.containerY = this.mapContainer.y;
+        this.panTween = null;
+      },
+    });
+  }
+
   private doShutdown(): void {
+    if (this.selectionPulseTween) { this.selectionPulseTween.stop(); this.selectionPulseTween = null; }
+    if (this.panTween) { this.panTween.stop(); this.panTween = null; }
     this.input.off('pointerdown', this.onPtrDown);
     this.input.off('pointermove', this.onPtrMove);
     this.input.off('pointerup',   this.onPtrUp);

@@ -33,6 +33,14 @@ export const CASTLE_OPENMOJI_ICONS = {
 
 export const CASTLE_OPENMOJI_ICON_ASSETS: OpenMojiAsset[] = Object.values(CASTLE_OPENMOJI_ICONS);
 
+// Paperboy entity icons — deliveryTarget (mailbox) + routeObstacle (roadblock)
+export const PAPERBOY_OPENMOJI_ICONS = {
+  deliveryTarget: { key: 'openmoji-paperboy-mailbox',   url: 'assets/openmoji/obstacles/mailbox.svg' },
+  routeObstacle:  { key: 'openmoji-paperboy-roadblock', url: 'assets/openmoji/obstacles/roadblock.svg' },
+} as const satisfies Record<string, OpenMojiAsset>;
+
+export const PAPERBOY_OPENMOJI_ICON_ASSETS: OpenMojiAsset[] = Object.values(PAPERBOY_OPENMOJI_ICONS);
+
 export function getCastleOpenMojiBadge(levelType: LevelType): OpenMojiAsset {
   return levelType === 'boss' ? CASTLE_OPENMOJI_ICONS.boss : CASTLE_OPENMOJI_ICONS.pickupPrimary;
 }

@@ -27,7 +27,7 @@ import { flashScreen } from '../render/VfxUtils';
 import { preloadRuntimeAssets, getRuntimeTextureKey } from '../systems/RuntimeAssetResolver';
 import { drawCastleRuntimeBoardPanel, logCastleRuntimeLayers } from '../ui/CastleRuntimeLayering';
 import { GAMEPLAY_HUD, GAMEPLAY_LAYERS } from '../ui/RuntimeUILayout';
-import { CASTLE_OPENMOJI_ICON_ASSETS, CASTLE_OPENMOJI_ICONS } from '../ui/OpenMojiIconRegistry';
+import { CASTLE_OPENMOJI_ICON_ASSETS, CASTLE_OPENMOJI_ICONS, PAPERBOY_OPENMOJI_ICON_ASSETS, PAPERBOY_OPENMOJI_ICONS } from '../ui/OpenMojiIconRegistry';
 
 const GRID_COLS = 16;
 const GRID_ROWS = 20;
@@ -125,6 +125,11 @@ export class GameScene extends Phaser.Scene {
         if (!this.textures.exists(key)) this.load.image(key, path);
       }
       preloadRuntimeAssets(this, uid, isBoss);
+      if (uid === 'paperboy') {
+        for (const icon of PAPERBOY_OPENMOJI_ICON_ASSETS) {
+          if (!this.textures.exists(icon.key)) this.load.svg(icon.key, icon.url, { width: 64, height: 64 });
+        }
+      }
     }
   }
 
@@ -218,16 +223,29 @@ export class GameScene extends Phaser.Scene {
     } else {
       if (this.textures.exists(bossKey))    this.obstacleRenderer.setBossTextureKey(bossKey);
       if (this.textures.exists(obstacleKey)) this.obstacleRenderer.setObstacleTextureKey(obstacleKey);
+      if (uid === 'paperboy') {
+        this.obstacleRenderer.setEntityTextureResolver(entity => {
+          if (entity.type === 'deliveryTarget' || entity.type === 'bossTarget') {
+            return this.textures.exists(PAPERBOY_OPENMOJI_ICONS.deliveryTarget.key)
+              ? PAPERBOY_OPENMOJI_ICONS.deliveryTarget.key : null;
+          }
+          if (entity.type === 'routeObstacle') {
+            return this.textures.exists(PAPERBOY_OPENMOJI_ICONS.routeObstacle.key)
+              ? PAPERBOY_OPENMOJI_ICONS.routeObstacle.key : null;
+          }
+          return null;
+        });
+      }
     }
 
-    // rt_ fallback only — never used by Castle, which is OpenMoji/procedural in gameplay.
+    // rt_ priority over transparent db_ placeholders — applied unconditionally for all non-Castle universes.
     if (uid !== 'castle') {
       const rtPickup = getRuntimeTextureKey(this, uid, 'pickup');
-      if (rtPickup && !this.textures.exists(pickupKey)) this.pickupRenderer.setTextureKey(rtPickup);
+      if (rtPickup) this.pickupRenderer.setTextureKey(rtPickup);
       const rtObstacle = getRuntimeTextureKey(this, uid, 'obstacle');
-      if (rtObstacle && !this.textures.exists(obstacleKey)) this.obstacleRenderer.setObstacleTextureKey(rtObstacle);
+      if (rtObstacle) this.obstacleRenderer.setObstacleTextureKey(rtObstacle);
       const rtBoss = getRuntimeTextureKey(this, uid, 'boss');
-      if (rtBoss && !this.textures.exists(bossKey)) this.obstacleRenderer.setBossTextureKey(rtBoss);
+      if (rtBoss) this.obstacleRenderer.setBossTextureKey(rtBoss);
     }
 
     const gridBounds = new Phaser.Geom.Rectangle(

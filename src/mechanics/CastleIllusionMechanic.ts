@@ -87,6 +87,6 @@ export class CastleIllusionMechanic extends BaseMechanic {
   getHudExtra(): string {
     if (this.blinkWalls.some(w => w.state === 'active')) return 'DANGER';
     if (this.blinkWalls.some(w => w.state === 'warning')) return 'ATTENTION';
-    return 'MURS FANTÔMES';
+    return 'MURS CACHÉS';
   }
 }

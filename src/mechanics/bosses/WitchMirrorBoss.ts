@@ -104,8 +104,8 @@ export class WitchMirrorBoss extends BaseBoss {
     if (this.state === 'warning') return 'ATTENTION';
     if (this.state === 'attacking') return 'DANGER';
     if (this.state === 'vulnerable') return 'FRAPPE';
-    if (this.state === 'hit') return 'TOUCHÉ';
-    return 'BOSS HP';
+    if (this.state === 'hit') return 'TOUCHÉ !';
+    return 'PV BOSS';
   }
 
   private advanceState(): void {

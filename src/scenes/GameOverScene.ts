@@ -78,7 +78,7 @@ export class GameOverScene extends Phaser.Scene {
       color: isCastle ? CT.titleLoss : '#e74c3c',
     }).setOrigin(0.5).setDepth(6);
 
-    this.add.text(W / 2, H * L.subtitleY, isCastle ? "L'illusion t'a piégé" : 'REJOUE', {
+    this.add.text(W / 2, H * L.subtitleY, isCastle ? 'Pris dans l\'illusion' : 'ENCORE UNE FOIS', {
       fontFamily: UI_FONT,
       fontSize: `${Math.min(20, Math.floor(W * 0.052))}px`,
       fontStyle: '800',

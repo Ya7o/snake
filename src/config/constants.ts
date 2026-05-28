@@ -5,10 +5,12 @@ export const DEV_UNLOCK_ALL = true;
 
 export const ASSET_KEYS = {
   WORLD_MAP: 'world_map',
+  WORLD_MAP_MINIMAP: 'world_map_minimap_16_9',
 } as const;
 
 export const ASSET_PATHS = {
   WORLD_MAP: 'assets/map/world_map.png',
+  WORLD_MAP_MINIMAP: 'assets/ui/worldmap/world_map_minimap_16_9.png',
 } as const;
 
 export const SCENES = {
@@ -29,9 +31,12 @@ export const WORLD_MAP_VIEW = {
   CROP_TOP: 0,
   CROP_RIGHT: 0,
   CROP_BOTTOM: 0,
-  INITIAL_ZOOM: 1,
+  // Portrait: zoom in so the map fills the viewport and user pans to explore.
+  // MIN_ZOOM=1 keeps full-height cover visible when user pinches out.
+  // PATCH 1017A: reduced from 1.7 → 1.5 for comfort (≈−12 %)
+  INITIAL_ZOOM: 1.5,
   MIN_ZOOM: 1,
-  MAX_ZOOM: 2.85,
+  MAX_ZOOM: 3.0,
   NODE_R_NORMAL: 7,
   NODE_R_BOSS: 9,
   NODE_R_HIT: 24,
