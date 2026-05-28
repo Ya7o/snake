@@ -60,6 +60,6 @@ Aucune — tâche documentation uniquement.
 
 À compléter après push :
 
-- Commit : https://github.com/Ya7o/snake/commit/[SHA]
+- Commit : https://github.com/Ya7o/snake/commit/14a0bac
 - Review : https://github.com/Ya7o/snake/blob/main/reports/patch-1025/review.md
 - Backlog : https://github.com/Ya7o/snake/blob/main/reports/patch-1025/docs/product-backlog-vnext.md
