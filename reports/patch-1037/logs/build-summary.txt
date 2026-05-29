@@ -1,0 +1,40 @@
+
+> snake-drive-v4@0.1.0 check
+> npm run build
+
+
+> snake-drive-v4@0.1.0 build
+> tsc && vite build
+
+vite v6.4.2 building for production...
+transforming...
+✓ 60 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                    1.40 kB │ gzip:   0.67 kB
+dist/assets/index-Bdf8i75G.js  1,608.64 kB │ gzip: 376.14 kB
+
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 8.33s
+
+--- npm run build (explicit) ---
+
+> snake-drive-v4@0.1.0 build
+> tsc && vite build
+
+vite v6.4.2 building for production...
+transforming...
+✓ 60 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                    1.40 kB │ gzip:   0.67 kB
+dist/assets/index-Bdf8i75G.js  1,608.64 kB │ gzip: 376.14 kB
+
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 5.10s
