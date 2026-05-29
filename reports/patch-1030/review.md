@@ -106,5 +106,5 @@ Voir `reports/patch-1030/screenshots/` :
 
 ## Liens GitHub
 
-- Commit : https://github.com/Ya7o/snake/commit/ *(à remplir après push)*
+- Commit : https://github.com/Ya7o/snake/commit/6d7d495
 - Review : https://github.com/Ya7o/snake/blob/main/reports/patch-1030/review.md
