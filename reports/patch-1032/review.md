@@ -139,7 +139,6 @@ tsc && vite build
 
 ## Liens GitHub
 
-*(à compléter après push)*
-
-- Commit : https://github.com/Ya7o/snake/commit/[HASH]
+- Commit : https://github.com/Ya7o/snake/commit/d70ef99
 - Review : https://github.com/Ya7o/snake/blob/main/reports/patch-1032/review.md
+- Logs : https://github.com/Ya7o/snake/blob/main/reports/patch-1032/logs/behavioral-results.json
