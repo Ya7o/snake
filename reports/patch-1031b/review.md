@@ -97,4 +97,4 @@ Tous les scénarios ont produit la séquence complète de checks internes :
 
 ## Liens GitHub
 
-À compléter après push.
+https://github.com/Ya7o/snake/commit/1a44cf56572d1149ab4edd94178f54742e3aab0f
