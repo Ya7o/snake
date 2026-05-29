@@ -76,6 +76,6 @@ La validation est couverte par `npm run check` (TypeScript + build) et les asser
 
 ## Liens GitHub
 
-- Commit : à venir après push
+- Commit : https://github.com/Ya7o/snake/commit/a4f8961
 - PR : non applicable (push direct main)
-- Review : `reports/patch-1051/review.md`
+- Review : https://github.com/Ya7o/snake/blob/main/reports/patch-1051/review.md
