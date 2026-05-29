@@ -1,0 +1,21 @@
+=== PATCH 1055 — git-status.txt ===
+Date : 2026-05-29 19:37 SAST
+
+=== PWD ===
+/home/kali/apps/snake
+
+=== BRANCHE COURANTE ===
+main
+
+=== GIT STATUS --short ===
+?? scripts/capture-patch-1050.js
+
+Note : scripts/capture-patch-1050.js est un fichier non-tracké pré-existant hors scope patch 1055.
+Le repo est propre hors ce fichier et hors reports/patch-1055/ créés par ce patch.
+
+=== DERNIER COMMIT ===
+be845b1 PATCH 1054 — Add commit link to review.md
+
+=== REMOTE ===
+origin	git@github.com:Ya7o/snake.git (fetch)
+origin	git@github.com:Ya7o/snake.git (push)
