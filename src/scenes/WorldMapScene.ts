@@ -41,15 +41,13 @@ export class WorldMapScene extends Phaser.Scene {
   private zoomMin = 1;
   private zoomMax = 3;
 
-  // Selection (tap = select, double tap = launch)
+  // Selection (tap = select, retap = launch)
   private selectedLevelId: string | null = null;
   private selectedNodeUnlocked = false;
-  private lastTapNodeId: string | null = null;
 
   // Footer UI
   private footerLevelTxt!: Phaser.GameObjects.Text;
   private footerHintTxt!: Phaser.GameObjects.Text;
-  private lastTapAt = 0;
   private nodeHighlights = new Map<string, Phaser.GameObjects.Graphics>();
 
   // Animated tweens
@@ -285,7 +283,7 @@ export class WorldMapScene extends Phaser.Scene {
     sepGfx.lineStyle(1, 0x2a3050, 1);
     sepGfx.lineBetween(0, footerY, W, footerY);
 
-    // Compact footer: level name (shifted up to leave room for hint)
+    // Compact footer: level name (shifted up slightly to leave room for hint)
     this.footerLevelTxt = this.add.text(W / 2, footerY + 13, 'CHOISIS UN NIVEAU', {
       fontFamily: UI_FONT,
       fontSize: `${Math.min(13, Math.floor(W * 0.033))}px`,
@@ -294,7 +292,7 @@ export class WorldMapScene extends Phaser.Scene {
       align: 'center',
     }).setOrigin(0.5, 0.5).setDepth(7);
 
-    // Launch hint - shown only when an unlocked node is selected
+    // Launch hint — shown only when an unlocked node is selected
     this.footerHintTxt = this.add.text(W / 2, footerY + 30, 'RETAPE POUR LANCER', {
       fontFamily: UI_FONT,
       fontSize: `${Math.min(10, Math.floor(W * 0.026))}px`,
@@ -360,17 +358,19 @@ export class WorldMapScene extends Phaser.Scene {
   private handleNodeTap(levelId: string, nodeId: string, isUnlocked: boolean): void {
     if (this.isDragging) return;
 
-    const now = this.time.now;
-    const isDoubleTap = this.lastTapNodeId === nodeId && now - this.lastTapAt <= WORLD_MAP_VIEW.DOUBLE_TAP_MS;
-    this.lastTapNodeId = nodeId;
-    this.lastTapAt = now;
-
-    this.selectNode(levelId, nodeId, isUnlocked);
-    this.panToNode(nodeId);
-    if (isUnlocked && isDoubleTap) {
+    // If the same unlocked node was already explicitly selected by the user, launch it.
+    // No time window: a slow retap works just as well as an immediate double-tap.
+    if (isUnlocked && this.selectedLevelId === levelId && this.lastTapNodeId === nodeId) {
       AudioSystem.uiButton();
       this.launchLevel(levelId);
+      return;
     }
+
+    // First tap (or tapping a different node): select it.
+    this.lastTapNodeId = nodeId;
+    this.lastTapAt = this.time.now;
+    this.selectNode(levelId, nodeId, isUnlocked);
+    this.panToNode(nodeId);
   }
 
   private selectNode(levelId: string, nodeId: string, isUnlocked: boolean): void {

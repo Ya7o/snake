@@ -1,0 +1,69 @@
+{
+  "patch": "1051",
+  "description": "WorldMap launch retap assertions",
+  "assertions": [
+    {
+      "id": "WM-01",
+      "scenario": "First tap on pre-selected Castle (auto-selected on load)",
+      "condition": "lastTapNodeId === null, selectedLevelId === castle",
+      "expected": "select only — no launch",
+      "mechanism": "lastTapNodeId check fails (null != nodeId)"
+    },
+    {
+      "id": "WM-02",
+      "scenario": "Retap Castle after reading hint (> 320ms elapsed)",
+      "condition": "lastTapNodeId === castleNodeId, selectedLevelId === castle, isUnlocked",
+      "expected": "launch Castle",
+      "mechanism": "all three conditions true — launch fires regardless of elapsed time"
+    },
+    {
+      "id": "WM-03",
+      "scenario": "Immediate double-tap on Castle",
+      "condition": "same as WM-02 but within 320ms",
+      "expected": "launch Castle",
+      "mechanism": "same path — time window not checked"
+    },
+    {
+      "id": "WM-04",
+      "scenario": "Tap locked world",
+      "condition": "isUnlocked === false",
+      "expected": "select only — no launch",
+      "mechanism": "isUnlocked guard at top of launch branch"
+    },
+    {
+      "id": "WM-05",
+      "scenario": "Tap Castle, then tap Sonic (different node)",
+      "condition": "lastTapNodeId === castleId, tapping sonicId",
+      "expected": "select Sonic — no launch",
+      "mechanism": "selectedLevelId !== sonicLevelId at time of tap → goes to select branch"
+    },
+    {
+      "id": "WM-06",
+      "scenario": "Tap Castle, tap Sonic, retap Sonic",
+      "condition": "after WM-05: lastTapNodeId === sonicId, selectedLevelId === sonic",
+      "expected": "launch Sonic",
+      "mechanism": "all three conditions true on retap Sonic"
+    },
+    {
+      "id": "WM-07",
+      "scenario": "?unlockAll=1 — retap any world slowly",
+      "condition": "all nodes unlocked, user taps world X twice",
+      "expected": "first tap selects, retap launches",
+      "mechanism": "same flow as WM-02"
+    },
+    {
+      "id": "WM-08",
+      "scenario": "?resetProgress=1 — retap Castle slowly",
+      "condition": "only Castle unlocked, user retaps Castle",
+      "expected": "launch Castle",
+      "mechanism": "same flow as WM-02"
+    },
+    {
+      "id": "WM-09",
+      "scenario": "Drag then tap same node",
+      "condition": "isDragging was true, pointerup reset it, user then taps",
+      "expected": "select (if first user tap on that node after drag)",
+      "mechanism": "isDragging guard passes; lastTapNodeId may be set from pre-drag tap — retap launches normally"
+    }
+  ]
+}
