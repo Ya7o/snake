@@ -60,5 +60,5 @@ Warning chunk > 500 kB : connu, non bloquant
 
 ## Liens GitHub
 
-- Commit : (à remplir après push)
+- Commit : https://github.com/Ya7o/snake/commit/b331696
 - Review : https://github.com/Ya7o/snake/blob/main/reports/patch-1054/review.md
