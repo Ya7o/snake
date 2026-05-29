@@ -44,5 +44,5 @@ Aucune capture requise (tache audit, pas de tache visuelle).
 - scripts/capture-patch-1050.js est un fichier non-tracke pre-existant : a traiter dans un patch futur si necessaire.
 
 ## Liens GitHub
-- Commit : a completer apres push
+- Commit : https://github.com/Ya7o/snake/commit/ec97ff6
 - PR : N/A (push direct main)
