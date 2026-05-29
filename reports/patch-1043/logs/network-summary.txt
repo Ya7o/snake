@@ -1,0 +1,8 @@
+PATCH 1043 - network summary
+
+No HTTP >= 400 responses or failed requests captured.
+
+Observations:
+title | status=200 | {"title":"Snake Drive V4","canvas":1,"activeScenes":"TitleScene"}
+worldmap | {"title":"Snake Drive V4","canvas":1,"activeScenes":"WorldMapScene"}
+castle_gameplay | {"title":"Snake Drive V4","canvas":1,"activeScenes":"WorldMapScene,GameScene"}

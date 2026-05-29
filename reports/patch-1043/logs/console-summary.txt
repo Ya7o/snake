@@ -1,0 +1,47 @@
+PATCH 1043 - console summary
+
+[public] log %c %c %c %c %c Phaser v3.90.0 (WebGL | Web Audio) %c https://phaser.io/v390 background: #ff0000 background: #ffff00 background: #00ff00 background: #00ffff color: #ffffff; background: #000000 background: transparent
+[public] info Snake Drive V4 loaded — BootScene → TitleScene
+[public] warning [.WebGL-0x19bc0015e000]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels
+[public] warning [.WebGL-0x19bc0015e000]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels
+[public] warning [.WebGL-0x19bc0015e000]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels
+[public] warning [.WebGL-0x19bc0015e000]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels (this message will no longer repeat)
+[public] startGroup [QA] Snake Drive V4 Self-Check
+[public] log ✓ 16 levels defined: Found 16 levels
+[public] log ✓ 16 map nodes defined: Found 16 nodes
+[public] log ✓ 8 universes defined: Found 8 universes
+[public] log ✓ All levels reference valid universe: OK
+[public] log ✓ All nodes reference valid level: OK
+[public] log ✓ 8 normal + 8 boss levels: Normal: 8, Boss: 8
+[public] log ✓ All mechanics instantiatable: OK
+[public] log ✓ No duplicate level IDs: OK
+[public] log ✓ 908 All universes have non-generic mechanic: OK
+[public] log ✓ 908 Boss levels have valid bossHp: OK
+[public] log ✓ 908 Normal levels have quota: OK
+[public] log ✓ 908 Universe balance (1 normal + 1 boss each): OK
+[public] log ✓ 970 Normal speeds in Phase 1 range: OK
+[public] log ✓ 970 Boss speeds in Phase 1 range: OK
+[public] log ✓ 970 Boss HP capped at 3: OK
+[public] log ✓ 970 Normal quotas in Phase 1 range: OK
+[public] log ✓ 970 One normal gimmick per universe: OK
+[public] log ✓ 971 Every level is reachable from the map: OK
+[public] log ✓ 971 Progression nodes are sequential: OK
+[public] log ✓ 971 Mechanics expose danger-cell API: OK
+[public] log ✓ 972 Boss mechanics expose weak-point API: OK
+[public] log ✓ 972 Linear progression debt documented: MAP_NODES order is the accepted Phase 1/2 progression source; see docs/972_LINEAR_PROGRESSION_DEBT.md
+[public] log ✓ 980 Castle Stage 1 vertical-slice data: castle_normal:10 castleIllusion
+[public] log ✓ 980 Castle Boss vertical-slice data: castle_boss:hp3 witchMirror
+[public] log ✓ 980 Castle Stage 1 unlocks Castle Boss: node_1 -> node_2
+[public] log ✓ 980 Castle mechanic exposes warning and danger APIs: Warning cells render as extra entities; only active cells are returned by getDangerCells()
+[public] log ✓ 980 Witch Mirror exposes boss APIs: Boss danger, weak-point and hit APIs available
+[public] log ✓ 981 Castle illusion tuning is readable: warning=8, active=4, maxWalls=2
+[public] log ✓ 981 Castle runtime warning/danger separation: warningEntities=1, warningDanger=0, activeEntities=1, activeDanger=1
+[public] log ✓ 981 Witch Mirror tuning is first-world friendly: warning=10, attacking=10, vulnerable=18
+[public] log ✓ 981 Witch Mirror exposes danger then weak point: danger=1, weakPoints=1, overlap=0
+[public] log ✅ All checks passed
+[public] endGroup console.groupEnd
+
+Observations:
+title | status=200 | {"title":"Snake Drive V4","canvas":1,"activeScenes":"TitleScene"}
+worldmap | {"title":"Snake Drive V4","canvas":1,"activeScenes":"WorldMapScene"}
+castle_gameplay | {"title":"Snake Drive V4","canvas":1,"activeScenes":"WorldMapScene,GameScene"}
