@@ -1,0 +1,10 @@
+# Git Status — PATCH 1057
+# Avant commit
+
+## git status --short (avant ajout des fichiers rapport)
+?? scripts/capture-patch-1050.js
+
+## Confirmation
+Seul le dossier reports/patch-1057/ sera modifié par ce patch.
+Les fichiers existants (src/, public/, README.md, CLAUDE.md, package.json, etc.) ne sont pas touchés.
+Le fichier scripts/capture-patch-1050.js est un fichier non suivi préexistant — non inclus dans ce commit.
