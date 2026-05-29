@@ -1,0 +1,62 @@
+# Snake Drive V4 — Audio Inventory
+# Generated : 2026-05-29 — PATCH 1034
+
+=== Fichiers WAV dans public/assets/audio/ ===
+
+PRÉSENTS :
+  collision_hit.wav   24 740 octets
+  danger_alert.wav    35 324 octets
+  pickup_magic.wav    27 386 octets
+  stage_clear.wav     64 868 octets
+  ui_button.wav        4 894 octets
+
+ABSENTS :
+  game_over.wav       MANQUANT
+  boss_hit.wav        MANQUANT
+  boss_clear.wav      MANQUANT
+
+Sous-dossier sfx/ : présent mais vide (contient uniquement .gitkeep)
+
+=== Clés audio dans src/data/audioRegistry.ts ===
+
+  pickupMagic  → assets/audio/pickup_magic.wav    [EXISTE]
+  collisionHit → assets/audio/collision_hit.wav   [EXISTE]
+  stageClear   → assets/audio/stage_clear.wav     [EXISTE]
+  uiButton     → assets/audio/ui_button.wav       [EXISTE]
+  dangerAlert  → assets/audio/danger_alert.wav    [EXISTE]
+  gameOver     → assets/audio/game_over.wav       [MANQUANT — fallback tone actif]
+  bossHit      → assets/audio/boss_hit.wav        [MANQUANT — fallback tone actif]
+  bossClear    → assets/audio/boss_clear.wav      [MANQUANT — fallback tone actif]
+
+=== Sites d'appel AudioSystem (src/) ===
+
+  AudioSystem.pickup()   → GameScene.ts:431  (pickup avalé)
+  AudioSystem.danger()   → GameScene.ts:418  (mur/soi touché)
+  AudioSystem.danger()   → GameScene.ts:434  (danger mécanique)
+  AudioSystem.bossHit()  → GameScene.ts:534  (boss touché)
+  AudioSystem.gameover() → GameScene.ts:572  (game over)
+  AudioSystem.bossClear()→ GameScene.ts:586  (boss vaincu)
+  AudioSystem.clear()    → GameScene.ts:588  (niveau réussi)
+  AudioSystem.uiButton() → TitleScene.ts:147 (tap bouton)
+  AudioSystem.uiButton() → WorldMapScene.ts:361 (tap carte)
+  AudioSystem.uiButton() → VfxUtils.ts:125   (feedback UI)
+
+  MÉTHODE DÉFINIE MAIS JAMAIS APPELÉE :
+  AudioSystem.hit()      → collisionHit — défini dans AudioSystem.ts
+                           mais aucun appel trouvé dans src/
+                           (le WAV existe, la méthode est morte)
+
+=== Fallbacks actifs (src/systems/AudioSystem.ts) ===
+
+  gameOver  → descending sawtooth : 330Hz→220Hz→110Hz (<1.2s)
+  bossHit   → square 160Hz 0.35s (impact grave court)
+  bossClear → ascending triangle : 660Hz→880Hz→1100Hz (<1.8s)
+
+=== Risques identifiés ===
+
+  1. Les 3 sons les plus émotionnellement importants (gameOver, bossHit, bossClear)
+     sont actuellement couverts uniquement par des tones Web Audio génériques.
+  2. AudioSystem.hit() / collisionHit.wav ne sont jamais déclenchés en jeu.
+     Dead code potentiel — le fichier WAV est chargé à tort au preload.
+  3. Le dossier sfx/ est vide ; si du code futur y pointe, erreur 404 silencieuse.
+  4. stage_clear.wav est le plus lourd (64 KB) — acceptable pour un son court.
