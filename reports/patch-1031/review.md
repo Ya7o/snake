@@ -122,4 +122,4 @@ Aucune capture visuelle — patch de validation uniquement.
 
 ## Liens GitHub
 
-- Commit : (à remplir après push)
+- Commit : https://github.com/Ya7o/snake/commit/917ca48
