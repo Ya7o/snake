@@ -1,0 +1,10 @@
+# git status --short (après nettoyage)
+?? reports/patch-1058/
+
+# Vérification : scripts/capture-patch-1050.js
+OK : fichier supprimé, ne figure plus comme non tracké
+
+# Fichiers modifiés attendus
+  reports/patch-1058/ (nouveau dossier rapport)
+
+# Conclusion : repo propre, seuls les fichiers du rapport sont nouveaux.
