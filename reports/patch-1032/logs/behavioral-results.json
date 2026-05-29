@@ -1,0 +1,95 @@
+{
+  "scenarios": [
+    {
+      "scenario": "A_normal",
+      "label": "Progression normale (localStorage vide)",
+      "url": "http://localhost:5173/",
+      "checks": {
+        "worldmap_active": true,
+        "node_count_16": true,
+        "castle_selected_by_default": true,
+        "castle_node_unlocked": true,
+        "no_localStorage_on_fresh": true
+      },
+      "error": null,
+      "consoleErrors": [],
+      "state": {
+        "sceneActive": true,
+        "nodeCount": 16,
+        "footerText": "JARDIN D’ILLUSION · NIVEAU",
+        "selectedLevelId": "castle_normal",
+        "selectedNodeUnlocked": true,
+        "saveData": null,
+        "fromLocalStorage": false,
+        "sessionUrl": ""
+      }
+    },
+    {
+      "scenario": "B_unlock_all",
+      "label": "Session unlock all (?unlockAll=1)",
+      "url": "http://localhost:5173/?unlockAll=1",
+      "checks": {
+        "worldmap_active": true,
+        "node_count_16": true,
+        "url_has_unlock_param": true,
+        "first_node_unlocked": true,
+        "no_localstorage_write": true,
+        "streets_shows_unlocked_in_session": true,
+        "streets_tap_detail": {
+          "called": true,
+          "selectedLevelId": "streets_normal",
+          "selectedNodeUnlocked": true
+        }
+      },
+      "error": null,
+      "consoleErrors": [],
+      "state": {
+        "sceneActive": true,
+        "nodeCount": 16,
+        "footerText": "JARDIN D’ILLUSION · NIVEAU",
+        "selectedLevelId": "castle_normal",
+        "selectedNodeUnlocked": true,
+        "saveData": null,
+        "fromLocalStorage": false,
+        "sessionUrl": "?unlockAll=1"
+      }
+    },
+    {
+      "scenario": "C_after_reset",
+      "label": "Après reset (?resetProgress=1)",
+      "url": "http://localhost:5173/?resetProgress=1",
+      "checks": {
+        "worldmap_active": true,
+        "node_count_16": true,
+        "url_has_reset_param": true,
+        "save_was_cleared": true,
+        "castle_selected_after_reset": true,
+        "castle_unlocked_after_reset": true
+      },
+      "error": null,
+      "consoleErrors": [],
+      "state": {
+        "sceneActive": true,
+        "nodeCount": 16,
+        "footerText": "JARDIN D’ILLUSION · NIVEAU",
+        "selectedLevelId": "castle_normal",
+        "selectedNodeUnlocked": true,
+        "saveData": null,
+        "fromLocalStorage": false,
+        "sessionUrl": "?resetProgress=1"
+      }
+    }
+  ],
+  "summary": {
+    "castle_accessible_by_default": true,
+    "other_worlds_locked_by_default": true,
+    "unlock_all_works": true,
+    "reset_progress_works": true,
+    "no_public_unlock_button": true,
+    "title_to_worldmap_nav_working": true,
+    "phaser_access_method": "window.__SNAKE_GAME__ (main.ts:55)",
+    "dev_unlock_all_value": "false (constants.ts:4 — correction PATCH 1031b)",
+    "errors": []
+  },
+  "timestamp": "2026-05-29T09:15:23.732Z"
+}
