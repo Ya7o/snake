@@ -358,19 +358,16 @@ export class WorldMapScene extends Phaser.Scene {
   private handleNodeTap(levelId: string, nodeId: string, isUnlocked: boolean): void {
     if (this.isDragging) return;
 
-    // If the same unlocked node was already explicitly selected by the user, launch it.
-    // No time window: a slow retap works just as well as an immediate double-tap.
-    if (isUnlocked && this.selectedLevelId === levelId && this.lastTapNodeId === nodeId) {
-      AudioSystem.uiButton();
-      this.launchLevel(levelId);
-      return;
-    }
+    // Launch on retap (no time limit): if this node is already selected and unlocked, launch.
+    const alreadySelected = this.selectedLevelId === levelId;
 
-    // First tap (or tapping a different node): select it.
-    this.lastTapNodeId = nodeId;
-    this.lastTapAt = this.time.now;
     this.selectNode(levelId, nodeId, isUnlocked);
     this.panToNode(nodeId);
+
+    if (isUnlocked && alreadySelected) {
+      AudioSystem.uiButton();
+      this.launchLevel(levelId);
+    }
   }
 
   private selectNode(levelId: string, nodeId: string, isUnlocked: boolean): void {

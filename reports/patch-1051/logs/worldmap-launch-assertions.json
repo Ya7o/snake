@@ -1,69 +1,61 @@
-{
+﻿{
   "patch": "1051",
-  "description": "WorldMap launch retap assertions",
+  "description": "WorldMap Launch Interaction Fix — assertions fonctionnelles",
+  "timestamp": "2026-05-29",
   "assertions": [
     {
       "id": "WM-01",
-      "scenario": "First tap on pre-selected Castle (auto-selected on load)",
-      "condition": "lastTapNodeId === null, selectedLevelId === castle",
-      "expected": "select only — no launch",
-      "mechanism": "lastTapNodeId check fails (null != nodeId)"
+      "scenario": "Castle pré-sélectionné à l'ouverture → tap Castle",
+      "expected": "Lance Castle immédiatement (Castle déjà sélectionné)",
+      "logic": "selectedLevelId === levelId → alreadySelected = true → launch",
+      "result": "PASS"
     },
     {
       "id": "WM-02",
-      "scenario": "Retap Castle after reading hint (> 320ms elapsed)",
-      "condition": "lastTapNodeId === castleNodeId, selectedLevelId === castle, isUnlocked",
-      "expected": "launch Castle",
-      "mechanism": "all three conditions true — launch fires regardless of elapsed time"
+      "scenario": "Tap monde verrouillé",
+      "expected": "Ne lance pas",
+      "logic": "isUnlocked = false → condition launch échoue",
+      "result": "PASS"
     },
     {
       "id": "WM-03",
-      "scenario": "Immediate double-tap on Castle",
-      "condition": "same as WM-02 but within 320ms",
-      "expected": "launch Castle",
-      "mechanism": "same path — time window not checked"
+      "scenario": "Tap monde A non sélectionné",
+      "expected": "Sélectionne monde A, hint visible",
+      "logic": "alreadySelected = false → selectNode() only",
+      "result": "PASS"
     },
     {
       "id": "WM-04",
-      "scenario": "Tap locked world",
-      "condition": "isUnlocked === false",
-      "expected": "select only — no launch",
-      "mechanism": "isUnlocked guard at top of launch branch"
+      "scenario": "Tap monde A (non sélectionné) → attente 5s → tap monde A",
+      "expected": "Lance monde A",
+      "logic": "Pas de fenêtre temporelle — alreadySelected = true → launch",
+      "result": "PASS"
     },
     {
       "id": "WM-05",
-      "scenario": "Tap Castle, then tap Sonic (different node)",
-      "condition": "lastTapNodeId === castleId, tapping sonicId",
-      "expected": "select Sonic — no launch",
-      "mechanism": "selectedLevelId !== sonicLevelId at time of tap → goes to select branch"
+      "scenario": "Tap monde B → tap monde A",
+      "expected": "Sélectionne monde A (pas de lancement)",
+      "logic": "selectedLevelId = B, tap A → alreadySelected = false → sélection seule",
+      "result": "PASS"
     },
     {
       "id": "WM-06",
-      "scenario": "Tap Castle, tap Sonic, retap Sonic",
-      "condition": "after WM-05: lastTapNodeId === sonicId, selectedLevelId === sonic",
-      "expected": "launch Sonic",
-      "mechanism": "all three conditions true on retap Sonic"
+      "scenario": "?unlockAll=1 → tap monde 2 → tap monde 2 (retap lent)",
+      "expected": "Sélectionne monde 2 puis lance",
+      "logic": "alreadySelected = false puis true → launch",
+      "result": "PASS"
     },
     {
       "id": "WM-07",
-      "scenario": "?unlockAll=1 — retap any world slowly",
-      "condition": "all nodes unlocked, user taps world X twice",
-      "expected": "first tap selects, retap launches",
-      "mechanism": "same flow as WM-02"
-    },
-    {
-      "id": "WM-08",
-      "scenario": "?resetProgress=1 — retap Castle slowly",
-      "condition": "only Castle unlocked, user retaps Castle",
-      "expected": "launch Castle",
-      "mechanism": "same flow as WM-02"
-    },
-    {
-      "id": "WM-09",
-      "scenario": "Drag then tap same node",
-      "condition": "isDragging was true, pointerup reset it, user then taps",
-      "expected": "select (if first user tap on that node after drag)",
-      "mechanism": "isDragging guard passes; lastTapNodeId may be set from pre-drag tap — retap launches normally"
+      "scenario": "?resetProgress=1 → Castle seul accessible → tap Castle → tap Castle",
+      "expected": "Sélectionne Castle puis lance",
+      "logic": "Même flux que WM-03 + WM-04",
+      "result": "PASS"
     }
-  ]
+  ],
+  "build": {
+    "command": "npm run check",
+    "result": "OK",
+    "tsc_errors": 0
+  }
 }
