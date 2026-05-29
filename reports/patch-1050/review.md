@@ -48,4 +48,6 @@ Warning chunk > 500 kB : connu et attendu
 
 ## Liens GitHub
 
-À compléter après push.
+- Commit : https://github.com/Ya7o/snake/commit/ac5a152
+- Review : https://github.com/Ya7o/snake/blob/main/reports/patch-1050/review.md
+- Doc : https://github.com/Ya7o/snake/blob/main/reports/patch-1050/docs/paperboy-target-readability.md
