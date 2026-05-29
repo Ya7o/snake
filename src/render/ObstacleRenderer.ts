@@ -124,7 +124,9 @@ export class ObstacleRenderer {
       const hasEntityTexture = !!(entityTextureKey && this.scene.textures.exists(entityTextureKey));
 
       const isBossType = BOSS_ENTITY_TYPES.has(e.type);
-      if (hasEntityTexture) {
+      if (e.type === 'turboZone') {
+        this.drawTurboZone(px, py, size, color);
+      } else if (hasEntityTexture) {
         const alpha = this.entityAlpha(e);
         if (obsPoolIdx >= this.obstaclePool.length) {
           this.obstaclePool.push(
@@ -274,6 +276,32 @@ export class ObstacleRenderer {
         this.gfx.fillStyle(color, 0.8);
         this.gfx.fillRect(px - size / 2, py - size / 2, size, size);
     }
+  }
+
+  private drawTurboZone(px: number, py: number, size: number, color: number): void {
+    const pulse = Math.sin(this.scene.time.now / 120) * 0.5 + 0.5;
+    const half = size / 2;
+    const outer = size * (0.72 + pulse * 0.07);
+    const inner = size * 0.44;
+
+    this.gfx.fillStyle(0x18f7ff, 0.12 + pulse * 0.06);
+    this.gfx.fillCircle(px, py, outer);
+    this.gfx.fillStyle(color, 0.28 + pulse * 0.12);
+    this.gfx.fillRoundedRect(px - half, py - half, size, size, 5);
+
+    this.gfx.lineStyle(4, 0xffffff, 0.82);
+    this.gfx.strokeRoundedRect(px - half - 1, py - half - 1, size + 2, size + 2, 5);
+    this.gfx.lineStyle(2, 0x18f7ff, 0.9);
+    this.gfx.strokeCircle(px, py, inner);
+
+    const arrowY = py - size * 0.04;
+    const arrowW = size * 0.24;
+    const arrowH = size * 0.22;
+    this.gfx.lineStyle(3, 0xffffff, 0.92);
+    this.gfx.lineBetween(px - arrowW, arrowY + arrowH, px, arrowY);
+    this.gfx.lineBetween(px, arrowY, px + arrowW, arrowY + arrowH);
+    this.gfx.lineStyle(2, 0x060d18, 0.58);
+    this.gfx.strokeCircle(px, py, size * 0.16);
   }
 
   private entityAlpha(e: ExtraEntity): number {
