@@ -1,0 +1,1143 @@
+{
+  "results": {
+    "publicUrl": {
+      "status": 200,
+      "title": "Snake Drive V4",
+      "canvasCount": 1,
+      "ok": true
+    },
+    "worldmap": {
+      "debugButtons": 0,
+      "ok": true
+    },
+    "unlockAll": {
+      "ok": true
+    },
+    "resetProgress": {
+      "ok": true
+    },
+    "castle": {
+      "ok": true
+    }
+  },
+  "consoleLogs": [
+    {
+      "type": "log",
+      "text": "%c %c %c %c %c Phaser v3.90.0 (WebGL | Web Audio) %c https://phaser.io/v390 background: #ff0000 background: #ffff00 background: #00ff00 background: #00ffff color: #ffffff; background: #000000 background: transparent"
+    },
+    {
+      "type": "info",
+      "text": "Snake Drive V4 loaded — BootScene → TitleScene"
+    },
+    {
+      "type": "warning",
+      "text": "[.WebGL-0xd5c00152000]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels"
+    },
+    {
+      "type": "warning",
+      "text": "[.WebGL-0xd5c00152000]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels"
+    },
+    {
+      "type": "warning",
+      "text": "[.WebGL-0xd5c00152000]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels"
+    },
+    {
+      "type": "warning",
+      "text": "[.WebGL-0xd5c00152000]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels (this message will no longer repeat)"
+    },
+    {
+      "type": "startGroup",
+      "text": "[QA] Snake Drive V4 Self-Check"
+    },
+    {
+      "type": "log",
+      "text": "✓ 16 levels defined: Found 16 levels"
+    },
+    {
+      "type": "log",
+      "text": "✓ 16 map nodes defined: Found 16 nodes"
+    },
+    {
+      "type": "log",
+      "text": "✓ 8 universes defined: Found 8 universes"
+    },
+    {
+      "type": "log",
+      "text": "✓ All levels reference valid universe: OK"
+    },
+    {
+      "type": "log",
+      "text": "✓ All nodes reference valid level: OK"
+    },
+    {
+      "type": "log",
+      "text": "✓ 8 normal + 8 boss levels: Normal: 8, Boss: 8"
+    },
+    {
+      "type": "log",
+      "text": "✓ All mechanics instantiatable: OK"
+    },
+    {
+      "type": "log",
+      "text": "✓ No duplicate level IDs: OK"
+    },
+    {
+      "type": "log",
+      "text": "✓ 908 All universes have non-generic mechanic: OK"
+    },
+    {
+      "type": "log",
+      "text": "✓ 908 Boss levels have valid bossHp: OK"
+    },
+    {
+      "type": "log",
+      "text": "✓ 908 Normal levels have quota: OK"
+    },
+    {
+      "type": "log",
+      "text": "✓ 908 Universe balance (1 normal + 1 boss each): OK"
+    },
+    {
+      "type": "log",
+      "text": "✓ 970 Normal speeds in Phase 1 range: OK"
+    },
+    {
+      "type": "log",
+      "text": "✓ 970 Boss speeds in Phase 1 range: OK"
+    },
+    {
+      "type": "log",
+      "text": "✓ 970 Boss HP capped at 3: OK"
+    },
+    {
+      "type": "log",
+      "text": "✓ 970 Normal quotas in Phase 1 range: OK"
+    },
+    {
+      "type": "log",
+      "text": "✓ 970 One normal gimmick per universe: OK"
+    },
+    {
+      "type": "log",
+      "text": "✓ 971 Every level is reachable from the map: OK"
+    },
+    {
+      "type": "log",
+      "text": "✓ 971 Progression nodes are sequential: OK"
+    },
+    {
+      "type": "log",
+      "text": "✓ 971 Mechanics expose danger-cell API: OK"
+    },
+    {
+      "type": "log",
+      "text": "✓ 972 Boss mechanics expose weak-point API: OK"
+    },
+    {
+      "type": "log",
+      "text": "✓ 972 Linear progression debt documented: MAP_NODES order is the accepted Phase 1/2 progression source; see docs/972_LINEAR_PROGRESSION_DEBT.md"
+    },
+    {
+      "type": "log",
+      "text": "✓ 980 Castle Stage 1 vertical-slice data: castle_normal:10 castleIllusion"
+    },
+    {
+      "type": "log",
+      "text": "✓ 980 Castle Boss vertical-slice data: castle_boss:hp3 witchMirror"
+    },
+    {
+      "type": "log",
+      "text": "✓ 980 Castle Stage 1 unlocks Castle Boss: node_1 -> node_2"
+    },
+    {
+      "type": "log",
+      "text": "✓ 980 Castle mechanic exposes warning and danger APIs: Warning cells render as extra entities; only active cells are returned by getDangerCells()"
+    },
+    {
+      "type": "log",
+      "text": "✓ 980 Witch Mirror exposes boss APIs: Boss danger, weak-point and hit APIs available"
+    },
+    {
+      "type": "log",
+      "text": "✓ 981 Castle illusion tuning is readable: warning=8, active=4, maxWalls=2"
+    },
+    {
+      "type": "log",
+      "text": "✓ 981 Castle runtime warning/danger separation: warningEntities=1, warningDanger=0, activeEntities=1, activeDanger=1"
+    },
+    {
+      "type": "log",
+      "text": "✓ 981 Witch Mirror tuning is first-world friendly: warning=10, attacking=10, vulnerable=18"
+    },
+    {
+      "type": "log",
+      "text": "✓ 981 Witch Mirror exposes danger then weak point: danger=1, weakPoints=1, overlap=0"
+    },
+    {
+      "type": "log",
+      "text": "✅ All checks passed"
+    },
+    {
+      "type": "endGroup",
+      "text": "console.groupEnd"
+    },
+    {
+      "type": "log",
+      "text": "%c %c %c %c %c Phaser v3.90.0 (WebGL | Web Audio) %c https://phaser.io/v390 background: #ff0000 background: #ffff00 background: #00ff00 background: #00ffff color: #ffffff; background: #000000 background: transparent"
+    },
+    {
+      "type": "info",
+      "text": "Snake Drive V4 loaded — BootScene → TitleScene"
+    },
+    {
+      "type": "startGroup",
+      "text": "[QA] Snake Drive V4 Self-Check"
+    },
+    {
+      "type": "log",
+      "text": "✓ 16 levels defined: Found 16 levels"
+    },
+    {
+      "type": "log",
+      "text": "✓ 16 map nodes defined: Found 16 nodes"
+    },
+    {
+      "type": "log",
+      "text": "✓ 8 universes defined: Found 8 universes"
+    },
+    {
+      "type": "log",
+      "text": "✓ All levels reference valid universe: OK"
+    },
+    {
+      "type": "log",
+      "text": "✓ All nodes reference valid level: OK"
+    },
+    {
+      "type": "log",
+      "text": "✓ 8 normal + 8 boss levels: Normal: 8, Boss: 8"
+    },
+    {
+      "type": "log",
+      "text": "✓ All mechanics instantiatable: OK"
+    },
+    {
+      "type": "log",
+      "text": "✓ No duplicate level IDs: OK"
+    },
+    {
+      "type": "log",
+      "text": "✓ 908 All universes have non-generic mechanic: OK"
+    },
+    {
+      "type": "log",
+      "text": "✓ 908 Boss levels have valid bossHp: OK"
+    },
+    {
+      "type": "log",
+      "text": "✓ 908 Normal levels have quota: OK"
+    },
+    {
+      "type": "log",
+      "text": "✓ 908 Universe balance (1 normal + 1 boss each): OK"
+    },
+    {
+      "type": "log",
+      "text": "✓ 970 Normal speeds in Phase 1 range: OK"
+    },
+    {
+      "type": "log",
+      "text": "✓ 970 Boss speeds in Phase 1 range: OK"
+    },
+    {
+      "type": "log",
+      "text": "✓ 970 Boss HP capped at 3: OK"
+    },
+    {
+      "type": "log",
+      "text": "✓ 970 Normal quotas in Phase 1 range: OK"
+    },
+    {
+      "type": "log",
+      "text": "✓ 970 One normal gimmick per universe: OK"
+    },
+    {
+      "type": "log",
+      "text": "✓ 971 Every level is reachable from the map: OK"
+    },
+    {
+      "type": "log",
+      "text": "✓ 971 Progression nodes are sequential: OK"
+    },
+    {
+      "type": "log",
+      "text": "✓ 971 Mechanics expose danger-cell API: OK"
+    },
+    {
+      "type": "log",
+      "text": "✓ 972 Boss mechanics expose weak-point API: OK"
+    },
+    {
+      "type": "log",
+      "text": "✓ 972 Linear progression debt documented: MAP_NODES order is the accepted Phase 1/2 progression source; see docs/972_LINEAR_PROGRESSION_DEBT.md"
+    },
+    {
+      "type": "log",
+      "text": "✓ 980 Castle Stage 1 vertical-slice data: castle_normal:10 castleIllusion"
+    },
+    {
+      "type": "log",
+      "text": "✓ 980 Castle Boss vertical-slice data: castle_boss:hp3 witchMirror"
+    },
+    {
+      "type": "log",
+      "text": "✓ 980 Castle Stage 1 unlocks Castle Boss: node_1 -> node_2"
+    },
+    {
+      "type": "log",
+      "text": "✓ 980 Castle mechanic exposes warning and danger APIs: Warning cells render as extra entities; only active cells are returned by getDangerCells()"
+    },
+    {
+      "type": "log",
+      "text": "✓ 980 Witch Mirror exposes boss APIs: Boss danger, weak-point and hit APIs available"
+    },
+    {
+      "type": "log",
+      "text": "✓ 981 Castle illusion tuning is readable: warning=8, active=4, maxWalls=2"
+    },
+    {
+      "type": "log",
+      "text": "✓ 981 Castle runtime warning/danger separation: warningEntities=1, warningDanger=0, activeEntities=1, activeDanger=1"
+    },
+    {
+      "type": "log",
+      "text": "✓ 981 Witch Mirror tuning is first-world friendly: warning=10, attacking=10, vulnerable=18"
+    },
+    {
+      "type": "log",
+      "text": "✓ 981 Witch Mirror exposes danger then weak point: danger=1, weakPoints=1, overlap=0"
+    },
+    {
+      "type": "log",
+      "text": "✅ All checks passed"
+    },
+    {
+      "type": "endGroup",
+      "text": "console.groupEnd"
+    },
+    {
+      "type": "log",
+      "text": "%c %c %c %c %c Phaser v3.90.0 (WebGL | Web Audio) %c https://phaser.io/v390 background: #ff0000 background: #ffff00 background: #00ff00 background: #00ffff color: #ffffff; background: #000000 background: transparent"
+    },
+    {
+      "type": "info",
+      "text": "Snake Drive V4 loaded — BootScene → TitleScene"
+    },
+    {
+      "type": "startGroup",
+      "text": "[QA] Snake Drive V4 Self-Check"
+    },
+    {
+      "type": "log",
+      "text": "✓ 16 levels defined: Found 16 levels"
+    },
+    {
+      "type": "log",
+      "text": "✓ 16 map nodes defined: Found 16 nodes"
+    },
+    {
+      "type": "log",
+      "text": "✓ 8 universes defined: Found 8 universes"
+    },
+    {
+      "type": "log",
+      "text": "✓ All levels reference valid universe: OK"
+    },
+    {
+      "type": "log",
+      "text": "✓ All nodes reference valid level: OK"
+    },
+    {
+      "type": "log",
+      "text": "✓ 8 normal + 8 boss levels: Normal: 8, Boss: 8"
+    },
+    {
+      "type": "log",
+      "text": "✓ All mechanics instantiatable: OK"
+    },
+    {
+      "type": "log",
+      "text": "✓ No duplicate level IDs: OK"
+    },
+    {
+      "type": "log",
+      "text": "✓ 908 All universes have non-generic mechanic: OK"
+    },
+    {
+      "type": "log",
+      "text": "✓ 908 Boss levels have valid bossHp: OK"
+    },
+    {
+      "type": "log",
+      "text": "✓ 908 Normal levels have quota: OK"
+    },
+    {
+      "type": "log",
+      "text": "✓ 908 Universe balance (1 normal + 1 boss each): OK"
+    },
+    {
+      "type": "log",
+      "text": "✓ 970 Normal speeds in Phase 1 range: OK"
+    },
+    {
+      "type": "log",
+      "text": "✓ 970 Boss speeds in Phase 1 range: OK"
+    },
+    {
+      "type": "log",
+      "text": "✓ 970 Boss HP capped at 3: OK"
+    },
+    {
+      "type": "log",
+      "text": "✓ 970 Normal quotas in Phase 1 range: OK"
+    },
+    {
+      "type": "log",
+      "text": "✓ 970 One normal gimmick per universe: OK"
+    },
+    {
+      "type": "log",
+      "text": "✓ 971 Every level is reachable from the map: OK"
+    },
+    {
+      "type": "log",
+      "text": "✓ 971 Progression nodes are sequential: OK"
+    },
+    {
+      "type": "log",
+      "text": "✓ 971 Mechanics expose danger-cell API: OK"
+    },
+    {
+      "type": "log",
+      "text": "✓ 972 Boss mechanics expose weak-point API: OK"
+    },
+    {
+      "type": "log",
+      "text": "✓ 972 Linear progression debt documented: MAP_NODES order is the accepted Phase 1/2 progression source; see docs/972_LINEAR_PROGRESSION_DEBT.md"
+    },
+    {
+      "type": "log",
+      "text": "✓ 980 Castle Stage 1 vertical-slice data: castle_normal:10 castleIllusion"
+    },
+    {
+      "type": "log",
+      "text": "✓ 980 Castle Boss vertical-slice data: castle_boss:hp3 witchMirror"
+    },
+    {
+      "type": "log",
+      "text": "✓ 980 Castle Stage 1 unlocks Castle Boss: node_1 -> node_2"
+    },
+    {
+      "type": "log",
+      "text": "✓ 980 Castle mechanic exposes warning and danger APIs: Warning cells render as extra entities; only active cells are returned by getDangerCells()"
+    },
+    {
+      "type": "log",
+      "text": "✓ 980 Witch Mirror exposes boss APIs: Boss danger, weak-point and hit APIs available"
+    },
+    {
+      "type": "log",
+      "text": "✓ 981 Castle illusion tuning is readable: warning=8, active=4, maxWalls=2"
+    },
+    {
+      "type": "log",
+      "text": "✓ 981 Castle runtime warning/danger separation: warningEntities=1, warningDanger=0, activeEntities=1, activeDanger=1"
+    },
+    {
+      "type": "log",
+      "text": "✓ 981 Witch Mirror tuning is first-world friendly: warning=10, attacking=10, vulnerable=18"
+    },
+    {
+      "type": "log",
+      "text": "✓ 981 Witch Mirror exposes danger then weak point: danger=1, weakPoints=1, overlap=0"
+    },
+    {
+      "type": "log",
+      "text": "✅ All checks passed"
+    },
+    {
+      "type": "endGroup",
+      "text": "console.groupEnd"
+    },
+    {
+      "type": "log",
+      "text": "%c %c %c %c %c Phaser v3.90.0 (WebGL | Web Audio) %c https://phaser.io/v390 background: #ff0000 background: #ffff00 background: #00ff00 background: #00ffff color: #ffffff; background: #000000 background: transparent"
+    },
+    {
+      "type": "info",
+      "text": "Snake Drive V4 loaded — BootScene → TitleScene"
+    },
+    {
+      "type": "startGroup",
+      "text": "[QA] Snake Drive V4 Self-Check"
+    },
+    {
+      "type": "log",
+      "text": "✓ 16 levels defined: Found 16 levels"
+    },
+    {
+      "type": "log",
+      "text": "✓ 16 map nodes defined: Found 16 nodes"
+    },
+    {
+      "type": "log",
+      "text": "✓ 8 universes defined: Found 8 universes"
+    },
+    {
+      "type": "log",
+      "text": "✓ All levels reference valid universe: OK"
+    },
+    {
+      "type": "log",
+      "text": "✓ All nodes reference valid level: OK"
+    },
+    {
+      "type": "log",
+      "text": "✓ 8 normal + 8 boss levels: Normal: 8, Boss: 8"
+    },
+    {
+      "type": "log",
+      "text": "✓ All mechanics instantiatable: OK"
+    },
+    {
+      "type": "log",
+      "text": "✓ No duplicate level IDs: OK"
+    },
+    {
+      "type": "log",
+      "text": "✓ 908 All universes have non-generic mechanic: OK"
+    },
+    {
+      "type": "log",
+      "text": "✓ 908 Boss levels have valid bossHp: OK"
+    },
+    {
+      "type": "log",
+      "text": "✓ 908 Normal levels have quota: OK"
+    },
+    {
+      "type": "log",
+      "text": "✓ 908 Universe balance (1 normal + 1 boss each): OK"
+    },
+    {
+      "type": "log",
+      "text": "✓ 970 Normal speeds in Phase 1 range: OK"
+    },
+    {
+      "type": "log",
+      "text": "✓ 970 Boss speeds in Phase 1 range: OK"
+    },
+    {
+      "type": "log",
+      "text": "✓ 970 Boss HP capped at 3: OK"
+    },
+    {
+      "type": "log",
+      "text": "✓ 970 Normal quotas in Phase 1 range: OK"
+    },
+    {
+      "type": "log",
+      "text": "✓ 970 One normal gimmick per universe: OK"
+    },
+    {
+      "type": "log",
+      "text": "✓ 971 Every level is reachable from the map: OK"
+    },
+    {
+      "type": "log",
+      "text": "✓ 971 Progression nodes are sequential: OK"
+    },
+    {
+      "type": "log",
+      "text": "✓ 971 Mechanics expose danger-cell API: OK"
+    },
+    {
+      "type": "log",
+      "text": "✓ 972 Boss mechanics expose weak-point API: OK"
+    },
+    {
+      "type": "log",
+      "text": "✓ 972 Linear progression debt documented: MAP_NODES order is the accepted Phase 1/2 progression source; see docs/972_LINEAR_PROGRESSION_DEBT.md"
+    },
+    {
+      "type": "log",
+      "text": "✓ 980 Castle Stage 1 vertical-slice data: castle_normal:10 castleIllusion"
+    },
+    {
+      "type": "log",
+      "text": "✓ 980 Castle Boss vertical-slice data: castle_boss:hp3 witchMirror"
+    },
+    {
+      "type": "log",
+      "text": "✓ 980 Castle Stage 1 unlocks Castle Boss: node_1 -> node_2"
+    },
+    {
+      "type": "log",
+      "text": "✓ 980 Castle mechanic exposes warning and danger APIs: Warning cells render as extra entities; only active cells are returned by getDangerCells()"
+    },
+    {
+      "type": "log",
+      "text": "✓ 980 Witch Mirror exposes boss APIs: Boss danger, weak-point and hit APIs available"
+    },
+    {
+      "type": "log",
+      "text": "✓ 981 Castle illusion tuning is readable: warning=8, active=4, maxWalls=2"
+    },
+    {
+      "type": "log",
+      "text": "✓ 981 Castle runtime warning/danger separation: warningEntities=1, warningDanger=0, activeEntities=1, activeDanger=1"
+    },
+    {
+      "type": "log",
+      "text": "✓ 981 Witch Mirror tuning is first-world friendly: warning=10, attacking=10, vulnerable=18"
+    },
+    {
+      "type": "log",
+      "text": "✓ 981 Witch Mirror exposes danger then weak point: danger=1, weakPoints=1, overlap=0"
+    },
+    {
+      "type": "log",
+      "text": "✅ All checks passed"
+    },
+    {
+      "type": "endGroup",
+      "text": "console.groupEnd"
+    },
+    {
+      "type": "log",
+      "text": "%c %c %c %c %c Phaser v3.90.0 (WebGL | Web Audio) %c https://phaser.io/v390 background: #ff0000 background: #ffff00 background: #00ff00 background: #00ffff color: #ffffff; background: #000000 background: transparent"
+    },
+    {
+      "type": "info",
+      "text": "Snake Drive V4 loaded — BootScene → TitleScene"
+    },
+    {
+      "type": "startGroup",
+      "text": "[QA] Snake Drive V4 Self-Check"
+    },
+    {
+      "type": "log",
+      "text": "✓ 16 levels defined: Found 16 levels"
+    },
+    {
+      "type": "log",
+      "text": "✓ 16 map nodes defined: Found 16 nodes"
+    },
+    {
+      "type": "log",
+      "text": "✓ 8 universes defined: Found 8 universes"
+    },
+    {
+      "type": "log",
+      "text": "✓ All levels reference valid universe: OK"
+    },
+    {
+      "type": "log",
+      "text": "✓ All nodes reference valid level: OK"
+    },
+    {
+      "type": "log",
+      "text": "✓ 8 normal + 8 boss levels: Normal: 8, Boss: 8"
+    },
+    {
+      "type": "log",
+      "text": "✓ All mechanics instantiatable: OK"
+    },
+    {
+      "type": "log",
+      "text": "✓ No duplicate level IDs: OK"
+    },
+    {
+      "type": "log",
+      "text": "✓ 908 All universes have non-generic mechanic: OK"
+    },
+    {
+      "type": "log",
+      "text": "✓ 908 Boss levels have valid bossHp: OK"
+    },
+    {
+      "type": "log",
+      "text": "✓ 908 Normal levels have quota: OK"
+    },
+    {
+      "type": "log",
+      "text": "✓ 908 Universe balance (1 normal + 1 boss each): OK"
+    },
+    {
+      "type": "log",
+      "text": "✓ 970 Normal speeds in Phase 1 range: OK"
+    },
+    {
+      "type": "log",
+      "text": "✓ 970 Boss speeds in Phase 1 range: OK"
+    },
+    {
+      "type": "log",
+      "text": "✓ 970 Boss HP capped at 3: OK"
+    },
+    {
+      "type": "log",
+      "text": "✓ 970 Normal quotas in Phase 1 range: OK"
+    },
+    {
+      "type": "log",
+      "text": "✓ 970 One normal gimmick per universe: OK"
+    },
+    {
+      "type": "log",
+      "text": "✓ 971 Every level is reachable from the map: OK"
+    },
+    {
+      "type": "log",
+      "text": "✓ 971 Progression nodes are sequential: OK"
+    },
+    {
+      "type": "log",
+      "text": "✓ 971 Mechanics expose danger-cell API: OK"
+    },
+    {
+      "type": "log",
+      "text": "✓ 972 Boss mechanics expose weak-point API: OK"
+    },
+    {
+      "type": "log",
+      "text": "✓ 972 Linear progression debt documented: MAP_NODES order is the accepted Phase 1/2 progression source; see docs/972_LINEAR_PROGRESSION_DEBT.md"
+    },
+    {
+      "type": "log",
+      "text": "✓ 980 Castle Stage 1 vertical-slice data: castle_normal:10 castleIllusion"
+    },
+    {
+      "type": "log",
+      "text": "✓ 980 Castle Boss vertical-slice data: castle_boss:hp3 witchMirror"
+    },
+    {
+      "type": "log",
+      "text": "✓ 980 Castle Stage 1 unlocks Castle Boss: node_1 -> node_2"
+    },
+    {
+      "type": "log",
+      "text": "✓ 980 Castle mechanic exposes warning and danger APIs: Warning cells render as extra entities; only active cells are returned by getDangerCells()"
+    },
+    {
+      "type": "log",
+      "text": "✓ 980 Witch Mirror exposes boss APIs: Boss danger, weak-point and hit APIs available"
+    },
+    {
+      "type": "log",
+      "text": "✓ 981 Castle illusion tuning is readable: warning=8, active=4, maxWalls=2"
+    },
+    {
+      "type": "log",
+      "text": "✓ 981 Castle runtime warning/danger separation: warningEntities=1, warningDanger=0, activeEntities=1, activeDanger=1"
+    },
+    {
+      "type": "log",
+      "text": "✓ 981 Witch Mirror tuning is first-world friendly: warning=10, attacking=10, vulnerable=18"
+    },
+    {
+      "type": "log",
+      "text": "✓ 981 Witch Mirror exposes danger then weak point: danger=1, weakPoints=1, overlap=0"
+    },
+    {
+      "type": "log",
+      "text": "✅ All checks passed"
+    },
+    {
+      "type": "endGroup",
+      "text": "console.groupEnd"
+    },
+    {
+      "type": "log",
+      "text": "%c %c %c %c %c Phaser v3.90.0 (WebGL | Web Audio) %c https://phaser.io/v390 background: #ff0000 background: #ffff00 background: #00ff00 background: #00ffff color: #ffffff; background: #000000 background: transparent"
+    },
+    {
+      "type": "info",
+      "text": "Snake Drive V4 loaded — BootScene → TitleScene"
+    },
+    {
+      "type": "startGroup",
+      "text": "[QA] Snake Drive V4 Self-Check"
+    },
+    {
+      "type": "log",
+      "text": "✓ 16 levels defined: Found 16 levels"
+    },
+    {
+      "type": "log",
+      "text": "✓ 16 map nodes defined: Found 16 nodes"
+    },
+    {
+      "type": "log",
+      "text": "✓ 8 universes defined: Found 8 universes"
+    },
+    {
+      "type": "log",
+      "text": "✓ All levels reference valid universe: OK"
+    },
+    {
+      "type": "log",
+      "text": "✓ All nodes reference valid level: OK"
+    },
+    {
+      "type": "log",
+      "text": "✓ 8 normal + 8 boss levels: Normal: 8, Boss: 8"
+    },
+    {
+      "type": "log",
+      "text": "✓ All mechanics instantiatable: OK"
+    },
+    {
+      "type": "log",
+      "text": "✓ No duplicate level IDs: OK"
+    },
+    {
+      "type": "log",
+      "text": "✓ 908 All universes have non-generic mechanic: OK"
+    },
+    {
+      "type": "log",
+      "text": "✓ 908 Boss levels have valid bossHp: OK"
+    },
+    {
+      "type": "log",
+      "text": "✓ 908 Normal levels have quota: OK"
+    },
+    {
+      "type": "log",
+      "text": "✓ 908 Universe balance (1 normal + 1 boss each): OK"
+    },
+    {
+      "type": "log",
+      "text": "✓ 970 Normal speeds in Phase 1 range: OK"
+    },
+    {
+      "type": "log",
+      "text": "✓ 970 Boss speeds in Phase 1 range: OK"
+    },
+    {
+      "type": "log",
+      "text": "✓ 970 Boss HP capped at 3: OK"
+    },
+    {
+      "type": "log",
+      "text": "✓ 970 Normal quotas in Phase 1 range: OK"
+    },
+    {
+      "type": "log",
+      "text": "✓ 970 One normal gimmick per universe: OK"
+    },
+    {
+      "type": "log",
+      "text": "✓ 971 Every level is reachable from the map: OK"
+    },
+    {
+      "type": "log",
+      "text": "✓ 971 Progression nodes are sequential: OK"
+    },
+    {
+      "type": "log",
+      "text": "✓ 971 Mechanics expose danger-cell API: OK"
+    },
+    {
+      "type": "log",
+      "text": "✓ 972 Boss mechanics expose weak-point API: OK"
+    },
+    {
+      "type": "log",
+      "text": "✓ 972 Linear progression debt documented: MAP_NODES order is the accepted Phase 1/2 progression source; see docs/972_LINEAR_PROGRESSION_DEBT.md"
+    },
+    {
+      "type": "log",
+      "text": "✓ 980 Castle Stage 1 vertical-slice data: castle_normal:10 castleIllusion"
+    },
+    {
+      "type": "log",
+      "text": "✓ 980 Castle Boss vertical-slice data: castle_boss:hp3 witchMirror"
+    },
+    {
+      "type": "log",
+      "text": "✓ 980 Castle Stage 1 unlocks Castle Boss: node_1 -> node_2"
+    },
+    {
+      "type": "log",
+      "text": "✓ 980 Castle mechanic exposes warning and danger APIs: Warning cells render as extra entities; only active cells are returned by getDangerCells()"
+    },
+    {
+      "type": "log",
+      "text": "✓ 980 Witch Mirror exposes boss APIs: Boss danger, weak-point and hit APIs available"
+    },
+    {
+      "type": "log",
+      "text": "✓ 981 Castle illusion tuning is readable: warning=8, active=4, maxWalls=2"
+    },
+    {
+      "type": "log",
+      "text": "✓ 981 Castle runtime warning/danger separation: warningEntities=1, warningDanger=0, activeEntities=1, activeDanger=1"
+    },
+    {
+      "type": "log",
+      "text": "✓ 981 Witch Mirror tuning is first-world friendly: warning=10, attacking=10, vulnerable=18"
+    },
+    {
+      "type": "log",
+      "text": "✓ 981 Witch Mirror exposes danger then weak point: danger=1, weakPoints=1, overlap=0"
+    },
+    {
+      "type": "log",
+      "text": "✅ All checks passed"
+    },
+    {
+      "type": "endGroup",
+      "text": "console.groupEnd"
+    }
+  ],
+  "networkRequests": [
+    {
+      "url": "https://ya7o.github.io/snake/",
+      "status": 200
+    },
+    {
+      "url": "https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap",
+      "status": 200
+    },
+    {
+      "url": "https://ya7o.github.io/snake/assets/index-igTLqGnK.js",
+      "status": 200
+    },
+    {
+      "url": "https://ya7o.github.io/snake/assets/ui/title/title_hub_bg.png",
+      "status": 200
+    },
+    {
+      "url": "blob:https://ya7o.github.io/7e78077a-e067-4dbe-b06d-1c5249d95149",
+      "status": 200
+    },
+    {
+      "url": "https://fonts.gstatic.com/s/pressstart2p/v16/e3t4euO8T-267oIAQAu6jDQyK3nVivM.woff2",
+      "status": 200
+    },
+    {
+      "url": "https://ya7o.github.io/snake/assets/audio/stage_clear.wav",
+      "status": 206
+    },
+    {
+      "url": "https://ya7o.github.io/snake/assets/audio/pickup_magic.wav",
+      "status": 206
+    },
+    {
+      "url": "https://ya7o.github.io/snake/assets/audio/collision_hit.wav",
+      "status": 206
+    },
+    {
+      "url": "https://ya7o.github.io/snake/assets/audio/boss_hit.wav",
+      "status": 206
+    },
+    {
+      "url": "https://ya7o.github.io/snake/assets/audio/ui_button.wav",
+      "status": 206
+    },
+    {
+      "url": "https://ya7o.github.io/snake/assets/audio/boss_clear.wav",
+      "status": 206
+    },
+    {
+      "url": "https://ya7o.github.io/snake/assets/audio/danger_alert.wav",
+      "status": 206
+    },
+    {
+      "url": "https://ya7o.github.io/snake/assets/audio/game_over.wav",
+      "status": 206
+    },
+    {
+      "url": "https://ya7o.github.io/snake/",
+      "status": 200
+    },
+    {
+      "url": "https://ya7o.github.io/snake/assets/index-igTLqGnK.js",
+      "status": 200
+    },
+    {
+      "url": "https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap",
+      "status": 200
+    },
+    {
+      "url": "https://fonts.gstatic.com/s/pressstart2p/v16/e3t4euO8T-267oIAQAu6jDQyK3nVivM.woff2",
+      "status": 200
+    },
+    {
+      "url": "https://ya7o.github.io/snake/assets/ui/title/title_hub_bg.png",
+      "status": 200
+    },
+    {
+      "url": "blob:https://ya7o.github.io/f864d68d-3f8f-4f90-a027-e70b42d5639f",
+      "status": 200
+    },
+    {
+      "url": "https://ya7o.github.io/snake/assets/ui/worldmap/world_map_minimap_16_9.png",
+      "status": 200
+    },
+    {
+      "url": "blob:https://ya7o.github.io/9895d50d-3088-471e-94aa-6f3ede7ed296",
+      "status": 200
+    },
+    {
+      "url": "https://ya7o.github.io/snake/?unlockAll=1",
+      "status": 200
+    },
+    {
+      "url": "https://ya7o.github.io/snake/assets/index-igTLqGnK.js",
+      "status": 200
+    },
+    {
+      "url": "https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap",
+      "status": 200
+    },
+    {
+      "url": "https://fonts.gstatic.com/s/pressstart2p/v16/e3t4euO8T-267oIAQAu6jDQyK3nVivM.woff2",
+      "status": 200
+    },
+    {
+      "url": "https://ya7o.github.io/snake/assets/ui/title/title_hub_bg.png",
+      "status": 200
+    },
+    {
+      "url": "blob:https://ya7o.github.io/f320b53b-e953-4a31-9ecd-941335533496",
+      "status": 200
+    },
+    {
+      "url": "https://ya7o.github.io/snake/assets/ui/worldmap/world_map_minimap_16_9.png",
+      "status": 200
+    },
+    {
+      "url": "blob:https://ya7o.github.io/00f9fd71-98ed-4e79-83e7-8224f75dc9c8",
+      "status": 200
+    },
+    {
+      "url": "https://ya7o.github.io/snake/?resetProgress=1",
+      "status": 200
+    },
+    {
+      "url": "https://ya7o.github.io/snake/assets/index-igTLqGnK.js",
+      "status": 200
+    },
+    {
+      "url": "https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap",
+      "status": 200
+    },
+    {
+      "url": "https://fonts.gstatic.com/s/pressstart2p/v16/e3t4euO8T-267oIAQAu6jDQyK3nVivM.woff2",
+      "status": 200
+    },
+    {
+      "url": "https://ya7o.github.io/snake/assets/ui/title/title_hub_bg.png",
+      "status": 200
+    },
+    {
+      "url": "blob:https://ya7o.github.io/31ded43b-2c99-4518-9a27-7a5d1d20163c",
+      "status": 200
+    },
+    {
+      "url": "https://ya7o.github.io/snake/",
+      "status": 200
+    },
+    {
+      "url": "https://ya7o.github.io/snake/assets/index-igTLqGnK.js",
+      "status": 200
+    },
+    {
+      "url": "https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap",
+      "status": 200
+    },
+    {
+      "url": "https://fonts.gstatic.com/s/pressstart2p/v16/e3t4euO8T-267oIAQAu6jDQyK3nVivM.woff2",
+      "status": 200
+    },
+    {
+      "url": "https://ya7o.github.io/snake/assets/ui/title/title_hub_bg.png",
+      "status": 200
+    },
+    {
+      "url": "blob:https://ya7o.github.io/4173f978-3bc5-49d7-b0df-8d16093ca644",
+      "status": 200
+    },
+    {
+      "url": "https://ya7o.github.io/snake/assets/ui/worldmap/world_map_minimap_16_9.png",
+      "status": 200
+    },
+    {
+      "url": "blob:https://ya7o.github.io/8a1bdc68-24ee-429b-9622-9c86de125409",
+      "status": 200
+    },
+    {
+      "url": "https://ya7o.github.io/snake/?unlockAll=1",
+      "status": 200
+    },
+    {
+      "url": "https://ya7o.github.io/snake/assets/index-igTLqGnK.js",
+      "status": 200
+    },
+    {
+      "url": "https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap",
+      "status": 200
+    },
+    {
+      "url": "https://fonts.gstatic.com/s/pressstart2p/v16/e3t4euO8T-267oIAQAu6jDQyK3nVivM.woff2",
+      "status": 200
+    },
+    {
+      "url": "https://ya7o.github.io/snake/assets/ui/title/title_hub_bg.png",
+      "status": 200
+    },
+    {
+      "url": "blob:https://ya7o.github.io/a75396f6-abe7-4c81-8930-7c0f29d2367b",
+      "status": 200
+    },
+    {
+      "url": "https://ya7o.github.io/snake/assets/audio/pickup_magic.wav",
+      "status": 206
+    },
+    {
+      "url": "https://ya7o.github.io/snake/assets/audio/collision_hit.wav",
+      "status": 206
+    },
+    {
+      "url": "https://ya7o.github.io/snake/assets/audio/stage_clear.wav",
+      "status": 206
+    },
+    {
+      "url": "https://ya7o.github.io/snake/assets/audio/danger_alert.wav",
+      "status": 206
+    },
+    {
+      "url": "https://ya7o.github.io/snake/assets/audio/game_over.wav",
+      "status": 206
+    },
+    {
+      "url": "https://ya7o.github.io/snake/assets/audio/boss_hit.wav",
+      "status": 206
+    },
+    {
+      "url": "https://ya7o.github.io/snake/assets/audio/boss_clear.wav",
+      "status": 206
+    },
+    {
+      "url": "https://ya7o.github.io/snake/assets/ui/worldmap/world_map_minimap_16_9.png",
+      "status": 200
+    },
+    {
+      "url": "blob:https://ya7o.github.io/469956bd-ccbd-4145-9ee3-e709862dfdf7",
+      "status": 200
+    }
+  ]
+}

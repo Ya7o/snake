@@ -1,0 +1,36 @@
+# npm run check — PATCH 1056
+
+Commande lancée :
+  cd ~/apps/snake && npm run check
+
+Date/heure : 2026-05-29
+
+## Résultat : OK (exit 0)
+
+> snake-drive-v4@0.1.0 check
+> npm run build
+
+> snake-drive-v4@0.1.0 build
+> tsc && vite build
+
+vite v6.4.2 building for production...
+transforming...
+✓ 60 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                    1.40 kB │ gzip:   0.67 kB
+dist/assets/index-igTLqGnK.js  1,610.52 kB │ gzip: 376.55 kB
+
+(!) Warning : Some chunks are larger than 500 kB after minification.
+  → dist/assets/index-igTLqGnK.js : 1,610.52 kB (gzip : 376.55 kB)
+  → Suggère : dynamic import() / manualChunks / chunkSizeWarningLimit
+  → Non bloquant, warning connu.
+
+✓ built in 7.75s
+
+## Verdict : PASS
+- TypeScript : OK
+- Vite build : OK
+- Warning chunk size : connu, non critique
+- Erreurs TypeScript : 0
+- Durée : 7.75s

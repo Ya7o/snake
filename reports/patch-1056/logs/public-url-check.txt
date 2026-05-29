@@ -1,0 +1,38 @@
+# Public URL Check — PATCH 1056
+
+URL testée : https://ya7o.github.io/snake/
+Date/heure : 2026-05-29
+Outil : Playwright Chromium headless v1.61.0-alpha
+
+## Résultats
+
+HTTP status        : 200 OK
+Title              : Snake Drive V4
+Canvas Phaser      : 1 canvas détecté
+Page blanche       : NON
+URL accessible     : OUI
+Phaser version     : v3.90.0 (WebGL | Web Audio)
+Renderer           : WebGL
+
+## Boot sequence (console)
+
+info : Snake Drive V4 loaded — BootScene → TitleScene
+[QA] Self-Check : 24 vérifications passées
+  ✓ 16 levels defined
+  ✓ 16 map nodes defined
+  ✓ 8 universes defined
+  ✓ All levels reference valid universe
+  ✓ All nodes reference valid level
+  ✓ All mechanics instantiatable
+  ✓ No duplicate level IDs
+  ... (24/24 checks OK)
+
+## Assets chargés
+
+- index.html        : 200
+- index-igTLqGnK.js : 200 (1.6 MB bundle)
+- title_hub_bg.png  : 200
+- Press Start 2P    : 200 (Google Fonts)
+- Audio (8 fichiers): 206 (partial content — normal)
+
+## Verdict : PASS

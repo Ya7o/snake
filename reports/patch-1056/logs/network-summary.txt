@@ -1,0 +1,39 @@
+# Network Summary — PATCH 1056
+
+URL base : https://ya7o.github.io/snake/
+Date : 2026-05-29
+Outil : Playwright Chromium headless
+
+## Statistiques globales
+
+Total requêtes    : 59
+200 OK            : 44
+206 Partial       : 15 (audio WAV — normal)
+404 Not Found     : 0
+FAILED            : 0
+
+## 404 critiques : AUCUN
+
+## Requêtes principales (200)
+
+https://ya7o.github.io/snake/                          200
+https://ya7o.github.io/snake/assets/index-igTLqGnK.js  200
+https://ya7o.github.io/snake/assets/ui/title/title_hub_bg.png 200
+https://fonts.googleapis.com/css2?family=Press+Start+2P 200
+https://fonts.gstatic.com/.../pressstart2p/...woff2     200
+
+## Requêtes audio (206 — partial content)
+
+https://ya7o.github.io/snake/assets/audio/stage_clear.wav
+https://ya7o.github.io/snake/assets/audio/pickup_magic.wav
+https://ya7o.github.io/snake/assets/audio/collision_hit.wav
+https://ya7o.github.io/snake/assets/audio/boss_hit.wav
+https://ya7o.github.io/snake/assets/audio/ui_button.wav
+https://ya7o.github.io/snake/assets/audio/boss_clear.wav
+https://ya7o.github.io/snake/assets/audio/danger_alert.wav
+https://ya7o.github.io/snake/assets/audio/game_over.wav
+(+ 7 autres requêtes audio/assets 206)
+
+Note : les 206 sont attendus pour l'audio (range requests du navigateur).
+
+## Verdict réseau : PASS — aucun 404, aucune ressource manquante
