@@ -1,0 +1,29 @@
+PATCH 1042 - vite config summary
+
+File: vite.config.ts
+
+import { defineConfig } from 'vite';
+
+export default defineConfig({
+  base: '/snake/',
+  server: {
+    host: '0.0.0.0',
+    port: 5173
+  },
+  preview: {
+    host: '0.0.0.0',
+    port: 5173
+  }
+});
+
+Detected:
+base configured: yes
+base value: /snake/
+server host: 0.0.0.0
+server port: 5173
+preview host: 0.0.0.0
+preview port: 5173
+
+GitHub Pages compatibility:
+- /snake/ is consistent with https://ya7o.github.io/snake/
+- local Vite preview should serve the app under /snake/
