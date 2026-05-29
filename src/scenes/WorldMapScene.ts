@@ -48,6 +48,7 @@ export class WorldMapScene extends Phaser.Scene {
 
   // Footer UI
   private footerLevelTxt!: Phaser.GameObjects.Text;
+  private footerHintTxt!: Phaser.GameObjects.Text;
   private lastTapAt = 0;
   private nodeHighlights = new Map<string, Phaser.GameObjects.Graphics>();
 
@@ -284,14 +285,23 @@ export class WorldMapScene extends Phaser.Scene {
     sepGfx.lineStyle(1, 0x2a3050, 1);
     sepGfx.lineBetween(0, footerY, W, footerY);
 
-    // Compact footer: level name centered
-    this.footerLevelTxt = this.add.text(W / 2, footerY + WORLD_MAP_VIEW.FOOTER_H / 2, 'CHOISIS UN NIVEAU', {
+    // Compact footer: level name (shifted up to leave room for hint)
+    this.footerLevelTxt = this.add.text(W / 2, footerY + 13, 'CHOISIS UN NIVEAU', {
       fontFamily: UI_FONT,
       fontSize: `${Math.min(13, Math.floor(W * 0.033))}px`,
       fontStyle: '700',
       color: '#666688',
       align: 'center',
     }).setOrigin(0.5, 0.5).setDepth(7);
+
+    // Launch hint - shown only when an unlocked node is selected
+    this.footerHintTxt = this.add.text(W / 2, footerY + 30, 'RETAPE POUR LANCER', {
+      fontFamily: UI_FONT,
+      fontSize: `${Math.min(10, Math.floor(W * 0.026))}px`,
+      fontStyle: '400',
+      color: '#444466',
+      align: 'center',
+    }).setOrigin(0.5, 0.5).setDepth(7).setAlpha(0.75).setVisible(false);
 
     const firstUnlocked = MAP_NODES.find(node => saveData.unlockedNodes.includes(node.id)) ?? MAP_NODES[0];
     if (firstUnlocked) this.selectNode(firstUnlocked.levelId, firstUnlocked.id, saveData.unlockedNodes.includes(firstUnlocked.id));
@@ -374,8 +384,10 @@ export class WorldMapScene extends Phaser.Scene {
     if (isUnlocked) {
       const typeLabel = level.type === 'boss' ? 'BOSS' : 'NIVEAU';
       this.footerLevelTxt.setText(`${level.name.toUpperCase()} · ${typeLabel}`).setColor(universe.palette.accent);
+      this.footerHintTxt.setVisible(true);
     } else {
       this.footerLevelTxt.setText('VERROUILLÉ').setColor('#777788');
+      this.footerHintTxt.setVisible(false);
     }
     this.updateFooterButton(isUnlocked, universe.palette.accent);
 
