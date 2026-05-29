@@ -1,8 +1,16 @@
 import { MAP_NODES } from '../config/mapNodes';
 import { LEVELS } from '../config/levels';
-import { DEV_UNLOCK_ALL } from '../config/constants';
 
 const SAVE_KEY = 'snakeDriveV4_save';
+
+// Session-only URL flags — never persisted to localStorage.
+// ?unlockAll=1 or ?debugUnlockAll=1 : unlocks everything for the current session.
+// ?resetProgress=1 : clears saved progress on page load (then plays normally).
+const _p = new URLSearchParams(window.location.search);
+const SESSION_UNLOCK_ALL = _p.get('unlockAll') === '1' || _p.get('debugUnlockAll') === '1';
+if (_p.get('resetProgress') === '1') {
+  try { localStorage.removeItem(SAVE_KEY); } catch { /* noop */ }
+}
 
 export interface SaveData {
   clearedLevels: string[];   // level IDs that have been cleared
@@ -45,7 +53,7 @@ function sanitizeSave(value: unknown): SaveData {
 
 export const SaveSystem = {
   load(): SaveData {
-    if (DEV_UNLOCK_ALL) {
+    if (SESSION_UNLOCK_ALL) {
       return {
         clearedLevels: LEVELS.map(l => l.id),
         unlockedNodes: MAP_NODES.map(n => n.id),
@@ -61,6 +69,7 @@ export const SaveSystem = {
   },
 
   save(data: SaveData): void {
+    if (SESSION_UNLOCK_ALL) return; // don't overwrite real progress with session state
     try {
       localStorage.setItem(SAVE_KEY, JSON.stringify(sanitizeSave(data)));
     } catch {
@@ -69,6 +78,7 @@ export const SaveSystem = {
   },
 
   markCleared(levelId: string, nextNodeId?: string): void {
+    if (SESSION_UNLOCK_ALL) return; // already all-unlocked, nothing to persist
     const data = this.load();
     if (!data.clearedLevels.includes(levelId)) {
       data.clearedLevels.push(levelId);

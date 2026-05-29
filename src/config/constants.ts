@@ -1,7 +1,7 @@
 export const BACKGROUND_COLOR = '#05050a';
 
-// Set to true during development to unlock all levels on the world map
-export const DEV_UNLOCK_ALL = true;
+// Keep false for release. Use ?unlockAll=1 URL param for session debug unlock.
+export const DEV_UNLOCK_ALL = false;
 
 export const ASSET_KEYS = {
   WORLD_MAP: 'world_map',
