@@ -1,0 +1,16 @@
+PATCH 1038 - console summary
+
+[public_title] error Failed to load resource: the server responded with a status of 404 ()
+[public_worldmap_default] error Failed to load resource: the server responded with a status of 404 ()
+[public_worldmap_unlock_all] error Failed to load resource: the server responded with a status of 404 ()
+[public_worldmap_after_reset] error Failed to load resource: the server responded with a status of 404 ()
+[public_castle_system] error Failed to load resource: the server responded with a status of 404 ()
+[public_castle_gameplay] error Failed to load resource: the server responded with a status of 404 ()
+
+Per-page observations:
+public_title | url=https://ya7o.github.io/snake/ | navStatus=404 | title="Site not found · GitHub Pages" | body="404 There isn't a GitHub Pages site here. If you're trying to publish one, read the full documentation to learn how to set up GitHub Pages for your repository, organization, or user account. GitHub Status — @githubstatus"
+public_worldmap_default | url=https://ya7o.github.io/snake/ | navStatus=404 | title="Site not found · GitHub Pages" | body="404 There isn't a GitHub Pages site here. If you're trying to publish one, read the full documentation to learn how to set up GitHub Pages for your repository, organization, or user account. GitHub Status — @githubstatus"
+public_worldmap_unlock_all | url=https://ya7o.github.io/snake/?unlockAll=1 | navStatus=404 | title="Site not found · GitHub Pages" | body="404 There isn't a GitHub Pages site here. If you're trying to publish one, read the full documentation to learn how to set up GitHub Pages for your repository, organization, or user account. GitHub Status — @githubstatus"
+public_worldmap_after_reset | url=https://ya7o.github.io/snake/?resetProgress=1 | navStatus=404 | title="Site not found · GitHub Pages" | body="404 There isn't a GitHub Pages site here. If you're trying to publish one, read the full documentation to learn how to set up GitHub Pages for your repository, organization, or user account. GitHub Status — @githubstatus"
+public_castle_system | url=https://ya7o.github.io/snake/ | navStatus=404 | title="Site not found · GitHub Pages" | body="404 There isn't a GitHub Pages site here. If you're trying to publish one, read the full documentation to learn how to set up GitHub Pages for your repository, organization, or user account. GitHub Status — @githubstatus"
+public_castle_gameplay | url=https://ya7o.github.io/snake/ | navStatus=404 | title="Site not found · GitHub Pages" | body="404 There isn't a GitHub Pages site here. If you're trying to publish one, read the full documentation to learn how to set up GitHub Pages for your repository, organization, or user account. GitHub Status — @githubstatus"

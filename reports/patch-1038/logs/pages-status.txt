@@ -1,0 +1,72 @@
+2026-05-29T12:25:21+02:00
+
+GitHub Actions runs:
+Deploy GitHub Pages | completed | failure | main | d4d3e14 | https://github.com/Ya7o/snake/actions/runs/26631730258
+
+Pages status:
+status: 404
+html_url: undefined
+source: undefined
+build_type: undefined
+
+Public URL HEAD:
+  % Total    % Received % Xferd  Average Speed  Time    Time    Time   Current
+                                 Dload  Upload  Total   Spent   Left   Speed
+  0      0   0      0   0      0      0      0                              0  0   9115   0      0   0      0      0      0                              0  0   9115   0      0   0      0      0      0                              0  0   9115   0      0   0      0      0      0                              0
+HTTP/2 404 
+server: GitHub.com
+content-type: text/html; charset=utf-8
+etag: "69fcc76c-239b"
+content-security-policy: default-src 'none'; style-src 'unsafe-inline'; img-src data:; connect-src 'self'
+x-github-request-id: BDE4:2E5706:1D0E749:1D85756:6A196992
+accept-ranges: bytes
+age: 0
+date: Fri, 29 May 2026 10:25:23 GMT
+via: 1.1 varnish
+x-served-by: cache-mad22070-MAD
+x-cache: MISS
+x-cache-hits: 0
+x-timer: S1780050323.210415,VS0,VE117
+vary: Accept-Encoding
+x-fastly-request-id: b4665f57cc771c85a3040f94a5d2b8092a994555
+content-length: 9115
+
+
+GitHub Actions jobs for latest run:
+build | completed | failure | https://github.com/Ya7o/snake/actions/runs/26631730258/job/78481993628
+  - Set up job | completed | success
+  - Checkout | completed | success
+  - Setup Node | completed | success
+  - Install dependencies | completed | success
+  - Build | completed | success
+  - Configure Pages | completed | failure
+  - Upload Pages artifact | completed | skipped
+  - Post Setup Node | completed | skipped
+  - Post Checkout | completed | success
+  - Complete job | completed | success
+deploy | completed | skipped | https://github.com/Ya7o/snake/actions/runs/26631730258/job/78482058585
+
+Logs endpoint probe:
+HTTP/2 403 
+date: Fri, 29 May 2026 10:26:52 GMT
+content-type: application/json; charset=utf-8
+x-github-media-type: github.v3; format=json
+x-github-api-version-selected: 2022-11-28
+access-control-expose-headers: ETag, Link, Location, Retry-After, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Used, X-RateLimit-Resource, X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval, X-GitHub-Media-Type, X-GitHub-SSO, X-GitHub-Request-Id, Deprecation, Sunset, Warning
+access-control-allow-origin: *
+strict-transport-security: max-age=31536000; includeSubdomains; preload
+x-frame-options: deny
+x-content-type-options: nosniff
+x-xss-protection: 0
+referrer-policy: origin-when-cross-origin, strict-origin-when-cross-origin
+content-security-policy: default-src 'none'
+vary: Accept-Encoding, Accept, X-Requested-With
+server: github.com
+x-ratelimit-limit: 60
+x-ratelimit-remaining: 53
+x-ratelimit-used: 7
+x-ratelimit-resource: core
+x-ratelimit-reset: 1780052721
+content-length: 180
+x-github-request-id: 1D98:36F733:4AE5B1C:47845C9:6A1969EC
+
