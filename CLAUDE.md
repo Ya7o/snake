@@ -155,7 +155,7 @@ Toujours lancer `npm run check` et écrire le résultat dans `review.md`.
 
 Chaque tâche doit finir par :
 
-1. `npm run check` (depuis PowerShell) ;
+1. `npm run check` (depuis WSL) ;
 2. création de `reports/patch-XXXX/review.md` ;
 3. captures dans `screenshots/` si tâche visuelle ;
 4. `git status` pour vérifier le scope des fichiers modifiés ;
@@ -169,29 +169,35 @@ La tâche n'est **pas terminée** tant que :
 - le commit/push GitHub n'est pas fait ;
 - les captures attendues ne sont pas commitées si la tâche est visuelle.
 
-### 5. Environnement Git obligatoire (WSL uniquement)
+### 5. Environnement Git et npm (WSL uniquement)
 
-Toujours commit/push **depuis WSL**, jamais depuis PowerShell Windows :
+Tout se fait depuis WSL — Node.js Windows est désinstallé.
 
+**git :**
 ```bash
-cd /mnt/c/Users/Boris/apps_ai/snake
+cd ~/apps/snake
 git status
 git add [fichiers attendus]
 git commit -m "PATCH XXXX — [message clair]"
 git push origin main
 ```
 
-Raison : chmod / permissions NTFS peuvent bloquer les hooks Git sous PowerShell Windows.
-
-Toujours lancer `npm` **depuis PowerShell** (jamais depuis WSL) :
-
-```powershell
-npm run check
+**npm :**
+```bash
+cd ~/apps/snake
 npm install
+npm run check
 npm run dev
 ```
 
-Raison : `node_modules` contient des binaires natifs. Installés depuis Windows → compatibles PowerShell uniquement. Installés depuis WSL → compatibles WSL uniquement. Mélanger les deux casse Rollup/Vite.
+**Playwright :**
+```bash
+cd ~/apps/snake
+npx playwright install chromium --with-deps
+node <script>
+```
+
+Node.js Windows est désinstallé. Tout passe par WSL.
 
 ### 6. Exigences d'environnement pour `npm run check`
 
@@ -229,8 +235,10 @@ chmod -x CLAUDE.md reports/patch-XXXX/*.md
 
 Voir le template complet : `docs/WORKFLOW_TEMPLATE.md`
 
-## État Dev (2026-05-28)
+## État Dev (2026-05-29)
 
+- Repo migré dans WSL : `~/apps/snake`
+- Node.js Windows désinstallé — npm/build/Playwright depuis WSL uniquement
 - `DEV_UNLOCK_ALL = true` dans `src/config/constants.ts` — tous les niveaux débloqués. Passer à `false` avant release.
 - Build propre : 0 erreur TypeScript, 60 modules.
 
