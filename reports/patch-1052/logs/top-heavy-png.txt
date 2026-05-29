@@ -1,0 +1,65 @@
+PATCH 1052 — Top Heavy PNGs (60 largest)
+Generated: 2026-05-29
+
+  #    Path                                                                         Size MB      W     H  Usage probable
+  ------------------------------------------------------------------------------------------------------------------------
+  1    public/assets/universes/outrun/board_preview.png                                2.88   1024  1536  Board preview / icône monde
+  2    public/assets/ui/paperboy/paperboy_boss_system_bg.png                           2.78    941  1672  Background / écran système / boss
+  3    public/assets/ui/worldmap/world_map_minimap_16_9.png                            2.76   1672   941  Background / écran système / boss
+  4    public/assets/map/world_map.png                                                 2.74   1448  1086  Carte monde
+  5    public/assets/ui/outrun/outrun_boss_system_bg.png                               2.54    941  1672  Background / écran système / boss
+  6    public/assets/ui/fighter/fighter_boss_system_bg.png                             2.48    941  1672  Background / écran système / boss
+  7    public/assets/ui/shinobi/shinobi_boss_system_bg.png                             2.44    941  1672  Background / écran système / boss
+  8    public/assets/ui/streets/streets_clear_bg.png                                   2.42    941  1672  Background / écran système / boss
+  9    public/assets/ui/streets/streets_system_bg.png                                  2.42    941  1672  Background / écran système / boss
+  10   public/assets/level-intros/paperboy/intro.png                                   2.40    941  1672  Intro écran plein
+  11   public/assets/level-intros/outrun/intro.png                                     2.38    941  1672  Intro écran plein
+  12   public/assets/ui/castle/castle_clear_bg.png                                     2.38    941  1672  Background / écran système / boss
+  13   public/assets/level-intros/sonic/intro.png                                      2.33    941  1672  Intro écran plein
+  14   public/assets/universes/paperboy/board_preview.png                              2.33   1024  1536  Board preview / icône monde
+  15   public/assets/ui/outrun/outrun_clear_bg.png                                     2.24    941  1672  Background / écran système / boss
+  16   public/assets/level-intros/kombat/intro.png                                     2.23    941  1672  Intro écran plein
+  17   public/assets/ui/streets/streets_boss_system_bg.png                             2.20    941  1672  Background / écran système / boss
+  18   public/assets/ui/sonic/sonic_boss_system_bg.png                                 2.19    941  1672  Background / écran système / boss
+  19   public/assets/level-intros/castle/intro.png                                     2.19    941  1672  Intro écran plein
+  20   public/assets/universes/kombat/board_preview.png                                2.18   1024  1536  Board preview / icône monde
+  21   public/assets/level-intros/streets/intro.png                                    2.18    941  1672  Intro écran plein
+  22   public/assets/level-intros/fighter/intro.png                                    2.18    941  1672  Intro écran plein
+  23   public/assets/level-intros/shinobi/intro.png                                    2.16    941  1672  Intro écran plein
+  24   public/assets/ui/castle/castle_boss_system_bg.png                               2.14    941  1672  Background / écran système / boss
+  25   public/assets/ui/shinobi/shinobi_system_bg.png                                  2.12    941  1672  Background / écran système / boss
+  26   public/assets/ui/kombat/kombat_boss_system_bg.png                               2.12    941  1672  Background / écran système / boss
+  27   public/assets/universes/castle/board_preview.png                                2.11   1024  1536  Board preview / icône monde
+  28   public/assets/ui/shinobi/shinobi_clear_bg.png                                   2.09    941  1672  Background / écran système / boss
+  29   public/assets/ui/castle/castle_system_bg.png                                    2.06    941  1672  Background / écran système / boss
+  30   public/assets/universes/shinobi/board_preview.png                               2.04   1024  1536  Board preview / icône monde
+  31   public/assets/ui/kombat/kombat_clear_bg.png                                     2.04    941  1672  Background / écran système / boss
+  32   public/assets/universes/fighter/board_preview.png                               2.03   1024  1536  Board preview / icône monde
+  33   public/assets/ui/fighter/fighter_system_bg.png                                  2.02    941  1672  Background / écran système / boss
+  34   public/assets/ui/paperboy/paperboy_system_bg.png                                2.01    941  1672  Background / écran système / boss
+  35   public/assets/ui/fighter/fighter_clear_bg.png                                   2.00    941  1672  Background / écran système / boss
+  36   public/assets/ui/paperboy/paperboy_gameplay_bg.png                              1.99    941  1672  Background / écran système / boss
+  37   public/assets/ui/outrun/outrun_system_bg.png                                    1.94    941  1672  Background / écran système / boss
+  38   public/assets/universes/streets/board_preview.png                               1.94   1024  1536  Board preview / icône monde
+  39   public/assets/ui/sonic/sonic_system_bg.png                                      1.93    941  1672  Background / écran système / boss
+  40   public/assets/ui/sonic/sonic_clear_bg.png                                       1.92    941  1672  Background / écran système / boss
+  41   public/assets/ui/streets/streets_gameplay_bg.png                                1.91    941  1672  Background / écran système / boss
+  42   public/assets/ui/paperboy/paperboy_clear_bg.png                                 1.87    941  1672  Background / écran système / boss
+  43   public/assets/ui/castle/castle_game_over_bg.png                                 1.87    941  1672  Background / écran système / boss
+  44   public/assets/universes/sonic/board_preview.png                                 1.84   1024  1536  Board preview / icône monde
+  45   public/assets/ui/title/title_hub_bg.png                                         1.84    941  1672  Background / écran système / boss
+  46   public/assets/ui/streets/streets_game_over_bg.png                               1.84    941  1672  Background / écran système / boss
+  47   public/assets/frames/paperboy/frame.png                                         1.81    941  1672  Frame de jeu plein écran
+  48   public/assets/ui/kombat/kombat_game_over_bg.png                                 1.77    941  1672  Background / écran système / boss
+  49   public/assets/ui/sonic/sonic_gameplay_bg.png                                    1.74    941  1672  Background / écran système / boss
+  50   public/assets/frames/castle/frame.png                                           1.74    941  1672  Frame de jeu plein écran
+  51   public/assets/frames/fighter/frame.png                                          1.73    941  1672  Frame de jeu plein écran
+  52   public/assets/ui/outrun/outrun_game_over_bg.png                                 1.72    941  1672  Background / écran système / boss
+  53   public/assets/ui/kombat/kombat_system_bg.png                                    1.70    941  1672  Background / écran système / boss
+  54   public/assets/frames/sonic/frame.png                                            1.68    941  1672  Frame de jeu plein écran
+  55   public/assets/frames/kombat/frame.png                                           1.67    941  1672  Frame de jeu plein écran
+  56   public/assets/ui/fighter/fighter_gameplay_bg.png                                1.66    941  1672  Background / écran système / boss
+  57   public/assets/ui/fighter/fighter_game_over_bg.png                               1.63    941  1672  Background / écran système / boss
+  58   public/assets/ui/outrun/outrun_gameplay_bg.png                                  1.62    941  1672  Background / écran système / boss
+  59   public/assets/frames/outrun/frame.png                                           1.62    941  1672  Frame de jeu plein écran
+  60   public/assets/frames/shinobi/frame.png                                          1.62    941  1672  Frame de jeu plein écran
