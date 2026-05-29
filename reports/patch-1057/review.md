@@ -41,5 +41,5 @@ Aucun document complémentaire.
 - ce patch vérifie uniquement la chaîne rapport → commit → push.
 
 ## Liens GitHub
-- Commit : (à compléter après push)
+- Commit : cf27a49 — https://github.com/Ya7o/snake/commit/cf27a49
 - PR : (aucune PR — push direct sur main)
