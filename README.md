@@ -1,57 +1,90 @@
 # Snake Drive V4
 
-Snake Drive V4 est un Snake web mobile en TypeScript + Phaser, inspiré Mega Drive / 16-bit, avec une world map, 8 univers, 16 niveaux et 8 boss.
+Prototype amateur jouable — Snake web mobile modern-retro avec Phaser 3, Vite et TypeScript.
 
-## Démarrage
+## Statut
+
+Prototype stabilisé. Non publié.
+
+## Contenu
+
+- 8 univers (Castle, Sonic, Streets, Fighter, OutRun, Shinobi, Kombat, Paperboy)
+- 16 niveaux (2 par univers : normal + boss)
+- 8 boss avec mécaniques différenciées
+- TitleScene, WorldMap, LevelIntro, GameScene, Clear, GameOver
+- Progression locale (localStorage)
+- Unlock all discret (debug/démo uniquement)
+
+## Prérequis
+
+- Node.js (WSL recommandé)
+- npm
+
+## Installation
 
 ```bash
 npm install
-npm run check
+```
+
+## Développement
+
+```bash
 npm run dev
+# → http://localhost:5173
 ```
 
-`npm run check` lance TypeScript puis le build Vite. `dist/` est généré et ignoré par Git.
+## Build / vérification TypeScript
 
-## Dossiers Clés
-
-- `src/` : code du jeu.
-- `src/scenes/` : Boot, Title, WorldMap, LevelIntro, Game, Clear, GameOver.
-- `src/render/` : renderers grille, snake, HUD, pickups, obstacles, cadres.
-- `src/mechanics/` : mécaniques normales et boss.
-- `src/config/` : niveaux, univers, nodes, constantes.
-- `public/assets/` : assets réellement chargés par Phaser.
-- `design_boards/[univers]/` : planches source triées et cadres source par univers.
-- `docs/` : vision, architecture, QA, audits et guides.
-- `tickets/` : uniquement les tickets non appliqués ou en attente.
-
-## Assets
-
-Les planches brutes `_incoming` ont été triées puis supprimées. Les sources à conserver sont maintenant dans `design_boards/[univers]/`.
-
-Les cadres gameplay utilisés au runtime sont dans :
-
-```text
-public/assets/frames/[univers]/frame.png
+```bash
+npm run check
 ```
 
-Les assets gameplay consommés par les renderers sont dans :
+## Progression
 
-```text
-public/assets/universes/[univers]/
+Par défaut le jeu démarre avec Castle accessible. Les autres univers se débloquent au fur et à mesure de la progression.
+
+## Unlock all discret (debug/démo)
+
+```
+http://localhost:5173/?unlockAll=1
 ```
 
-Les petits tokens d'interface dans `public/assets/openmoji/` utilisent une selection d'assets OpenMoji.
+Active tous les mondes pour la session uniquement. Ne modifie pas la sauvegarde normale.
+
+## Reset progression
+
+```
+http://localhost:5173/?resetProgress=1
+```
+
+Efface le localStorage et repart de zéro.
+
+## Structure
+
+```
+src/           — code source TypeScript
+public/assets/ — assets runtime
+docs/          — documentation projet
+reports/       — rapports de patches
+scripts/       — scripts utilitaires
+```
+
+## Limites connues
+
+- Prototype non optimisé pour production
+- Certaines mécaniques boss simplifiées
+- Assets partiellement procéduraux
+- Pas de backend — progression 100% localStorage
+
+## Stack technique
+
+- Phaser 3
+- Vite
+- TypeScript strict
+- Playwright (tests)
 
 ## Credits
 
 Selected emoji/icon assets by OpenMoji, the open-source emoji and icon project.
 License: CC BY-SA 4.0.
 https://openmoji.org/
-
-## Règles Produit
-
-- Mobile portrait prioritaire.
-- Grille Snake prioritaire sur le décor.
-- Ne jamais afficher une planche design brute en gameplay.
-- Si un asset manque, le jeu doit fallback en procédural sans crash.
-- Après chaque patch : `npm run check`.
