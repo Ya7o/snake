@@ -47,5 +47,5 @@ Aucun code modifié — check non requis. Résultat attendu : OK (identique PATC
 
 ## Liens GitHub
 
-- Commit : (à remplir après push)
+- Commit : https://github.com/Ya7o/snake/commit/f306072
 - Review : https://github.com/Ya7o/snake/blob/main/reports/patch-1052/review.md
