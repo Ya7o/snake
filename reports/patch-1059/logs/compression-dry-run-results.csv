@@ -1,0 +1,11 @@
+file,priority,original_kb,png_opt_kb,webp_kb,png_gain_pct,webp_gain_pct,width,height,has_alpha,risk
+universes/outrun/board_preview.png,P0,2952.6,2151.4,252.7,27.1,91.4,1024,1536,True,Low — background/preview
+ui/paperboy/paperboy_boss_system_bg.png,P0,2846.7,2787.8,359.7,2.1,87.4,941,1672,False,Low — background/preview
+ui/worldmap/world_map_minimap_16_9.png,P0,2827.3,2787.5,417.4,1.4,85.2,1672,941,False,Low — background/preview
+map/world_map.png,P0,2807.0,2767.6,433.4,1.4,84.6,1448,1086,False,Low — background/preview
+ui/outrun/outrun_boss_system_bg.png,P0,2604.8,2546.3,319.8,2.2,87.7,941,1672,False,Low — background/preview
+ui/fighter/fighter_boss_system_bg.png,P1,2535.1,2483.0,270.7,2.1,89.3,941,1672,False,Low — background/preview
+ui/shinobi/shinobi_boss_system_bg.png,P1,2503.0,2441.5,261.6,2.5,89.5,941,1672,False,Low — background/preview
+ui/streets/streets_clear_bg.png,P1,2478.4,2422.4,299.9,2.3,87.9,941,1672,False,Low — background/preview
+ui/streets/streets_system_bg.png,P1,2476.8,2432.1,261.6,1.8,89.4,941,1672,False,Low — background/preview
+level-intros/paperboy/intro.png,P1,2458.8,2408.8,321.7,2.0,86.9,941,1672,False,Low — background/preview

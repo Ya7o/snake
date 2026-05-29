@@ -1,0 +1,60 @@
+PATCH 1059 — Compression Tooling Log
+Generated: 2026-05-29
+============================================================
+
+Environment
+-----------
+WSL: Ubuntu (WSL2)
+Python: 3.14.4
+Pillow: 12.2.0
+
+Tools tested in this dry run
+-----------------------------
+  Pillow PNG (optimize=True, compress_level=9)
+    Method: lossless PNG recompression via zlib deflate level 9
+    Gain on tested files: ~1.4–27% (average 4.8%)
+    Note: most files already had decent PNG compression
+
+  Pillow WebP (quality=85, method=4, lossless=False)
+    Method: lossy WebP conversion at quality 85
+    Gain on tested files: ~84.6–91.4% (average 87.9%)
+    Note: dramatic gain because PNG stored uncompressed photo-realistic data
+
+Tools available via apt (require sudo install)
+----------------------------------------------
+  pngquant 2.18.0 (available in apt, not installed — needs sudo)
+    Method: lossy PNG quantization (8-bit palette)
+    Expected gain: 40–80% for RGBA assets
+    Risk: color posterization on gradients
+
+  oxipng (not in apt as binary — install via cargo or download)
+    Method: lossless PNG optimizer (zopfli/deflate)
+    Expected gain: 5–15% over zlib level 9
+    Risk: none (lossless)
+
+  cwebp / webp package (available in apt, not installed)
+    Method: Google WebP encoder
+    Expected gain: similar to Pillow WebP, potentially slightly better
+    Quality preset: -q 85 or -q 90 for high fidelity
+
+  ImageMagick 8:7.1.2.18+dfsg1-1 (available in apt, not installed)
+    Method: convert to webp/png with various filters
+    Expected gain: comparable to cwebp
+
+  sharp (Node.js — not in project package.json)
+    Could be installed via npm install sharp --save-dev
+    Method: libvips-backed WebP/PNG processing
+    Expected gain: similar to Pillow WebP
+
+Recommendation for PATCH 1061 tools
+-------------------------------------
+  Primary: cwebp -q 85 (or Pillow WebP) for backgrounds and intro screens
+  Secondary: oxipng --opt 2 for board_preview (has alpha, safer lossless)
+  Skip pngquant: lossy quantization risks visual artifacts on complex gradients
+
+Notes
+-----
+  - board_preview.png had 27% PNG lossless gain — was stored with poor compression
+  - All other files are near-optimal for PNG; WebP is the only viable path
+  - Alpha channels: only board_preview.png has alpha; WebP handles alpha natively
+  - Files are all display-only (backgrounds/intros) — no pixel-perfect requirement
