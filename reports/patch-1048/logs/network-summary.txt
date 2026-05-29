@@ -1,0 +1,1 @@
+No failed network requests or HTTP >= 400 responses captured.
