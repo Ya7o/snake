@@ -86,6 +86,7 @@ export class GameScene extends Phaser.Scene {
   private hudRenderer!: HUDRenderer;
   private inputSys!: InputSystem;
   private castlePickupGlow?: Phaser.GameObjects.Graphics;
+  private deliveryTargetGlow?: Phaser.GameObjects.Graphics;
 
   constructor() {
     super(SCENES.GAME);
@@ -186,6 +187,9 @@ export class GameScene extends Phaser.Scene {
     if (uid === 'castle') {
       this.styleCastleRuntimeHud();
       this.castlePickupGlow = this.add.graphics().setDepth(GAMEPLAY_LAYERS.GAMEPLAY_OBJECTS + 1);
+    }
+    if (uid === 'paperboy') {
+      this.deliveryTargetGlow = this.add.graphics().setDepth(GAMEPLAY_LAYERS.GAMEPLAY_OBJECTS - 1);
     }
     this.gridRenderer.setDepth(GAMEPLAY_LAYERS.GRID);
     this.obstacleRenderer.setDepth(GAMEPLAY_LAYERS.GAMEPLAY_OBJECTS);
@@ -303,6 +307,8 @@ export class GameScene extends Phaser.Scene {
       this.inputSys?.destroy();
       this.castlePickupGlow?.destroy();
       this.castlePickupGlow = undefined;
+      this.deliveryTargetGlow?.destroy();
+      this.deliveryTargetGlow = undefined;
     });
   }
 
@@ -390,6 +396,7 @@ export class GameScene extends Phaser.Scene {
     // Pickup animation runs EVERY FRAME (60fps) — independent of game logic tick
     const activePickups = this.getActivePickups();
     if (this.levelConfig.universeId === 'castle') this.drawCastlePickupGlow(activePickups, time);
+    if (this.levelConfig.universeId === 'paperboy') this.drawPaperboyTargetGlow(time);
     this.pickupRenderer.draw(activePickups, this.layout, this.colorAccent, time);
 
     // Fixed-step accumulator — game logic runs at speedMs interval regardless of FPS
@@ -471,6 +478,35 @@ export class GameScene extends Phaser.Scene {
       glow.fillCircle(px, py, cs * (0.62 + 0.06 * pulse));
       glow.lineStyle(Math.max(1, Math.floor(cs * 0.06)), 0xfff0a8, 0.32 + 0.08 * pulse);
       glow.strokeCircle(px, py, cs * 0.52);
+    }
+  }
+
+  private drawPaperboyTargetGlow(time: number): void {
+    const glow = this.deliveryTargetGlow;
+    if (!glow) return;
+    glow.clear();
+    const entities = this.mechanic.getExtraEntities();
+    const targets = entities.filter(e => e.type === 'deliveryTarget' || e.type === 'bossTarget');
+    if (targets.length === 0) return;
+    const cs = this.layout.cellSize;
+    const pulse = Math.sin(time / 350) * 0.5 + 0.5;
+    for (const t of targets) {
+      const { px, py } = cellToPixel(this.layout, t.cell.col, t.cell.row);
+      if (t.state === 'highlighted') {
+        // Strong pulsing yellow halo — "deliver here now!"
+        glow.fillStyle(0xf1c40f, 0.16 + 0.08 * pulse);
+        glow.fillCircle(px, py, cs * (0.96 + 0.06 * pulse));
+        glow.fillStyle(0xf1c40f, 0.28 + 0.14 * pulse);
+        glow.fillCircle(px, py, cs * (0.78 + 0.10 * pulse));
+        glow.lineStyle(Math.max(2, Math.floor(cs * 0.10)), 0xffffff, 0.72 + 0.18 * pulse);
+        glow.strokeCircle(px, py, cs * (0.60 + 0.06 * pulse));
+      } else {
+        // Subtle idle green marker — "target location, grab paper first"
+        glow.fillStyle(0x27ae60, 0.18 + 0.06 * pulse);
+        glow.fillCircle(px, py, cs * 0.64);
+        glow.lineStyle(Math.max(1, Math.floor(cs * 0.08)), 0x27ae60, 0.52 + 0.18 * pulse);
+        glow.strokeCircle(px, py, cs * 0.52);
+      }
     }
   }
 
