@@ -74,5 +74,5 @@ Aucun document complémentaire.
 - **Tests headless** : captures impossible en automatique (WebGL). Validation manuelle requise pour les visuels.
 
 ## Liens GitHub
-- Commit : à compléter après push
+- Commit : https://github.com/Ya7o/snake/commit/fb6f784
 - PR : N/A (merge direct sur main)
