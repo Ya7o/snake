@@ -60,7 +60,7 @@ export class PaperboyDeliveryMechanic extends BaseMechanic {
       }
     }
     this.hasPaper = true;
-    return {};
+    return { score: 0 }; // no point on pickup — only on delivery
   }
 
   getDeliveryPickups(): Cell[] {
