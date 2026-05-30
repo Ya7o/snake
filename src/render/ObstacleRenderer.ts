@@ -18,6 +18,20 @@ const OBSTACLE_IMAGE_TYPES = new Set([
 ]);
 
 const OPENMOJI_GAMEPLAY_ICON_SCALE = 1.9;
+const DEFAULT_RUNTIME_OBSTACLE_ICON_SCALE = 1.25;
+const DEFAULT_RUNTIME_BOSS_ICON_SCALE = 1.55;
+
+const RUNTIME_OBSTACLE_ICON_SCALE_BY_TYPE: Record<string, number> = {
+  trafficBlock: 1.45,
+  routeObstacle: 1.35,
+};
+
+const RUNTIME_BOSS_ICON_SCALE_BY_TYPE: Record<string, number> = {
+  crimeLord: 1.68,
+  finalChallenger: 1.62,
+  turboRival: 1.7,
+  chaosObstacle: 1.35,
+};
 
 type EntityTextureResolver = (entity: ExtraEntity) => string | null;
 
@@ -149,7 +163,7 @@ export class ObstacleRenderer {
           img = this.scene.add.image(px, py, bossKey!).setDepth(this.depth + 1).setBlendMode(this.bossBlendMode);
           this.bossImages.set(imgId, img);
         }
-        this.fitImageInCell(img, bossKey!, size * 1.05);
+        this.fitImageInCell(img, bossKey!, cs * this.bossIconScale(e));
         img.setPosition(px, py).setVisible(true);
         if (e.type === 'witchMirror') {
           img.setAlpha(this.witchMirrorAlpha(e.state));
@@ -166,7 +180,8 @@ export class ObstacleRenderer {
         }
         const img = this.obstaclePool[obsPoolIdx];
         img.setTexture(obstacleKey!).setPosition(px, py)
-          .setDisplaySize(cs * 0.74, cs * 0.74).setAlpha(alpha).setVisible(true);
+          .setAlpha(alpha).setVisible(true);
+        this.fitImageInCell(img, obstacleKey!, cs * this.obstacleIconScale(e));
         if (e.type === 'blinkWall') {
           this.drawBlinkWallTelegraph(px, py, size, color, e.state);
         }
@@ -197,6 +212,14 @@ export class ObstacleRenderer {
     const fh = frame?.height ?? img.height;
     const ratio = fw > 0 && fh > 0 ? Math.min(maxSize / fw, maxSize / fh) : 1;
     img.setDisplaySize(fw * ratio, fh * ratio);
+  }
+
+  private obstacleIconScale(e: ExtraEntity): number {
+    return RUNTIME_OBSTACLE_ICON_SCALE_BY_TYPE[e.type] ?? DEFAULT_RUNTIME_OBSTACLE_ICON_SCALE;
+  }
+
+  private bossIconScale(e: ExtraEntity): number {
+    return RUNTIME_BOSS_ICON_SCALE_BY_TYPE[e.type] ?? DEFAULT_RUNTIME_BOSS_ICON_SCALE;
   }
 
   private clearObstaclePool(): void {

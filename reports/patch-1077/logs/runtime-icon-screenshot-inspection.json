@@ -1,0 +1,183 @@
+[
+  {
+    "screenshot": "reports/patch-1077/screenshots/paperboy_mailbox_reference.png",
+    "levelId": "paperboy_normal",
+    "active": [
+      "GameScene"
+    ],
+    "cellSize": 23,
+    "images": [
+      {
+        "texture": "openmoji-paperboy-mailbox",
+        "x": 161,
+        "y": 203,
+        "displayWidth": 43.7,
+        "displayHeight": 43.7,
+        "depth": 41
+      },
+      {
+        "texture": "openmoji-paperboy-mailbox",
+        "x": 322,
+        "y": 571,
+        "displayWidth": 43.7,
+        "displayHeight": 43.7,
+        "depth": 41
+      },
+      {
+        "texture": "openmoji-paperboy-roadblock",
+        "x": 184,
+        "y": 387,
+        "displayWidth": 43.7,
+        "displayHeight": 43.7,
+        "depth": 41
+      },
+      {
+        "texture": "openmoji-paperboy-roadblock",
+        "x": 230,
+        "y": 226,
+        "displayWidth": 43.7,
+        "displayHeight": 43.7,
+        "depth": 41
+      },
+      {
+        "texture": "openmoji-paperboy-roadblock",
+        "x": 161,
+        "y": 410,
+        "displayWidth": 43.7,
+        "displayHeight": 43.7,
+        "depth": 41
+      },
+      {
+        "texture": "rt_paperboy_pickup",
+        "x": 322,
+        "y": 479,
+        "displayWidth": 43.7,
+        "displayHeight": 32.6,
+        "depth": 42
+      }
+    ]
+  },
+  {
+    "screenshot": "reports/patch-1077/screenshots/paperboy_obstacles_after.png",
+    "levelId": "paperboy_boss",
+    "active": [
+      "TitleScene",
+      "GameScene"
+    ],
+    "cellSize": 23,
+    "images": [
+      {
+        "texture": "rt_paperboy_boss",
+        "x": 253,
+        "y": 433,
+        "displayWidth": 31.1,
+        "displayHeight": 28.3,
+        "depth": 41
+      },
+      {
+        "texture": "rt_paperboy_boss",
+        "x": 46,
+        "y": 226,
+        "displayWidth": 31.1,
+        "displayHeight": 28.3,
+        "depth": 41
+      },
+      {
+        "texture": "openmoji-paperboy-mailbox",
+        "x": 345,
+        "y": 157,
+        "displayWidth": 43.7,
+        "displayHeight": 43.7,
+        "depth": 41
+      },
+      {
+        "texture": "openmoji-paperboy-mailbox",
+        "x": 69,
+        "y": 433,
+        "displayWidth": 43.7,
+        "displayHeight": 43.7,
+        "depth": 41
+      },
+      {
+        "texture": "rt_paperboy_pickup",
+        "x": 345,
+        "y": 134,
+        "displayWidth": 43.7,
+        "displayHeight": 32.6,
+        "depth": 42
+      }
+    ]
+  },
+  {
+    "screenshot": "reports/patch-1077/screenshots/outrun_icons_after.png",
+    "levelId": "outrun_normal",
+    "active": [
+      "GameScene"
+    ],
+    "cellSize": 19,
+    "images": [
+      {
+        "texture": "rt_outrun_pickup",
+        "x": 281,
+        "y": 378,
+        "displayWidth": 44.7,
+        "displayHeight": 44.7,
+        "depth": 42
+      }
+    ]
+  },
+  {
+    "screenshot": "reports/patch-1077/screenshots/shinobi_icons_after.png",
+    "levelId": "shinobi_normal",
+    "active": [
+      "GameScene"
+    ],
+    "cellSize": 23,
+    "images": [
+      {
+        "texture": "rt_shinobi_pickup",
+        "x": 276,
+        "y": 180,
+        "displayWidth": 47.2,
+        "displayHeight": 47.2,
+        "depth": 42
+      }
+    ]
+  },
+  {
+    "screenshot": "reports/patch-1077/screenshots/castle_icons_non_regression.png",
+    "levelId": "castle_normal",
+    "active": [
+      "GameScene"
+    ],
+    "cellSize": 18,
+    "images": [
+      {
+        "texture": "openmoji-castle-magic",
+        "x": 312,
+        "y": 437,
+        "displayWidth": 34.2,
+        "displayHeight": 34.2,
+        "depth": 42
+      }
+    ]
+  },
+  {
+    "screenshot": "reports/patch-1077/screenshots/sonic_icons_non_regression.png",
+    "levelId": "sonic_normal",
+    "active": [
+      "GameScene"
+    ],
+    "cellSize": 23,
+    "images": [
+      {
+        "texture": "rt_sonic_pickup",
+        "x": 276,
+        "y": 283,
+        "displayWidth": 43.7,
+        "displayHeight": 43.7,
+        "depth": 42
+      }
+    ]
+  }
+]

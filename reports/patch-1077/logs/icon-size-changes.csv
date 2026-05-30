@@ -1,0 +1,17 @@
+universe,object,type,before,after,reason
+sonic,bumper,obstacle runtime PNG,cs * 0.74 estimated / audit-based,cs * 1.25,Make hazard readable without matching pickup size blindly
+streets,crowd blocker,obstacle runtime PNG,cs * 0.74 estimated / audit-based,cs * 1.25,Make hazard readable without matching pickup size blindly
+fighter,charge marker,obstacle runtime PNG,cs * 0.74 estimated / audit-based,cs * 1.25,Make hazard readable without matching pickup size blindly
+outrun,traffic car,obstacle runtime PNG,cs * 0.74 estimated / audit-based,cs * 1.45,Wide car asset was critical on mobile and needs stronger scale
+shinobi,decoy fallback,obstacle/procedural non-PNG,no PNG scale changed,no PNG scale changed,Focus target remains procedural/pickup path and was not forced to a uniform size
+kombat,fatal zone,obstacle runtime PNG,cs * 0.74 estimated / audit-based,cs * 1.25,Make hazard readable without matching pickup size blindly
+paperboy,mailbox,entity OpenMoji,cs * 1.9,cs * 1.9,Reference size preserved
+paperboy,roadblock,entity OpenMoji,cs * 1.9,cs * 1.9,Readable normal obstacle preserved
+paperboy,routeObstacle fallback dog,obstacle runtime PNG fallback,cs * 0.74 estimated / audit-based,cs * 1.35,If SVG fallback occurs the dog is no longer tiny
+sonic,loop serpent,boss runtime PNG,about cs * 1.0 estimated / audit-based,cs * 1.55,Boss class made more visible than one cell
+streets,crime lord,boss runtime PNG,about cs * 1.0 estimated / audit-based,cs * 1.68,Portrait boss asset needs extra max size
+fighter,final challenger,boss runtime PNG,about cs * 1.0 estimated / audit-based,cs * 1.62,Portrait boss asset needs extra max size
+outrun,turbo rival,boss runtime PNG,about cs * 1.0 estimated / audit-based,cs * 1.70,Wide boss asset was critical on mobile
+shinobi,shadow ninja,boss runtime PNG,about cs * 1.0 estimated / audit-based,cs * 1.55,Boss class made more visible than one cell
+kombat,dragon gate,boss runtime PNG,about cs * 1.0 estimated / audit-based,cs * 1.55,Boss class made more visible than one cell
+paperboy,neighborhood chaos obstacle,boss hazard runtime PNG,about cs * 1.0 estimated / audit-based,cs * 1.35,Mobile boss hazards improved while staying below mailbox/pickup size

@@ -1,0 +1,38 @@
+{
+  "levelId": "outrun_normal",
+  "cellSize": 19,
+  "images": [
+    {
+      "texture": "rt_outrun_obstacle",
+      "x": 129,
+      "y": 322,
+      "displayWidth": 27.6,
+      "displayHeight": 17.2,
+      "depth": 41
+    },
+    {
+      "texture": "rt_outrun_obstacle",
+      "x": 205,
+      "y": 417,
+      "displayWidth": 27.6,
+      "displayHeight": 17.2,
+      "depth": 41
+    },
+    {
+      "texture": "rt_outrun_obstacle",
+      "x": 281,
+      "y": 512,
+      "displayWidth": 27.6,
+      "displayHeight": 17.2,
+      "depth": 41
+    },
+    {
+      "texture": "rt_outrun_pickup",
+      "x": 129,
+      "y": 340,
+      "displayWidth": 44.7,
+      "displayHeight": 44.7,
+      "depth": 42
+    }
+  ]
+}
