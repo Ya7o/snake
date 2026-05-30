@@ -37,5 +37,5 @@ Ce patch ne modifie pas le jeu. Il prépare l'implémentation.
 
 ## Liens GitHub
 
-- Commit :
-- PR :
+- Commit : PATCH 1072 — Design minimal score system
+- PR : non créée
