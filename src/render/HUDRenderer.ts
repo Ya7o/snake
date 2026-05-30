@@ -4,7 +4,6 @@ import { GAMEPLAY_HUD, GAMEPLAY_LAYERS } from '../ui/RuntimeUILayout';
 import { ARCADE_FONT, UI_FONT } from './VfxUtils';
 
 export class HUDRenderer {
-  private bg: Phaser.GameObjects.Rectangle;
   private gfx: Phaser.GameObjects.Graphics;
   private universeTxt: Phaser.GameObjects.Text;
   private ruleTxt: Phaser.GameObjects.Text;
@@ -20,11 +19,6 @@ export class HUDRenderer {
     const w = scene.scale.width;
     const hudH = GAMEPLAY_HUD.HEIGHT;
     const accentHex = parseInt(accentColor.replace('#', ''), 16);
-
-    // Opaque dark strip
-    this.bg = scene.add
-      .rectangle(w / 2, hudH / 2, w, hudH, 0x06020e, 1.0)
-      .setDepth(GAMEPLAY_LAYERS.HUD_STRIP);
 
     // Capsule geometry (3 zones: left · center · right)
     const margin = 5;
@@ -65,10 +59,6 @@ export class HUDRenderer {
     this.gfx.fillRoundedRect(rightX, capY, rightW, capH, radius);
     this.gfx.lineStyle(2, accentHex, 0.88);
     this.gfx.strokeRoundedRect(rightX, capY, rightW, capH, radius);
-
-    // Thin accent rule under the full strip
-    this.gfx.lineStyle(1, accentHex, 0.28);
-    this.gfx.lineBetween(0, hudH, w, hudH);
 
     const textY = hudH / 2;
 
@@ -119,7 +109,6 @@ export class HUDRenderer {
   }
 
   destroy(): void {
-    this.bg.destroy();
     this.gfx.destroy();
     this.universeTxt.destroy();
     this.ruleTxt.destroy();

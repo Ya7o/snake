@@ -44,11 +44,11 @@ const FRAME_GRID_WIDTH: Record<string, number> = {
   paperboy: 0.94,
 };
 const FRAME_GRID_Y_BIAS: Record<string, number> = {
-  castle: 0.38,
-  sonic: 0.18,
+  castle: 0.38,   // intentional — specific frame + 26-row grid
+  sonic: 0.22,
   streets: 0.22,
   fighter: 0.22,
-  outrun: 0.42,
+  outrun: 0.42,   // intentional — cockpit frame positions grid lower
   shinobi: 0.22,
   kombat: 0.22,
   paperboy: 0.22,
