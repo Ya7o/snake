@@ -94,6 +94,31 @@ export class ClearScene extends Phaser.Scene {
     const L = RESULT_SCREEN_LAYOUT;
     const CT = CASTLE_RESULT_THEME;
     const buttons = getUniverseButtons(level?.universeId ?? 'castle');
+    const isShortPortrait = H < 700 && H > W;
+    const actionTextY = H * (isShortPortrait ? 0.535 : 0.555);
+    const continueButtonY = H * (isShortPortrait ? 0.625 : 0.635);
+    const replayButtonY = H * (isShortPortrait ? 0.725 : 0.725);
+    const mapButtonY = H * (isShortPortrait ? 0.815 : 0.815);
+    const secondaryButtonH = Math.min(42, Math.max(36, Math.floor(H * 0.05)));
+    const addFittedText = (
+      x: number,
+      y: number,
+      text: string,
+      fontSize: number,
+      maxWidth: number,
+      style: Phaser.Types.GameObjects.Text.TextStyle,
+    ): Phaser.GameObjects.Text => {
+      const label = this.add.text(x, y, text, {
+        ...style,
+        fontSize: `${fontSize}px`,
+      }).setOrigin(0.5).setDepth(6);
+      let fittedFont = fontSize;
+      while (label.width > maxWidth && fittedFont > 10) {
+        fittedFont -= 1;
+        label.setFontSize(fittedFont);
+      }
+      return label;
+    };
 
     // Success title
     const titleFontSize = Math.min(22, Math.floor(W * 0.058));
@@ -167,39 +192,39 @@ export class ClearScene extends Phaser.Scene {
     const bestScore = Math.max(0, Math.floor(data?.bestScore ?? storedBest));
     const previousBest = Math.max(0, Math.floor(data?.previousBest ?? storedBest));
     const isNewRecord = data?.isNewRecord ?? (score > previousBest && score === bestScore);
-    const scoreY = H * 0.405;
-    const scoreFont = Math.min(16, Math.floor(W * 0.041));
-    const recordFont = Math.min(12, Math.floor(W * 0.031));
+    const scoreY = H * (isShortPortrait ? 0.39 : 0.405);
+    const scoreFont = Math.min(16, Math.floor(W * 0.039));
+    const recordFont = Math.min(12, Math.floor(W * 0.03));
+    const scorePanelW = Math.min(340, W * 0.78);
+    const scorePanelH = isNewRecord ? 62 : 46;
+    const scoreMaxTextW = scorePanelW - 24;
     const scorePanel = this.add.graphics().setDepth(5);
     scorePanel.fillStyle(0x000000, 0.46);
-    scorePanel.fillRoundedRect(W * 0.18, scoreY - 27, W * 0.64, isNewRecord ? 60 : 44, 6);
+    scorePanel.fillRoundedRect(W / 2 - scorePanelW / 2, scoreY - scorePanelH / 2, scorePanelW, scorePanelH, 6);
     scorePanel.lineStyle(1, accentHex, 0.46);
-    scorePanel.strokeRoundedRect(W * 0.18, scoreY - 27, W * 0.64, isNewRecord ? 60 : 44, 6);
-    this.add.text(W / 2, scoreY - 10, `SCORE : ${score}`, {
+    scorePanel.strokeRoundedRect(W / 2 - scorePanelW / 2, scoreY - scorePanelH / 2, scorePanelW, scorePanelH, 6);
+    addFittedText(W / 2, scoreY - 12, `SCORE : ${score}`, scoreFont, scoreMaxTextW, {
       fontFamily: UI_FONT,
-      fontSize: `${scoreFont}px`,
       fontStyle: '800',
       color: '#ffffff',
       stroke: '#000000',
       strokeThickness: 2,
-    }).setOrigin(0.5).setDepth(6);
-    this.add.text(W / 2, scoreY + 10, `BEST : ${bestScore}`, {
+    });
+    addFittedText(W / 2, scoreY + 9, `BEST : ${bestScore}`, scoreFont, scoreMaxTextW, {
       fontFamily: UI_FONT,
-      fontSize: `${scoreFont}px`,
       fontStyle: '800',
       color: isCastle ? CT.titleClear : accentStr,
       stroke: '#000000',
       strokeThickness: 2,
-    }).setOrigin(0.5).setDepth(6);
+    });
     if (isNewRecord) {
-      this.add.text(W / 2, scoreY + 29, 'NOUVEAU RECORD', {
+      addFittedText(W / 2, scoreY + 29, 'NOUVEAU RECORD', recordFont, scoreMaxTextW, {
         fontFamily: UI_FONT,
-        fontSize: `${recordFont}px`,
         fontStyle: '800',
         color: '#ffffff',
         stroke: '#000000',
         strokeThickness: 2,
-      }).setOrigin(0.5).setDepth(6);
+      });
     }
 
     // Next level
@@ -209,21 +234,20 @@ export class ClearScene extends Phaser.Scene {
     const nextLevel = nextNode ? getLevelById(nextNode.levelId) : null;
 
     if (nextLevel) {
-      this.add.text(W / 2, H * L.contextY, nextLevel.name.toUpperCase(), {
+      addFittedText(W / 2, actionTextY, `PROCHAIN : ${nextLevel.name.toUpperCase()}`, Math.min(14, Math.floor(W * 0.036)), W * 0.82, {
         fontFamily: UI_FONT,
-        fontSize: `${Math.min(17, Math.floor(W * 0.044))}px`,
         fontStyle: '700',
         color: '#ffffff',
         stroke: '#000000',
-        strokeThickness: 3,
-      }).setOrigin(0.5).setDepth(6);
+        strokeThickness: 2,
+      });
 
       addMobileButton(this, {
         x: W / 2,
-        y: H * L.primaryButtonY,
+        y: continueButtonY,
         width: Math.min(260, W * L.primaryButtonW),
         height: L.primaryButtonH,
-        label: isCastle ? 'CONTINUER' : 'SUIVANT',
+        label: 'CONTINUER',
         primary: true,
         fillColor: buttons.primaryFill,
         pressedFillColor: buttons.primaryPressed,
@@ -241,8 +265,8 @@ export class ClearScene extends Phaser.Scene {
       const endBlockH = endFontSize * 2 + 4 + 16;
       const endBacking = this.add.graphics().setDepth(5);
       endBacking.fillStyle(0x000000, 0.48);
-      endBacking.fillRoundedRect(W * 0.12, H * L.contextY - endBlockH / 2, W * 0.76, endBlockH, 6);
-      this.add.text(W / 2, H * L.contextY, 'TOUS LES MONDES\nTERMINÉS !', {
+      endBacking.fillRoundedRect(W * 0.12, actionTextY - endBlockH / 2, W * 0.76, endBlockH, 6);
+      this.add.text(W / 2, actionTextY, 'TOUS LES MONDES\nTERMINES !', {
         fontFamily: UI_FONT,
         fontSize: `${endFontSize}px`,
         fontStyle: '800',
@@ -254,17 +278,36 @@ export class ClearScene extends Phaser.Scene {
       }).setOrigin(0.5).setDepth(6);
     }
 
-    // Separator between primary and secondary buttons — mirrors GameOverScene layout
+    // Separator between continue and secondary actions.
     const sep = this.add.graphics().setDepth(5);
     sep.lineStyle(1, buttons.primaryFill, 0.35);
-    sep.lineBetween(W * 0.2, H * L.separatorY, W * 0.8, H * L.separatorY);
+    sep.lineBetween(W * 0.2, H * 0.68, W * 0.8, H * 0.68);
+
+    // Replay button
+    addMobileButton(this, {
+      x: W / 2,
+      y: replayButtonY,
+      width: Math.min(230, W * 0.5),
+      height: secondaryButtonH,
+      label: 'REJOUER',
+      fillColor: buttons.secondaryFill,
+      pressedFillColor: buttons.secondaryPressed,
+      strokeColor: buttons.secondaryStroke,
+      textColor: buttons.secondaryText,
+      onClick: () => {
+        this.cameras.main.fadeOut(200, 0, 0, 0);
+        this.cameras.main.once('camerafadeoutcomplete', () => {
+          this.scene.start(SCENES.GAME, { levelId });
+        });
+      },
+    });
 
     // Map button
     addMobileButton(this, {
       x: W / 2,
-      y: H * L.secondaryButtonY,
+      y: mapButtonY,
       width: Math.min(210, W * L.secondaryButtonW),
-      height: L.secondaryButtonH,
+      height: secondaryButtonH,
       label: 'CARTE',
       fillColor: buttons.secondaryFill,
       pressedFillColor: buttons.secondaryPressed,

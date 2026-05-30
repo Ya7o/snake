@@ -1,0 +1,97 @@
+{
+  "clear normal shows continue/replay/map": "yes",
+  "boss clear shows replay": "yes",
+  "replay launches same levelId": "yes",
+  "best score preserved": "yes",
+  "score runtime reset on replay": "yes",
+  "no layout overflow detected": "yes",
+  "replayState": {
+    "active": [
+      "GameScene"
+    ],
+    "levelId": "sonic_boss",
+    "runtimeScore": 0,
+    "storedBest": 2200
+  },
+  "captures": [
+    {
+      "name": "clear_normal_mobile_replay",
+      "levelId": "castle_normal",
+      "screenshot": "reports/patch-1076/screenshots/clear_normal_mobile_replay.png",
+      "W": 390,
+      "H": 844,
+      "labels": [
+        "NIVEAU REUSSI",
+        "NIVEAU REUSSI",
+        "BOSS DU CHÂTEAU DÉBLOQUÉ",
+        "SCORE : 1240",
+        "BEST : 1240",
+        "NOUVEAU RECORD",
+        "PROCHAIN : LA SORCIÈRE AU MIROIR",
+        "CONTINUER",
+        "REJOUER",
+        "CARTE"
+      ],
+      "overflowTexts": []
+    },
+    {
+      "name": "boss_clear_mobile_replay",
+      "levelId": "sonic_boss",
+      "screenshot": "reports/patch-1076/screenshots/boss_clear_mobile_replay.png",
+      "W": 390,
+      "H": 844,
+      "labels": [
+        "BOSS VAINCU",
+        "BOSS VAINCU",
+        "BOSS VAINCU !",
+        "SCORE : 1840",
+        "BEST : 2200",
+        "PROCHAIN : BAGARRE EN RUELLE",
+        "CONTINUER",
+        "REJOUER",
+        "CARTE"
+      ],
+      "overflowTexts": []
+    },
+    {
+      "name": "clear_new_record_mobile_replay",
+      "levelId": "castle_normal",
+      "screenshot": "reports/patch-1076/screenshots/clear_new_record_mobile_replay.png",
+      "W": 360,
+      "H": 640,
+      "labels": [
+        "NIVEAU REUSSI",
+        "NIVEAU REUSSI",
+        "BOSS DU CHÂTEAU DÉBLOQUÉ",
+        "SCORE : 987654",
+        "BEST : 987654",
+        "NOUVEAU RECORD",
+        "PROCHAIN : LA SORCIÈRE AU MIROIR",
+        "CONTINUER",
+        "REJOUER",
+        "CARTE"
+      ],
+      "overflowTexts": []
+    },
+    {
+      "name": "clear_desktop_replay",
+      "levelId": "castle_normal",
+      "screenshot": "reports/patch-1076/screenshots/clear_desktop_replay.png",
+      "W": 1280,
+      "H": 720,
+      "labels": [
+        "NIVEAU REUSSI",
+        "NIVEAU REUSSI",
+        "BOSS DU CHÂTEAU DÉBLOQUÉ",
+        "SCORE : 1240",
+        "BEST : 1240",
+        "NOUVEAU RECORD",
+        "PROCHAIN : LA SORCIÈRE AU MIROIR",
+        "CONTINUER",
+        "REJOUER",
+        "CARTE"
+      ],
+      "overflowTexts": []
+    }
+  ]
+}
