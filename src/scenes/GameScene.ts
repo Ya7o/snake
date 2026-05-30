@@ -587,9 +587,8 @@ export class GameScene extends Phaser.Scene {
     this.cleared = true;
     const isBoss = this.mechanic instanceof BaseBoss;
     this.runtimeScore += isBoss ? SCORE_VALUES.BOSS_CLEAR : SCORE_VALUES.STAGE_CLEAR;
-    const timeBonus = isBoss
-      ? 0
-      : Math.floor(this.tickCount * this.levelConfig.speedMs / 1000) * SCORE_VALUES.TIME_SECOND;
+    const remainingMs = Math.max(0, 120_000 - this.tickCount * this.levelConfig.speedMs);
+    const timeBonus = isBoss ? 0 : Math.floor(remainingMs / 1000) * SCORE_VALUES.TIME_SECOND;
     this.runtimeScore += timeBonus;
     if (isBoss) {
       AudioSystem.bossClear();
