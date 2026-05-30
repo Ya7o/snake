@@ -42,3 +42,59 @@ Aucune. Le HTML est le livrable visuel principal.
 ## Liens GitHub
 
 - Commit : 347a25d
+
+---
+
+## Révision 1090B-v2
+
+**Date** : 2026-05-30
+
+### Objectif de la révision
+
+Refaire complètement le HTML de sélection pour afficher :
+1. L'icône actuelle (colonne ACTUEL) pour chaque type d'icône
+2. Tous les types d'icônes réels identifiés dans le code source (pas seulement 4)
+
+### Types d'icônes réels identifiés : 27 types uniques, 36 instances sur 16 niveaux
+
+| Niveau | Types d'icônes affichés |
+|--------|------------------------|
+| castle_normal | pickup, obstacle_blinkWall |
+| castle_boss | boss_witchMirror, pickup_weakpoint |
+| sonic_normal | pickup_ring, obstacle_chainRing |
+| sonic_boss | boss_loopSerpent, pickup_ring |
+| streets_normal | pickup_bonus, obstacle_crowdBlocker |
+| streets_boss | boss_crimeLord, pickup_bonus |
+| fighter_normal | pickup_energy, obstacle_sparZone, indicator_chargeGlow |
+| fighter_boss | boss_finalChallenger, pickup_energy |
+| outrun_normal | pickup_checkpoint, obstacle_trafficBlock |
+| outrun_boss | boss_turboRival, special_turboZone, pickup_checkpoint |
+| shinobi_normal | pickup_shuriken, obstacle_focusDecoy |
+| shinobi_boss | boss_shadowNinja, pickup_shuriken |
+| kombat_normal | pickup_finishToken, obstacle_fatalZone |
+| kombat_boss | boss_dragonGate, pickup_finishToken |
+| paperboy_normal | pickup_newspaper, target_deliveryTarget, obstacle_routeObstacle |
+| paperboy_boss | boss_chaosObstacle, target_bossTarget, pickup_newspaper |
+
+### Icône actuelle affichée
+
+Oui. Colonne 0 de chaque rangée (badge ambre ACTUEL) :
+- Source exacte (procedural / runtime PNG / OpenMoji inline)
+- Description de la forme dessinée ou de l'asset chargé
+- Valeur exacte dans le code (chemin fichier, nom de fonction)
+
+### Fichiers modifiés
+
+- reports/patch-1090b/icon-candidate-selection-board.html — refait intégralement (119 KB, 36 types x 6 colonnes)
+- reports/patch-1090b/build_board.py — script Python de génération (conservé)
+- reports/patch-1090b/review.md — cette mise à jour
+
+### Tests
+
+- npm run check : OK (aucune modification src/ ni package.json)
+- Code/assets src/ inchangés : oui
+- SVG manquants : 0 (82 SVG candidats présents dans preview-assets/)
+
+### Commit HEAD au moment du refactoring
+
+72db133
