@@ -49,11 +49,14 @@ export class SonicRingsMechanic extends BaseMechanic {
     if (ring.index === this.chainIndex) {
       this.chainIndex++;
       if (this.chainIndex >= this.chain.length) {
-        // Chain complete — activate speed boost then spawn new chain
-        this.boostTicksLeft = BOOST_TICKS;
+        // Last ring collected — spawn new chain (boost already running)
         this.spawnChain();
       } else {
         for (const r of this.chain) r.active = r.index === this.chainIndex;
+        // Boost fires the moment the 4th (last) ring becomes active
+        if (this.chainIndex === this.chain.length - 1) {
+          this.boostTicksLeft = BOOST_TICKS;
+        }
       }
     } else {
       // Wrong order — restart chain, no boost

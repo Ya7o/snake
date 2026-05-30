@@ -3,7 +3,7 @@ import { Cell, cellKey } from '../core/Grid';
 import { Grid } from '../core/Grid';
 
 // Charge move: maintain direction for bonus; spar zones refresh every ~3 s
-const SPAR_COUNT = 30;          // ×10 of original 3
+const SPAR_COUNT = 10;          // 30 ÷ 3
 const SPAR_RESPAWN_TICKS = 18;  // ~3 s at 165 ms/tick
 
 export class FighterChargeMechanic extends BaseMechanic {
