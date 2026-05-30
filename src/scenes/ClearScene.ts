@@ -5,9 +5,14 @@ import { UNIVERSES } from '../config/universes';
 import { MAP_NODES } from '../config/mapNodes';
 import { RESULT_SCREEN_LAYOUT, CASTLE_RESULT_THEME, getUniverseButtons } from '../ui/RuntimeUILayout';
 import { ARCADE_FONT, UI_FONT, addMobileButton, drawConsoleFrame, flashScreen } from '../render/VfxUtils';
+import { SaveSystem } from '../systems/SaveSystem';
 
 export interface ClearData {
   levelId: string;
+  score?: number;
+  bestScore?: number;
+  previousBest?: number;
+  isNewRecord?: boolean;
 }
 
 export class ClearScene extends Phaser.Scene {
@@ -123,7 +128,7 @@ export class ClearScene extends Phaser.Scene {
     });
 
     // Universe name (non-Castle only)
-    if (universe && !isCastle) {
+    if (universe && !isCastle && level?.type !== 'boss') {
       this.add.text(W / 2, H * L.subtitleY, universe.name.toUpperCase(), {
         fontFamily: UI_FONT,
         fontSize: `${Math.min(13, Math.floor(W * 0.034))}px`,
@@ -147,13 +152,53 @@ export class ClearScene extends Phaser.Scene {
     if (level?.type === 'boss' && !subTitle) {
       const badgeGfx = this.add.graphics().setDepth(5);
       badgeGfx.fillStyle(0xe74c3c, 0.9);
-      badgeGfx.fillRoundedRect(W / 2 - 70, H * L.subtitleY + 8, 140, 22, 4);
+      badgeGfx.fillRoundedRect(W / 2 - 70, H * L.subtitleY - 11, 140, 22, 4);
 
-      this.add.text(W / 2, H * L.subtitleY + 19, 'BOSS VAINCU !', {
+      this.add.text(W / 2, H * L.subtitleY, 'BOSS VAINCU !', {
         fontFamily: UI_FONT,
         fontSize: '13px',
         fontStyle: '800',
         color: '#ffffff',
+      }).setOrigin(0.5).setDepth(6);
+    }
+
+    const score = Math.max(0, Math.floor(data?.score ?? 0));
+    const storedBest = SaveSystem.getBestScore(levelId);
+    const bestScore = Math.max(0, Math.floor(data?.bestScore ?? storedBest));
+    const previousBest = Math.max(0, Math.floor(data?.previousBest ?? storedBest));
+    const isNewRecord = data?.isNewRecord ?? (score > previousBest && score === bestScore);
+    const scoreY = H * 0.405;
+    const scoreFont = Math.min(16, Math.floor(W * 0.041));
+    const recordFont = Math.min(12, Math.floor(W * 0.031));
+    const scorePanel = this.add.graphics().setDepth(5);
+    scorePanel.fillStyle(0x000000, 0.46);
+    scorePanel.fillRoundedRect(W * 0.18, scoreY - 27, W * 0.64, isNewRecord ? 60 : 44, 6);
+    scorePanel.lineStyle(1, accentHex, 0.46);
+    scorePanel.strokeRoundedRect(W * 0.18, scoreY - 27, W * 0.64, isNewRecord ? 60 : 44, 6);
+    this.add.text(W / 2, scoreY - 10, `SCORE : ${score}`, {
+      fontFamily: UI_FONT,
+      fontSize: `${scoreFont}px`,
+      fontStyle: '800',
+      color: '#ffffff',
+      stroke: '#000000',
+      strokeThickness: 2,
+    }).setOrigin(0.5).setDepth(6);
+    this.add.text(W / 2, scoreY + 10, `BEST : ${bestScore}`, {
+      fontFamily: UI_FONT,
+      fontSize: `${scoreFont}px`,
+      fontStyle: '800',
+      color: isCastle ? CT.titleClear : accentStr,
+      stroke: '#000000',
+      strokeThickness: 2,
+    }).setOrigin(0.5).setDepth(6);
+    if (isNewRecord) {
+      this.add.text(W / 2, scoreY + 29, 'NOUVEAU RECORD', {
+        fontFamily: UI_FONT,
+        fontSize: `${recordFont}px`,
+        fontStyle: '800',
+        color: '#ffffff',
+        stroke: '#000000',
+        strokeThickness: 2,
       }).setOrigin(0.5).setDepth(6);
     }
 
