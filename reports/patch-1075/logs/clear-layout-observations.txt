@@ -1,0 +1,62 @@
+PATCH 1075 Clear/Boss Clear layout observations
+Capture method: Playwright Chromium page screenshots, Phaser scenes started through window.__SNAKE_GAME__ with real ClearScene/GameOverScene rendering.
+Mobile viewport: 390x844, isMobile=true, hasTouch=true. Desktop viewport: 1280x720. URL included ?unlockAll=1.
+
+## clear_normal_mobile_score
+Scene: ClearScene; viewport: 390x844
+Texts:
+- "NIVEAU REUSSI" bbox=55,195,286x23 right=341 bottom=218 outX=false outY=false
+- "NIVEAU REUSSI" bbox=52,191,287x24 right=339 bottom=215 outX=false outY=false
+- "BOSS DU CHÂTEAU DÉBLOQUÉ" bbox=51,293,289x22 right=340 bottom=315 outX=false outY=false
+- "SCORE : 1500" bbox=137,321,117x22 right=254 bottom=343 outX=false outY=false
+- "BEST : 1500" bbox=144,341,103x22 right=247 bottom=363 outX=false outY=false
+- "NOUVEAU RECORD" bbox=131,363,128x17 right=259 bottom=380 outX=false outY=false
+- "LA SORCIÈRE AU MIROIR" bbox=77,385,237x25 right=314 bottom=410 outX=false outY=false
+Overlaps: NIVEAU REUSSI <> NIVEAU REUSSI area=5680 | SCORE : 1500 <> BEST : 1500 area=206
+
+## boss_clear_mobile_score
+Scene: ClearScene; viewport: 390x844
+Texts:
+- "BOSS VAINCU" bbox=77,195,242x23 right=319 bottom=218 outX=false outY=false
+- "BOSS VAINCU" bbox=73,190,245x26 right=318 bottom=216 outX=false outY=false
+- "BOSS VAINCU !" bbox=140,297,110x15 right=250 bottom=312 outX=false outY=false
+- "SCORE : 2100" bbox=137,321,117x22 right=254 bottom=343 outX=false outY=false
+- "BEST : 2100" bbox=144,341,103x22 right=247 bottom=363 outX=false outY=false
+- "NOUVEAU RECORD" bbox=131,363,128x17 right=259 bottom=380 outX=false outY=false
+- "BAGARRE EN RUELLE" bbox=93,385,204x25 right=297 bottom=410 outX=false outY=false
+Overlaps: BOSS VAINCU <> BOSS VAINCU area=5061 | SCORE : 2100 <> BEST : 2100 area=206
+
+## gameover_mobile_score
+Scene: GameOverScene; viewport: 390x844
+Texts:
+- "PERDU" bbox=133,193,130x27 right=263 bottom=220 outX=false outY=false
+- "PERDU" bbox=130,190,130x27 right=260 bottom=217 outX=false outY=false
+- "ENCORE UNE FOIS" bbox=93,292,205x24 right=298 bottom=316 outX=false outY=false
+- "SCORE : 300" bbox=142,323,107x22 right=249 bottom=345 outX=false outY=false
+- "BEST : 900" bbox=149,342,93x22 right=242 bottom=364 outX=false outY=false
+- "ZONE DES ANNEAUX" bbox=97,386,196x22 right=293 bottom=408 outX=false outY=false
+Overlaps: PERDU <> PERDU area=3048 | SCORE : 300 <> BEST : 900 area=279
+
+## clear_desktop_score
+Scene: ClearScene; viewport: 1280x720
+Texts:
+- "NIVEAU REUSSI" bbox=500,165,286x23 right=786 bottom=188 outX=false outY=false
+- "NIVEAU REUSSI" bbox=497,161,287x24 right=784 bottom=185 outX=false outY=false
+- "BOSS DU CHÂTEAU DÉBLOQUÉ" bbox=487,248,306x22 right=793 bottom=270 outX=false outY=false
+- "SCORE : 1500" bbox=578,271,125x22 right=703 bottom=293 outX=false outY=false
+- "BEST : 1500" bbox=585,291,110x22 right=695 bottom=313 outX=false outY=false
+- "NOUVEAU RECORD" bbox=576,313,128x17 right=704 bottom=330 outX=false outY=false
+- "LA SORCIÈRE AU MIROIR" bbox=522,326,237x25 right=759 bottom=351 outX=false outY=false
+Overlaps: NIVEAU REUSSI <> NIVEAU REUSSI area=5680 | SCORE : 1500 <> BEST : 1500 area=220 | NOUVEAU RECORD <> LA SORCIÈRE AU MIROIR area=512
+
+## boss_clear_desktop_score
+Scene: ClearScene; viewport: 1280x720
+Texts:
+- "BOSS VAINCU" bbox=522,165,242x23 right=764 bottom=188 outX=false outY=false
+- "BOSS VAINCU" bbox=518,160,245x26 right=763 bottom=186 outX=false outY=false
+- "BOSS VAINCU !" bbox=585,252,110x15 right=695 bottom=267 outX=false outY=false
+- "SCORE : 2100" bbox=578,271,125x22 right=703 bottom=293 outX=false outY=false
+- "BEST : 2100" bbox=585,291,110x22 right=695 bottom=313 outX=false outY=false
+- "NOUVEAU RECORD" bbox=576,313,128x17 right=704 bottom=330 outX=false outY=false
+- "BAGARRE EN RUELLE" bbox=538,326,204x25 right=742 bottom=351 outX=false outY=false
+Overlaps: BOSS VAINCU <> BOSS VAINCU area=5061 | SCORE : 2100 <> BEST : 2100 area=220 | NOUVEAU RECORD <> BAGARRE EN RUELLE area=512
