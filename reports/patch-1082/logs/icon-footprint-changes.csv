@@ -1,0 +1,18 @@
+universe,object,type,before,after,reason
+sonic,bumper,obstacle runtime PNG,cs * 1.25,cs * 1.70,Footprint harmonized to near-pickup visibility
+streets,crowd blocker,obstacle runtime PNG,cs * 1.25,cs * 1.70,Footprint harmonized to near-pickup visibility
+fighter,charge marker,obstacle runtime PNG,cs * 1.25,cs * 1.70,Footprint harmonized to near-pickup visibility
+outrun,traffic car,obstacle runtime PNG,cs * 1.45,cs * 1.75,Wide car asset kept above default obstacle
+kombat,fatal zone,obstacle runtime PNG,cs * 1.25,cs * 1.70,Footprint harmonized to near-pickup visibility
+castle,blink wall,obstacle runtime PNG,cs * 1.25,cs * 1.70,Footprint harmonized to near-pickup visibility
+paperboy,route obstacle (dog),obstacle runtime PNG,cs * 1.35,cs * 1.70,Aligned with new default obstacle scale
+sonic,ring,pickup runtime PNG,cs * 1.9,cs * 1.9,Reference preserved (no change)
+castle,pickup openmoji,entity OpenMoji,cs * 1.9,cs * 1.9,Reference preserved (no change)
+paperboy,newspaper,pickup runtime PNG,cs * 1.9,cs * 1.9,Reference preserved (no change)
+sonic,loop serpent,boss runtime PNG,cs * 1.55,cs * 1.75,Boss scale raised above new obstacle baseline
+streets,crime lord,boss runtime PNG,cs * 1.68,cs * 1.82,Portrait boss kept above obstacle scale
+fighter,final challenger,boss runtime PNG,cs * 1.62,cs * 1.78,Portrait boss kept above obstacle scale
+outrun,turbo rival,boss runtime PNG,cs * 1.70,cs * 1.82,Wide boss kept above obstacle scale
+shinobi,shadow ninja,boss runtime PNG,cs * 1.55,cs * 1.75,Boss scale raised above new obstacle baseline
+kombat,dragon gate,boss runtime PNG,cs * 1.55,cs * 1.75,Boss scale raised above new obstacle baseline
+paperboy,chaos obstacle,boss hazard runtime PNG,cs * 1.35,cs * 1.60,Hazard more visible while staying below pickup scale

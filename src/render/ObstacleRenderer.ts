@@ -18,19 +18,19 @@ const OBSTACLE_IMAGE_TYPES = new Set([
 ]);
 
 const OPENMOJI_GAMEPLAY_ICON_SCALE = 1.9;
-const DEFAULT_RUNTIME_OBSTACLE_ICON_SCALE = 1.25;
-const DEFAULT_RUNTIME_BOSS_ICON_SCALE = 1.55;
+const DEFAULT_RUNTIME_OBSTACLE_ICON_SCALE = 1.70;
+const DEFAULT_RUNTIME_BOSS_ICON_SCALE = 1.75;
 
 const RUNTIME_OBSTACLE_ICON_SCALE_BY_TYPE: Record<string, number> = {
-  trafficBlock: 1.45,
-  routeObstacle: 1.35,
+  trafficBlock: 1.75,
+  routeObstacle: 1.70,
 };
 
 const RUNTIME_BOSS_ICON_SCALE_BY_TYPE: Record<string, number> = {
-  crimeLord: 1.68,
-  finalChallenger: 1.62,
-  turboRival: 1.7,
-  chaosObstacle: 1.35,
+  crimeLord: 1.82,
+  finalChallenger: 1.78,
+  turboRival: 1.82,
+  chaosObstacle: 1.60,
 };
 
 type EntityTextureResolver = (entity: ExtraEntity) => string | null;
