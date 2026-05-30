@@ -1,0 +1,42 @@
+PATCH 1090 - OpenMoji Candidates Index
+========================================
+
+Nombre de fichiers OpenMoji disponibles : 4495 fichiers SVG
+Repertoire : /home/kali/apps/snake/design_boards/openemoji/color/svg/
+
+Structure dossiers OpenMoji local :
+  design_boards/openemoji/
+    color/svg/       <- 4495 fichiers SVG (nommage: HEXCODE.svg)
+    color/618x618/   <- sous-dossier images grandes (non utilise ici)
+    color/72x72/     <- sous-dossier images petites (non utilise ici)
+    black/           <- variante noire (non utilisee pour gameplay)
+    data/            <- openmoji.json (4495 entrees), openmoji.csv, etc.
+    src/             <- sources SVG originales
+
+Convention de nommage :
+  - Simple : HEXCODE.svg (ex: 1F3F0.svg, 1FA9E.svg)
+  - Sequences ZWJ : HEXCODE1-200D-HEXCODE2.svg (ex: 1F9D9-200D-2640-FE0F.svg)
+  - Skin tones : HEXCODE-SKINTONE.svg (ex: 1F977-1F3FB.svg)
+
+Methode de recherche utilisee :
+  1. Lecture de openmoji.json (718763 octets, 4495 entrees JSON)
+  2. Recherche par mots-cles dans les champs annotation et tags de chaque entree
+  3. Verification existence du fichier SVG correspondant dans color/svg/ (os.path.exists)
+  4. Filtrage par pertinence thematique par type icone gameplay
+  5. Recherche complementaire par hexcodes cibles pour types sans bon resultat initial
+
+Types icones documentes : 24 types sur 16 niveaux
+Candidats trouves : 5 par type pour 20/24 types
+Candidats partiels : 4 types (sonic bumper, outrun turboZone, shinobi decoy, fighter chargeGlow)
+
+Limites rencontrees :
+  - sonic_obstacle_bumper : OpenMoji ne contient pas de bumper/flipper arcade
+  - shinobi_obstacle_decoy : meilleur candidat (1FAE5 dotted line face) peut etre peu lisible petite taille
+  - outrun_boss_turboZone : animation vectorielle custom avec fleche+cercles; aucun SVG statique adapte
+  - fighter_obstacle_chargeGlow : indicateur abstrait de charge; proxy approximatif seulement
+  - Skin-tone variants presents mais deconseilles pour icones gameplay (utiliser version neutre)
+  - E2CD (solar energy) est OpenMoji custom non-standard, a verifier compatibilite navigateur
+
+Chemins utilises dans les rapports :
+  Chemin absolu SVG : /home/kali/apps/snake/design_boards/openemoji/color/svg/HEXCODE.svg
+  Chemin relatif projet : design_boards/openemoji/color/svg/HEXCODE.svg
