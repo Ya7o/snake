@@ -33,16 +33,9 @@ const GRID_COLS = 16;
 const GRID_ROWS = 20;
 const CASTLE_GRID_COLS = GRID_COLS;
 const CASTLE_GRID_ROWS = GRID_ROWS + 6;
-const DEFAULT_FRAME_GRID_WIDTH = 0.98;
-const DEFAULT_FRAME_GRID_Y_BIAS = 0.22;
-const FRAME_GRID_WIDTH: Record<string, number> = {
-  castle: 0.75,  // intentional: taller 16x26 illusion board inside the Castle frame
-  outrun: 0.78,  // intentional: cockpit frame leaves readable side/background art
-};
-const FRAME_GRID_Y_BIAS: Record<string, number> = {
-  castle: 0.38,  // intentional: specific frame + 26-row grid
-  outrun: 0.42,  // intentional: cockpit frame positions grid lower
-};
+const CASTLE_REFERENCE_GRID_WIDTH = 0.75;
+const CASTLE_REFERENCE_GRID_Y_BIAS = 0.38;
+const CASTLE_REFERENCE_BOTTOM_BREATHING = 8;
 
 export interface GameSceneData {
   levelId: string;
@@ -62,6 +55,7 @@ export class GameScene extends Phaser.Scene {
   private gameOver = false;
   private cleared = false;
   private layout!: GridLayout;
+  private visualBoardLayout!: GridLayout;
   private gridCols = GRID_COLS;
   private gridRows = GRID_ROWS;
 
@@ -159,16 +153,8 @@ export class GameScene extends Phaser.Scene {
     this.gridCols = this.levelConfig.universeId === 'castle' ? CASTLE_GRID_COLS : GRID_COLS;
     this.gridRows = this.levelConfig.universeId === 'castle' ? CASTLE_GRID_ROWS : GRID_ROWS;
     this.grid = new Grid(this.gridCols, this.gridRows);
-    const frameAwareWidth = FRAME_GRID_WIDTH[this.levelConfig.universeId] ?? DEFAULT_FRAME_GRID_WIDTH;
-    const frameAwareYBias = FRAME_GRID_Y_BIAS[this.levelConfig.universeId] ?? DEFAULT_FRAME_GRID_Y_BIAS;
-    this.layout = computeGridLayout(width, height, this.gridCols, this.gridRows, GAMEPLAY_HUD.HEIGHT, 24, frameAwareWidth, 12, frameAwareYBias);
-    if (this.levelConfig.universeId === 'castle') {
-      const breathing = 8;
-      const gridHeight = this.layout.cellSize * this.layout.rows;
-      if (this.layout.y + gridHeight + breathing <= height - 10) {
-        this.layout = { ...this.layout, y: this.layout.y + breathing };
-      }
-    }
+    this.visualBoardLayout = this.computeCastleReferenceLayout(width, height);
+    this.layout = this.computeActiveGridLayout(this.visualBoardLayout, this.gridCols, this.gridRows);
 
     // 906 — compute asset keys before renderer creation
     const uid        = this.levelConfig.universeId;
@@ -271,14 +257,12 @@ export class GameScene extends Phaser.Scene {
     }
 
     const gridBounds = new Phaser.Geom.Rectangle(
-      this.layout.x,
-      this.layout.y,
-      this.layout.cellSize * this.layout.cols,
-      this.layout.cellSize * this.layout.rows,
+      this.visualBoardLayout.x,
+      this.visualBoardLayout.y,
+      this.visualBoardLayout.cellSize * this.visualBoardLayout.cols,
+      this.visualBoardLayout.cellSize * this.visualBoardLayout.rows,
     );
-    if (uid === 'castle') {
-      drawCastleRuntimeBoardPanel(this, gridBounds);
-    }
+    drawCastleRuntimeBoardPanel(this, gridBounds);
 
     // Grid is STATIC — draw once here, never again in the game loop
     this.gridRenderer.draw(uid === 'castle' ? 0x090613 : this.colorBg, this.colorPrimary);
@@ -342,6 +326,38 @@ export class GameScene extends Phaser.Scene {
       fontFamily: 'monospace', fontSize: '8px', color: '#00ff88',
       backgroundColor: '#000000cc', padding: { x: 4, y: 2 },
     }).setDepth(GAMEPLAY_LAYERS.DEBUG).setScrollFactor(0);
+  }
+
+  private computeCastleReferenceLayout(width: number, height: number): GridLayout {
+    let layout = computeGridLayout(
+      width,
+      height,
+      CASTLE_GRID_COLS,
+      CASTLE_GRID_ROWS,
+      GAMEPLAY_HUD.HEIGHT,
+      24,
+      CASTLE_REFERENCE_GRID_WIDTH,
+      12,
+      CASTLE_REFERENCE_GRID_Y_BIAS,
+    );
+    const gridHeight = layout.cellSize * layout.rows;
+    if (layout.y + gridHeight + CASTLE_REFERENCE_BOTTOM_BREATHING <= height - 10) {
+      layout = { ...layout, y: layout.y + CASTLE_REFERENCE_BOTTOM_BREATHING };
+    }
+    return layout;
+  }
+
+  private computeActiveGridLayout(reference: GridLayout, cols: number, rows: number): GridLayout {
+    const referenceHeight = reference.cellSize * reference.rows;
+    const activeHeight = reference.cellSize * rows;
+    const yOffset = Math.max(0, Math.floor((referenceHeight - activeHeight) / 2));
+    return {
+      x: reference.x,
+      y: reference.y + yOffset,
+      cellSize: reference.cellSize,
+      cols,
+      rows,
+    };
   }
 
   private spawnInitialPickup(): void {
