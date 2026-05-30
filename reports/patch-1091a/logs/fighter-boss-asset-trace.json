@@ -1,0 +1,99 @@
+{
+  "patch": "1091A",
+  "audit": "Fighter Boss Asset Origin Audit",
+  "level": {
+    "levelId": "fighter_boss",
+    "name": "Ultime Challenger",
+    "universeId": "fighter",
+    "type": "boss",
+    "mechanic": "finalChallenger",
+    "bossHp": 3,
+    "mapNodeId": "node_8",
+    "source": "src/config/levels.ts:16"
+  },
+  "mechanic": {
+    "class": "FinalChallengerBoss",
+    "factory": "src/mechanics/MechanicFactory.ts:31",
+    "file": "src/mechanics/bosses/FinalChallengerBoss.ts",
+    "initialCell": {
+      "col": "Math.floor(cols / 2)",
+      "row": 2
+    },
+    "entities": [
+      {
+        "type": "finalChallenger",
+        "logicalName": "finalChallenger",
+        "category": "boss",
+        "states": ["idle", "attack_window", "counter"],
+        "source": "src/mechanics/bosses/FinalChallengerBoss.ts:50-52"
+      },
+      {
+        "type": "counterZone",
+        "logicalName": "counterZone",
+        "category": "obstacle",
+        "states": ["danger"],
+        "source": "src/mechanics/bosses/FinalChallengerBoss.ts:54-55"
+      }
+    ]
+  },
+  "asset": {
+    "phaserTextureKey": "rt_fighter_boss",
+    "runtimeRole": "boss",
+    "mappedUrl": "assets/runtime/universes/fighter/boss_final_challenger.png",
+    "absolutePath": "/home/kali/apps/snake/public/assets/runtime/universes/fighter/boss_final_challenger.png",
+    "imageInfo": {
+      "format": "PNG RGBA",
+      "width": 217,
+      "height": 256,
+      "alphaBbox": [0, 1, 217, 256],
+      "alphaNonZeroPixels": 25438,
+      "totalPixels": 55552
+    },
+    "mappingSource": "src/assets/runtimeUniverseAssets.ts:27-30",
+    "resolverSource": "src/systems/RuntimeAssetResolver.ts:11-33",
+    "provenance": {
+      "runtimePack": "patch_943_final_24_validated_runtime_assets_and_cleanup",
+      "doc": "docs/ASSET_PROVENANCE_RUNTIME_24.md:7-19",
+      "externalSourceId": "streets_of_fight_ansimuz",
+      "externalSourceTitle": "Streets of Fight",
+      "externalSourceDoc": "docs/EXTERNAL_ASSET_MAPPING_BY_UNIVERSE.md:40-46"
+    }
+  },
+  "renderer": {
+    "class": "ObstacleRenderer",
+    "bossEntityTypesIncludesFinalChallenger": "src/render/ObstacleRenderer.ts:7-10",
+    "bossTexturePriority": "src/scenes/GameScene.ts:241-248",
+    "renderBranch": "isBossType && hasBossTexture",
+    "renderSource": "src/render/ObstacleRenderer.ts:156-167",
+    "visualComposition": "drawBossTelegraph() + Phaser image using bossTextureKey"
+  },
+  "openMoji": {
+    "isBossOpenMoji": false,
+    "fighterOpenMojiRuntimeOverrides": [
+      {
+        "entityType": "sparZone",
+        "key": "openmoji-fighter-fist",
+        "url": "assets/openmoji/obstacles/fist.svg",
+        "source": "src/ui/OpenMojiIconRegistry.ts:45-50"
+      }
+    ],
+    "localAlternatives": [
+      "reports/patch-1090b/preview-assets/1F93A.svg",
+      "public/assets/openmoji/boss/crossed_swords.svg",
+      "reports/patch-1090b/preview-assets/1F94B.svg",
+      "reports/patch-1090b/preview-assets/1F3C6.svg",
+      "reports/patch-1090b/preview-assets/1FA96.svg"
+    ]
+  },
+  "diagnostic": {
+    "plannedBoss": true,
+    "badMapping": false,
+    "fallback": false,
+    "openMojiOverride": false,
+    "runtimeAsset": true,
+    "sharedExternalAssetFamily": true,
+    "readableAsset": true,
+    "coherence": "Technically coherent, visually questionable for a neutral Fighter boss icon because it is a specific arcade-style human fighter sprite."
+  }
+}
+
