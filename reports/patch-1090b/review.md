@@ -41,4 +41,4 @@ Aucune. Le HTML est le livrable visuel principal.
 
 ## Liens GitHub
 
-- Commit : [hash après push]
+- Commit : 347a25d
