@@ -2,48 +2,69 @@
 
 ## Objectif
 
-Audit du système de scoring pour comprendre pourquoi le score varie peu,
-notamment sur Castle / Illusion où plusieurs runs donnent systématiquement 1500 points.
-**Aucune modification de code dans ce patch.**
+**Phase 1 (audit) :** Comprendre pourquoi le score varie peu sur Castle / Illusion.
+**Phase 2 (implémentation) :** Activer le bonus temps déjà prévu par la constante `TIME_SECOND`.
 
 ---
 
 ## Résultat
 
-Cause confirmée et documentée. Le score est entièrement déterministe
-pour 7 niveaux sur 8 (hors Fighter partiel).
+### Phase 1 — Audit
 
-**Trouvaille principale :** `TIME_SECOND = 10` est défini dans `SCORE_VALUES`
-(constants.ts:31) mais n'est **jamais appliqué** dans le code runtime.
-C'est une constante orpheline. Le tickCount est bien incrémenté mais jamais
-multiplié par TIME_SECOND pour contribuer à `runtimeScore`.
+Cause confirmée : le score était entièrement déterministe pour 7 niveaux sur 8.
 
-**Formule réelle pour Castle Illusion :**
+`TIME_SECOND = 10` était défini dans `SCORE_VALUES` (constants.ts:31) mais jamais
+appliqué — constante orpheline. Le `tickCount` était bien incrémenté mais jamais
+transformé en bonus score.
+
+Formule réelle pour Castle Illusion (avant ce patch) :
 ```
-10 pickups × 100 + STAGE_CLEAR 500 = 1500 (toujours)
+10 × 100 + 500 = 1500 (toujours)
+```
+
+### Phase 2 — Implémentation bonus temps
+
+Le bonus temps est maintenant actif sur tous les niveaux normaux (pas les boss).
+
+```
+timeBonus = floor(tickCount × speedMs / 1000) × TIME_SECOND
+          = secondes_de_jeu × 10
+```
+
+Nouvelle fourchette de score pour Castle Illusion :
+- Run rapide (~15s) : 1500 + 150 = **1650**
+- Run moyen (~35s) : 1500 + 350 = **1850**
+- Run long (~60s) : 1500 + 600 = **2100**
+
+Le score affiché en ClearScene décompose maintenant :
+```
+SCORE : 1850
++350 TEMPS
+BEST : 1850
 ```
 
 ---
 
 ## Fichiers modifiés
 
-Aucun fichier source modifié. Audit uniquement.
-
-**Fichiers créés :**
-- `reports/patch-1081/review.md`
-- `reports/patch-1081/docs/score-variability-audit.md`
-- `reports/patch-1081/logs/score-runs.json`
-- `reports/patch-1081/logs/score-formula-notes.txt`
+| Fichier | Modification |
+|---|---|
+| `src/scenes/GameScene.ts` | `triggerClear()` : calcul `timeBonus`, ajout à `runtimeScore`, passage à ClearScene |
+| `src/scenes/ClearScene.ts` | `ClearData` : champ `timeBonus?` ; panneau score : affichage `+X TEMPS` avec layout dynamique |
+| `reports/patch-1081/docs/score-variability-audit.md` | Audit source |
+| `reports/patch-1081/logs/score-runs.json` | Runs simulés |
+| `reports/patch-1081/logs/score-formula-notes.txt` | Notes formule |
 
 ---
 
 ## Tests / vérifications
 
 ```
-npm run check
-→ 0 erreur TypeScript
-→ 60 modules transformés
-→ Build en 23.72s
+npm run check (phase 1 — audit only)
+→ 0 erreur TypeScript, 60 modules, build en 23.72s
+
+npm run check (phase 2 — implémentation)
+→ 0 erreur TypeScript, 60 modules, build en 9.80s
 → Warning chunk > 500kB : attendu, non bloquant
 ```
 
@@ -51,57 +72,46 @@ npm run check
 
 ## Captures
 
-Aucune capture visuelle (audit pur code + formules).
+Aucune capture visuelle commitée (tâche non visuelle au sens asset).
+Le bonus `+X TEMPS` s'affiche en ClearScene dans la couleur accent de l'univers.
 
 ---
 
 ## Documents
 
-- `docs/score-variability-audit.md` — audit complet avec formules, table des runs,
-  diagnostic et options d'amélioration priorisées.
-- `logs/score-runs.json` — 8 runs simulés/calculés : castle ×3, sonic ×1,
-  fighter ×2 (avec et sans charge), castle_boss ×1, paperboy ×1.
+- `docs/score-variability-audit.md` — audit complet : formules, runs simulés,
+  diagnostic, options d'amélioration.
+- `logs/score-runs.json` — 8 runs calculés par analyse statique.
 - `logs/score-formula-notes.txt` — notes brutes sur les deux compteurs
-  (this.score vs this.runtimeScore) et les dead constants.
+  (`this.score` vs `this.runtimeScore`) et la dead constant TIME_SECOND.
 
 ---
 
 ## Limites / risques
 
-- Les runs `score-runs.json` sont calculés par analyse statique du code,
-  pas par exécution automatisée (pas de Playwright requis pour un audit no-code).
-  Les formules sont vérifiables ligne par ligne dans le code source.
-- La variabilité du Fighter (900–1300) dépend de la fréquence réelle d'activation
-  de la charge — estimée mais non mesurée sur partie réelle.
-- Le mécanisme Sonic (ringChains) pourrait avoir une pénalité chaîne qui affecte
-  `this.score` (progrès) mais pas `runtimeScore` — à vérifier si un ticket
-  de correction de score Sonic est planifié.
+- Le bonus temps récompense la survie longue (plus de ticks = plus de bonus),
+  pas la rapidité. C'est un choix assumé : il crée de la variabilité sans pénaliser
+  le joueur lent, ce qui correspond à la priorité "ne pas durcir le jeu".
+- Les boss ne reçoivent pas de bonus temps (`timeBonus = 0` si `isBoss`). Les boss
+  sont déjà variables via `BOSS_HIT × nombre de phases`.
+- `TIME_SECOND = 10` est petit — sur un run de 60s, le bonus est +600 pts sur une
+  base de 1500. L'ordre de grandeur reste cohérent. Si le bonus semble trop faible
+  ou trop fort après tests réels, ajuster uniquement la constante `TIME_SECOND`.
 
 ---
 
-## Diagnostic en bref
+## Diagnostic en bref (rappel audit)
 
-| Cause | Détail |
+| Cause | Statut après patch |
 |---|---|
-| TIME_SECOND mort | Constante jamais appliquée au runtime |
-| Quota exact = fin de partie | Impossible de collecter plus de pickups que le quota |
-| Mécaniques ≠ runtimeScore | Les `update.score` vont au progrès, pas au score visible |
-| Pas de bonus temps | tickCount existe mais n'est pas passé à ClearScene |
-| Pas de bonus longueur | Longueur serpent non utilisée en scoring |
-
----
-
-## Options recommandées (court terme)
-
-1. **Bonus temps** — passer `tickCount` à `triggerClear()`, appliquer `TIME_SECOND`.
-   Effort faible, impact élevé. TIME_SECOND est déjà prêt.
-2. **Bonus longueur serpent** — `(snakeLength - 5) × 50`.
-   Effort minimal, pas de refactor.
-3. **Détail score ClearScene** — afficher la décomposition.
-   Quick win UI sans toucher au calcul.
+| TIME_SECOND mort | Résolu — appliqué dans triggerClear() |
+| Quota exact = fin de partie | Inchangé (pas dans scope) |
+| Mécaniques ≠ runtimeScore | Inchangé (pas dans scope) |
+| Pas de bonus temps | Résolu — actif sur niveaux normaux |
+| Pas de bonus longueur | Inchangé (option future) |
 
 ---
 
 ## Liens GitHub
 
-À compléter après push.
+Commit : à compléter après push.

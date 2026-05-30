@@ -585,8 +585,13 @@ export class GameScene extends Phaser.Scene {
 
   private triggerClear(): void {
     this.cleared = true;
-    this.runtimeScore += this.mechanic instanceof BaseBoss ? SCORE_VALUES.BOSS_CLEAR : SCORE_VALUES.STAGE_CLEAR;
-    if (this.mechanic instanceof BaseBoss) {
+    const isBoss = this.mechanic instanceof BaseBoss;
+    this.runtimeScore += isBoss ? SCORE_VALUES.BOSS_CLEAR : SCORE_VALUES.STAGE_CLEAR;
+    const timeBonus = isBoss
+      ? 0
+      : Math.floor(this.tickCount * this.levelConfig.speedMs / 1000) * SCORE_VALUES.TIME_SECOND;
+    this.runtimeScore += timeBonus;
+    if (isBoss) {
       AudioSystem.bossClear();
     } else {
       AudioSystem.clear();
@@ -607,6 +612,7 @@ export class GameScene extends Phaser.Scene {
           bestScore: bestResult.bestScore,
           previousBest: bestResult.previousBest,
           isNewRecord: bestResult.isNewRecord,
+          timeBonus,
         });
       });
     });
