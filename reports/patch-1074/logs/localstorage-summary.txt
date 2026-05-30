@@ -1,0 +1,7 @@
+LocalStorage QA summary
+snakeDriveV4.bestScores present: true
+castle_normal best: 1200
+castle_boss best: 1250
+reset removed best scores: yes
+lower score preserved best: yes
+raw bestScores: {"castle_normal":1200,"castle_boss":1250}
