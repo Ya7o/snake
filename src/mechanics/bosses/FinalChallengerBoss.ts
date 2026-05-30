@@ -27,7 +27,7 @@ export class FinalChallengerBoss extends BaseBoss {
     this.counterZones = this.counterZones.filter(cz => cz.ttl > 0);
 
     if (this.roundPhase === 'idle') {
-      if (this.phaseTimer > 10) { this.roundPhase = 'attack_window'; this.phaseTimer = 0; }
+      if (this.phaseTimer > 5) { this.roundPhase = 'attack_window'; this.phaseTimer = 0; }
     } else if (this.roundPhase === 'attack_window') {
       if (this.phaseTimer > 10) {
         // missed — counter attack; more zones as boss HP drops
