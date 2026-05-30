@@ -1,5 +1,5 @@
 import Phaser from 'phaser';
-import { SCENES, UNIVERSE_RESULT_SCREEN_ASSETS } from '../config/constants';
+import { SCENES, SCORE_VALUES, UNIVERSE_RESULT_SCREEN_ASSETS } from '../config/constants';
 import { LevelConfig } from '../config/types';
 import { getLevelById, resolveLevelId } from '../config/levels';
 import { UNIVERSES } from '../config/universes';
@@ -66,6 +66,7 @@ export class GameScene extends Phaser.Scene {
   private pickups: Cell[] = [];
   private walls: Cell[] = [];
   private score = 0;
+  private runtimeScore = 0;
   private tickCount = 0;
   private tickAccumulator = 0;
   private gameOver = false;
@@ -277,6 +278,7 @@ export class GameScene extends Phaser.Scene {
     this.pickups = [];
     this.walls = [];
     this.score = 0;
+    this.runtimeScore = 0;
     this.tickCount = 0;
     this.tickAccumulator = 0;
     this.gameOver = false;
@@ -438,6 +440,7 @@ export class GameScene extends Phaser.Scene {
 
     if (result.ate) {
       AudioSystem.pickup();
+      this.runtimeScore += SCORE_VALUES.PICKUP;
       const eaten = result.head;
       const mr = this.mechanic.onPickupCollected(eaten);
       if (this.applyMechanicUpdate(mr, 1)) { AudioSystem.danger(); this.triggerGameOver(); return; }
@@ -568,6 +571,7 @@ export class GameScene extends Phaser.Scene {
     if (!weakPoint) return false;
     const hitResult = boss.onWeakPointHit(weakPoint);
     if (!hitResult.hit) return false;
+    this.runtimeScore += SCORE_VALUES.BOSS_HIT;
     flashScreen(this, 0xffffff, 0.32, 160, GAMEPLAY_LAYERS.SCREEN_FX);
     this.cameras.main.shake(110, 0.006);
     AudioSystem.bossHit();
@@ -608,19 +612,27 @@ export class GameScene extends Phaser.Scene {
 
   private triggerGameOver(): void {
     this.gameOver = true;
+    const bestResult = SaveSystem.recordBestScore(this.levelConfig.id, this.runtimeScore);
     AudioSystem.gameover();
     this.cameras.main.shake(150, 0.01);
     flashScreen(this, 0xe74c3c, 0.55, 400, GAMEPLAY_LAYERS.SCREEN_FX);
     this.time.delayedCall(600, () => {
       this.cameras.main.fadeOut(200, 0, 0, 0);
       this.cameras.main.once('camerafadeoutcomplete', () => {
-        this.scene.start(SCENES.GAME_OVER, { levelId: this.levelConfig.id });
+        this.scene.start(SCENES.GAME_OVER, {
+          levelId: this.levelConfig.id,
+          score: this.runtimeScore,
+          bestScore: bestResult.bestScore,
+          previousBest: bestResult.previousBest,
+          isNewRecord: bestResult.isNewRecord,
+        });
       });
     });
   }
 
   private triggerClear(): void {
     this.cleared = true;
+    this.runtimeScore += this.mechanic instanceof BaseBoss ? SCORE_VALUES.BOSS_CLEAR : SCORE_VALUES.STAGE_CLEAR;
     if (this.mechanic instanceof BaseBoss) {
       AudioSystem.bossClear();
     } else {
@@ -631,11 +643,18 @@ export class GameScene extends Phaser.Scene {
     const currentNode = MAP_NODES.find(n => n.levelId === this.levelConfig.id);
     const nodeIndex   = currentNode ? MAP_NODES.indexOf(currentNode) : -1;
     const nextNode    = nodeIndex >= 0 && nodeIndex < MAP_NODES.length - 1 ? MAP_NODES[nodeIndex + 1] : undefined;
+    const bestResult = SaveSystem.recordBestScore(this.levelConfig.id, this.runtimeScore);
     SaveSystem.markCleared(this.levelConfig.id, nextNode?.id);
     this.time.delayedCall(400, () => {
       this.cameras.main.fadeOut(200, 0, 0, 0);
       this.cameras.main.once('camerafadeoutcomplete', () => {
-        this.scene.start(SCENES.CLEAR, { levelId: this.levelConfig.id });
+        this.scene.start(SCENES.CLEAR, {
+          levelId: this.levelConfig.id,
+          score: this.runtimeScore,
+          bestScore: bestResult.bestScore,
+          previousBest: bestResult.previousBest,
+          isNewRecord: bestResult.isNewRecord,
+        });
       });
     });
   }

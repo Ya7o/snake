@@ -4,9 +4,12 @@ import { getLevelById, resolveLevelId } from '../config/levels';
 import { UNIVERSES } from '../config/universes';
 import { RESULT_SCREEN_LAYOUT, CASTLE_RESULT_THEME, getUniverseButtons } from '../ui/RuntimeUILayout';
 import { ARCADE_FONT, UI_FONT, addMobileButton, drawConsoleFrame, flashScreen } from '../render/VfxUtils';
+import { SaveSystem } from '../systems/SaveSystem';
 
 export interface GameOverData {
   levelId: string;
+  score?: number;
+  bestScore?: number;
 }
 
 export class GameOverScene extends Phaser.Scene {
@@ -85,6 +88,32 @@ export class GameOverScene extends Phaser.Scene {
       color: isCastle ? '#f7e9c8' : '#e74c3c',
       align: 'center',
       wordWrap: { width: W * 0.76, useAdvancedWrap: true },
+    }).setOrigin(0.5).setDepth(6);
+
+    const score = Math.max(0, Math.floor(data?.score ?? 0));
+    const bestScore = Math.max(0, Math.floor(data?.bestScore ?? SaveSystem.getBestScore(levelId)));
+    const scoreY = H * 0.405;
+    const scoreFont = Math.min(15, Math.floor(W * 0.039));
+    const scorePanel = this.add.graphics().setDepth(5);
+    scorePanel.fillStyle(0x000000, 0.42);
+    scorePanel.fillRoundedRect(W * 0.2, scoreY - 24, W * 0.6, 44, 6);
+    scorePanel.lineStyle(1, isCastle ? 0xf6c45c : 0xe74c3c, 0.42);
+    scorePanel.strokeRoundedRect(W * 0.2, scoreY - 24, W * 0.6, 44, 6);
+    this.add.text(W / 2, scoreY - 8, `SCORE : ${score}`, {
+      fontFamily: UI_FONT,
+      fontSize: `${scoreFont}px`,
+      fontStyle: '800',
+      color: '#ffffff',
+      stroke: '#000000',
+      strokeThickness: 2,
+    }).setOrigin(0.5).setDepth(6);
+    this.add.text(W / 2, scoreY + 11, `BEST : ${bestScore}`, {
+      fontFamily: UI_FONT,
+      fontSize: `${scoreFont}px`,
+      fontStyle: '800',
+      color: isCastle ? '#f6c45c' : '#e74c3c',
+      stroke: '#000000',
+      strokeThickness: 2,
     }).setOrigin(0.5).setDepth(6);
 
     // Level name

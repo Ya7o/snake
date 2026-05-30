@@ -23,6 +23,14 @@ export const SCENES = {
   GAME_OVER: 'GameOverScene'
 } as const;
 
+export const SCORE_VALUES = {
+  PICKUP: 100,
+  STAGE_CLEAR: 500,
+  BOSS_HIT: 250,
+  BOSS_CLEAR: 1000,
+  TIME_SECOND: 10,
+} as const;
+
 export const WORLD_MAP_VIEW = {
   HEADER_H: 34,
   FOOTER_H: 44,
