@@ -68,70 +68,104 @@ export class GameOverScene extends Phaser.Scene {
     const L = RESULT_SCREEN_LAYOUT;
     const CT = CASTLE_RESULT_THEME;
     const buttons = getUniverseButtons(level?.universeId ?? 'castle');
+    const isShortPortrait = H < 700 && H > W;
+    const titleY = H * L.titleY;
+    const causeY = H * (isShortPortrait ? 0.35 : 0.36);
+    const scoreY = H * (isShortPortrait ? 0.47 : 0.48);
+    const levelY = H * (isShortPortrait ? 0.57 : 0.58);
+    const retryButtonY = H * (isShortPortrait ? 0.68 : 0.67);
+    const separatorY = H * (isShortPortrait ? 0.77 : 0.76);
+    const mapButtonY = H * (isShortPortrait ? 0.86 : 0.85);
+    const primaryButtonH = Math.min(50, Math.max(42, Math.floor(H * 0.06)));
+    const secondaryButtonH = Math.min(42, Math.max(36, Math.floor(H * 0.05)));
+    const addFittedText = (
+      x: number,
+      y: number,
+      text: string,
+      fontSize: number,
+      maxWidth: number,
+      style: Phaser.Types.GameObjects.Text.TextStyle,
+    ): Phaser.GameObjects.Text => {
+      const label = this.add.text(x, y, text, {
+        ...style,
+        fontSize: `${fontSize}px`,
+      }).setOrigin(0.5).setDepth(6);
+      let fittedFont = fontSize;
+      while (label.width > maxWidth && fittedFont > 10) {
+        fittedFont -= 1;
+        label.setFontSize(fittedFont);
+      }
+      return label;
+    };
 
     // Defeat title with shadow
-    this.add.text(W / 2 + 3, H * L.titleY + 3, 'PERDU', {
+    this.add.text(W / 2 + 3, titleY + 3, 'PERDU', {
       fontFamily: ARCADE_FONT,
       fontSize: `${Math.min(26, Math.floor(W * 0.074))}px`,
       color: '#660000',
     }).setOrigin(0.5).setDepth(5);
-    this.add.text(W / 2, H * L.titleY, 'PERDU', {
+    this.add.text(W / 2, titleY, 'PERDU', {
       fontFamily: ARCADE_FONT,
       fontSize: `${Math.min(26, Math.floor(W * 0.074))}px`,
       color: isCastle ? CT.titleLoss : '#e74c3c',
     }).setOrigin(0.5).setDepth(6);
 
-    this.add.text(W / 2, H * L.subtitleY, isCastle ? 'Pris dans l\'illusion' : 'ENCORE UNE FOIS', {
+    const causeText = isCastle ? 'Pris dans l\'illusion' : 'ENCORE UNE FOIS';
+    const causeBacking = this.add.graphics().setDepth(5);
+    causeBacking.fillStyle(0x000000, 0.38);
+    causeBacking.fillRoundedRect(W * 0.12, causeY - 20, W * 0.76, 40, 6);
+    addFittedText(W / 2, causeY, causeText, Math.min(20, Math.floor(W * 0.052)), W * 0.68, {
       fontFamily: UI_FONT,
-      fontSize: `${Math.min(20, Math.floor(W * 0.052))}px`,
       fontStyle: '800',
       color: isCastle ? '#f7e9c8' : '#e74c3c',
       align: 'center',
       wordWrap: { width: W * 0.76, useAdvancedWrap: true },
-    }).setOrigin(0.5).setDepth(6);
+    });
 
     const score = Math.max(0, Math.floor(data?.score ?? 0));
     const bestScore = Math.max(0, Math.floor(data?.bestScore ?? SaveSystem.getBestScore(levelId)));
-    const scoreY = H * 0.405;
-    const scoreFont = Math.min(15, Math.floor(W * 0.039));
+    const scoreFont = Math.min(16, Math.floor(W * 0.039));
+    const scorePanelW = Math.min(340, W * 0.78);
+    const lineH = Math.max(21, Math.floor(H * 0.026));
+    const scorePanelH = lineH * 2 + 18;
+    const scoreMaxTextW = scorePanelW - 24;
     const scorePanel = this.add.graphics().setDepth(5);
-    scorePanel.fillStyle(0x000000, 0.42);
-    scorePanel.fillRoundedRect(W * 0.2, scoreY - 24, W * 0.6, 44, 6);
+    scorePanel.fillStyle(0x000000, 0.48);
+    scorePanel.fillRoundedRect(W / 2 - scorePanelW / 2, scoreY - scorePanelH / 2, scorePanelW, scorePanelH, 6);
     scorePanel.lineStyle(1, isCastle ? 0xf6c45c : 0xe74c3c, 0.42);
-    scorePanel.strokeRoundedRect(W * 0.2, scoreY - 24, W * 0.6, 44, 6);
-    this.add.text(W / 2, scoreY - 8, `SCORE : ${score}`, {
+    scorePanel.strokeRoundedRect(W / 2 - scorePanelW / 2, scoreY - scorePanelH / 2, scorePanelW, scorePanelH, 6);
+    addFittedText(W / 2, scoreY - lineH / 2, `SCORE : ${score}`, scoreFont, scoreMaxTextW, {
       fontFamily: UI_FONT,
-      fontSize: `${scoreFont}px`,
       fontStyle: '800',
       color: '#ffffff',
       stroke: '#000000',
       strokeThickness: 2,
-    }).setOrigin(0.5).setDepth(6);
-    this.add.text(W / 2, scoreY + 11, `BEST : ${bestScore}`, {
+    });
+    addFittedText(W / 2, scoreY + lineH / 2, `BEST : ${bestScore}`, scoreFont, scoreMaxTextW, {
       fontFamily: UI_FONT,
-      fontSize: `${scoreFont}px`,
       fontStyle: '800',
       color: isCastle ? '#f6c45c' : '#e74c3c',
       stroke: '#000000',
       strokeThickness: 2,
-    }).setOrigin(0.5).setDepth(6);
+    });
 
     // Level name
     if (level) {
-      this.add.text(W / 2, H * L.contextY, level.name.toUpperCase(), {
+      addFittedText(W / 2, levelY, level.name.toUpperCase(), Math.min(17, Math.floor(W * 0.044)), W * 0.82, {
         fontFamily: UI_FONT,
-        fontSize: `${Math.min(17, Math.floor(W * 0.044))}px`,
         fontStyle: '700',
         color: isCastle ? '#d7c6ff' : '#666688',
-      }).setOrigin(0.5).setDepth(6);
+        stroke: '#000000',
+        strokeThickness: 2,
+      });
     }
 
     // RETRY button
     addMobileButton(this, {
       x: W / 2,
-      y: H * L.primaryButtonY,
+      y: retryButtonY,
       width: Math.min(260, W * L.primaryButtonW),
-      height: L.primaryButtonH,
+      height: primaryButtonH,
       label: 'REJOUER',
       primary: true,
       fillColor: buttons.primaryFill,
@@ -149,14 +183,14 @@ export class GameOverScene extends Phaser.Scene {
     // Separator
     const sep = this.add.graphics().setDepth(5);
     sep.lineStyle(1, buttons.primaryFill, 0.35);
-    sep.lineBetween(W * 0.2, H * L.separatorY, W * 0.8, H * L.separatorY);
+    sep.lineBetween(W * 0.2, separatorY, W * 0.8, separatorY);
 
     // World Map button
     addMobileButton(this, {
       x: W / 2,
-      y: H * L.secondaryButtonY,
+      y: mapButtonY,
       width: Math.min(210, W * L.secondaryButtonW),
-      height: L.secondaryButtonH,
+      height: secondaryButtonH,
       label: 'CARTE',
       fillColor: buttons.secondaryFill,
       pressedFillColor: buttons.secondaryPressed,

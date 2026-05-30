@@ -1,0 +1,4 @@
+levelId,universeId,cols,rows,cellSize,boardWidth,boardHeight,x,y
+castle_normal,castle,16,26,18,288,468,51,176
+sonic_normal,sonic,16,20,23,368,460,11,122
+paperboy_normal,paperboy,16,20,23,368,460,11,122

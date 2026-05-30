@@ -33,25 +33,15 @@ const GRID_COLS = 16;
 const GRID_ROWS = 20;
 const CASTLE_GRID_COLS = GRID_COLS;
 const CASTLE_GRID_ROWS = GRID_ROWS + 6;
+const DEFAULT_FRAME_GRID_WIDTH = 0.98;
+const DEFAULT_FRAME_GRID_Y_BIAS = 0.22;
 const FRAME_GRID_WIDTH: Record<string, number> = {
-  castle: 0.75,
-  sonic: 0.94,
-  streets: 0.94,
-  fighter: 0.94,
-  outrun: 0.78,
-  shinobi: 0.94,
-  kombat: 0.94,
-  paperboy: 0.94,
+  castle: 0.75,  // intentional: taller 16x26 illusion board inside the Castle frame
+  outrun: 0.78,  // intentional: cockpit frame leaves readable side/background art
 };
 const FRAME_GRID_Y_BIAS: Record<string, number> = {
-  castle: 0.38,   // intentional — specific frame + 26-row grid
-  sonic: 0.22,
-  streets: 0.22,
-  fighter: 0.22,
-  outrun: 0.42,   // intentional — cockpit frame positions grid lower
-  shinobi: 0.22,
-  kombat: 0.22,
-  paperboy: 0.22,
+  castle: 0.38,  // intentional: specific frame + 26-row grid
+  outrun: 0.42,  // intentional: cockpit frame positions grid lower
 };
 
 export interface GameSceneData {
@@ -169,8 +159,8 @@ export class GameScene extends Phaser.Scene {
     this.gridCols = this.levelConfig.universeId === 'castle' ? CASTLE_GRID_COLS : GRID_COLS;
     this.gridRows = this.levelConfig.universeId === 'castle' ? CASTLE_GRID_ROWS : GRID_ROWS;
     this.grid = new Grid(this.gridCols, this.gridRows);
-    const frameAwareWidth = FRAME_GRID_WIDTH[this.levelConfig.universeId] ?? 0.96;
-    const frameAwareYBias = FRAME_GRID_Y_BIAS[this.levelConfig.universeId] ?? 0.22;
+    const frameAwareWidth = FRAME_GRID_WIDTH[this.levelConfig.universeId] ?? DEFAULT_FRAME_GRID_WIDTH;
+    const frameAwareYBias = FRAME_GRID_Y_BIAS[this.levelConfig.universeId] ?? DEFAULT_FRAME_GRID_Y_BIAS;
     this.layout = computeGridLayout(width, height, this.gridCols, this.gridRows, GAMEPLAY_HUD.HEIGHT, 24, frameAwareWidth, 12, frameAwareYBias);
     if (this.levelConfig.universeId === 'castle') {
       const breathing = 8;
