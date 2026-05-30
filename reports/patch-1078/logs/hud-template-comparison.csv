@@ -1,0 +1,10 @@
+universe,before_template,after_template,color_identity_preserved,notes
+castle,three capsules,wide gameplay strip,yes,Uses Castle accent color on shared strip; no hud_panel asset added
+castle_boss,three capsules,wide gameplay strip,yes,Boss HP text preserved on right side
+sonic,wide gameplay strip,wide gameplay strip,yes,Existing hud_panel overlay preserved
+streets,wide gameplay strip,wide gameplay strip,yes,Existing hud_panel overlay preserved
+fighter,wide gameplay strip,wide gameplay strip,yes,Existing hud_panel overlay preserved
+outrun,wide gameplay strip,wide gameplay strip,yes,Existing hud_panel overlay preserved
+shinobi,wide gameplay strip,wide gameplay strip,yes,Existing hud_panel overlay preserved
+kombat,wide gameplay strip,wide gameplay strip,yes,Existing hud_panel overlay preserved
+paperboy,wide gameplay strip,wide gameplay strip,yes,Existing hud_panel overlay preserved

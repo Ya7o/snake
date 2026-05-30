@@ -183,10 +183,9 @@ export class GameScene extends Phaser.Scene {
     this.snakeRenderer   = new SnakeRenderer(this);
     this.pickupRenderer  = new PickupRenderer(this);
     this.obstacleRenderer = new ObstacleRenderer(this);
-    const readableHudPanelKey = uid === 'castle' ? undefined : this.textures.exists(hudKey) ? hudKey : undefined;
-    this.hudRenderer     = new HUDRenderer(this, palette.accent, readableHudPanelKey, uid === 'castle');
+    const readableHudPanelKey = this.textures.exists(hudKey) ? hudKey : undefined;
+    this.hudRenderer     = new HUDRenderer(this, palette.accent, readableHudPanelKey);
     if (uid === 'castle') {
-      this.styleCastleRuntimeHud();
       this.castlePickupGlow = this.add.graphics().setDepth(GAMEPLAY_LAYERS.GAMEPLAY_OBJECTS + 1);
     }
     if (uid === 'paperboy') {
@@ -312,52 +311,6 @@ export class GameScene extends Phaser.Scene {
       this.deliveryTargetGlow?.destroy();
       this.deliveryTargetGlow = undefined;
     });
-  }
-
-  private styleCastleRuntimeHud(): void {
-    const hud = this.hudRenderer as unknown as {
-      capsuleGfx?: Phaser.GameObjects.Graphics | null;
-      universeTxt?: Phaser.GameObjects.Text;
-      ruleTxt?: Phaser.GameObjects.Text;
-      scoreTxt?: Phaser.GameObjects.Text;
-    };
-    const capsuleGfx = hud.capsuleGfx;
-    if (!capsuleGfx) return;
-
-    const w = this.scale.width;
-    const hudH = GAMEPLAY_HUD.HEIGHT;
-    const gap = 7;
-    const capW = Math.floor((w - gap * 4) / 3);
-    const capH = 32;
-    const capY = Math.floor((hudH - capH) / 2);
-    const radius = 7;
-
-    capsuleGfx.clear();
-    capsuleGfx.fillStyle(0x05020a, 0.32);
-    capsuleGfx.fillRoundedRect(3, capY - 3, w - 6, capH + 6, radius + 3);
-    capsuleGfx.lineStyle(1, 0xa94cff, 0.18);
-    capsuleGfx.lineBetween(10, capY + capH + 4, w - 10, capY + capH + 4);
-    for (let i = 0; i < 3; i++) {
-      const x = gap + i * (capW + gap);
-      capsuleGfx.fillStyle(0x12071d, 0.66);
-      capsuleGfx.fillRoundedRect(x, capY, capW, capH, radius);
-      capsuleGfx.fillStyle(0xf6c45c, 0.055);
-      capsuleGfx.fillRoundedRect(x + 2, capY + 2, capW - 4, Math.max(5, Math.floor(capH * 0.34)), radius - 2);
-      capsuleGfx.lineStyle(1, 0xf6c45c, 0.48);
-      capsuleGfx.strokeRoundedRect(x, capY, capW, capH, radius);
-      capsuleGfx.lineStyle(1, 0xa94cff, 0.26);
-      capsuleGfx.strokeRoundedRect(x + 2, capY + 2, capW - 4, capH - 4, Math.max(4, radius - 2));
-    }
-
-    const textShadow = [1, 1, '#05020a', 2, true, true] as const;
-    for (const txt of [hud.universeTxt, hud.ruleTxt, hud.scoreTxt]) {
-      txt?.setY(Math.floor(hudH / 2));
-      txt?.setPadding(4, 2, 4, 2);
-      txt?.setShadow(...textShadow);
-    }
-    hud.universeTxt?.setColor('#f6c45c').setFontSize(10);
-    hud.ruleTxt?.setColor('#eee7ff').setFontSize(12);
-    hud.scoreTxt?.setColor('#fff2a8').setFontSize(11);
   }
 
   private createDebugAssetsOverlay(uid: string): void {
