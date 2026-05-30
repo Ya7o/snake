@@ -1,0 +1,1723 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Icon Candidate Visual Board — Snake Drive V4 PATCH 1090B</title>
+<style>
+  :root {
+    --bg: #12121e; --surface: #1a1a2e; --surface2: #0f3460;
+    --accent: #e94560; --text: #e0e0e0; --text-muted: #9e9e9e;
+    --border: #2a2a4e; --card-bg: #1e1e3a;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 14px; line-height: 1.5; }
+  header { background: linear-gradient(135deg, #1a1a2e, #16213e); border-bottom: 2px solid var(--accent); padding: 20px 32px; position: sticky; top: 0; z-index: 100; }
+  header h1 { font-size: 1.4em; color: var(--accent); }
+  header p { color: var(--text-muted); font-size: 0.85em; margin-top: 4px; }
+  .toc { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+  .toc a { color: #90caf9; font-size: 0.75em; text-decoration: none; background: rgba(33,150,243,0.15); padding: 2px 8px; border-radius: 12px; border: 1px solid rgba(33,150,243,0.3); }
+  .toc a:hover { background: rgba(33,150,243,0.3); }
+  main { max-width: 1600px; margin: 0 auto; padding: 24px 16px; }
+  .level-section { margin-bottom: 40px; border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+  .level-header { padding: 14px 20px; display: flex; align-items: center; gap: 12px; }
+  .level-header.normal { background: #0a1a2e; }
+  .level-header.boss { background: #1a0a2e; }
+  .level-badge { font-size: 0.65em; padding: 2px 8px; border-radius: 10px; font-weight: bold; text-transform: uppercase; letter-spacing: 0.5px; }
+  .level-badge.normal { background: #1565C0; color: #90caf9; }
+  .level-badge.boss { background: #6A0DAD; color: #ce93d8; }
+  .level-id { color: var(--text-muted); font-size: 0.78em; font-family: monospace; margin-left: auto; }
+  .icon-type-section { border-top: 1px solid var(--border); padding: 14px 18px; background: var(--card-bg); }
+  .icon-type-header { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+  .icon-type-label { font-size: 0.72em; font-weight: bold; text-transform: uppercase; letter-spacing: 0.8px; color: #b0bec5; background: rgba(255,255,255,0.05); padding: 2px 8px; border-radius: 4px; }
+  .current-icon { font-size: 0.78em; color: var(--text-muted); font-family: monospace; }
+  .candidates-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(155px, 1fr)); gap: 10px; }
+  .candidate-card { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 10px; display: flex; flex-direction: column; align-items: center; gap: 5px; transition: border-color 0.2s, transform 0.1s; }
+  .candidate-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+  .candidate-img { width: 64px; height: 64px; object-fit: contain; background: rgba(255,255,255,0.04); border-radius: 6px; padding: 4px; }
+  .candidate-img-missing { width: 64px; height: 64px; background: rgba(255,0,0,0.1); border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 0.62em; color: #f44336; text-align: center; }
+  .sel-id { font-family: monospace; font-size: 0.68em; color: #90caf9; background: rgba(33,150,243,0.1); padding: 2px 6px; border-radius: 4px; cursor: pointer; user-select: all; text-align: center; word-break: break-all; width: 100%; }
+  .sel-id:hover { background: rgba(33,150,243,0.22); }
+  .copy-btn { background: rgba(33,150,243,0.12); border: 1px solid rgba(33,150,243,0.3); color: #90caf9; cursor: pointer; padding: 2px 6px; border-radius: 4px; font-size: 0.66em; width: 100%; transition: background 0.2s; }
+  .copy-btn:hover { background: rgba(33,150,243,0.3); }
+  .copy-btn.copied { background: rgba(76,175,80,0.3); color: #a5d6a7; border-color: rgba(76,175,80,0.4); }
+  .cand-name { font-size: 0.7em; color: var(--text); text-align: center; }
+  .cand-reason { font-size: 0.65em; color: var(--text-muted); text-align: center; font-style: italic; }
+  .cand-risk { font-size: 0.62em; color: #78909C; text-align: center; }
+  .badge-rel { display: inline-block; font-size: 0.62em; padding: 1px 5px; border-radius: 3px; font-weight: bold; }
+  .rel-fort { background: rgba(76,175,80,0.25); color: #a5d6a7; }
+  .rel-moyen { background: rgba(255,152,0,0.25); color: #ffcc80; }
+  .rel-faible { background: rgba(244,67,54,0.25); color: #ef9a9a; }
+  .rank-badge { width: 20px; height: 20px; border-radius: 50%; background: var(--surface2); color: #90caf9; font-size: 0.65em; font-weight: bold; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .cand-path { font-size: 0.58em; color: #455A64; word-break: break-all; text-align: center; }
+  footer { text-align: center; padding: 20px; color: var(--text-muted); font-size: 0.8em; border-top: 1px solid var(--border); margin-top: 20px; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Icon Candidate Visual Board — Snake Drive V4</h1>
+  <p>PATCH 1090B — Audit documentaire uniquement. Cliquer sur un identifiant pour le copier.</p>
+  <nav class="toc">
+    <a href="#castle_normal">Jardin d Illusion <small>(normal)</small></a>
+    <a href="#castle_boss">La Sorciere au Miroir <small>(boss)</small></a>
+    <a href="#sonic_normal">Zone des Anneaux <small>(normal)</small></a>
+    <a href="#sonic_boss">Serpent en Boucle <small>(boss)</small></a>
+    <a href="#streets_normal">Bagarre en Ruelle <small>(normal)</small></a>
+    <a href="#streets_boss">Seigneur du Crime <small>(boss)</small></a>
+    <a href="#fighter_normal">Dojo des Guerriers <small>(normal)</small></a>
+    <a href="#fighter_boss">Ultime Challenger <small>(boss)</small></a>
+    <a href="#outrun_normal">Autoroute du Soleil <small>(normal)</small></a>
+    <a href="#outrun_boss">Rival Turbo <small>(boss)</small></a>
+    <a href="#shinobi_normal">Temple des Neiges <small>(normal)</small></a>
+    <a href="#shinobi_boss">Ninja de l Ombre <small>(boss)</small></a>
+    <a href="#kombat_normal">Arena des Enfers <small>(normal)</small></a>
+    <a href="#kombat_boss">Porte du Dragon <small>(boss)</small></a>
+    <a href="#paperboy_normal">Tournee du Matin <small>(normal)</small></a>
+    <a href="#paperboy_boss">Chaos du Quartier <small>(boss)</small></a>
+  </nav>
+</header>
+<main>
+<section class="level-section" id="castle_normal">
+  <div class="level-header normal">
+    <span class="level-badge normal">normal</span>
+    <h2 style="font-size:1.1em; color:#B8860B">Jardin d Illusion</h2>
+    <span class="level-id">castle_normal</span>
+  </div>
+  <div class="icon-type-section">
+    <div class="icon-type-header">
+      <span class="icon-type-label">Pickup</span>
+      <span class="current-icon">actuel: star procedurale</span>
+    </div>
+    <div class="candidates-grid">
+      <div class="candidate-card">
+        <div class="rank-badge">c1</div>
+        <img class="candidate-img" src="preview-assets/1F31F.svg" alt="1F31F glowing star" loading="lazy">
+        <div class="cand-name">1F31F glowing star</div>
+        <div class="cand-reason">eclat brillant magique</div>
+        <div><span class="badge-rel rel-fort">fort</span></div>
+        <div class="cand-risk">risque: faible</div>
+        <div class="cand-path">1F31F.svg</div>
+        <div class="sel-id" onclick="copyId(this)">castle_normal.pickup.c1</div>
+        <button class="copy-btn" onclick="copyId(this.previousElementSibling)">copier identifiant</button>
+      </div>
+      <div class="candidate-card">
+        <div class="rank-badge">c2</div>
+        <img class="candidate-img" src="preview-assets/2728.svg" alt="2728 sparkles" loading="lazy">
+        <div class="cand-name">2728 sparkles</div>
+        <div class="cand-reason">etincelles multiples</div>
+        <div><span class="badge-rel rel-fort">fort</span></div>
+        <div class="cand-risk">risque: faible</div>
+        <div class="cand-path">2728.svg</div>
+        <div class="sel-id" onclick="copyId(this)">castle_normal.pickup.c2</div>
+        <button class="copy-btn" onclick="copyId(this.previousElementSibling)">copier identifiant</button>
+      </div>
+      <div class="candidate-card">
+        <div class="rank-badge">c3</div>
+        <img class="candidate-img" src="preview-assets/1F48E.svg" alt="1F48E gem stone" loading="lazy">
+        <div class="cand-name">1F48E gem stone</div>
+        <div class="cand-reason">gemme cristal</div>
+        <div><span class="badge-rel rel-moyen">moyen</span></div>
+        <div class="cand-risk">risque: faible</div>
+        <div class="cand-path">1F48E.svg</div>
+        <div class="sel-id" onclick="copyId(this)">castle_normal.pickup.c3</div>
+        <button class="copy-btn" onclick="copyId(this.previousElementSibling)">copier identifiant</button>
+      </div>
+      <div class="candidate-card">
+        <div class="rank-badge">c4</div>
+        <img class="candidate-img" src="preview-assets/2747.svg" alt="2747 sparkle" loading="lazy">
+        <div class="cand-name">2747 sparkle</div>
+        <div class="cand-reason">etincelle simple</div>
+        <div><span class="badge-rel rel-moyen">moyen</span></div>
+        <div class="cand-risk">risque: petit a 72px</div>
+        <div class="cand-path">2747.svg</div>
+        <div class="sel-id" onclick="copyId(this)">castle_normal.pickup.c4</div>
+        <button class="copy-btn" onclick="copyId(this.previousElementSibling)">copier identifiant</button>
+      </div>
+      <div class="candidate-card">
+        <div class="rank-badge">c5</div>
+        <img class="candidate-img" src="preview-assets/1F4AB.svg" alt="1F4AB dizzy" loading="lazy">
+        <div class="cand-name">1F4AB dizzy</div>
+        <div class="cand-reason">etoiles tournoiement</div>
+        <div><span class="badge-rel rel-moyen">moyen</span></div>
+        <div class="cand-risk">risque: sens ambigu</div>
+        <div class="cand-path">1F4AB.svg</div>
+        <div class="sel-id" onclick="copyId(this)">castle_normal.pickup.c5</div>
+        <button class="copy-btn" onclick="copyId(this.previousElementSibling)">copier identifiant</button>
+      </div>
+    </div>
+  </div>
+  <div class="icon-type-section">
+    <div class="icon-type-header">
+      <span class="icon-type-label">Obstacle</span>
+      <span class="current-icon">actuel: rect procedurale 3etats</span>
+    </div>
+    <div class="candidates-grid">
+      <div class="candidate-card">
+        <div class="rank-badge">c1</div>
+        <img class="candidate-img" src="preview-assets/1F9F1.svg" alt="1F9F1 brick" loading="lazy">
+        <div class="cand-name">1F9F1 brick</div>
+        <div class="cand-reason">brique mur qui apparait</div>
+        <div><span class="badge-rel rel-fort">fort</span></div>
+        <div class="cand-risk">risque: faible</div>
+        <div class="cand-path">1F9F1.svg</div>
+        <div class="sel-id" onclick="copyId(this)">castle_normal.obstacle.c1</div>
+        <button class="copy-btn" onclick="copyId(this.previousElementSibling)">copier identifiant</button>
+      </div>
+      <div class="candidate-card">
+        <div class="rank-badge">c2</div>
+        <img class="candidate-img" src="preview-assets/1F47B.svg" alt="1F47B ghost" loading="lazy">
+        <div class="cand-name">1F47B ghost</div>
+        <div class="cand-reason">mur fantome etat ghost</div>
+        <div><span class="badge-rel rel-fort">fort</span></div>
+        <div class="cand-risk">risque: faible</div>
+        <div class="cand-path">1F47B.svg</div>
+        <div class="sel-id" onclick="copyId(this)">castle_normal.obstacle.c2</div>
+        <button class="copy-btn" onclick="copyId(this.previousElementSibling)">copier identifiant</button>
+      </div>
+      <div class="candidate-card">
+        <div class="rank-badge">c3</div>
+        <img class="candidate-img" src="preview-assets/1F3F0.svg" alt="1F3F0 castle" loading="lazy">
+        <div class="cand-name">1F3F0 castle</div>
+        <div class="cand-reason">univers chateau</div>
+        <div><span class="badge-rel rel-moyen">moyen</span></div>
+        <div class="cand-risk">risque: trop grand</div>
+        <div class="cand-path">1F3F0.svg</div>
+        <div class="sel-id" onclick="copyId(this)">castle_normal.obstacle.c3</div>
+        <button class="copy-btn" onclick="copyId(this.previousElementSibling)">copier identifiant</button>
+      </div>
+      <div class="candidate-card">
+        <div class="rank-badge">c4</div>
+        <img class="candidate-img" src="preview-assets/26A0.svg" alt="26A0 warning" loading="lazy">
+        <div class="cand-name">26A0 warning</div>
+        <div class="cand-reason">danger imminent</div>
+        <div><span class="badge-rel rel-moyen">moyen</span></div>
+        <div class="cand-risk">risque: generique</div>
+        <div class="cand-path">26A0.svg</div>
+        <div class="sel-id" onclick="copyId(this)">castle_normal.obstacle.c4</div>
+        <button class="copy-btn" onclick="copyId(this.previousElementSibling)">copier identifiant</button>
+      </div>
+      <div class="candidate-card">
+        <div class="rank-badge">c5</div>
+        <img class="candidate-img" src="preview-assets/1F6D1.svg" alt="1F6D1 stop sign" loading="lazy">
+        <div class="cand-name">1F6D1 stop sign</div>
+        <div class="cand-reason">barriere arret</div>
+        <div><span class="badge-rel rel-moyen">moyen</span></div>
+        <div class="cand-risk">risque: couleur forte</div>
+        <div class="cand-path">1F6D1.svg</div>
+        <div class="sel-id" onclick="copyId(this)">castle_normal.obstacle.c5</div>
+        <button class="copy-btn" onclick="copyId(this.previousElementSibling)">copier identifiant</button>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="level-section" id="castle_boss">
+  <div class="level-header boss">
+    <span class="level-badge boss">boss</span>
+    <h2 style="font-size:1.1em; color:#9B59B6">La Sorciere au Miroir</h2>
+    <span class="level-id">castle_boss</span>
+  </div>
+  <div class="icon-type-section">
+    <div class="icon-type-header">
+      <span class="icon-type-label">Boss Entity</span>
+      <span class="current-icon">actuel: roundedRect procedurale</span>
+    </div>
+    <div class="candidates-grid">
+      <div class="candidate-card">
+        <div class="rank-badge">c1</div>
+        <img class="candidate-img" src="preview-assets/1FA9E.svg" alt="1FA9E mirror" loading="lazy">
+        <div class="cand-name">1FA9E mirror</div>
+        <div class="cand-reason">miroir exact mechanic witchMirror</div>
+        <div><span class="badge-rel rel-fort">fort</span></div>
+        <div class="cand-risk">risque: faible</div>
+        <div class="cand-path">1FA9E.svg</div>
+        <div class="sel-id" onclick="copyId(this)">castle_boss.boss_entity.c1</div>
+        <button class="copy-btn" onclick="copyId(this.previousElementSibling)">copier identifiant</button>
+      </div>
+      <div class="candidate-card">
+        <div class="rank-badge">c2</div>
+        <img class="candidate-img" src="preview-assets/1FAA9.svg" alt="1FAA9 mirror ball" loading="lazy">
+        <div class="cand-name">1FAA9 mirror ball</div>
+        <div class="cand-reason">boule miroir magique</div>
+        <div><span class="badge-rel rel-fort">fort</span></div>
+        <div class="cand-risk">risque: faible</div>
+        <div class="cand-path">1FAA9.svg</div>
+        <div class="sel-id" onclick="copyId(this)">castle_boss.boss_entity.c2</div>
+        <button class="copy-btn" onclick="copyId(this.previousElementSibling)">copier identifiant</button>
+      </div>
+      <div class="candidate-card">
+        <div class="rank-badge">c3</div>
+        <img class="candidate-img" src="preview-assets/1F9D9-200D-2640-FE0F.svg" alt="1F9D9-200D-2640-FE0F woman mage" loading="lazy">
+        <div class="cand-name">1F9D9-200D-2640-FE0F woman mage</div>
+        <div class="cand-reason">sorciere correspondance directe</div>
+        <div><span class="badge-rel rel-fort">fort</span></div>
+        <div class="cand-risk">risque: skin tone</div>
+        <div class="cand-path">1F9D9-200D-2640-FE0F.svg</div>
+        <div class="sel-id" onclick="copyId(this)">castle_boss.boss_entity.c3</div>
+        <button class="copy-btn" onclick="copyId(this.previousElementSibling)">copier identifiant</button>
+      </div>
+      <div class="candidate-card">
+        <div class="rank-badge">c4</div>
+        <img class="candidate-img" src="preview-assets/1F52E.svg" alt="1F52E crystal ball" loading="lazy">
+        <div class="cand-name">1F52E crystal ball</div>
+        <div class="cand-reason">boule cristal sorciere</div>
+        <div><span class="badge-rel rel-fort">fort</span></div>
+        <div class="cand-risk">risque: faible</div>
+        <div class="cand-path">1F52E.svg</div>
+        <div class="sel-id" onclick="copyId(this)">castle_boss.boss_entity.c4</div>
+        <button class="copy-btn" onclick="copyId(this.previousElementSibling)">copier identifiant</button>
+      </div>
+      <div class="candidate-card">
+        <div class="rank-badge">c5</div>
+        <img class="candidate-img" src="preview-assets/1FA84.svg" alt="1FA84 magic wand" loading="lazy">
+        <div class="cand-name">1FA84 magic wand</div>
+        <div class="cand-reason">baguette magique</div>
+        <div><span class="badge-rel rel-moyen">moyen</span></div>
+        <div class="cand-risk">risque: faible</div>
+        <div class="cand-path">1FA84.svg</div>
+        <div class="sel-id" onclick="copyId(this)">castle_boss.boss_entity.c5</div>
+        <button class="copy-btn" onclick="copyId(this.previousElementSibling)">copier identifiant</button>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="level-section" id="sonic_normal">
+  <div class="level-header normal">
+    <span class="level-badge normal">normal</span>
+    <h2 style="font-size:1.1em; color:#2196F3">Zone des Anneaux</h2>
+    <span class="level-id">sonic_normal</span>
+  </div>
+  <div class="icon-type-section">
+    <div class="icon-type-header">
+      <span class="icon-type-label">Pickup</span>
+      <span class="current-icon">actuel: ring procedurale</span>
+    </div>
+    <div class="candidates-grid">
+      <div class="candidate-card">
+        <div class="rank-badge">c1</div>
+        <img class="candidate-img" src="preview-assets/1F48D.svg" alt="1F48D ring" loading="lazy">
+        <div class="cand-name">1F48D ring</div>
+        <div class="cand-reason">anneau dore Sonic iconique</div>
+        <div><span class="badge-rel rel-fort">fort</span></div>
+        <div class="cand-risk">risque: faible</div>
+        <div class="cand-path">1F48D.svg</div>
+        <div class="sel-id" onclick="copyId(this)">sonic_normal.pickup.c1</div>
+        <button class="copy-btn" onclick="copyId(this.previousElementSibling)">copier identifiant</button>
+      </div>
+      <div class="candidate-card">
+        <div class="rank-badge">c2</div>
+        <img class="candidate-img" src="preview-assets/1FA99.svg" alt="1FA99 coin" loading="lazy">
+        <div class="cand-name">1FA99 coin</div>
+        <div class="cand-reason">piece ronde brillante</div>
+        <div><span class="badge-rel rel-fort">fort</span></div>
+        <div class="cand-risk">risque: faible</div>
+        <div class="cand-path">1FA99.svg</div>
+        <div class="sel-id" onclick="copyId(this)">sonic_normal.pickup.c2</div>
+        <button class="copy-btn" onclick="copyId(this.previousElementSibling)">copier identifiant</button>
+      </div>
+      <div class="candidate-card">
+        <div class="rank-badge">c3</div>
+        <img class="candidate-img" src="preview-assets/1F7E1.svg" alt="1F7E1 yellow circle" loading="lazy">
+        <div class="cand-name">1F7E1 yellow circle</div>
+        <div class="cand-reason">cercle jaune simple</div>
+        <div><span class="badge-rel rel-moyen">moyen</span></div>
+        <div class="cand-risk">risque: trop simple</div>
+        <div class="cand-path">1F7E1.svg</div>
+        <div class="sel-id" onclick="copyId(this)">sonic_normal.pickup.c3</div>
+        <button class="copy-btn" onclick="copyId(this.previousElementSibling)">copier identifiant</button>
+      </div>
+      <div class="candidate-card">
+        <div class="rank-badge">c4</div>
+        <img class="candidate-img" src="preview-assets/1F7E0.svg" alt="1F7E0 orange circle" loading="lazy">
+        <div class="cand-name">1F7E0 orange circle</div>
+        <div class="cand-reason">cercle orange variante</div>
+        <div><span class="badge-rel rel-moyen">moyen</span></div>
+        <div class="cand-risk">risque: trop simple</div>
+        <div class="cand-path">1F7E0.svg</div>
+        <div class="sel-id" onclick="copyId(this)">sonic_normal.pickup.c4</div>
+        <button class="copy-btn" onclick="copyId(this.previousElementSibling)">copier identifiant</button>
+      </div>
+      <div class="candidate-card">
+        <div class="rank-badge">c5</div>
+        <img class="candidate-img" src="preview-assets/26AA.svg" alt="26AA white circle" loading="lazy">
+        <div class="cand-name">26AA white circle</div>
+        <div class="cand-reason">cercle blanc neutre</div>
+        <div><span class="badge-rel rel-faible">faible</span></div>
+        <div class="cand-risk">risque: faible contraste fond sombre</div>
+        <div class="cand-path">26AA.svg</div>
+        <div class="sel-id" onclick="copyId(this)">sonic_normal.pickup.c5</div>
+        <button class="copy-btn" onclick="copyId(this.previousElementSibling)">copier identifiant</button>
+      </div>
+    </div>
+  </div>
+  <div class="icon-type-section">
+    <div class="icon-type-header">
+      <span class="icon-type-label">Obstacle</span>
+      <span class="current-icon">actuel: ring procedurale gris</span>
+    </div>
+    <div class="candidates-grid">
+      <div class="candidate-card">
+        <div class="rank-badge">c1</div>
+        <img class="candidate-img" src="preview-assets/26D4.svg" alt="26D4 no entry" loading="lazy">
+        <div class="cand-name">26D4 no entry</div>
+        <div class="cand-reason">cercle barre passage interdit</div>
+        <div><span class="badge-rel rel-moyen">moyen</span></div>
+        <div class="cand-risk">risque: rouge tres fort</div>
+        <div class="cand-path">26D4.svg</div>
+        <div class="sel-id" onclick="copyId(this)">sonic_normal.obstacle.c1</div>
+        <button class="copy-btn" onclick="copyId(this.previousElementSibling)">copier identifiant</button>
+      </div>
+      <div class="candidate-card">
+        <div class="rank-badge">c2</div>
+        <img class="candidate-img" src="preview-assets/26AA.svg" alt="26AA white circle" loading="lazy">
+        <div class="cand-name">26AA white circle</div>
+        <div class="cand-reason">anneau inactif gris</div>
+        <div><span class="badge-rel rel-faible">faible</span></div>
+        <div class="cand-risk">risque: trop similaire pickup</div>
+        <div class="cand-path">26AA.svg</div>
+        <div class="sel-id" onclick="copyId(this)">sonic_normal.obstacle.c2</div>
+        <button class="copy-btn" onclick="copyId(this.previousElementSibling)">copier identifiant</button>
+      </div>
+      <div class="candidate-card">
+        <div class="rank-badge">c3</div>
+        <img class="candidate-img" src="preview-assets/26A0.svg" alt="26A0 warning" loading="lazy">
+        <div class="cand-name">26A0 warning</div>
+        <div class="cand-reason">danger obstacle</div>
+        <div><span class="badge-rel rel-moyen">moyen</span></div>
+        <div class="cand-risk">risque: generique</div>
+        <div class="cand-path">26A0.svg</div>
+        <div class="sel-id" onclick="copyId(this)">sonic_normal.obstacle.c3</div>
+        <button class="copy-btn" onclick="copyId(this.previousElementSibling)">copier identifiant</button>
+      </div>
+      <div class="candidate-card">
+        <div class="rank-badge">c4</div>
+        <img class="candidate-img" src="preview-assets/1F4A3.svg" alt="1F4A3 bomb" loading="lazy">
+        <div class="cand-name">1F4A3 bomb</div>
+        <div class="cand-reason">danger explosion</div>
+        <div><span class="badge-rel rel-moyen">moyen</span></div>
+        <div class="cand-risk">risque: semantique lethal</div>
+        <div class="cand-path">1F4A3.svg</div>
+        <div class="sel-id" onclick="copyId(this)">sonic_normal.obstacle.c4</div>
+        <button class="copy-btn" onclick="copyId(this.previousElementSibling)">copier identifiant</button>
+      </div>
+      <div class="candidate-card">
+        <div class="rank-badge">c5</div>
+        <img class="candidate-img" src="preview-assets/1F6AB.svg" alt="1F6AB prohibited" loading="lazy">
+        <div class="cand-name">1F6AB prohibited</div>
+        <div class="cand-reason">interdit passage</div>
+        <div><span class="badge-rel rel-moyen">moyen</span></div>
+        <div class="cand-risk">risque: faible</div>
+        <div class="cand-path">1F6AB.svg</div>
+        <div class="sel-id" onclick="copyId(this)">sonic_normal.obstacle.c5</div>
+        <button class="copy-btn" onclick="copyId(this.previousElementSibling)">copier identifiant</button>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="level-section" id="sonic_boss">
+  <div class="level-header boss">
+    <span class="level-badge boss">boss</span>
+    <h2 style="font-size:1.1em; color:#1565C0">Serpent en Boucle</h2>
+    <span class="level-id">sonic_boss</span>
+  </div>
+  <div class="icon-type-section">
+    <div class="icon-type-header">
+      <span class="icon-type-label">Boss Entity</span>
+      <span class="current-icon">actuel: cercle procedurale</span>
+    </div>
+    <div class="candidates-grid">
+      <div class="candidate-card">
+        <div class="rank-badge">c1</div>
+        <img class="candidate-img" src="preview-assets/1F40D.svg" alt="1F40D snake" loading="lazy">
+        <div class="cand-name">1F40D snake</div>
+        <div class="cand-reason">serpent exact mechanic loopSerpent</div>
+        <div><span class="badge-rel rel-fort">fort</span></div>
+        <div class="cand-risk">risque: faible</div>
+        <div class="cand-path">1F40D.svg</div>
+        <div class="sel-id" onclick="copyId(this)">sonic_boss.boss_entity.c1</div>
+        <button class="copy-btn" onclick="copyId(this.previousElementSibling)">copier identifiant</button>
+      </div>
+      <div class="candidate-card">
+        <div class="rank-badge">c2</div>
+        <img class="candidate-img" src="preview-assets/27B0.svg" alt="27B0 curly loop" loading="lazy">
+        <div class="cand-name">27B0 curly loop</div>
+        <div class="cand-reason">boucle courbe trajectoire boss</div>
+        <div><span class="badge-rel rel-fort">fort</span></div>
+        <div class="cand-risk">risque: faible</div>
+        <div class="cand-path">27B0.svg</div>
+        <div class="sel-id" onclick="copyId(this)">sonic_boss.boss_entity.c2</div>
+        <button class="copy-btn" onclick="copyId(this.previousElementSibling)">copier identifiant</button>
+      </div>
+      <div class="candidate-card">
+        <div class="rank-badge">c3</div>
+        <img class="candidate-img" src="preview-assets/27BF.svg" alt="27BF double curly loop" loading="lazy">
+        <div class="cand-name">27BF double curly loop</div>
+        <div class="cand-reason">double boucle plus complexe</div>
+        <div><span class="badge-rel rel-fort">fort</span></div>
+        <div class="cand-risk">risque: faible</div>
+        <div class="cand-path">27BF.svg</div>
+        <div class="sel-id" onclick="copyId(this)">sonic_boss.boss_entity.c3</div>
+        <button class="copy-btn" onclick="copyId(this.previousElementSibling)">copier identifiant</button>
+      </div>
+      <div class="candidate-card">
+        <div class="rank-badge">c4</div>
+        <img class="candidate-img" src="preview-assets/1F300.svg" alt="1F300 cyclone" loading="lazy">
+        <div class="cand-name">1F300 cyclone</div>
+        <div class="cand-reason">spirale tourbillon</div>
+        <div><span class="badge-rel rel-moyen">moyen</span></div>
+        <div class="cand-risk">risque: faible</div>
+        <div class="cand-path">1F300.svg</div>
+        <div class="sel-id" onclick="copyId(this)">sonic_boss.boss_entity.c4</div>
+        <button class="copy-btn" onclick="copyId(this.previousElementSibling)">copier identifiant</button>
+      </div>
+      <div class="candidate-card">
+        <div class="rank-badge">c5</div>
+        <img class="candidate-img" src="preview-assets/26CE.svg" alt="26CE Ophiuchus" loading="lazy">
+        <div class="cand-name">26CE Ophiuchus</div>
+        <div class="cand-reason">signe serpent ophiuchus</div>
+        <div><span class="badge-rel rel-faible">faible</span></div>
+        <div class="cand-risk">risque: sens astrologique</div>
+        <div class="cand-path">26CE.svg</div>
+        <div class="sel-id" onclick="copyId(this)">sonic_boss.boss_entity.c5</div>
+        <button class="copy-btn" onclick="copyId(this.previousElementSibling)">copier identifiant</button>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="level-section" id="streets_normal">
+  <div class="level-header normal">
+    <span class="level-badge normal">normal</span>
+    <h2 style="font-size:1.1em; color:#F44336">Bagarre en Ruelle</h2>
+    <span class="level-id">streets_normal</span>
+  </div>
+  <div class="icon-type-section">
+    <div class="icon-type-header">
+      <span class="icon-type-label">Pickup</span>
+      <span class="current-icon">actuel: diamond procedurale</span>
+    </div>
+    <div class="candidates-grid">
+      <div class="candidate-card">
+        <div class="rank-badge">c1</div>
+        <img class="candidate-img" src="preview-assets/1F48E.svg" alt="1F48E gem stone" loading="lazy">
+        <div class="cand-name">1F48E gem stone</div>
+        <div class="cand-reason">gemme bonus rue</div>
+        <div><span class="badge-rel rel-fort">fort</span></div>
+        <div class="cand-risk">risque: faible</div>
+        <div class="cand-path">1F48E.svg</div>
+        <div class="sel-id" onclick="copyId(this)">streets_normal.pickup.c1</div>
+        <button class="copy-btn" onclick="copyId(this.previousElementSibling)">copier identifiant</button>
+      </div>
+      <div class="candidate-card">
+        <div class="rank-badge">c2</div>
+        <img class="candidate-img" src="preview-assets/2666.svg" alt="2666 diamond suit" loading="lazy">
+        <div class="cand-name">2666 diamond suit</div>
+        <div class="cand-reason">diamant carte playing card</div>
+        <div><span class="badge-rel rel-fort">fort</span></div>
+        <div class="cand-risk">risque: faible</div>
+        <div class="cand-path">2666.svg</div>
+        <div class="sel-id" onclick="copyId(this)">streets_normal.pickup.c2</div>
+        <button class="copy-btn" onclick="copyId(this.previousElementSibling)">copier identifiant</button>
+      </div>
+      <div class="candidate-card">
+        <div class="rank-badge">c3</div>
+        <img class="candidate-img" src="preview-assets/1F536.svg" alt="1F536 large orange diamond" loading="lazy">
+        <div class="cand-name">1F536 large orange diamond</div>
+        <div class="cand-reason">grand diamant orange</div>
+        <div><span class="badge-rel rel-moyen">moyen</span></div>
+        <div class="cand-risk">risque: couleur chaude</div>
+        <div class="cand-path">1F536.svg</div>
+        <div class="sel-id" onclick="copyId(this)">streets_normal.pickup.c3</div>
+        <button class="copy-btn" onclick="copyId(this.previousElementSibling)">copier identifiant</button>
+      </div>
+      <div class="candidate-card">
+        <div class="rank-badge">c4</div>
+        <img class="candidate-img" src="preview-assets/1F537.svg" alt="1F537 large blue diamond" loading="lazy">
+        <div class="cand-name">1F537 large blue diamond</div>
+        <div class="cand-reason">grand diamant bleu variante</div>
+        <div><span class="badge-rel rel-moyen">moyen</span></div>
+        <div class="cand-risk">risque: faible</div>
+        <div class="cand-path">1F537.svg</div>
+        <div class="sel-id" onclick="copyId(this)">streets_normal.pickup.c4</div>
+        <button class="copy-btn" onclick="copyId(this.previousElementSibling)">copier identifiant</button>
+      </div>
+      <div class="candidate-card">
+        <div class="rank-badge">c5</div>
+        <img class="candidate-img" src="preview-assets/1FA99.svg" alt="1FA99 coin" loading="lazy">
+        <div class="cand-name">1FA99 coin</div>
+        <div class="cand-reason">piece bonus monetaire</div>
+        <div><span class="badge-rel rel-moyen">moyen</span></div>
+        <div class="cand-risk">risque: faible</div>
+        <div class="cand-path">1FA99.svg</div>
+        <div class="sel-id" onclick="copyId(this)">streets_normal.pickup.c5</div>
+        <button class="copy-btn" onclick="copyId(this.previousElementSibling)">copier identifiant</button>
+      </div>
+    </div>
+  </div>
+  <div class="icon-type-section">
+    <div class="icon-type-header">
+      <span class="icon-type-label">Obstacle</span>
+      <span class="current-icon">actuel: rect procedurale</span>
+    </div>
+    <div class="candidates-grid">
+      <div class="candidate-card">
+        <div class="rank-badge">c1</div>
+        <img class="candidate-img" src="preview-assets/1F6B6.svg" alt="1F6B6 person walking" loading="lazy">
+        <div class="cand-name">1F6B6 person walking</div>
+        <div class="cand-reason">pieton qui marche bloqueur</div>
+        <div><span class="badge-rel rel-fort">fort</span></div>
+        <div class="cand-risk">risque: faible</div>
+        <div class="cand-path">1F6B6.svg</div>
+        <div class="sel-id" onclick="copyId(this)">streets_normal.obstacle.c1</div>
+        <button class="copy-btn" onclick="copyId(this.previousElementSibling)">copier identifiant</button>
+      </div>
+      <div class="candidate-card">
+        <div class="rank-badge">c2</div>
+        <img class="candidate-img" src="preview-assets/1F3C3.svg" alt="1F3C3 person running" loading="lazy">
+        <div class="cand-name">1F3C3 person running</div>
+        <div class="cand-reason">passant qui court charge</div>
+        <div><span class="badge-rel rel-fort">fort</span></div>
+        <div class="cand-risk">risque: faible</div>
+        <div class="cand-path">1F3C3.svg</div>
+        <div class="sel-id" onclick="copyId(this)">streets_normal.obstacle.c2</div>
+        <button class="copy-btn" onclick="copyId(this.previousElementSibling)">copier identifiant</button>
+      </div>
+      <div class="candidate-card">
+        <div class="rank-badge">c3</div>
+        <img class="candidate-img" src="preview-assets/1F9D1.svg" alt="1F9D1 person" loading="lazy">
+        <div class="cand-name">1F9D1 person</div>
+        <div class="cand-reason">personne neutre foule</div>
+        <div><span class="badge-rel rel-moyen">moyen</span></div>
+        <div class="cand-risk">risque: trop generique</div>
+        <div class="cand-path">1F9D1.svg</div>
+        <div class="sel-id" onclick="copyId(this)">streets_normal.obstacle.c3</div>
+        <button class="copy-btn" onclick="copyId(this.previousElementSibling)">copier identifiant</button>
+      </div>
+      <div class="candidate-card">
+        <div class="rank-badge">c4</div>
+        <img class="candidate-img" src="preview-assets/1F9DF.svg" alt="1F9DF zombie" loading="lazy">
+        <div class="cand-name">1F9DF zombie</div>
+        <div class="cand-reason">zombie foule dangereuse</div>
+        <div><span class="badge-rel rel-moyen">moyen</span></div>
+        <div class="cand-risk">risque: univers horror</div>
+        <div class="cand-path">1F9DF.svg</div>
+        <div class="sel-id" onclick="copyId(this)">streets_normal.obstacle.c4</div>
+        <button class="copy-btn" onclick="copyId(this.previousElementSibling)">copier identifiant</button>
+      </div>
+      <div class="candidate-card">
+        <div class="rank-badge">c5</div>
+        <img class="candidate-img" src="preview-assets/1F46A.svg" alt="1F46A family" loading="lazy">
+        <div class="cand-name">1F46A family</div>
+        <div class="cand-reason">famille groupe obstruction</div>
+        <div><span class="badge-rel rel-faible">faible</span></div>
+        <div class="cand-risk">risque: trop friendly</div>
+        <div class="cand-path">1F46A.svg</div>
+        <div class="sel-id" onclick="copyId(this)">streets_normal.obstacle.c5</div>
+        <button class="copy-btn" onclick="copyId(this.previousElementSibling)">copier identifiant</button>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="level-section" id="streets_boss">
+  <div class="level-header boss">
+    <span class="level-badge boss">boss</span>
+    <h2 style="font-size:1.1em; color:#B71C1C">Seigneur du Crime</h2>
+    <span class="level-id">streets_boss</span>
+  </div>
+  <div class="icon-type-section">
+    <div class="icon-type-header">
+      <span class="icon-type-label">Boss Entity</span>
+      <span class="current-icon">actuel: roundedRect procedurale</span>
+    </div>
+    <div class="candidates-grid">
+      <div class="candidate-card">
+        <div class="rank-badge">c1</div>
+        <img class="candidate-img" src="preview-assets/1F574.svg" alt="1F574 person in suit levitating" loading="lazy">
+        <div class="cand-name">1F574 person in suit levitating</div>
+        <div class="cand-reason">personnage costume boss criminel</div>
+        <div><span class="badge-rel rel-fort">fort</span></div>
+        <div class="cand-risk">risque: icone obscure</div>
+        <div class="cand-path">1F574.svg</div>
+        <div class="sel-id" onclick="copyId(this)">streets_boss.boss_entity.c1</div>
+        <button class="copy-btn" onclick="copyId(this.previousElementSibling)">copier identifiant</button>
+      </div>
+      <div class="candidate-card">
+        <div class="rank-badge">c2</div>
+        <img class="candidate-img" src="preview-assets/1F454.svg" alt="1F454 necktie" loading="lazy">
+        <div class="cand-name">1F454 necktie</div>
+        <div class="cand-reason">cravate boss syndical</div>
+        <div><span class="badge-rel rel-moyen">moyen</span></div>
+        <div class="cand-risk">risque: pas humain</div>
+        <div class="cand-path">1F454.svg</div>
+        <div class="sel-id" onclick="copyId(this)">streets_boss.boss_entity.c2</div>
+        <button class="copy-btn" onclick="copyId(this.previousElementSibling)">copier identifiant</button>
+      </div>
+      <div class="candidate-card">
+        <div class="rank-badge">c3</div>
+        <img class="candidate-img" src="preview-assets/1F576.svg" alt="1F576 sunglasses" loading="lazy">
+        <div class="cand-name">1F576 sunglasses</div>
+        <div class="cand-reason">lunettes noires gangster</div>
+        <div><span class="badge-rel rel-moyen">moyen</span></div>
+        <div class="cand-risk">risque: faible</div>
+        <div class="cand-path">1F576.svg</div>
+        <div class="sel-id" onclick="copyId(this)">streets_boss.boss_entity.c3</div>
+        <button class="copy-btn" onclick="copyId(this.previousElementSibling)">copier identifiant</button>
+      </div>
+      <div class="candidate-card">
+        <div class="rank-badge">c4</div>
+        <img class="candidate-img" src="preview-assets/1F0CF.svg" alt="1F0CF joker" loading="lazy">
+        <div class="cand-name">1F0CF joker</div>
+        <div class="cand-reason">joker carte crime</div>
+        <div><span class="badge-rel rel-moyen">moyen</span></div>
+        <div class="cand-risk">risque: couleur noire dominante</div>
+        <div class="cand-path">1F0CF.svg</div>
+        <div class="sel-id" onclick="copyId(this)">streets_boss.boss_entity.c4</div>
+        <button class="copy-btn" onclick="copyId(this.previousElementSibling)">copier identifiant</button>
+      </div>
+      <div class="candidate-card">
+        <div class="rank-badge">c5</div>
+        <img class="candidate-img" src="preview-assets/1F5E1.svg" alt="1F5E1 dagger" loading="lazy">
+        <div class="cand-name">1F5E1 dagger</div>
+        <div class="cand-reason">poignard menace criminelle</div>
+        <div><span class="badge-rel rel-moyen">moyen</span></div>
+        <div class="cand-risk">risque: faible</div>
+        <div class="cand-path">1F5E1.svg</div>
+        <div class="sel-id" onclick="copyId(this)">streets_boss.boss_entity.c5</div>
+        <button class="copy-btn" onclick="copyId(this.previousElementSibling)">copier identifiant</button>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="level-section" id="fighter_normal">
+  <div class="level-header normal">
+    <span class="level-badge normal">normal</span>
+    <h2 style="font-size:1.1em; color:#FF9800">Dojo des Guerriers</h2>
+    <span class="level-id">fighter_normal</span>
+  </div>
+  <div class="icon-type-section">
+    <div class="icon-type-header">
+      <span class="icon-type-label">Pickup</span>
+      <span class="current-icon">actuel: lightning procedurale</span>
+    </div>
+    <div class="candidates-grid">
+      <div class="candidate-card">
+        <div class="rank-badge">c1</div>
+        <img class="candidate-img" src="preview-assets/26A1.svg" alt="26A1 high voltage" loading="lazy">
+        <div class="cand-name">26A1 high voltage</div>
+        <div class="cand-reason">eclair energie de charge</div>
+        <div><span class="badge-rel rel-fort">fort</span></div>
+        <div class="cand-risk">risque: faible</div>
+        <div class="cand-path">26A1.svg</div>
+        <div class="sel-id" onclick="copyId(this)">fighter_normal.pickup.c1</div>
+        <button class="copy-btn" onclick="copyId(this.previousElementSibling)">copier identifiant</button>
+      </div>
+      <div class="candidate-card">
+        <div class="rank-badge">c2</div>
+        <img class="candidate-img" src="preview-assets/1F525.svg" alt="1F525 fire" loading="lazy">
+        <div class="cand-name">1F525 fire</div>
+        <div class="cand-reason">feu puissance energie</div>
+        <div><span class="badge-rel rel-fort">fort</span></div>
+        <div class="cand-risk">risque: doublon kombat</div>
+        <div class="cand-path">1F525.svg</div>
+        <div class="sel-id" onclick="copyId(this)">fighter_normal.pickup.c2</div>
+        <button class="copy-btn" onclick="copyId(this.previousElementSibling)">copier identifiant</button>
+      </div>
+      <div class="candidate-card">
+        <div class="rank-badge">c3</div>
+        <img class="candidate-img" src="preview-assets/1F31F.svg" alt="1F31F glowing star" loading="lazy">
+        <div class="cand-name">1F31F glowing star</div>
+        <div class="cand-reason">etoile energie brillant</div>
+        <div><span class="badge-rel rel-moyen">moyen</span></div>
+        <div class="cand-risk">risque: doublon castle</div>
+        <div class="cand-path">1F31F.svg</div>
+        <div class="sel-id" onclick="copyId(this)">fighter_normal.pickup.c3</div>
+        <button class="copy-btn" onclick="copyId(this.previousElementSibling)">copier identifiant</button>
+      </div>
+      <div class="candidate-card">
+        <div class="rank-badge">c4</div>
+        <img class="candidate-img" src="preview-assets/E2CD.svg" alt="E2CD solar energy" loading="lazy">
+        <div class="cand-name">E2CD solar energy</div>
+        <div class="cand-reason">energie solaire charge</div>
+        <div><span class="badge-rel rel-moyen">moyen</span></div>
+        <div class="cand-risk">risque: OpenMoji custom non-standard</div>
+        <div class="cand-path">E2CD.svg</div>
+        <div class="sel-id" onclick="copyId(this)">fighter_normal.pickup.c4</div>
+        <button class="copy-btn" onclick="copyId(this.previousElementSibling)">copier identifiant</button>
+      </div>
+      <div class="candidate-card">
+        <div class="rank-badge">c5</div>
+        <img class="candidate-img" src="preview-assets/1FAAB.svg" alt="1FAAB low battery" loading="lazy">
+        <div class="cand-name">1FAAB low battery</div>
+        <div class="cand-reason">batterie vide contraire energy</div>
+        <div><span class="badge-rel rel-faible">faible</span></div>
+        <div class="cand-risk">risque: semantique inverse</div>
+        <div class="cand-path">1FAAB.svg</div>
+        <div class="sel-id" onclick="copyId(this)">fighter_normal.pickup.c5</div>
+        <button class="copy-btn" onclick="copyId(this.previousElementSibling)">copier identifiant</button>
+      </div>
+    </div>
+  </div>
+  <div class="icon-type-section">
+    <div class="icon-type-header">
+      <span class="icon-type-label">Obstacle</span>
+      <span class="current-icon">actuel: cercle procedurale</span>
+    </div>
+    <div class="candidates-grid">
+      <div class="candidate-card">
+        <div class="rank-badge">c1</div>
+        <img class="candidate-img" src="preview-assets/270A.svg" alt="270A raised fist" loading="lazy">
+        <div class="cand-name">270A raised fist</div>
+        <div class="cand-reason">poing zone de combat</div>
+        <div><span class="badge-rel rel-fort">fort</span></div>
+        <div class="cand-risk">risque: skin tone neutral</div>
+        <div class="cand-path">270A.svg</div>
+        <div class="sel-id" onclick="copyId(this)">fighter_normal.obstacle.c1</div>
+        <button class="copy-btn" onclick="copyId(this.previousElementSibling)">copier identifiant</button>
+      </div>
+      <div class="candidate-card">
+        <div class="rank-badge">c2</div>
+        <img class="candidate-img" src="preview-assets/1F44A.svg" alt="1F44A oncoming fist" loading="lazy">
+        <div class="cand-name">1F44A oncoming fist</div>
+        <div class="cand-reason">poing qui frappe spar</div>
+        <div><span class="badge-rel rel-fort">fort</span></div>
+        <div class="cand-risk">risque: faible</div>
+        <div class="cand-path">1F44A.svg</div>
+        <div class="sel-id" onclick="copyId(this)">fighter_normal.obstacle.c2</div>
+        <button class="copy-btn" onclick="copyId(this.previousElementSibling)">copier identifiant</button>
+      </div>
+      <div class="candidate-card">
+        <div class="rank-badge">c3</div>
+        <img class="candidate-img" src="preview-assets/1F94B.svg" alt="1F94B martial arts uniform" loading="lazy">
+        <div class="cand-name">1F94B martial arts uniform</div>
+        <div class="cand-reason">kimono dojo combat</div>
+        <div><span class="badge-rel rel-fort">fort</span></div>
+        <div class="cand-risk">risque: faible</div>
+        <div class="cand-path">1F94B.svg</div>
+        <div class="sel-id" onclick="copyId(this)">fighter_normal.obstacle.c3</div>
+        <button class="copy-btn" onclick="copyId(this.previousElementSibling)">copier identifiant</button>
+      </div>
+      <div class="candidate-card">
+        <div class="rank-badge">c4</div>
+        <img class="candidate-img" src="preview-assets/1F9B5.svg" alt="1F9B5 leg" loading="lazy">
+        <div class="cand-name">1F9B5 leg</div>
+        <div class="cand-reason">jambe coup de pied</div>
+        <div><span class="badge-rel rel-moyen">moyen</span></div>
+        <div class="cand-risk">risque: ambigu</div>
+        <div class="cand-path">1F9B5.svg</div>
+        <div class="sel-id" onclick="copyId(this)">fighter_normal.obstacle.c4</div>
+        <button class="copy-btn" onclick="copyId(this.previousElementSibling)">copier identifiant</button>
+      </div>
+      <div class="candidate-card">
+        <div class="rank-badge">c5</div>
+        <img class="candidate-img" src="preview-assets/1F93A.svg" alt="1F93A person fencing" loading="lazy">
+        <div class="cand-name">1F93A person fencing</div>
+        <div class="cand-reason">escrimeur combat</div>
+        <div><span class="badge-rel rel-moyen">moyen</span></div>
+        <div class="cand-risk">risque: doublon boss</div>
+        <div class="cand-path">1F93A.svg</div>
+        <div class="sel-id" onclick="copyId(this)">fighter_normal.obstacle.c5</div>
+        <button class="copy-btn" onclick="copyId(this.previousElementSibling)">copier identifiant</button>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="level-section" id="fighter_boss">
+  <div class="level-header boss">
+    <span class="level-badge boss">boss</span>
+    <h2 style="font-size:1.1em; color:#E65100">Ultime Challenger</h2>
+    <span class="level-id">fighter_boss</span>
+  </div>
+  <div class="icon-type-section">
+    <div class="icon-type-header">
+      <span class="icon-type-label">Boss Entity</span>
+      <span class="current-icon">actuel: roundedRect procedurale</span>
+    </div>
+    <div class="candidates-grid">
+      <div class="candidate-card">
+        <div class="rank-badge">c1</div>
+        <img class="candidate-img" src="preview-assets/1F93A.svg" alt="1F93A person fencing" loading="lazy">
+        <div class="cand-name">1F93A person fencing</div>
+        <div class="cand-reason">escrimeur challenger duel final</div>
+        <div><span class="badge-rel rel-fort">fort</span></div>
+        <div class="cand-risk">risque: faible</div>
+        <div class="cand-path">1F93A.svg</div>
+        <div class="sel-id" onclick="copyId(this)">fighter_boss.boss_entity.c1</div>
+        <button class="copy-btn" onclick="copyId(this.previousElementSibling)">copier identifiant</button>
+      </div>
+      <div class="candidate-card">
+        <div class="rank-badge">c2</div>
+        <img class="candidate-img" src="preview-assets/2694.svg" alt="2694 crossed swords" loading="lazy">
+        <div class="cand-name">2694 crossed swords</div>
+        <div class="cand-reason">epees croisees combat</div>
+        <div><span class="badge-rel rel-fort">fort</span></div>
+        <div class="cand-risk">risque: faible</div>
+        <div class="cand-path">2694.svg</div>
+        <div class="sel-id" onclick="copyId(this)">fighter_boss.boss_entity.c2</div>
+        <button class="copy-btn" onclick="copyId(this.previousElementSibling)">copier identifiant</button>
+      </div>
+      <div class="candidate-card">
+        <div class="rank-badge">c3</div>
+        <img class="candidate-img" src="preview-assets/1FA96.svg" alt="1FA96 military helmet" loading="lazy">
+        <div class="cand-name">1FA96 military helmet</div>
+        <div class="cand-reason">casque militaire challenger</div>
+        <div><span class="badge-rel rel-fort">fort</span></div>
+        <div class="cand-risk">risque: faible</div>
+        <div class="cand-path">1FA96.svg</div>
+        <div class="sel-id" onclick="copyId(this)">fighter_boss.boss_entity.c3</div>
+        <button class="copy-btn" onclick="copyId(this.previousElementSibling)">copier identifiant</button>
+      </div>
+      <div class="candidate-card">
+        <div class="rank-badge">c4</div>
+        <img class="candidate-img" src="preview-assets/1F3C6.svg" alt="1F3C6 trophy" loading="lazy">
+        <div class="cand-name">1F3C6 trophy</div>
+        <div class="cand-reason">trophee champion ultime</div>
+        <div><span class="badge-rel rel-fort">fort</span></div>
+        <div class="cand-risk">risque: faible</div>
+        <div class="cand-path">1F3C6.svg</div>
+        <div class="sel-id" onclick="copyId(this)">fighter_boss.boss_entity.c4</div>
+        <button class="copy-btn" onclick="copyId(this.previousElementSibling)">copier identifiant</button>
+      </div>
+      <div class="candidate-card">
+        <div class="rank-badge">c5</div>
+        <img class="candidate-img" src="preview-assets/1F94B.svg" alt="1F94B martial arts uniform" loading="lazy">
+        <div class="cand-name">1F94B martial arts uniform</div>
+        <div class="cand-reason">kimono ultime challenger</div>
+        <div><span class="badge-rel rel-moyen">moyen</span></div>
+        <div class="cand-risk">risque: faible</div>
+        <div class="cand-path">1F94B.svg</div>
+        <div class="sel-id" onclick="copyId(this)">fighter_boss.boss_entity.c5</div>
+        <button class="copy-btn" onclick="copyId(this.previousElementSibling)">copier identifiant</button>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="level-section" id="outrun_normal">
+  <div class="level-header normal">
+    <span class="level-badge normal">normal</span>
+    <h2 style="font-size:1.1em; color:#FF6EC7">Autoroute du Soleil</h2>
+    <span class="level-id">outrun_normal</span>
+  </div>
+  <div class="icon-type-section">
+    <div class="icon-type-header">
+      <span class="icon-type-label">Pickup</span>
+      <span class="current-icon">actuel: triangle procedurale</span>
+    </div>
+    <div class="candidates-grid">
+      <div class="candidate-card">
+        <div class="rank-badge">c1</div>
+        <img class="candidate-img" src="preview-assets/1F3C1.svg" alt="1F3C1 chequered flag" loading="lazy">
+        <div class="cand-name">1F3C1 chequered flag</div>
+        <div class="cand-reason">drapeau damiers checkpoint racing</div>
+        <div><span class="badge-rel rel-fort">fort</span></div>
+        <div class="cand-risk">risque: faible</div>
+        <div class="cand-path">1F3C1.svg</div>
+        <div class="sel-id" onclick="copyId(this)">outrun_normal.pickup.c1</div>
+        <button class="copy-btn" onclick="copyId(this.previousElementSibling)">copier identifiant</button>
+      </div>
+      <div class="candidate-card">
+        <div class="rank-badge">c2</div>
+        <img class="candidate-img" src="preview-assets/1F6A9.svg" alt="1F6A9 triangular flag" loading="lazy">
+        <div class="cand-name">1F6A9 triangular flag</div>
+        <div class="cand-reason">drapeau triangulaire balise</div>
+        <div><span class="badge-rel rel-fort">fort</span></div>
+        <div class="cand-risk">risque: faible</div>
+        <div class="cand-path">1F6A9.svg</div>
+        <div class="sel-id" onclick="copyId(this)">outrun_normal.pickup.c2</div>
+        <button class="copy-btn" onclick="copyId(this.previousElementSibling)">copier identifiant</button>
+      </div>
+      <div class="candidate-card">
+        <div class="rank-badge">c3</div>
+        <img class="candidate-img" src="preview-assets/26F3.svg" alt="26F3 flag in hole" loading="lazy">
+        <div class="cand-name">26F3 flag in hole</div>
+        <div class="cand-reason">drapeau trou golf</div>
+        <div><span class="badge-rel rel-moyen">moyen</span></div>
+        <div class="cand-risk">risque: contexte golf</div>
+        <div class="cand-path">26F3.svg</div>
+        <div class="sel-id" onclick="copyId(this)">outrun_normal.pickup.c3</div>
+        <button class="copy-btn" onclick="copyId(this.previousElementSibling)">copier identifiant</button>
+      </div>
+      <div class="candidate-card">
+        <div class="rank-badge">c4</div>
+        <img class="candidate-img" src="preview-assets/1F4CD.svg" alt="1F4CD round pushpin" loading="lazy">
+        <div class="cand-name">1F4CD round pushpin</div>
+        <div class="cand-reason">pin repere position</div>
+        <div><span class="badge-rel rel-moyen">moyen</span></div>
+        <div class="cand-risk">risque: faible</div>
+        <div class="cand-path">1F4CD.svg</div>
+        <div class="sel-id" onclick="copyId(this)">outrun_normal.pickup.c4</div>
+        <button class="copy-btn" onclick="copyId(this.previousElementSibling)">copier identifiant</button>
+      </div>
+      <div class="candidate-card">
+        <div class="rank-badge">c5</div>
+        <img class="candidate-img" src="preview-assets/1F3CE.svg" alt="1F3CE racing car" loading="lazy">
+        <div class="cand-name">1F3CE racing car</div>
+        <div class="cand-reason">voiture course objectif</div>
+        <div><span class="badge-rel rel-moyen">moyen</span></div>
+        <div class="cand-risk">risque: doublon boss</div>
+        <div class="cand-path">1F3CE.svg</div>
+        <div class="sel-id" onclick="copyId(this)">outrun_normal.pickup.c5</div>
+        <button class="copy-btn" onclick="copyId(this.previousElementSibling)">copier identifiant</button>
+      </div>
+    </div>
+  </div>
+  <div class="icon-type-section">
+    <div class="icon-type-header">
+      <span class="icon-type-label">Obstacle</span>
+      <span class="current-icon">actuel: rect procedurale rose</span>
+    </div>
+    <div class="candidates-grid">
+      <div class="candidate-card">
+        <div class="rank-badge">c1</div>
+        <img class="candidate-img" src="preview-assets/1F698.svg" alt="1F698 oncoming automobile" loading="lazy">
+        <div class="cand-name">1F698 oncoming automobile</div>
+        <div class="cand-reason">voiture sens inverse trafic hostile</div>
+        <div><span class="badge-rel rel-fort">fort</span></div>
+        <div class="cand-risk">risque: faible</div>
+        <div class="cand-path">1F698.svg</div>
+        <div class="sel-id" onclick="copyId(this)">outrun_normal.obstacle.c1</div>
+        <button class="copy-btn" onclick="copyId(this.previousElementSibling)">copier identifiant</button>
+      </div>
+      <div class="candidate-card">
+        <div class="rank-badge">c2</div>
+        <img class="candidate-img" src="preview-assets/1F699.svg" alt="1F699 sport utility vehicle" loading="lazy">
+        <div class="cand-name">1F699 sport utility vehicle</div>
+        <div class="cand-reason">SUV gros vehicule bloquant</div>
+        <div><span class="badge-rel rel-fort">fort</span></div>
+        <div class="cand-risk">risque: faible</div>
+        <div class="cand-path">1F699.svg</div>
+        <div class="sel-id" onclick="copyId(this)">outrun_normal.obstacle.c2</div>
+        <button class="copy-btn" onclick="copyId(this.previousElementSibling)">copier identifiant</button>
+      </div>
+      <div class="candidate-card">
+        <div class="rank-badge">c3</div>
+        <img class="candidate-img" src="preview-assets/1F697.svg" alt="1F697 automobile" loading="lazy">
+        <div class="cand-name">1F697 automobile</div>
+        <div class="cand-reason">voiture standard trafic</div>
+        <div><span class="badge-rel rel-fort">fort</span></div>
+        <div class="cand-risk">risque: faible</div>
+        <div class="cand-path">1F697.svg</div>
+        <div class="sel-id" onclick="copyId(this)">outrun_normal.obstacle.c3</div>
+        <button class="copy-btn" onclick="copyId(this.previousElementSibling)">copier identifiant</button>
+      </div>
+      <div class="candidate-card">
+        <div class="rank-badge">c4</div>
+        <img class="candidate-img" src="preview-assets/1F69B.svg" alt="1F69B articulated lorry" loading="lazy">
+        <div class="cand-name">1F69B articulated lorry</div>
+        <div class="cand-reason">camion semi obstacle majeur</div>
+        <div><span class="badge-rel rel-moyen">moyen</span></div>
+        <div class="cand-risk">risque: trop grand</div>
+        <div class="cand-path">1F69B.svg</div>
+        <div class="sel-id" onclick="copyId(this)">outrun_normal.obstacle.c4</div>
+        <button class="copy-btn" onclick="copyId(this.previousElementSibling)">copier identifiant</button>
+      </div>
+      <div class="candidate-card">
+        <div class="rank-badge">c5</div>
+        <img class="candidate-img" src="preview-assets/1F6A7.svg" alt="1F6A7 construction" loading="lazy">
+        <div class="cand-name">1F6A7 construction</div>
+        <div class="cand-reason">chantier route bloquee</div>
+        <div><span class="badge-rel rel-moyen">moyen</span></div>
+        <div class="cand-risk">risque: faible</div>
+        <div class="cand-path">1F6A7.svg</div>
+        <div class="sel-id" onclick="copyId(this)">outrun_normal.obstacle.c5</div>
+        <button class="copy-btn" onclick="copyId(this.previousElementSibling)">copier identifiant</button>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="level-section" id="outrun_boss">
+  <div class="level-header boss">
+    <span class="level-badge boss">boss</span>
+    <h2 style="font-size:1.1em; color:#C2185B">Rival Turbo</h2>
+    <span class="level-id">outrun_boss</span>
+  </div>
+  <div class="icon-type-section">
+    <div class="icon-type-header">
+      <span class="icon-type-label">Boss Entity</span>
+      <span class="current-icon">actuel: roundedRect procedurale</span>
+    </div>
+    <div class="candidates-grid">
+      <div class="candidate-card">
+        <div class="rank-badge">c1</div>
+        <img class="candidate-img" src="preview-assets/1F3CE.svg" alt="1F3CE racing car" loading="lazy">
+        <div class="cand-name">1F3CE racing car</div>
+        <div class="cand-reason">voiture course rival turbo</div>
+        <div><span class="badge-rel rel-fort">fort</span></div>
+        <div class="cand-risk">risque: faible</div>
+        <div class="cand-path">1F3CE.svg</div>
+        <div class="sel-id" onclick="copyId(this)">outrun_boss.boss_entity.c1</div>
+        <button class="copy-btn" onclick="copyId(this.previousElementSibling)">copier identifiant</button>
+      </div>
+      <div class="candidate-card">
+        <div class="rank-badge">c2</div>
+        <img class="candidate-img" src="preview-assets/1F4A8.svg" alt="1F4A8 dashing away" loading="lazy">
+        <div class="cand-name">1F4A8 dashing away</div>
+        <div class="cand-reason">nuage vitesse turbo speed</div>
+        <div><span class="badge-rel rel-fort">fort</span></div>
+        <div class="cand-risk">risque: faible</div>
+        <div class="cand-path">1F4A8.svg</div>
+        <div class="sel-id" onclick="copyId(this)">outrun_boss.boss_entity.c2</div>
+        <button class="copy-btn" onclick="copyId(this.previousElementSibling)">copier identifiant</button>
+      </div>
+      <div class="candidate-card">
+        <div class="rank-badge">c3</div>
+        <img class="candidate-img" src="preview-assets/1F6A8.svg" alt="1F6A8 police car light" loading="lazy">
+        <div class="cand-name">1F6A8 police car light</div>
+        <div class="cand-reason">gyrophare poursuivant rival</div>
+        <div><span class="badge-rel rel-moyen">moyen</span></div>
+        <div class="cand-risk">risque: faible</div>
+        <div class="cand-path">1F6A8.svg</div>
+        <div class="sel-id" onclick="copyId(this)">outrun_boss.boss_entity.c3</div>
+        <button class="copy-btn" onclick="copyId(this.previousElementSibling)">copier identifiant</button>
+      </div>
+      <div class="candidate-card">
+        <div class="rank-badge">c4</div>
+        <img class="candidate-img" src="preview-assets/1F699.svg" alt="1F699 sport utility vehicle" loading="lazy">
+        <div class="cand-name">1F699 sport utility vehicle</div>
+        <div class="cand-reason">SUV rival imposant</div>
+        <div><span class="badge-rel rel-moyen">moyen</span></div>
+        <div class="cand-risk">risque: faible</div>
+        <div class="cand-path">1F699.svg</div>
+        <div class="sel-id" onclick="copyId(this)">outrun_boss.boss_entity.c4</div>
+        <button class="copy-btn" onclick="copyId(this.previousElementSibling)">copier identifiant</button>
+      </div>
+      <div class="candidate-card">
+        <div class="rank-badge">c5</div>
+        <img class="candidate-img" src="preview-assets/1F698.svg" alt="1F698 oncoming automobile" loading="lazy">
+        <div class="cand-name">1F698 oncoming automobile</div>
+        <div class="cand-reason">voiture rival en face</div>
+        <div><span class="badge-rel rel-moyen">moyen</span></div>
+        <div class="cand-risk">risque: doublon obstacle</div>
+        <div class="cand-path">1F698.svg</div>
+        <div class="sel-id" onclick="copyId(this)">outrun_boss.boss_entity.c5</div>
+        <button class="copy-btn" onclick="copyId(this.previousElementSibling)">copier identifiant</button>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="level-section" id="shinobi_normal">
+  <div class="level-header normal">
+    <span class="level-badge normal">normal</span>
+    <h2 style="font-size:1.1em; color:#00BCD4">Temple des Neiges</h2>
+    <span class="level-id">shinobi_normal</span>
+  </div>
+  <div class="icon-type-section">
+    <div class="icon-type-header">
+      <span class="icon-type-label">Pickup</span>
+      <span class="current-icon">actuel: cross procedurale</span>
+    </div>
+    <div class="candidates-grid">
+      <div class="candidate-card">
+        <div class="rank-badge">c1</div>
+        <img class="candidate-img" src="preview-assets/2605.svg" alt="2605 black star" loading="lazy">
+        <div class="cand-name">2605 black star</div>
+        <div class="cand-reason">etoile noire shuriken 5 branches</div>
+        <div><span class="badge-rel rel-fort">fort</span></div>
+        <div class="cand-risk">risque: faible</div>
+        <div class="cand-path">2605.svg</div>
+        <div class="sel-id" onclick="copyId(this)">shinobi_normal.pickup.c1</div>
+        <button class="copy-btn" onclick="copyId(this.previousElementSibling)">copier identifiant</button>
+      </div>
+      <div class="candidate-card">
+        <div class="rank-badge">c2</div>
+        <img class="candidate-img" src="preview-assets/2B50.svg" alt="2B50 star" loading="lazy">
+        <div class="cand-name">2B50 star</div>
+        <div class="cand-reason">etoile standard jaune</div>
+        <div><span class="badge-rel rel-fort">fort</span></div>
+        <div class="cand-risk">risque: faible</div>
+        <div class="cand-path">2B50.svg</div>
+        <div class="sel-id" onclick="copyId(this)">shinobi_normal.pickup.c2</div>
+        <button class="copy-btn" onclick="copyId(this.previousElementSibling)">copier identifiant</button>
+      </div>
+      <div class="candidate-card">
+        <div class="rank-badge">c3</div>
+        <img class="candidate-img" src="preview-assets/1F4AB.svg" alt="1F4AB dizzy" loading="lazy">
+        <div class="cand-name">1F4AB dizzy</div>
+        <div class="cand-reason">etoiles tournoiement shuriken</div>
+        <div><span class="badge-rel rel-moyen">moyen</span></div>
+        <div class="cand-risk">risque: faible</div>
+        <div class="cand-path">1F4AB.svg</div>
+        <div class="sel-id" onclick="copyId(this)">shinobi_normal.pickup.c3</div>
+        <button class="copy-btn" onclick="copyId(this.previousElementSibling)">copier identifiant</button>
+      </div>
+      <div class="candidate-card">
+        <div class="rank-badge">c4</div>
+        <img class="candidate-img" src="preview-assets/2747.svg" alt="2747 sparkle" loading="lazy">
+        <div class="cand-name">2747 sparkle</div>
+        <div class="cand-reason">etincelle etoile</div>
+        <div><span class="badge-rel rel-moyen">moyen</span></div>
+        <div class="cand-risk">risque: petit a 72px</div>
+        <div class="cand-path">2747.svg</div>
+        <div class="sel-id" onclick="copyId(this)">shinobi_normal.pickup.c4</div>
+        <button class="copy-btn" onclick="copyId(this.previousElementSibling)">copier identifiant</button>
+      </div>
+      <div class="candidate-card">
+        <div class="rank-badge">c5</div>
+        <img class="candidate-img" src="preview-assets/1F31F.svg" alt="1F31F glowing star" loading="lazy">
+        <div class="cand-name">1F31F glowing star</div>
+        <div class="cand-reason">etoile brillante cible reelle</div>
+        <div><span class="badge-rel rel-moyen">moyen</span></div>
+        <div class="cand-risk">risque: doublon castle</div>
+        <div class="cand-path">1F31F.svg</div>
+        <div class="sel-id" onclick="copyId(this)">shinobi_normal.pickup.c5</div>
+        <button class="copy-btn" onclick="copyId(this.previousElementSibling)">copier identifiant</button>
+      </div>
+    </div>
+  </div>
+  <div class="icon-type-section">
+    <div class="icon-type-header">
+      <span class="icon-type-label">Obstacle</span>
+      <span class="current-icon">actuel: diamond procedurale gris</span>
+    </div>
+    <div class="candidates-grid">
+      <div class="candidate-card">
+        <div class="rank-badge">c1</div>
+        <img class="candidate-img" src="preview-assets/1FAE5.svg" alt="1FAE5 dotted line face" loading="lazy">
+        <div class="cand-name">1FAE5 dotted line face</div>
+        <div class="cand-reason">visage pointille leurre fantome</div>
+        <div><span class="badge-rel rel-moyen">moyen</span></div>
+        <div class="cand-risk">risque: peut etre peu lisible</div>
+        <div class="cand-path">1FAE5.svg</div>
+        <div class="sel-id" onclick="copyId(this)">shinobi_normal.obstacle.c1</div>
+        <button class="copy-btn" onclick="copyId(this.previousElementSibling)">copier identifiant</button>
+      </div>
+      <div class="candidate-card">
+        <div class="rank-badge">c2</div>
+        <img class="candidate-img" src="preview-assets/1F47B.svg" alt="1F47B ghost" loading="lazy">
+        <div class="cand-name">1F47B ghost</div>
+        <div class="cand-reason">fantome leurre illusion</div>
+        <div><span class="badge-rel rel-fort">fort</span></div>
+        <div class="cand-risk">risque: faible</div>
+        <div class="cand-path">1F47B.svg</div>
+        <div class="sel-id" onclick="copyId(this)">shinobi_normal.obstacle.c2</div>
+        <button class="copy-btn" onclick="copyId(this.previousElementSibling)">copier identifiant</button>
+      </div>
+      <div class="candidate-card">
+        <div class="rank-badge">c3</div>
+        <img class="candidate-img" src="preview-assets/1F441.svg" alt="1F441 eye" loading="lazy">
+        <div class="cand-name">1F441 eye</div>
+        <div class="cand-reason">oeil fausse cible piege</div>
+        <div><span class="badge-rel rel-moyen">moyen</span></div>
+        <div class="cand-risk">risque: faible</div>
+        <div class="cand-path">1F441.svg</div>
+        <div class="sel-id" onclick="copyId(this)">shinobi_normal.obstacle.c3</div>
+        <button class="copy-btn" onclick="copyId(this.previousElementSibling)">copier identifiant</button>
+      </div>
+      <div class="candidate-card">
+        <div class="rank-badge">c4</div>
+        <img class="candidate-img" src="preview-assets/1F3AF.svg" alt="1F3AF bullseye" loading="lazy">
+        <div class="cand-name">1F3AF bullseye</div>
+        <div class="cand-reason">cible fausse flechette</div>
+        <div><span class="badge-rel rel-moyen">moyen</span></div>
+        <div class="cand-risk">risque: ressemble pickup</div>
+        <div class="cand-path">1F3AF.svg</div>
+        <div class="sel-id" onclick="copyId(this)">shinobi_normal.obstacle.c4</div>
+        <button class="copy-btn" onclick="copyId(this.previousElementSibling)">copier identifiant</button>
+      </div>
+      <div class="candidate-card">
+        <div class="rank-badge">c5</div>
+        <img class="candidate-img" src="preview-assets/1F4CD.svg" alt="1F4CD round pushpin" loading="lazy">
+        <div class="cand-name">1F4CD round pushpin</div>
+        <div class="cand-reason">marqueur fausse position</div>
+        <div><span class="badge-rel rel-faible">faible</span></div>
+        <div class="cand-risk">risque: trop generique</div>
+        <div class="cand-path">1F4CD.svg</div>
+        <div class="sel-id" onclick="copyId(this)">shinobi_normal.obstacle.c5</div>
+        <button class="copy-btn" onclick="copyId(this.previousElementSibling)">copier identifiant</button>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="level-section" id="shinobi_boss">
+  <div class="level-header boss">
+    <span class="level-badge boss">boss</span>
+    <h2 style="font-size:1.1em; color:#006064">Ninja de l Ombre</h2>
+    <span class="level-id">shinobi_boss</span>
+  </div>
+  <div class="icon-type-section">
+    <div class="icon-type-header">
+      <span class="icon-type-label">Boss Entity</span>
+      <span class="current-icon">actuel: roundedRect procedurale</span>
+    </div>
+    <div class="candidates-grid">
+      <div class="candidate-card">
+        <div class="rank-badge">c1</div>
+        <img class="candidate-img" src="preview-assets/1F977.svg" alt="1F977 ninja" loading="lazy">
+        <div class="cand-name">1F977 ninja</div>
+        <div class="cand-reason">ninja exact mechanic shadowNinja</div>
+        <div><span class="badge-rel rel-fort">fort</span></div>
+        <div class="cand-risk">risque: skin tone neutral</div>
+        <div class="cand-path">1F977.svg</div>
+        <div class="sel-id" onclick="copyId(this)">shinobi_boss.boss_entity.c1</div>
+        <button class="copy-btn" onclick="copyId(this.previousElementSibling)">copier identifiant</button>
+      </div>
+      <div class="candidate-card">
+        <div class="rank-badge">c2</div>
+        <img class="candidate-img" src="preview-assets/1F47B.svg" alt="1F47B ghost" loading="lazy">
+        <div class="cand-name">1F47B ghost</div>
+        <div class="cand-reason">ombre fantome shadow</div>
+        <div><span class="badge-rel rel-fort">fort</span></div>
+        <div class="cand-risk">risque: faible</div>
+        <div class="cand-path">1F47B.svg</div>
+        <div class="sel-id" onclick="copyId(this)">shinobi_boss.boss_entity.c2</div>
+        <button class="copy-btn" onclick="copyId(this.previousElementSibling)">copier identifiant</button>
+      </div>
+      <div class="candidate-card">
+        <div class="rank-badge">c3</div>
+        <img class="candidate-img" src="preview-assets/1F441.svg" alt="1F441 eye" loading="lazy">
+        <div class="cand-name">1F441 eye</div>
+        <div class="cand-reason">oeil qui observe ombre ninja</div>
+        <div><span class="badge-rel rel-moyen">moyen</span></div>
+        <div class="cand-risk">risque: faible</div>
+        <div class="cand-path">1F441.svg</div>
+        <div class="sel-id" onclick="copyId(this)">shinobi_boss.boss_entity.c3</div>
+        <button class="copy-btn" onclick="copyId(this.previousElementSibling)">copier identifiant</button>
+      </div>
+      <div class="candidate-card">
+        <div class="rank-badge">c4</div>
+        <img class="candidate-img" src="preview-assets/1F576.svg" alt="1F576 sunglasses" loading="lazy">
+        <div class="cand-name">1F576 sunglasses</div>
+        <div class="cand-reason">lunettes noires ninja discret</div>
+        <div><span class="badge-rel rel-moyen">moyen</span></div>
+        <div class="cand-risk">risque: faible</div>
+        <div class="cand-path">1F576.svg</div>
+        <div class="sel-id" onclick="copyId(this)">shinobi_boss.boss_entity.c4</div>
+        <button class="copy-btn" onclick="copyId(this.previousElementSibling)">copier identifiant</button>
+      </div>
+      <div class="candidate-card">
+        <div class="rank-badge">c5</div>
+        <img class="candidate-img" src="preview-assets/1F5E3.svg" alt="1F5E3 speaking head" loading="lazy">
+        <div class="cand-name">1F5E3 speaking head</div>
+        <div class="cand-reason">silhouette tete fantome</div>
+        <div><span class="badge-rel rel-faible">faible</span></div>
+        <div class="cand-risk">risque: ambigu</div>
+        <div class="cand-path">1F5E3.svg</div>
+        <div class="sel-id" onclick="copyId(this)">shinobi_boss.boss_entity.c5</div>
+        <button class="copy-btn" onclick="copyId(this.previousElementSibling)">copier identifiant</button>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="level-section" id="kombat_normal">
+  <div class="level-header normal">
+    <span class="level-badge normal">normal</span>
+    <h2 style="font-size:1.1em; color:#FF5722">Arena des Enfers</h2>
+    <span class="level-id">kombat_normal</span>
+  </div>
+  <div class="icon-type-section">
+    <div class="icon-type-header">
+      <span class="icon-type-label">Pickup</span>
+      <span class="current-icon">actuel: flame procedurale</span>
+    </div>
+    <div class="candidates-grid">
+      <div class="candidate-card">
+        <div class="rank-badge">c1</div>
+        <img class="candidate-img" src="preview-assets/1F3C5.svg" alt="1F3C5 sports medal" loading="lazy">
+        <div class="cand-name">1F3C5 sports medal</div>
+        <div class="cand-reason">medaille token victoire kombat</div>
+        <div><span class="badge-rel rel-fort">fort</span></div>
+        <div class="cand-risk">risque: faible</div>
+        <div class="cand-path">1F3C5.svg</div>
+        <div class="sel-id" onclick="copyId(this)">kombat_normal.pickup.c1</div>
+        <button class="copy-btn" onclick="copyId(this.previousElementSibling)">copier identifiant</button>
+      </div>
+      <div class="candidate-card">
+        <div class="rank-badge">c2</div>
+        <img class="candidate-img" src="preview-assets/1F396.svg" alt="1F396 military medal" loading="lazy">
+        <div class="cand-name">1F396 military medal</div>
+        <div class="cand-reason">medaille militaire combat</div>
+        <div><span class="badge-rel rel-fort">fort</span></div>
+        <div class="cand-risk">risque: faible</div>
+        <div class="cand-path">1F396.svg</div>
+        <div class="sel-id" onclick="copyId(this)">kombat_normal.pickup.c2</div>
+        <button class="copy-btn" onclick="copyId(this.previousElementSibling)">copier identifiant</button>
+      </div>
+      <div class="candidate-card">
+        <div class="rank-badge">c3</div>
+        <img class="candidate-img" src="preview-assets/1FA99.svg" alt="1FA99 coin" loading="lazy">
+        <div class="cand-name">1FA99 coin</div>
+        <div class="cand-reason">piece token finish</div>
+        <div><span class="badge-rel rel-moyen">moyen</span></div>
+        <div class="cand-risk">risque: faible</div>
+        <div class="cand-path">1FA99.svg</div>
+        <div class="sel-id" onclick="copyId(this)">kombat_normal.pickup.c3</div>
+        <button class="copy-btn" onclick="copyId(this.previousElementSibling)">copier identifiant</button>
+      </div>
+      <div class="candidate-card">
+        <div class="rank-badge">c4</div>
+        <img class="candidate-img" src="preview-assets/1F480.svg" alt="1F480 skull" loading="lazy">
+        <div class="cand-name">1F480 skull</div>
+        <div class="cand-reason">crane trophee kombat fatality</div>
+        <div><span class="badge-rel rel-moyen">moyen</span></div>
+        <div class="cand-risk">risque: ambigu vs obstacle</div>
+        <div class="cand-path">1F480.svg</div>
+        <div class="sel-id" onclick="copyId(this)">kombat_normal.pickup.c4</div>
+        <button class="copy-btn" onclick="copyId(this.previousElementSibling)">copier identifiant</button>
+      </div>
+      <div class="candidate-card">
+        <div class="rank-badge">c5</div>
+        <img class="candidate-img" src="preview-assets/1F93A.svg" alt="1F93A person fencing" loading="lazy">
+        <div class="cand-name">1F93A person fencing</div>
+        <div class="cand-reason">combat finish token</div>
+        <div><span class="badge-rel rel-faible">faible</span></div>
+        <div class="cand-risk">risque: doublon fighter boss</div>
+        <div class="cand-path">1F93A.svg</div>
+        <div class="sel-id" onclick="copyId(this)">kombat_normal.pickup.c5</div>
+        <button class="copy-btn" onclick="copyId(this.previousElementSibling)">copier identifiant</button>
+      </div>
+    </div>
+  </div>
+  <div class="icon-type-section">
+    <div class="icon-type-header">
+      <span class="icon-type-label">Obstacle</span>
+      <span class="current-icon">actuel: cluster procedurale</span>
+    </div>
+    <div class="candidates-grid">
+      <div class="candidate-card">
+        <div class="rank-badge">c1</div>
+        <img class="candidate-img" src="preview-assets/1F525.svg" alt="1F525 fire" loading="lazy">
+        <div class="cand-name">1F525 fire</div>
+        <div class="cand-reason">feu lava zone fatale</div>
+        <div><span class="badge-rel rel-fort">fort</span></div>
+        <div class="cand-risk">risque: doublon fighter pickup</div>
+        <div class="cand-path">1F525.svg</div>
+        <div class="sel-id" onclick="copyId(this)">kombat_normal.obstacle.c1</div>
+        <button class="copy-btn" onclick="copyId(this.previousElementSibling)">copier identifiant</button>
+      </div>
+      <div class="candidate-card">
+        <div class="rank-badge">c2</div>
+        <img class="candidate-img" src="preview-assets/1F4A5.svg" alt="1F4A5 collision" loading="lazy">
+        <div class="cand-name">1F4A5 collision</div>
+        <div class="cand-reason">explosion impact zone</div>
+        <div><span class="badge-rel rel-fort">fort</span></div>
+        <div class="cand-risk">risque: faible</div>
+        <div class="cand-path">1F4A5.svg</div>
+        <div class="sel-id" onclick="copyId(this)">kombat_normal.obstacle.c2</div>
+        <button class="copy-btn" onclick="copyId(this.previousElementSibling)">copier identifiant</button>
+      </div>
+      <div class="candidate-card">
+        <div class="rank-badge">c3</div>
+        <img class="candidate-img" src="preview-assets/1F47A.svg" alt="1F47A goblin" loading="lazy">
+        <div class="cand-name">1F47A goblin</div>
+        <div class="cand-reason">goblin demon arene</div>
+        <div><span class="badge-rel rel-moyen">moyen</span></div>
+        <div class="cand-risk">risque: univers fantaisie</div>
+        <div class="cand-path">1F47A.svg</div>
+        <div class="sel-id" onclick="copyId(this)">kombat_normal.obstacle.c3</div>
+        <button class="copy-btn" onclick="copyId(this.previousElementSibling)">copier identifiant</button>
+      </div>
+      <div class="candidate-card">
+        <div class="rank-badge">c4</div>
+        <img class="candidate-img" src="preview-assets/2620.svg" alt="2620 skull and crossbones" loading="lazy">
+        <div class="cand-name">2620 skull and crossbones</div>
+        <div class="cand-reason">danger mortel zone fatale</div>
+        <div><span class="badge-rel rel-moyen">moyen</span></div>
+        <div class="cand-risk">risque: fort semantique mort</div>
+        <div class="cand-path">2620.svg</div>
+        <div class="sel-id" onclick="copyId(this)">kombat_normal.obstacle.c4</div>
+        <button class="copy-btn" onclick="copyId(this.previousElementSibling)">copier identifiant</button>
+      </div>
+      <div class="candidate-card">
+        <div class="rank-badge">c5</div>
+        <img class="candidate-img" src="preview-assets/26D4.svg" alt="26D4 no entry" loading="lazy">
+        <div class="cand-name">26D4 no entry</div>
+        <div class="cand-reason">interdit zone bloquee</div>
+        <div><span class="badge-rel rel-moyen">moyen</span></div>
+        <div class="cand-risk">risque: faible</div>
+        <div class="cand-path">26D4.svg</div>
+        <div class="sel-id" onclick="copyId(this)">kombat_normal.obstacle.c5</div>
+        <button class="copy-btn" onclick="copyId(this.previousElementSibling)">copier identifiant</button>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="level-section" id="kombat_boss">
+  <div class="level-header boss">
+    <span class="level-badge boss">boss</span>
+    <h2 style="font-size:1.1em; color:#BF360C">Porte du Dragon</h2>
+    <span class="level-id">kombat_boss</span>
+  </div>
+  <div class="icon-type-section">
+    <div class="icon-type-header">
+      <span class="icon-type-label">Boss Entity</span>
+      <span class="current-icon">actuel: roundedRect procedurale</span>
+    </div>
+    <div class="candidates-grid">
+      <div class="candidate-card">
+        <div class="rank-badge">c1</div>
+        <img class="candidate-img" src="preview-assets/1F409.svg" alt="1F409 dragon" loading="lazy">
+        <div class="cand-name">1F409 dragon</div>
+        <div class="cand-reason">dragon complet porte du dragon</div>
+        <div><span class="badge-rel rel-fort">fort</span></div>
+        <div class="cand-risk">risque: faible</div>
+        <div class="cand-path">1F409.svg</div>
+        <div class="sel-id" onclick="copyId(this)">kombat_boss.boss_entity.c1</div>
+        <button class="copy-btn" onclick="copyId(this.previousElementSibling)">copier identifiant</button>
+      </div>
+      <div class="candidate-card">
+        <div class="rank-badge">c2</div>
+        <img class="candidate-img" src="preview-assets/1F432.svg" alt="1F432 dragon face" loading="lazy">
+        <div class="cand-name">1F432 dragon face</div>
+        <div class="cand-reason">tete dragon boss</div>
+        <div><span class="badge-rel rel-fort">fort</span></div>
+        <div class="cand-risk">risque: faible</div>
+        <div class="cand-path">1F432.svg</div>
+        <div class="sel-id" onclick="copyId(this)">kombat_boss.boss_entity.c2</div>
+        <button class="copy-btn" onclick="copyId(this.previousElementSibling)">copier identifiant</button>
+      </div>
+      <div class="candidate-card">
+        <div class="rank-badge">c3</div>
+        <img class="candidate-img" src="preview-assets/1F004.svg" alt="1F004 mahjong red dragon" loading="lazy">
+        <div class="cand-name">1F004 mahjong red dragon</div>
+        <div class="cand-reason">dragon mahjong rouge</div>
+        <div><span class="badge-rel rel-moyen">moyen</span></div>
+        <div class="cand-risk">risque: contexte mahjong</div>
+        <div class="cand-path">1F004.svg</div>
+        <div class="sel-id" onclick="copyId(this)">kombat_boss.boss_entity.c3</div>
+        <button class="copy-btn" onclick="copyId(this.previousElementSibling)">copier identifiant</button>
+      </div>
+      <div class="candidate-card">
+        <div class="rank-badge">c4</div>
+        <img class="candidate-img" src="preview-assets/1F525.svg" alt="1F525 fire" loading="lazy">
+        <div class="cand-name">1F525 fire</div>
+        <div class="cand-reason">feu dragon souffle</div>
+        <div><span class="badge-rel rel-moyen">moyen</span></div>
+        <div class="cand-risk">risque: generique</div>
+        <div class="cand-path">1F525.svg</div>
+        <div class="sel-id" onclick="copyId(this)">kombat_boss.boss_entity.c4</div>
+        <button class="copy-btn" onclick="copyId(this.previousElementSibling)">copier identifiant</button>
+      </div>
+      <div class="candidate-card">
+        <div class="rank-badge">c5</div>
+        <img class="candidate-img" src="preview-assets/2694.svg" alt="2694 crossed swords" loading="lazy">
+        <div class="cand-name">2694 crossed swords</div>
+        <div class="cand-reason">combat porte gardee</div>
+        <div><span class="badge-rel rel-faible">faible</span></div>
+        <div class="cand-risk">risque: trop generique</div>
+        <div class="cand-path">2694.svg</div>
+        <div class="sel-id" onclick="copyId(this)">kombat_boss.boss_entity.c5</div>
+        <button class="copy-btn" onclick="copyId(this.previousElementSibling)">copier identifiant</button>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="level-section" id="paperboy_normal">
+  <div class="level-header normal">
+    <span class="level-badge normal">normal</span>
+    <h2 style="font-size:1.1em; color:#4CAF50">Tournee du Matin</h2>
+    <span class="level-id">paperboy_normal</span>
+  </div>
+  <div class="icon-type-section">
+    <div class="icon-type-header">
+      <span class="icon-type-label">Pickup</span>
+      <span class="current-icon">actuel: circle procedurale</span>
+    </div>
+    <div class="candidates-grid">
+      <div class="candidate-card">
+        <div class="rank-badge">c1</div>
+        <img class="candidate-img" src="preview-assets/1F4F0.svg" alt="1F4F0 newspaper" loading="lazy">
+        <div class="cand-name">1F4F0 newspaper</div>
+        <div class="cand-reason">journal pickup Paperboy iconique</div>
+        <div><span class="badge-rel rel-fort">fort</span></div>
+        <div class="cand-risk">risque: faible</div>
+        <div class="cand-path">1F4F0.svg</div>
+        <div class="sel-id" onclick="copyId(this)">paperboy_normal.pickup.c1</div>
+        <button class="copy-btn" onclick="copyId(this.previousElementSibling)">copier identifiant</button>
+      </div>
+      <div class="candidate-card">
+        <div class="rank-badge">c2</div>
+        <img class="candidate-img" src="preview-assets/1F5DE.svg" alt="1F5DE rolled-up newspaper" loading="lazy">
+        <div class="cand-name">1F5DE rolled-up newspaper</div>
+        <div class="cand-reason">journal roule lancer</div>
+        <div><span class="badge-rel rel-fort">fort</span></div>
+        <div class="cand-risk">risque: faible</div>
+        <div class="cand-path">1F5DE.svg</div>
+        <div class="sel-id" onclick="copyId(this)">paperboy_normal.pickup.c2</div>
+        <button class="copy-btn" onclick="copyId(this.previousElementSibling)">copier identifiant</button>
+      </div>
+      <div class="candidate-card">
+        <div class="rank-badge">c3</div>
+        <img class="candidate-img" src="preview-assets/1F4C3.svg" alt="1F4C3 page with curl" loading="lazy">
+        <div class="cand-name">1F4C3 page with curl</div>
+        <div class="cand-reason">page livraison document</div>
+        <div><span class="badge-rel rel-moyen">moyen</span></div>
+        <div class="cand-risk">risque: faible</div>
+        <div class="cand-path">1F4C3.svg</div>
+        <div class="sel-id" onclick="copyId(this)">paperboy_normal.pickup.c3</div>
+        <button class="copy-btn" onclick="copyId(this.previousElementSibling)">copier identifiant</button>
+      </div>
+      <div class="candidate-card">
+        <div class="rank-badge">c4</div>
+        <img class="candidate-img" src="preview-assets/1F4DC.svg" alt="1F4DC scroll" loading="lazy">
+        <div class="cand-name">1F4DC scroll</div>
+        <div class="cand-reason">parchemin livraison</div>
+        <div><span class="badge-rel rel-faible">faible</span></div>
+        <div class="cand-risk">risque: anachronique</div>
+        <div class="cand-path">1F4DC.svg</div>
+        <div class="sel-id" onclick="copyId(this)">paperboy_normal.pickup.c4</div>
+        <button class="copy-btn" onclick="copyId(this.previousElementSibling)">copier identifiant</button>
+      </div>
+      <div class="candidate-card">
+        <div class="rank-badge">c5</div>
+        <img class="candidate-img" src="preview-assets/1F3EE.svg" alt="1F3EE red paper lantern" loading="lazy">
+        <div class="cand-name">1F3EE red paper lantern</div>
+        <div class="cand-reason">lanterne papier clin oeil</div>
+        <div><span class="badge-rel rel-faible">faible</span></div>
+        <div class="cand-risk">risque: univers japonais</div>
+        <div class="cand-path">1F3EE.svg</div>
+        <div class="sel-id" onclick="copyId(this)">paperboy_normal.pickup.c5</div>
+        <button class="copy-btn" onclick="copyId(this.previousElementSibling)">copier identifiant</button>
+      </div>
+    </div>
+  </div>
+  <div class="icon-type-section">
+    <div class="icon-type-header">
+      <span class="icon-type-label">Target</span>
+      <span class="current-icon">actuel: rect procedurale jaune</span>
+    </div>
+    <div class="candidates-grid">
+      <div class="candidate-card">
+        <div class="rank-badge">c1</div>
+        <img class="candidate-img" src="preview-assets/1F4EB.svg" alt="1F4EB closed mailbox with raised flag" loading="lazy">
+        <div class="cand-name">1F4EB closed mailbox with raised flag</div>
+        <div class="cand-reason">boite aux lettres cible livraison</div>
+        <div><span class="badge-rel rel-fort">fort</span></div>
+        <div class="cand-risk">risque: faible</div>
+        <div class="cand-path">1F4EB.svg</div>
+        <div class="sel-id" onclick="copyId(this)">paperboy_normal.target.c1</div>
+        <button class="copy-btn" onclick="copyId(this.previousElementSibling)">copier identifiant</button>
+      </div>
+      <div class="candidate-card">
+        <div class="rank-badge">c2</div>
+        <img class="candidate-img" src="preview-assets/1F4EC.svg" alt="1F4EC open mailbox with raised flag" loading="lazy">
+        <div class="cand-name">1F4EC open mailbox with raised flag</div>
+        <div class="cand-reason">boite ouverte livraison effectuee</div>
+        <div><span class="badge-rel rel-fort">fort</span></div>
+        <div class="cand-risk">risque: faible</div>
+        <div class="cand-path">1F4EC.svg</div>
+        <div class="sel-id" onclick="copyId(this)">paperboy_normal.target.c2</div>
+        <button class="copy-btn" onclick="copyId(this.previousElementSibling)">copier identifiant</button>
+      </div>
+      <div class="candidate-card">
+        <div class="rank-badge">c3</div>
+        <img class="candidate-img" src="preview-assets/1F4EA.svg" alt="1F4EA closed mailbox with lowered flag" loading="lazy">
+        <div class="cand-name">1F4EA closed mailbox with lowered flag</div>
+        <div class="cand-reason">boite vide pas de livraison</div>
+        <div><span class="badge-rel rel-moyen">moyen</span></div>
+        <div class="cand-risk">risque: semantique negatif</div>
+        <div class="cand-path">1F4EA.svg</div>
+        <div class="sel-id" onclick="copyId(this)">paperboy_normal.target.c3</div>
+        <button class="copy-btn" onclick="copyId(this.previousElementSibling)">copier identifiant</button>
+      </div>
+      <div class="candidate-card">
+        <div class="rank-badge">c4</div>
+        <img class="candidate-img" src="preview-assets/1F3E0.svg" alt="1F3E0 house" loading="lazy">
+        <div class="cand-name">1F3E0 house</div>
+        <div class="cand-reason">maison destination livraison</div>
+        <div><span class="badge-rel rel-moyen">moyen</span></div>
+        <div class="cand-risk">risque: faible</div>
+        <div class="cand-path">1F3E0.svg</div>
+        <div class="sel-id" onclick="copyId(this)">paperboy_normal.target.c4</div>
+        <button class="copy-btn" onclick="copyId(this.previousElementSibling)">copier identifiant</button>
+      </div>
+      <div class="candidate-card">
+        <div class="rank-badge">c5</div>
+        <img class="candidate-img" src="preview-assets/1F4E6.svg" alt="1F4E6 package" loading="lazy">
+        <div class="cand-name">1F4E6 package</div>
+        <div class="cand-reason">colis livraison alternative</div>
+        <div><span class="badge-rel rel-moyen">moyen</span></div>
+        <div class="cand-risk">risque: faible</div>
+        <div class="cand-path">1F4E6.svg</div>
+        <div class="sel-id" onclick="copyId(this)">paperboy_normal.target.c5</div>
+        <button class="copy-btn" onclick="copyId(this.previousElementSibling)">copier identifiant</button>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="level-section" id="paperboy_boss">
+  <div class="level-header boss">
+    <span class="level-badge boss">boss</span>
+    <h2 style="font-size:1.1em; color:#1B5E20">Chaos du Quartier</h2>
+    <span class="level-id">paperboy_boss</span>
+  </div>
+  <div class="icon-type-section">
+    <div class="icon-type-header">
+      <span class="icon-type-label">Boss Entity</span>
+      <span class="current-icon">actuel: rect procedurale orange</span>
+    </div>
+    <div class="candidates-grid">
+      <div class="candidate-card">
+        <div class="rank-badge">c1</div>
+        <img class="candidate-img" src="preview-assets/1F477.svg" alt="1F477 construction worker" loading="lazy">
+        <div class="cand-name">1F477 construction worker</div>
+        <div class="cand-reason">ouvrier chaos quartier</div>
+        <div><span class="badge-rel rel-fort">fort</span></div>
+        <div class="cand-risk">risque: faible</div>
+        <div class="cand-path">1F477.svg</div>
+        <div class="sel-id" onclick="copyId(this)">paperboy_boss.boss_entity.c1</div>
+        <button class="copy-btn" onclick="copyId(this.previousElementSibling)">copier identifiant</button>
+      </div>
+      <div class="candidate-card">
+        <div class="rank-badge">c2</div>
+        <img class="candidate-img" src="preview-assets/1F6A7.svg" alt="1F6A7 construction" loading="lazy">
+        <div class="cand-name">1F6A7 construction</div>
+        <div class="cand-reason">chantier barrage chaos</div>
+        <div><span class="badge-rel rel-fort">fort</span></div>
+        <div class="cand-risk">risque: faible</div>
+        <div class="cand-path">1F6A7.svg</div>
+        <div class="sel-id" onclick="copyId(this)">paperboy_boss.boss_entity.c2</div>
+        <button class="copy-btn" onclick="copyId(this.previousElementSibling)">copier identifiant</button>
+      </div>
+      <div class="candidate-card">
+        <div class="rank-badge">c3</div>
+        <img class="candidate-img" src="preview-assets/1F4A5.svg" alt="1F4A5 collision" loading="lazy">
+        <div class="cand-name">1F4A5 collision</div>
+        <div class="cand-reason">collision explosion chaos</div>
+        <div><span class="badge-rel rel-moyen">moyen</span></div>
+        <div class="cand-risk">risque: faible</div>
+        <div class="cand-path">1F4A5.svg</div>
+        <div class="sel-id" onclick="copyId(this)">paperboy_boss.boss_entity.c3</div>
+        <button class="copy-btn" onclick="copyId(this.previousElementSibling)">copier identifiant</button>
+      </div>
+      <div class="candidate-card">
+        <div class="rank-badge">c4</div>
+        <img class="candidate-img" src="preview-assets/26A0.svg" alt="26A0 warning" loading="lazy">
+        <div class="cand-name">26A0 warning</div>
+        <div class="cand-reason">danger avertissement</div>
+        <div><span class="badge-rel rel-moyen">moyen</span></div>
+        <div class="cand-risk">risque: generique</div>
+        <div class="cand-path">26A0.svg</div>
+        <div class="sel-id" onclick="copyId(this)">paperboy_boss.boss_entity.c4</div>
+        <button class="copy-btn" onclick="copyId(this.previousElementSibling)">copier identifiant</button>
+      </div>
+      <div class="candidate-card">
+        <div class="rank-badge">c5</div>
+        <img class="candidate-img" src="preview-assets/1F6D1.svg" alt="1F6D1 stop sign" loading="lazy">
+        <div class="cand-name">1F6D1 stop sign</div>
+        <div class="cand-reason">stop signe blocage chaos</div>
+        <div><span class="badge-rel rel-moyen">moyen</span></div>
+        <div class="cand-risk">risque: faible</div>
+        <div class="cand-path">1F6D1.svg</div>
+        <div class="sel-id" onclick="copyId(this)">paperboy_boss.boss_entity.c5</div>
+        <button class="copy-btn" onclick="copyId(this.previousElementSibling)">copier identifiant</button>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+<footer>
+  Snake Drive V4 &mdash; PATCH 1090B &mdash; 120 candidats affich&eacute;s &mdash; 16 niveaux &mdash; audit documentaire uniquement
+</footer>
+<script>
+function copyId(el) {
+  var text = el.textContent.trim();
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(text).then(function() {
+      var btn = el.nextElementSibling;
+      if (btn) { btn.textContent = 'copiee!'; btn.classList.add('copied'); setTimeout(function() { btn.textContent = 'copier identifiant'; btn.classList.remove('copied'); }, 1500); }
+    });
+  } else {
+    var r = document.createRange(); r.selectNodeContents(el);
+    window.getSelection().removeAllRanges(); window.getSelection().addRange(r);
+  }
+}
+</script>
+</body>
+</html>
