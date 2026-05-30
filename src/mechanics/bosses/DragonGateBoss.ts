@@ -31,13 +31,15 @@ export class DragonGateBoss extends BaseBoss {
       if (this.phaseTimer > 12) {
         this.gatePhase = 'danger';
         this.phaseTimer = 0;
-        // Spawn danger zones around gate
-        for (let dc = -1; dc <= 1; dc++) {
-          for (let dr = -1; dr <= 1; dr++) {
+        // Danger zone radius scales with HP drop: phase 0→r2, 1→r3, 2→r4
+        const radius = 2 + this.phase;
+        for (let dc = -radius; dc <= radius; dc++) {
+          for (let dr = -radius; dr <= radius; dr++) {
             if (dc === 0 && dr === 0) continue;
+            if (dc * dc + dr * dr > radius * radius + 0.5) continue;
             const cell: Cell = { col: this.gateCell.col + dc, row: this.gateCell.row + dr };
             if (cell.col >= 0 && cell.col < this.ctx.grid.cols && cell.row >= 0 && cell.row < this.ctx.grid.rows) {
-              this.dangerZones.push({ cell, ttl: 8 });
+              this.dangerZones.push({ cell, ttl: 10 });
             }
           }
         }

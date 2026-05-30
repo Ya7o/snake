@@ -27,20 +27,21 @@ export class FinalChallengerBoss extends BaseBoss {
     this.counterZones = this.counterZones.filter(cz => cz.ttl > 0);
 
     if (this.roundPhase === 'idle') {
-      if (this.phaseTimer > 20) { this.roundPhase = 'attack_window'; this.phaseTimer = 0; }
+      if (this.phaseTimer > 10) { this.roundPhase = 'attack_window'; this.phaseTimer = 0; }
     } else if (this.roundPhase === 'attack_window') {
-      if (this.phaseTimer > 12) {
-        // missed — counter attack
+      if (this.phaseTimer > 10) {
+        // missed — counter attack; more zones as boss HP drops
         this.roundPhase = 'counter';
         this.phaseTimer = 0;
+        const counterCount = [5, 7, 10][this.phase] ?? 5;
         const occ = new Set<string>(this.ctx.snake.body.map(c => cellKey(c)));
-        for (let i = 0; i < 4; i++) {
+        for (let i = 0; i < counterCount; i++) {
           const c = this.grid.randomFreeCell(occ);
-          if (c) { this.counterZones.push({ cell: c, ttl: 8 }); occ.add(cellKey(c)); }
+          if (c) { this.counterZones.push({ cell: c, ttl: 10 }); occ.add(cellKey(c)); }
         }
       }
     } else if (this.roundPhase === 'counter') {
-      if (this.phaseTimer > 10) { this.roundPhase = 'idle'; this.phaseTimer = 0; }
+      if (this.phaseTimer > 12) { this.roundPhase = 'idle'; this.phaseTimer = 0; }
     }
 
     return {};

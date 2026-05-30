@@ -10,9 +10,9 @@ interface Mirror { cell: Cell; real: boolean }
 export const WITCH_MIRROR_TUNING = {
   idleTicks: 8,
   movingTicks: 4,
-  warningTicks: 10,
-  attackingTicks: 10,
-  vulnerableTicks: 18,
+  warningTicks: 8,
+  attackingTicks: 8,
+  vulnerableTicks: 16,
   hitTicks: 6,
 } as const;
 
@@ -42,7 +42,7 @@ export class WitchMirrorBoss extends BaseBoss {
   private spawnMirrors(): void {
     this.mirrors = [];
     const occupied = new Set<string>(this.ctx.snake.body.map(c => cellKey(c)));
-    const count = 2 + this.phase;
+    const count = 3 + this.phase;
     const realIndex = Math.floor(Math.random() * count);
     for (let i = 0; i < count; i++) {
       const cell = this.grid.randomFreeCell(occupied);

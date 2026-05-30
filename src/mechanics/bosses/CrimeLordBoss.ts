@@ -22,12 +22,18 @@ export class CrimeLordBoss extends BaseBoss {
 
   private spawnPressure(): void {
     this.pressureZones = [];
-    const row = Math.floor(Math.random() * this.ctx.grid.rows);
-    // Partial-width pressure zone (~60%) to leave at least one escape lane
-    const dangerWidth = Math.max(4, Math.floor(this.ctx.grid.cols * 0.6));
-    const startCol = Math.floor(Math.random() * (this.ctx.grid.cols - dangerWidth + 1));
-    for (let c = startCol; c < startCol + dangerWidth; c++) {
-      this.pressureZones.push({ col: c, row });
+    // 2 étaux simultanés, chacun ~45 % de largeur, dans deux moitiés de grille distinctes
+    const halfRows = Math.floor(this.ctx.grid.rows / 2);
+    const rows = [
+      Math.floor(Math.random() * halfRows),
+      halfRows + Math.floor(Math.random() * halfRows),
+    ];
+    for (const row of rows) {
+      const dangerWidth = Math.max(4, Math.floor(this.ctx.grid.cols * 0.45));
+      const startCol = Math.floor(Math.random() * (this.ctx.grid.cols - dangerWidth + 1));
+      for (let c = startCol; c < startCol + dangerWidth; c++) {
+        this.pressureZones.push({ col: c, row });
+      }
     }
   }
 

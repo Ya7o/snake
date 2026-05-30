@@ -8,7 +8,7 @@ export class LoopSerpentBoss extends BaseBoss {
   private bossIndex = 0;
   private orbIndex = 0;  // vulnerable spot = last in body
   private moveTimer = 0;
-  private moveInterval = 4;
+  private moveInterval = 3;
   private bossBody: Cell[] = [];
 
   protected onInit(): void {
@@ -29,7 +29,7 @@ export class LoopSerpentBoss extends BaseBoss {
       });
     }
     this.bossIndex = 0;
-    this.bossBody = this.bossPath.slice(0, 3);
+    this.bossBody = this.bossPath.slice(0, Math.min(5, this.bossPath.length));
   }
 
   tick(_tickCount: number): MechanicUpdate {
@@ -39,7 +39,7 @@ export class LoopSerpentBoss extends BaseBoss {
     if (this.moveTimer % this.moveInterval === 0) {
       this.bossIndex = (this.bossIndex + 1) % this.bossPath.length;
       this.bossBody.unshift(this.bossPath[this.bossIndex]);
-      if (this.bossBody.length > 3) this.bossBody.pop();
+      if (this.bossBody.length > 5) this.bossBody.pop();
     }
 
     return {};
@@ -76,6 +76,6 @@ export class LoopSerpentBoss extends BaseBoss {
   }
 
   getHudExtra(): string {
-    return 'FRAPPE';
+    return 'FRAPPE LA QUEUE';
   }
 }

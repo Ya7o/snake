@@ -26,7 +26,7 @@ export class NeighborhoodChaosBoss extends BaseBoss {
     this.targets = [];
     this.deliveredInWave = 0;
     this.hasPaper = false;
-    const waveObstacles = 2 + this.wave;
+    const waveObstacles = 3 + this.wave * 2; // 3, 5, 7 per wave
     const occ = new Set<string>(this.ctx.snake.body.map(c => cellKey(c)));
     const dirs = [{ col: 1, row: 0 }, { col: -1, row: 0 }, { col: 0, row: 1 }];
     for (let i = 0; i < waveObstacles; i++) {
@@ -95,13 +95,28 @@ export class NeighborhoodChaosBoss extends BaseBoss {
     target.active = false;
     this.hasPaper = false;
     this.deliveredInWave++;
-    if (this.deliveredInWave < 2) return { hit: true, defeated: this.isDefeated() };
+    if (this.deliveredInWave < 2) {
+      // After each delivery, spawn an extra obstacle (pressure escalates)
+      this.addExtraObstacle();
+      return { hit: true, defeated: this.isDefeated() };
+    }
     const result = super.onWeakPointHit(cell);
     if (result.hit && !result.defeated) {
       this.wave = Math.min(2, this.wave + 1);
       this.startWave();
     }
     return result;
+  }
+
+  private addExtraObstacle(): void {
+    const occ = new Set<string>(this.ctx.snake.body.map(c => cellKey(c)));
+    for (const obs of this.obstacles) occ.add(cellKey(obs.cell));
+    for (const t of this.targets) if (t.active) occ.add(cellKey(t.cell));
+    const cell = this.grid.randomFreeCell(occ);
+    if (cell) {
+      const dirs = [{ col: 1, row: 0 }, { col: -1, row: 0 }, { col: 0, row: 1 }];
+      this.obstacles.push({ cell, dir: dirs[Math.floor(Math.random() * dirs.length)], speed: 3 + this.wave, timer: 0 });
+    }
   }
 
   getHudExtra(): string {
