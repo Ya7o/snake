@@ -31,7 +31,7 @@ export class DragonGateBoss extends BaseBoss {
         this.gatePhase = 'danger';
         this.phaseTimer = 0;
         // Big circular danger zone — radius triples with phase loss
-        const radius = (2 + this.phase) * 3;
+        const radius = 2 + this.phase;
         for (let dc = -radius; dc <= radius; dc++) {
           for (let dr = -radius; dr <= radius; dr++) {
             if (dc === 0 && dr === 0) continue;
