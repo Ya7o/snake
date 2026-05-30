@@ -1,0 +1,79 @@
+SCORE FORMULA NOTES — PATCH 1081
+Audit du 2026-05-30
+================================================
+
+CONSTANTES (src/config/constants.ts:26-32)
+-------------------------------------------
+SCORE_VALUES = {
+  PICKUP:      100,   // +100 à chaque pickup mangé (runtimeScore)
+  STAGE_CLEAR: 500,   // +500 au clear d'un niveau normal (runtimeScore)
+  BOSS_HIT:    250,   // +250 à chaque touche boss (runtimeScore)
+  BOSS_CLEAR:  1000,  // +1000 au clear d'un boss (runtimeScore)
+  TIME_SECOND: 10,    // DEAD CONSTANT — jamais utilisé dans le code
+}
+
+DEUX COMPTEURS DISTINCTS (src/scenes/GameScene.ts)
+--------------------------------------------------
+this.score        → compteur de PROGRÈS (vérification quota, affiché HUD)
+this.runtimeScore → score AFFICHÉ et SAUVEGARDÉ (ClearScene, GameOverScene)
+
+Les update.score retournés par les mécaniques vont vers this.score (progrès),
+PAS vers this.runtimeScore (score visible).
+
+SEULS ÉVÈNEMENTS QUI INCRÉMENTENT runtimeScore
+------------------------------------------------
+1. Pickup mangé     → +100 (GameScene.ts:396)
+2. Boss weak point  → +250 (GameScene.ts:527)
+3. Stage clear      → +500 (GameScene.ts:588)
+4. Boss clear       → +1000 (GameScene.ts:588)
+
+TIME_SECOND (10) est défini mais n'est jamais référencé dans GameScene,
+ClearScene, GameOverScene ou tout autre fichier runtime (vérifié par grep).
+
+FORMULES PAR NIVEAU
+--------------------
+castle_normal  : 10 × 100 + 500 = 1500  (TOUJOURS)
+sonic_normal   : 15 × 100 + 500 = 2000  (TOUJOURS)
+streets_normal : 10 × 100 + 500 = 1500  (TOUJOURS)
+fighter_normal : X × 100 + 500 (900–1300 selon charges actives)
+outrun_normal  : 10 × 100 + 500 = 1500  (TOUJOURS)
+shinobi_normal :  8 × 100 + 500 = 1300  (TOUJOURS)
+kombat_normal  : 10 × 100 + 500 = 1500  (TOUJOURS)
+paperboy_normal:  8 × 100 + 500 = 1300  (TOUJOURS)
+
+Tous boss 3HP    : 3 × 250 + 1000 = 1750 (TOUJOURS)
+
+MÉCANIQUES ET SCORE (impact sur runtimeScore)
+----------------------------------------------
+FighterChargeMechanic:
+  onPickupCollected (si chargé) → { score: 2 } → this.score += 2 (progrès)
+  Impact sur runtimeScore : AUCUN (réduit le nombre de pickups requis)
+  → variabilité 900–1300
+
+PaperboyDeliveryMechanic:
+  delivery → { score: 1 } → this.score += 1 (progrès)
+  Impact sur runtimeScore : AUCUN (toujours 8 pickups = 8 × 100)
+
+Tous autres mécaniques : update.score = 0 ou absent
+
+ANOMALIE CONFIRMÉE
+------------------
+TIME_SECOND = 10 est une déclaration orpheline.
+Elle n'est importée que dans constants.ts et n'est consommée nulle part.
+Le tickCount (this.tickCount dans GameScene) est bien incrémenté et passé
+au contexte mécaniques mais jamais multiplié par TIME_SECOND pour
+contribuer au score.
+
+ClearScene ne reçoit pas le tickCount — seul runtimeScore et levelId
+sont passés dans les données de scène. Il n'y a donc aucun moyen d'afficher
+un temps ou d'en dériver un bonus sans passer l'info au moment du triggerClear().
+
+ÉLÉMENTS DE VARIABILITÉ ABSENTS
+---------------------------------
+- Bonus temps (TIME_SECOND mort)
+- Bonus pickups supplémentaires au-delà du quota (jeu s'arrête exactement à quota)
+- Bonus longueur serpent
+- Bonus risque / zone dangereuse traversée
+- Combo
+- Pénalité de temps (jeu sans limite de temps sauf dans logique de certains boss)
+- Score différent selon la difficulté de la mécanique active
