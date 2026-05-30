@@ -98,3 +98,61 @@ Oui. Colonne 0 de chaque rangée (badge ambre ACTUEL) :
 ### Commit HEAD au moment du refactoring
 
 72db133
+
+---
+
+## Révision 1090B-v3
+
+**Date** : 2026-05-30
+
+### Objectif de la révision
+
+1. Passer à 10 candidats OpenMoji par type d'icône (vs 5 en v2)
+2. Gérer et afficher les états multiples visuels pour chaque type concerné
+3. Recommandations de paires pour les types à 2 états visuels distincts
+
+### Types à états multiples identifiés : 14 types
+
+| Type | États |
+|------|-------|
+| obstacle_blinkWall | ghost / warning / active |
+| obstacle_chainRing | active / inactive |
+| obstacle_crowdBlocker | static / moving / warning / charging / danger |
+| obstacle_fatalZone | warning / active |
+| obstacle_focusDecoy | real / decoy |
+| target_deliveryTarget | highlighted / idle |
+| target_bossTarget | highlighted / idle |
+| boss_witchMirror | idle / warning / attacking / vulnerable / hit / defeated |
+| boss_loopSerpent | orb / body |
+| boss_crimeLord | pressure / vulnerable |
+| boss_finalChallenger | idle / attack_window / counter |
+| boss_turboRival | moving / turboZone |
+| boss_shadowNinja | real / shadow |
+| boss_dragonGate | closed / opening / danger / vulnerable |
+
+### Statistiques
+
+- 16 niveaux couverts
+- 36 types d'icônes (27 + zones secondaires)
+- 10 candidats par type = 360 candidats total
+- 124 SVG uniques copiés dans preview-assets/
+- 0 SVG manquants
+- Paires recommandées : 1F512/1F513 (blinkWall), 1FA99/26AA (chainRing), 1F3C3/1F6B6 (crowdBlocker), 1F525/26A0 (fatalZone), 1F977/1F441 (focusDecoy/shadowNinja), 1F4EA/1F4EC (deliveryTarget/bossTarget)
+
+### Fichiers modifiés
+
+- reports/patch-1090b/icon-candidate-selection-board.html — refait v3 (280 KB, 36 types x 11 colonnes)
+- reports/patch-1090b/build_board_v3.py — nouveau script Python v3
+- reports/patch-1090b/logs/icon-selection-options.csv — 360 lignes, colonnes enrichies
+- reports/patch-1090b/preview-assets/ — 124 SVG (remplacés)
+- reports/patch-1090b/review.md — cette mise à jour
+
+### Tests
+
+- npm run check : OK (aucune modification src/ ni package.json)
+- Code/assets src/ inchangés : oui
+- SVG manquants : 0
+
+### Commit HEAD au moment du refactoring
+
+a628865
