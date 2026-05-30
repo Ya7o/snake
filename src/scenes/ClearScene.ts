@@ -91,7 +91,8 @@ export class ClearScene extends Phaser.Scene {
     const buttons = getUniverseButtons(level?.universeId ?? 'castle');
 
     // Success title
-    const title = level?.type === 'boss' ? 'BOSS VAINCU' : 'NIVEAU RÉUSSI';
+    const titleFontSize = Math.min(22, Math.floor(W * 0.058));
+    const title = level?.type === 'boss' ? 'BOSS VAINCU' : 'NIVEAU REUSSI';
     const subTitle = level?.id === 'castle_normal'
       ? 'BOSS DU CHÂTEAU DÉBLOQUÉ'
       : level?.id === 'castle_boss'
@@ -100,13 +101,13 @@ export class ClearScene extends Phaser.Scene {
 
     this.add.text(W / 2 + 3, H * L.titleY + 3, title, {
       fontFamily: ARCADE_FONT,
-      fontSize: `${Math.min(28, Math.floor(W * 0.08))}px`,
+      fontSize: `${titleFontSize}px`,
       color: '#886600',
     }).setOrigin(0.5).setDepth(5);
 
     const clearTxt = this.add.text(W / 2, H * L.titleY, title, {
       fontFamily: ARCADE_FONT,
-      fontSize: `${Math.min(28, Math.floor(W * 0.08))}px`,
+      fontSize: `${titleFontSize}px`,
       color: isCastle ? CT.titleClear : accentStr,
       stroke: '#000000',
       strokeThickness: isCastle ? 1 : 3,
