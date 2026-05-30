@@ -15,6 +15,37 @@ const UNIVERSE_SHAPES: Record<string, 'star' | 'ring' | 'diamond' | 'lightning' 
   paperboy: 'circle',
 };
 
+type PickupImageProfile = Readonly<{
+  maxSizeScale: number;
+  offsetXCells?: number;
+  offsetYCells?: number;
+  haloScale?: number;
+  ringScale?: number;
+}>;
+
+const DEFAULT_IMAGE_PROFILE: PickupImageProfile = {
+  maxSizeScale: 1.9,
+};
+
+const PICKUP_IMAGE_PROFILES: Record<string, PickupImageProfile> = {
+  // OutRun uses a smaller board and a tall checkpoint beacon, so it needs
+  // extra draw room to read like an icon instead of a thin stripe.
+  outrun: {
+    maxSizeScale: 2.35,
+    offsetYCells: -0.04,
+    haloScale: 1.18,
+    ringScale: 1.12,
+  },
+  // The shuriken PNG is optically top-left heavy after trimming stray pixels.
+  // A tiny runtime offset keeps the icon seated in the halo on mobile.
+  shinobi: {
+    maxSizeScale: 2.05,
+    offsetXCells: 0.02,
+    offsetYCells: 0.04,
+    haloScale: 1.08,
+  },
+};
+
 export class PickupRenderer {
   private gfx: Phaser.GameObjects.Graphics;
   private scene: Phaser.Scene;
@@ -66,6 +97,7 @@ export class PickupRenderer {
     const key = this.textureKey;
     const useImages = !!(key && this.scene.textures.exists(key));
     const pulse = Math.sin(time / 400) * 0.5 + 0.5;
+    const imageProfile = this.getImageProfile();
     this.gfx.clear(); // single clear per frame
 
     if (useImages) {
@@ -75,9 +107,9 @@ export class PickupRenderer {
         this.lastCellKeys = cellKeysNow;
       }
       // Halo under the image
-      this.drawPickupHalo(pickups, layout, color, cs, pulse);
+      this.drawPickupHalo(pickups, layout, color, cs, pulse, imageProfile);
 
-      const maxSize = cs * 1.9;
+      const maxSize = cs * imageProfile.maxSizeScale;
       for (let i = 0; i < pickups.length; i++) {
         const { px, py } = cellToPixel(layout, pickups[i].col, pickups[i].row);
         const img = this.imagePool[i];
@@ -85,7 +117,10 @@ export class PickupRenderer {
         const texKey = useSecondary ? this.secondaryTextureKey! : key!;
         if (img.texture.key !== texKey) img.setTexture(texKey);
         this.fitImageInCell(img, texKey, maxSize);
-        img.setPosition(px, py).setAlpha(0.88 + 0.12 * pulse).setBlendMode(this.blendMode).setVisible(true);
+        img.setPosition(
+          px + cs * (imageProfile.offsetXCells ?? 0),
+          py + cs * (imageProfile.offsetYCells ?? 0),
+        ).setAlpha(0.88 + 0.12 * pulse).setBlendMode(this.blendMode).setVisible(true);
       }
       for (let i = pickups.length; i < this.imagePool.length; i++) {
         this.imagePool[i].setVisible(false);
@@ -107,28 +142,41 @@ export class PickupRenderer {
     }
   }
 
-  private drawPickupHalo(pickups: Cell[], layout: GridLayout, color: number, cs: number, pulse: number): void {
+  private drawPickupHalo(
+    pickups: Cell[],
+    layout: GridLayout,
+    color: number,
+    cs: number,
+    pulse: number,
+    profile: PickupImageProfile,
+  ): void {
     if (pickups.length === 0) return;
 
     // Ambient bloom — very subtle, just suggests "collectible"
     const bloomAlpha = 0.10 + 0.05 * Math.max(0, pulse);
     // Tight inner glow — anchors the image without dominating
     const glowAlpha  = 0.22 + 0.08 * Math.max(0, pulse);
+    const haloScale = profile.haloScale ?? 1;
+    const ringScale = profile.ringScale ?? haloScale;
     for (const p of pickups) {
       const { px, py } = cellToPixel(layout, p.col, p.row);
 
       // Outer ambient bloom (barely visible, gives a soft colored floor)
       this.gfx.fillStyle(color, bloomAlpha);
-      this.gfx.fillCircle(px, py, cs * (0.60 + 0.04 * pulse));
+      this.gfx.fillCircle(px, py, cs * (0.60 + 0.04 * pulse) * haloScale);
 
       // Inner glow — tight around the image
       this.gfx.fillStyle(color, glowAlpha);
-      this.gfx.fillCircle(px, py, cs * (0.42 + 0.03 * pulse));
+      this.gfx.fillCircle(px, py, cs * (0.42 + 0.03 * pulse) * haloScale);
 
       // Thin white ring — minimal outline, separates gem from dark bg
       this.gfx.lineStyle(Math.max(1, Math.floor(cs * 0.07)), 0xffffff, 0.28 + 0.08 * Math.max(0, pulse));
-      this.gfx.strokeCircle(px, py, cs * 0.46);
+      this.gfx.strokeCircle(px, py, cs * 0.46 * ringScale);
     }
+  }
+
+  private getImageProfile(): PickupImageProfile {
+    return PICKUP_IMAGE_PROFILES[this.universeId] ?? DEFAULT_IMAGE_PROFILE;
   }
 
   private drawShape(px: number, py: number, cs: number, color: number, scale: number, shape: string): void {
