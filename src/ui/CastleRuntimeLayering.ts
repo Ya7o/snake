@@ -13,6 +13,11 @@ export interface CastleRuntimeLayerDebugInfo {
 export function drawCastleRuntimeBoardPanel(
   scene: Phaser.Scene,
   gridBounds: Phaser.Geom.Rectangle,
+  colors: { bg: number; primary: number; accent: number } = {
+    bg: 0x0b0618,
+    primary: 0x9b59b6,
+    accent: 0xf6c45c,
+  },
 ): Phaser.GameObjects.Graphics {
   const pad = Math.max(10, Math.floor(gridBounds.width * 0.042));
   const radius = Math.max(8, Math.floor(pad * 0.8));
@@ -24,17 +29,17 @@ export function drawCastleRuntimeBoardPanel(
 
   panel.fillStyle(0x000000, 0.22);
   panel.fillRoundedRect(gridBounds.x - 4, gridBounds.y - 4, gridBounds.width + 8, gridBounds.height + 8, Math.max(6, radius - 5));
-  panel.fillStyle(0x020009, 0.42);
+  panel.fillStyle(0x000000, 0.42);
   panel.fillRoundedRect(x + 6, y + 8, w, h, radius);
-  panel.fillStyle(0x0b0618, 0.74);
+  panel.fillStyle(colors.bg, 0.74);
   panel.fillRoundedRect(x, y, w, h, radius);
-  panel.lineStyle(4, 0x2b143d, 0.72);
+  panel.lineStyle(4, colors.primary, 0.46);
   panel.strokeRoundedRect(x - 2, y - 2, w + 4, h + 4, radius + 2);
-  panel.lineStyle(2, 0xf6c45c, 0.72);
+  panel.lineStyle(2, colors.accent, 0.72);
   panel.strokeRoundedRect(x, y, w, h, radius);
-  panel.lineStyle(1, 0xa94cff, 0.66);
+  panel.lineStyle(1, colors.primary, 0.66);
   panel.strokeRoundedRect(x + 7, y + 7, w - 14, h - 14, Math.max(3, radius - 4));
-  panel.lineStyle(1, 0xffe6a0, 0.48);
+  panel.lineStyle(1, colors.accent, 0.48);
   panel.strokeRoundedRect(x + 12, y + 12, w - 24, h - 24, Math.max(2, radius - 7));
 
   return panel;

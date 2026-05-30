@@ -55,7 +55,6 @@ export class GameScene extends Phaser.Scene {
   private gameOver = false;
   private cleared = false;
   private layout!: GridLayout;
-  private visualBoardLayout!: GridLayout;
   private gridCols = GRID_COLS;
   private gridRows = GRID_ROWS;
 
@@ -153,8 +152,8 @@ export class GameScene extends Phaser.Scene {
     this.gridCols = this.levelConfig.universeId === 'castle' ? CASTLE_GRID_COLS : GRID_COLS;
     this.gridRows = this.levelConfig.universeId === 'castle' ? CASTLE_GRID_ROWS : GRID_ROWS;
     this.grid = new Grid(this.gridCols, this.gridRows);
-    this.visualBoardLayout = this.computeCastleReferenceLayout(width, height);
-    this.layout = this.computeActiveGridLayout(this.visualBoardLayout, this.gridCols, this.gridRows);
+    const castleReferenceLayout = this.computeCastleReferenceLayout(width, height);
+    this.layout = this.computeActiveGridLayout(castleReferenceLayout, this.gridCols, this.gridRows);
 
     // 906 — compute asset keys before renderer creation
     const uid        = this.levelConfig.universeId;
@@ -257,12 +256,16 @@ export class GameScene extends Phaser.Scene {
     }
 
     const gridBounds = new Phaser.Geom.Rectangle(
-      this.visualBoardLayout.x,
-      this.visualBoardLayout.y,
-      this.visualBoardLayout.cellSize * this.visualBoardLayout.cols,
-      this.visualBoardLayout.cellSize * this.visualBoardLayout.rows,
+      this.layout.x,
+      this.layout.y,
+      this.layout.cellSize * this.layout.cols,
+      this.layout.cellSize * this.layout.rows,
     );
-    drawCastleRuntimeBoardPanel(this, gridBounds);
+    drawCastleRuntimeBoardPanel(this, gridBounds, {
+      bg: this.colorBg,
+      primary: this.colorPrimary,
+      accent: this.colorAccent,
+    });
 
     // Grid is STATIC — draw once here, never again in the game loop
     this.gridRenderer.draw(uid === 'castle' ? 0x090613 : this.colorBg, this.colorPrimary);

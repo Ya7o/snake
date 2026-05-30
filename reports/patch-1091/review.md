@@ -4,10 +4,11 @@
 Appliquer la taille de plateau Castle comme référence à tous les univers.
 
 ## Résultat
-La règle finale sépare la grille logique de l'empreinte visuelle. Castle fournit une référence 16x26 pour le panneau/plateau visible, et les univers 16x20 sont centrés dans cette empreinte avec la même taille de cellule. Les mécaniques et collisions restent sur la grille logique active.
+La règle finale conserve la cellule Castle comme référence. Castle reste en 16x26; les univers 16x20 gardent leur grille logique et utilisent un cadre décoratif calé sur la grille active, sans bandes vides. Le cadre complet reprend maintenant les couleurs de la palette univers.
 
 ## Fichiers modifiés
 - `src/scenes/GameScene.ts`
+- `src/ui/CastleRuntimeLayering.ts`
 - `reports/patch-1091/capture-patch-1091.mjs`
 - `reports/patch-1091/docs/apply-castle-board-size-to-all-universes.md`
 - `reports/patch-1091/logs/board-size-comparison.csv`
