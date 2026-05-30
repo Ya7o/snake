@@ -1,0 +1,127 @@
+PATCH 1063 — Boss Files Inspected
+===================================
+Date: 2026-05-30
+
+FILES INSPECTED
+---------------
+
+src/mechanics/bosses/BaseBoss.ts
+  Classe abstraite : BaseBoss extends BaseMechanic
+  Propriétés : hp, maxHp, phase, hitCooldown
+  Méthodes : getHp, getMaxHp, getPhase, isDefeated, getWeakPoints, onWeakPointHit, registerHit, tickCooldown, getHudExtra
+  Constante invincibilité : hitCooldown = 6 frames après chaque hit
+
+src/mechanics/bosses/WitchMirrorBoss.ts
+  Univers : Castle
+  Scène : castle_boss (La Sorcière au Miroir)
+  Mechanic ID : witchMirror
+  Classe : WitchMirrorBoss extends BaseBoss
+  États boss : idle | moving | warning | attacking | vulnerable | hit | defeated
+  Entités : witchMirror (miroirs)
+  Constantes WITCH_MIRROR_TUNING : idleTicks=8, movingTicks=4, warningTicks=10, attackingTicks=10, vulnerableTicks=18, hitTicks=6
+
+src/mechanics/bosses/LoopSerpentBoss.ts
+  Univers : Sonic
+  Scène : sonic_boss (Serpent en Boucle)
+  Mechanic ID : loopSerpent
+  Classe : LoopSerpentBoss extends BaseBoss
+  Entités : loopSerpent (corps du serpent boss)
+  États segment : orb (point faible) | body (danger)
+  Chemin circulaire de 16 points, rayon = 3 + phase
+
+src/mechanics/bosses/CrimeLordBoss.ts
+  Univers : Streets
+  Scène : streets_boss (Seigneur du Crime)
+  Mechanic ID : crimeLord
+  Classe : CrimeLordBoss extends BaseBoss
+  Phases : pressure | vulnerable
+  Entités : crimeLord (boss), pressureZone (zones de pression)
+  Phase pressure : 20 ticks, dangerWidth ~60% cols
+  Phase vulnerable : 15 ticks
+
+src/mechanics/bosses/FinalChallengerBoss.ts
+  Univers : Fighter
+  Scène : fighter_boss (Ultime Challenger)
+  Mechanic ID : finalChallenger
+  Classe : FinalChallengerBoss extends BaseBoss
+  Phases : idle | attack_window | counter
+  Entités : finalChallenger (boss), counterZone (zones de contre)
+  idle : 20 ticks, attack_window : 12 ticks, counter : 10 ticks
+  Counter = 4 zones dangereuses si fenêtre manquée
+
+src/mechanics/bosses/TurboRivalBoss.ts
+  Univers : OutRun
+  Scène : outrun_boss (Rival Turbo)
+  Mechanic ID : turboRival
+  Classe : TurboRivalBoss extends BaseBoss
+  Entités : turboRival (voiture rival, toujours létale), turboZone (zone de dépassement)
+  3 voies : cols/4, cols/2, (3*cols)/4
+  Rival change de voie toutes les 8 ticks
+  TurboZone spawn toutes les 25 ticks, ttl=12
+
+src/mechanics/bosses/ShadowNinjaBoss.ts
+  Univers : Shinobi
+  Scène : shinobi_boss (Ninja de l'Ombre)
+  Mechanic ID : shadowNinja
+  Classe : ShadowNinjaBoss extends BaseBoss
+  Entités : shadowNinja (clones)
+  États clone : real (point faible brièvement révélé) | shadow (danger)
+  Révélation : toutes les revealInterval=28 ticks, durée=6 ticks
+  count = 2 + phase clones (premier = réel)
+
+src/mechanics/bosses/DragonGateBoss.ts
+  Univers : Kombat (Mortal Kombat)
+  Scène : kombat_boss (Porte du Dragon)
+  Mechanic ID : dragonGate
+  Classe : DragonGateBoss extends BaseBoss
+  Phases : closed | opening | open | danger
+  Entités : dragonGate (porte), dangerZone (zones autour de la porte)
+  closed=25t, opening=8t, open=12t, danger=10t
+  8 zones de danger (3x3 - centre) quand phase=danger
+
+src/mechanics/bosses/NeighborhoodChaosBoss.ts
+  Univers : Paperboy
+  Scène : paperboy_boss (Chaos du Quartier)
+  Mechanic ID : neighborhoodChaos
+  Classe : NeighborhoodChaosBoss extends BaseBoss
+  Entités : chaosObstacle (mobiles, létaux), bossTarget (cibles de livraison)
+  Vagues : 3 vagues, 2 cibles/vague
+  Mécanisme paper : collect pickup → hasPaper=true → toucher bossTarget → livraison
+  2 livraisons = 1 hit boss
+  Obstacles : 2 + wave obstacles, speed = 3 + wave
+
+FICHIERS SUPPORT INSPECTÉS
+---------------------------
+
+src/mechanics/BaseMechanic.ts
+  Interface MechanicContext, MechanicUpdate, DangerCell, ExtraEntity, EntityState
+  Méthode onPickupCollected : retourne {} par défaut (no-op)
+
+src/mechanics/MechanicFactory.ts
+  Mapping mechanic ID → classe boss confirmé
+
+src/config/levels.ts
+  16 niveaux : 8 normaux + 8 boss
+  Tous les boss : bossHp=3, type='boss'
+  Introductions (introHint) présentes pour chaque boss
+
+src/config/types.ts
+  LevelConfig : id, universeId, type, name, mechanic, quota, bossHp, speedMs, ruleText, introHint
+
+src/scenes/GameScene.ts
+  spawnInitialPickup : spawn générique pour tous les boss SAUF SonicRings/Shinobi/OutRun
+  spawnNextPickup : re-spawn si <1 pickup sur grille (non-Sonic/Shinobi/OutRun)
+  onPickupCollected avec defaultScore=1 : score +1 invisible en boss mode
+  HUD boss : affiche HP boss (pas le score)
+  resolveBossWeakPoint : logique de hit, flash + shake + AudioSystem.bossHit()
+  checkClear : retourne false si BaseBoss → la victoire vient uniquement de isDefeated()
+
+src/core/Spawn.ts
+  spawnPickup : spawn sur cellule libre aléatoire
+
+SCÈNES IMPLIQUÉES
+-----------------
+src/scenes/GameScene.ts   — scène principale du jeu
+src/scenes/LevelIntroScene.ts — affichage introHint
+src/scenes/ClearScene.ts  — fin de niveau
+src/scenes/GameOverScene.ts — game over
