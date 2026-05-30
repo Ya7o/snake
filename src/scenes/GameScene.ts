@@ -384,6 +384,8 @@ export class GameScene extends Phaser.Scene {
       this.pickups = (this.mechanic as OutRunLaneMechanic).getCheckpointPickup();
       return;
     }
+    // Non-Paperboy boss levels manage their own pickup logic — no generic orphan pickup
+    if (this.levelConfig.type === 'boss' && this.levelConfig.universeId !== 'paperboy') return;
     const p = spawnPickup(this.grid, this.snake, this.walls);
     if (p) this.pickups = [p];
   }
@@ -514,6 +516,7 @@ export class GameScene extends Phaser.Scene {
     if (this.mechanic instanceof SonicRingsMechanic ||
         this.mechanic instanceof ShinobiFocusMechanic ||
         this.mechanic instanceof OutRunLaneMechanic) return;
+    if (this.levelConfig.type === 'boss' && this.levelConfig.universeId !== 'paperboy') return;
     if (this.pickups.length < 1) {
       const p = spawnPickup(this.grid, this.snake, this.walls);
       if (p) this.pickups.push(p);

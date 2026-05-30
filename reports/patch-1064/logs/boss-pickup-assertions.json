@@ -1,0 +1,111 @@
+{
+  "patch": "1064",
+  "description": "Boss Generic Pickup Clarity Fix",
+  "assertions": [
+    {
+      "id": "assert_sonic_boss_no_generic_pickup",
+      "level": "sonic_boss",
+      "universeId": "sonic",
+      "type": "boss",
+      "mechanic": "loopSerpent",
+      "guard": "levelConfig.type === boss && levelConfig.universeId !== paperboy",
+      "expected": "this.pickups = [] on level start",
+      "status": "PASS"
+    },
+    {
+      "id": "assert_outrun_boss_no_generic_pickup",
+      "level": "outrun_boss",
+      "universeId": "outrun",
+      "type": "boss",
+      "mechanic": "turboRival",
+      "guard": "levelConfig.type === boss && levelConfig.universeId !== paperboy",
+      "expected": "this.pickups = [] on level start",
+      "status": "PASS"
+    },
+    {
+      "id": "assert_shinobi_boss_no_generic_pickup",
+      "level": "shinobi_boss",
+      "universeId": "shinobi",
+      "type": "boss",
+      "mechanic": "shadowNinja",
+      "guard": "levelConfig.type === boss && levelConfig.universeId !== paperboy",
+      "expected": "this.pickups = [] on level start",
+      "status": "PASS"
+    },
+    {
+      "id": "assert_castle_boss_no_generic_pickup",
+      "level": "castle_boss",
+      "universeId": "castle",
+      "type": "boss",
+      "mechanic": "witchMirror",
+      "guard": "levelConfig.type === boss && levelConfig.universeId !== paperboy",
+      "expected": "this.pickups = [] on level start",
+      "status": "PASS"
+    },
+    {
+      "id": "assert_streets_boss_no_generic_pickup",
+      "level": "streets_boss",
+      "universeId": "streets",
+      "type": "boss",
+      "mechanic": "crimeLord",
+      "guard": "levelConfig.type === boss && levelConfig.universeId !== paperboy",
+      "expected": "this.pickups = [] on level start",
+      "status": "PASS"
+    },
+    {
+      "id": "assert_fighter_boss_no_generic_pickup",
+      "level": "fighter_boss",
+      "universeId": "fighter",
+      "type": "boss",
+      "mechanic": "finalChallenger",
+      "guard": "levelConfig.type === boss && levelConfig.universeId !== paperboy",
+      "expected": "this.pickups = [] on level start",
+      "status": "PASS"
+    },
+    {
+      "id": "assert_kombat_boss_no_generic_pickup",
+      "level": "kombat_boss",
+      "universeId": "kombat",
+      "type": "boss",
+      "mechanic": "dragonGate",
+      "guard": "levelConfig.type === boss && levelConfig.universeId !== paperboy",
+      "expected": "this.pickups = [] on level start",
+      "status": "PASS"
+    },
+    {
+      "id": "assert_paperboy_boss_pickup_preserved",
+      "level": "paperboy_boss",
+      "universeId": "paperboy",
+      "type": "boss",
+      "mechanic": "neighborhoodChaos",
+      "guard": "universeId === paperboy — guard false, pickup spawned",
+      "expected": "this.pickups = [paperPickup]; NeighborhoodChaosBoss.onPickupCollected sets hasPaper=true",
+      "status": "PASS"
+    },
+    {
+      "id": "assert_castle_normal_pickup_preserved",
+      "level": "castle_normal",
+      "universeId": "castle",
+      "type": "normal",
+      "mechanic": "castleIllusion",
+      "guard": "type === normal — guard false, pickup spawned",
+      "expected": "this.pickups = [pickup] on level start",
+      "status": "PASS"
+    },
+    {
+      "id": "assert_spawnNextPickup_blocked_for_non_paperboy_boss",
+      "scope": "spawnNextPickup",
+      "level": "all non-paperboy bosses",
+      "guard": "levelConfig.type === boss && levelConfig.universeId !== paperboy",
+      "expected": "no re-spawn after phantom collect",
+      "status": "PASS"
+    }
+  ],
+  "summary": {
+    "total": 10,
+    "passed": 10,
+    "failed": 0,
+    "guards_added": ["spawnInitialPickup", "spawnNextPickup"],
+    "files_modified": ["src/scenes/GameScene.ts"]
+  }
+}
