@@ -14,7 +14,7 @@ import { ShinobiFocusMechanic } from '../mechanics/ShinobiFocusMechanic';
 import { OutRunLaneMechanic } from '../mechanics/OutRunLaneMechanic';
 import { PaperboyDeliveryMechanic } from '../mechanics/PaperboyDeliveryMechanic';
 import { BaseBoss } from '../mechanics/bosses/BaseBoss';
-import { GridRenderer, computeGridLayout, GridLayout, cellToPixel } from '../render/GridRenderer';
+import { GridRenderer, computeGridLayout, GridLayout, cellToPixel, getCellHeight, getCellMin, getCellWidth } from '../render/GridRenderer';
 import { SnakeRenderer } from '../render/SnakeRenderer';
 import { PickupRenderer } from '../render/PickupRenderer';
 import { ObstacleRenderer } from '../render/ObstacleRenderer';
@@ -55,6 +55,7 @@ export class GameScene extends Phaser.Scene {
   private gameOver = false;
   private cleared = false;
   private layout!: GridLayout;
+  private visualBoardLayout!: GridLayout;
   private gridCols = GRID_COLS;
   private gridRows = GRID_ROWS;
 
@@ -152,8 +153,8 @@ export class GameScene extends Phaser.Scene {
     this.gridCols = this.levelConfig.universeId === 'castle' ? CASTLE_GRID_COLS : GRID_COLS;
     this.gridRows = this.levelConfig.universeId === 'castle' ? CASTLE_GRID_ROWS : GRID_ROWS;
     this.grid = new Grid(this.gridCols, this.gridRows);
-    const castleReferenceLayout = this.computeCastleReferenceLayout(width, height);
-    this.layout = this.computeActiveGridLayout(castleReferenceLayout, this.gridCols, this.gridRows);
+    this.visualBoardLayout = this.computeCastleReferenceLayout(width, height);
+    this.layout = this.computeActiveGridLayout(this.visualBoardLayout, this.gridCols, this.gridRows);
 
     // 906 — compute asset keys before renderer creation
     const uid        = this.levelConfig.universeId;
@@ -256,10 +257,10 @@ export class GameScene extends Phaser.Scene {
     }
 
     const gridBounds = new Phaser.Geom.Rectangle(
-      this.layout.x,
-      this.layout.y,
-      this.layout.cellSize * this.layout.cols,
-      this.layout.cellSize * this.layout.rows,
+      this.visualBoardLayout.x,
+      this.visualBoardLayout.y,
+      getCellWidth(this.visualBoardLayout) * this.visualBoardLayout.cols,
+      getCellHeight(this.visualBoardLayout) * this.visualBoardLayout.rows,
     );
     drawCastleRuntimeBoardPanel(this, gridBounds, {
       bg: this.colorBg,
@@ -351,13 +352,14 @@ export class GameScene extends Phaser.Scene {
   }
 
   private computeActiveGridLayout(reference: GridLayout, cols: number, rows: number): GridLayout {
-    const referenceHeight = reference.cellSize * reference.rows;
-    const activeHeight = reference.cellSize * rows;
-    const yOffset = Math.max(0, Math.floor((referenceHeight - activeHeight) / 2));
+    const referenceWidth = getCellWidth(reference) * reference.cols;
+    const referenceHeight = getCellHeight(reference) * reference.rows;
     return {
       x: reference.x,
-      y: reference.y + yOffset,
+      y: reference.y,
       cellSize: reference.cellSize,
+      cellWidth: referenceWidth / cols,
+      cellHeight: referenceHeight / rows,
       cols,
       rows,
     };
@@ -464,7 +466,7 @@ export class GameScene extends Phaser.Scene {
 
     glow.clear();
     const pulse = Math.sin(time / 360) * 0.5 + 0.5;
-    const cs = this.layout.cellSize;
+    const cs = getCellMin(this.layout);
     for (const pickup of pickups) {
       const { px, py } = cellToPixel(this.layout, pickup.col, pickup.row);
       glow.fillStyle(0xf6c45c, 0.20 + 0.08 * pulse);
@@ -483,7 +485,7 @@ export class GameScene extends Phaser.Scene {
     const entities = this.mechanic.getExtraEntities();
     const targets = entities.filter(e => e.type === 'deliveryTarget' || e.type === 'bossTarget');
     if (targets.length === 0) return;
-    const cs = this.layout.cellSize;
+    const cs = getCellMin(this.layout);
     const pulse = Math.sin(time / 350) * 0.5 + 0.5;
     for (const t of targets) {
       const { px, py } = cellToPixel(this.layout, t.cell.col, t.cell.row);

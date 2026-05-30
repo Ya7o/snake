@@ -1,6 +1,6 @@
 import Phaser from 'phaser';
 import { SnakeState } from '../core/Snake';
-import { GridLayout, cellToPixel } from './GridRenderer';
+import { GridLayout, cellToPixel, getCellHeight, getCellMin, getCellWidth } from './GridRenderer';
 
 export class SnakeRenderer {
   private gfx: Phaser.GameObjects.Graphics;
@@ -11,9 +11,12 @@ export class SnakeRenderer {
 
   draw(snake: SnakeState, layout: GridLayout, headColor: number, bodyColor: number): void {
     this.gfx.clear();
-    const cs = layout.cellSize;
+    const cs = getCellMin(layout);
+    const cellW = getCellWidth(layout);
+    const cellH = getCellHeight(layout);
     const pad = Math.max(1, Math.floor(cs * 0.1));
-    const bodySize = cs - pad * 2;
+    const bodyW = cellW - pad * 2;
+    const bodyH = cellH - pad * 2;
 
     // Draw body first (back to front, so head renders on top)
     for (let i = snake.body.length - 1; i >= 1; i--) {
@@ -23,7 +26,7 @@ export class SnakeRenderer {
       const t = 1 - i / snake.body.length;
       const alpha = 0.35 + 0.55 * t;
       this.gfx.fillStyle(bodyColor, alpha);
-      this.gfx.fillRoundedRect(px - cs / 2 + pad, py - cs / 2 + pad, bodySize, bodySize, 3);
+      this.gfx.fillRoundedRect(px - cellW / 2 + pad, py - cellH / 2 + pad, bodyW, bodyH, 3);
 
       // Segment connector between consecutive body parts
       if (i < snake.body.length - 1) {
@@ -31,8 +34,8 @@ export class SnakeRenderer {
         const { px: ppx, py: ppy } = cellToPixel(layout, prev.col, prev.row);
         const midX = (px + ppx) / 2;
         const midY = (py + ppy) / 2;
-        const connW = Math.abs(px - ppx) > 0 ? Math.abs(px - ppx) + bodySize : bodySize;
-        const connH = Math.abs(py - ppy) > 0 ? Math.abs(py - ppy) + bodySize : bodySize;
+        const connW = Math.abs(px - ppx) > 0 ? Math.abs(px - ppx) + bodyW : bodyW;
+        const connH = Math.abs(py - ppy) > 0 ? Math.abs(py - ppy) + bodyH : bodyH;
         this.gfx.fillStyle(bodyColor, alpha * 0.6);
         this.gfx.fillRect(
           midX - connW / 2 + pad,
@@ -48,15 +51,16 @@ export class SnakeRenderer {
       const head = snake.body[0];
       const { px, py } = cellToPixel(layout, head.col, head.row);
       const headPad = Math.max(1, Math.floor(cs * 0.06));
-      const headSize = cs - headPad * 2;
+      const headW = cellW - headPad * 2;
+      const headH = cellH - headPad * 2;
 
       // Head glow
       this.gfx.fillStyle(headColor, 0.22);
-      this.gfx.fillRoundedRect(px - cs / 2 - 2, py - cs / 2 - 2, cs + 4, cs + 4, 5);
+      this.gfx.fillRoundedRect(px - cellW / 2 - 2, py - cellH / 2 - 2, cellW + 4, cellH + 4, 5);
 
       // Head body
       this.gfx.fillStyle(headColor, 1);
-      this.gfx.fillRoundedRect(px - cs / 2 + headPad, py - cs / 2 + headPad, headSize, headSize, 4);
+      this.gfx.fillRoundedRect(px - cellW / 2 + headPad, py - cellH / 2 + headPad, headW, headH, 4);
 
       // Eyes — position based on direction
       const dir = snake.direction;

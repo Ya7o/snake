@@ -1,6 +1,6 @@
 import Phaser from 'phaser';
 import { ExtraEntity } from '../mechanics/BaseMechanic';
-import { GridLayout, cellToPixel } from './GridRenderer';
+import { GridLayout, cellToPixel, getCellMin } from './GridRenderer';
 import { GAMEPLAY_LAYERS } from '../ui/RuntimeUILayout';
 
 // Boss entity types — peuvent utiliser un asset image si disponible
@@ -118,7 +118,7 @@ export class ObstacleRenderer {
 
   draw(entities: ExtraEntity[], layout: GridLayout): void {
     this.gfx.clear();
-    const cs = layout.cellSize;
+    const cs = getCellMin(layout);
     const pad = Math.max(1, Math.floor(cs * 0.08));
 
     const bossKey = this.bossTextureKey;

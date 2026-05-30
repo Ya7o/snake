@@ -1,6 +1,6 @@
 import Phaser from 'phaser';
 import { Cell } from '../core/Grid';
-import { GridLayout, cellToPixel } from './GridRenderer';
+import { GridLayout, cellToPixel, getCellMin } from './GridRenderer';
 import { GAMEPLAY_LAYERS } from '../ui/RuntimeUILayout';
 
 // Shape per universe — matches the game's theme
@@ -93,7 +93,7 @@ export class PickupRenderer {
   }
 
   draw(pickups: Cell[], layout: GridLayout, color: number, time: number): void {
-    const cs = layout.cellSize;
+    const cs = getCellMin(layout);
     const key = this.textureKey;
     const useImages = !!(key && this.scene.textures.exists(key));
     const pulse = Math.sin(time / 400) * 0.5 + 0.5;

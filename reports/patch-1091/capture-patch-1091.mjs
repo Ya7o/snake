@@ -63,8 +63,8 @@ async function captureBoard(levelId, file) {
       levelType: level.type,
       gridWidth: active.cols,
       gridHeight: active.rows,
-      boardWidth: visual.cellSize * visual.cols,
-      boardHeight: visual.cellSize * visual.rows,
+      boardWidth: (visual.cellWidth ?? visual.cellSize) * visual.cols,
+      boardHeight: (visual.cellHeight ?? visual.cellSize) * visual.rows,
       cellSize: active.cellSize,
     };
   });

@@ -5,6 +5,8 @@ export interface GridLayout {
   x: number;
   y: number;
   cellSize: number;
+  cellWidth?: number;
+  cellHeight?: number;
   cols: number;
   rows: number;
 }
@@ -40,10 +42,24 @@ export function computeGridLayout(
 }
 
 export function cellToPixel(layout: GridLayout, col: number, row: number): { px: number; py: number } {
+  const cellW = getCellWidth(layout);
+  const cellH = getCellHeight(layout);
   return {
-    px: layout.x + col * layout.cellSize + layout.cellSize / 2,
-    py: layout.y + row * layout.cellSize + layout.cellSize / 2,
+    px: layout.x + col * cellW + cellW / 2,
+    py: layout.y + row * cellH + cellH / 2,
   };
+}
+
+export function getCellWidth(layout: GridLayout): number {
+  return layout.cellWidth ?? layout.cellSize;
+}
+
+export function getCellHeight(layout: GridLayout): number {
+  return layout.cellHeight ?? layout.cellSize;
+}
+
+export function getCellMin(layout: GridLayout): number {
+  return Math.min(getCellWidth(layout), getCellHeight(layout));
 }
 
 export class GridRenderer {
@@ -71,10 +87,13 @@ export class GridRenderer {
     for (const t of this.frameTiles) t.destroy();
     this.frameTiles = [];
 
-    const { x, y, cellSize, cols, rows } = this.layout;
-    const w = cellSize * cols;
-    const h = cellSize * rows;
-    const tSize = Math.max(16, Math.min(cellSize * 1.2, 28));
+    const { x, y, cols, rows } = this.layout;
+    const cellW = getCellWidth(this.layout);
+    const cellH = getCellHeight(this.layout);
+    const cellMin = getCellMin(this.layout);
+    const w = cellW * cols;
+    const h = cellH * rows;
+    const tSize = Math.max(16, Math.min(cellMin * 1.2, 28));
 
     // 4 corners + midpoints on each side for a full border feel
     const positions: Array<[number, number]> = [
@@ -103,9 +122,12 @@ export class GridRenderer {
     this.lastBg = bgColor;
     this.lastLine = lineColor;
 
-    const { x, y, cellSize, cols, rows } = this.layout;
-    const w = cellSize * cols;
-    const h = cellSize * rows;
+    const { x, y, cols, rows } = this.layout;
+    const cellW = getCellWidth(this.layout);
+    const cellH = getCellHeight(this.layout);
+    const cellMin = getCellMin(this.layout);
+    const w = cellW * cols;
+    const h = cellH * rows;
 
     this.gfx.clear();
 
@@ -116,10 +138,10 @@ export class GridRenderer {
     // Inner grid lines (subtle)
     this.gfx.lineStyle(1, lineColor, 0.2);
     for (let c = 1; c < cols; c++) {
-      this.gfx.lineBetween(x + c * cellSize, y, x + c * cellSize, y + h);
+      this.gfx.lineBetween(x + c * cellW, y, x + c * cellW, y + h);
     }
     for (let r = 1; r < rows; r++) {
-      this.gfx.lineBetween(x, y + r * cellSize, x + w, y + r * cellSize);
+      this.gfx.lineBetween(x, y + r * cellH, x + w, y + r * cellH);
     }
 
     // Outer border — thick, full opacity
@@ -127,7 +149,7 @@ export class GridRenderer {
     this.gfx.strokeRect(x, y, w, h);
 
     // Corner accents — small filled squares at the 4 corners
-    const cs = Math.max(3, Math.floor(cellSize * 0.18));
+    const cs = Math.max(3, Math.floor(cellMin * 0.18));
     this.gfx.fillStyle(lineColor, 0.9);
     this.gfx.fillRect(x, y, cs, cs);
     this.gfx.fillRect(x + w - cs, y, cs, cs);
