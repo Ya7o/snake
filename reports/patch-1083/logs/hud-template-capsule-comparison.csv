@@ -1,0 +1,10 @@
+universe,before_template,after_template,accent_preserved,info_preserved,notes
+castle,flat strip (dark bg + 2px accent bar + hud_panel overlay),3 capsules (accent border left/right + neutral center),yes (#f1c40f),yes (CASTLE / rule / MAGIC score),Castle shortName from UNIVERSES config — no more special case
+sonic,flat strip,3 capsules (accent border left/right + neutral center),yes (#f9ca24),yes (SONIC / EN CHAINE / score/quota),Identical layout to all other universes
+streets,flat strip,3 capsules,yes (#ecf0f1),yes (STREETS / FOULE MOBILE / score/quota),White accent capsule border
+fighter,flat strip,3 capsules,yes (#f39c12),yes (FIGHTER / CHARGE / score/quota),Orange accent
+outrun,flat strip,3 capsules,yes (#ffd32a),yes (OUTRUN / BALISES / score/quota),Yellow accent
+shinobi,flat strip,3 capsules,yes (#ffffff),yes (SHINOBI / VRAIE CIBLE / score/quota),White accent
+kombat,flat strip,3 capsules,yes (#f39c12),yes (KOMBAT / ZONES FATALES / score/quota),Orange accent
+paperboy,flat strip,3 capsules,yes (#f1c40f),yes (PAPER / LIVRAISON / score/quota),Yellow accent
+boss (all),flat strip (BOSS HP prefix),3 capsules (HP prefix in right capsule),yes,yes (shortName / ruleText / HP X/Y),Removed 'CASTLE BOSS' special case — boss HP visible in right capsule

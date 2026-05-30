@@ -554,12 +554,12 @@ export class GameScene extends Phaser.Scene {
     const boss = isBoss ? (this.mechanic as BaseBoss) : null;
     const isCastle = this.levelConfig.universeId === 'castle';
     this.hudRenderer.update(
-      isCastle ? (isBoss ? 'CASTLE BOSS' : 'CASTLE') : UNIVERSES[this.levelConfig.universeId].shortName,
+      UNIVERSES[this.levelConfig.universeId].shortName,
       this.levelConfig.ruleText,
       isBoss ? boss!.getHp() : this.score,
       isBoss ? boss!.getMaxHp() : this.levelConfig.quota,
       this.mechanic.getHudExtra(),
-      isBoss ? 'BOSS HP ' : isCastle ? 'MAGIC ' : '',
+      isBoss ? 'HP ' : isCastle ? 'MAGIC ' : '',
     );
   }
 

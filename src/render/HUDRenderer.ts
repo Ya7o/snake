@@ -5,57 +5,101 @@ import { ARCADE_FONT, UI_FONT } from './VfxUtils';
 
 export class HUDRenderer {
   private bg: Phaser.GameObjects.Rectangle;
-  private hudPanelImg: Phaser.GameObjects.Image | null = null;
-  private accentBar: Phaser.GameObjects.Rectangle | null = null;
+  private gfx: Phaser.GameObjects.Graphics;
   private universeTxt: Phaser.GameObjects.Text;
   private ruleTxt: Phaser.GameObjects.Text;
   private scoreTxt: Phaser.GameObjects.Text;
 
+  private readonly ruleCenterX: number;
+  private readonly ruleCenterW: number;
   private lastUniverse = '';
   private lastCenter = '';
   private lastScore = '';
 
-  /**
-   * @param hudPanelKey  Phaser texture key for hud_panel.png — used if available.
-   */
-  constructor(scene: Phaser.Scene, accentColor: string, hudPanelKey?: string) {
+  constructor(scene: Phaser.Scene, accentColor: string, _hudPanelKey?: string) {
     const w = scene.scale.width;
-    const accentHex = parseInt(accentColor.replace('#', ''), 16);
     const hudH = GAMEPLAY_HUD.HEIGHT;
+    const accentHex = parseInt(accentColor.replace('#', ''), 16);
 
-    // Standard opaque strip shared by all gameplay universes.
-    this.bg = scene.add.rectangle(w / 2, hudH / 2, w, hudH, 0x07030f, 1.0).setDepth(GAMEPLAY_LAYERS.HUD_STRIP);
+    // Opaque dark strip
+    this.bg = scene.add
+      .rectangle(w / 2, hudH / 2, w, hudH, 0x06020e, 1.0)
+      .setDepth(GAMEPLAY_LAYERS.HUD_STRIP);
 
-    // 906: universe hud_panel.png overlay — drawn on top of bg, below text.
-    if (hudPanelKey && scene.textures.exists(hudPanelKey)) {
-      this.hudPanelImg = scene.add.image(w / 2, hudH / 2, hudPanelKey)
-        .setDisplaySize(w, hudH)
-        .setAlpha(0.55)
-        .setDepth(GAMEPLAY_LAYERS.HUD_STRIP + 1);
-    }
+    // Capsule geometry (3 zones: left · center · right)
+    const margin = 5;
+    const gap = 4;
+    const capH = 40;
+    const capY = Math.floor((hudH - capH) / 2); // ~8 px vertical centering
+    const radius = 10;
+    const leftW = Math.round(w * 0.246);  // ~96 px at 390
+    const rightW = Math.round(w * 0.256); // ~100 px at 390
+    const cW = w - 2 * margin - leftW - rightW - 2 * gap;
+    const leftX = margin;
+    const cX = leftX + leftW + gap;
+    const rightX = cX + cW + gap;
 
-    // Accent top line
-    this.accentBar = scene.add.rectangle(w / 2, 1, w, 2, accentHex, 1).setDepth(GAMEPLAY_LAYERS.HUD_STRIP + 1);
+    this.ruleCenterX = cX + cW / 2;
+    this.ruleCenterW = cW;
 
-    // Bottom separator
-    const sepGfx = scene.add.graphics().setDepth(GAMEPLAY_LAYERS.HUD_STRIP + 1);
-    sepGfx.lineStyle(1, accentHex, 0.35);
-    sepGfx.lineBetween(0, hudH, w, hudH);
+    this.gfx = scene.add.graphics().setDepth(GAMEPLAY_LAYERS.HUD_STRIP + 1);
 
-    const labelStyle = { fontFamily: UI_FONT, fontStyle: '700', color: '#ffffff' };
-    const infoStyle  = { fontFamily: UI_FONT, fontStyle: '700', color: '#ffffff' };
+    // ── Left capsule (universe) — accent border + subtle accent tint ──────
+    this.gfx.fillStyle(0x060212, 0.90);
+    this.gfx.fillRoundedRect(leftX, capY, leftW, capH, radius);
+    this.gfx.fillStyle(accentHex, 0.09);
+    this.gfx.fillRoundedRect(leftX, capY, leftW, capH, radius);
+    this.gfx.lineStyle(2, accentHex, 0.88);
+    this.gfx.strokeRoundedRect(leftX, capY, leftW, capH, radius);
 
-    this.universeTxt = scene.add.text(8, 10, '', {
-      fontFamily: ARCADE_FONT, fontSize: `${MOBILE_UI.CAPTION_MIN}px`, color: accentColor,
-    }).setDepth(GAMEPLAY_LAYERS.HUD_TEXT).setOrigin(0, 0.5).setY(hudH / 2);
+    // ── Center capsule (rule / hint) — neutral dark ────────────────────────
+    this.gfx.fillStyle(0x0e0828, 0.84);
+    this.gfx.fillRoundedRect(cX, capY, cW, capH, radius);
+    this.gfx.lineStyle(1, 0x2c2848, 0.72);
+    this.gfx.strokeRoundedRect(cX, capY, cW, capH, radius);
 
-    this.ruleTxt = scene.add.text(w / 2, hudH / 2, '', {
-      ...labelStyle, fontSize: `${MOBILE_UI.LABEL_MIN}px`, color: '#c8c8dc',
-    }).setOrigin(0.5).setDepth(GAMEPLAY_LAYERS.HUD_TEXT);
+    // ── Right capsule (score / HP) — accent border + subtle accent tint ───
+    this.gfx.fillStyle(0x060212, 0.90);
+    this.gfx.fillRoundedRect(rightX, capY, rightW, capH, radius);
+    this.gfx.fillStyle(accentHex, 0.09);
+    this.gfx.fillRoundedRect(rightX, capY, rightW, capH, radius);
+    this.gfx.lineStyle(2, accentHex, 0.88);
+    this.gfx.strokeRoundedRect(rightX, capY, rightW, capH, radius);
 
-    this.scoreTxt = scene.add.text(w - 8, hudH / 2, '', {
-      ...infoStyle, fontSize: `${MOBILE_UI.LABEL_MIN}px`, color: '#ffffff',
-    }).setOrigin(1, 0.5).setDepth(GAMEPLAY_LAYERS.HUD_TEXT);
+    // Thin accent rule under the full strip
+    this.gfx.lineStyle(1, accentHex, 0.28);
+    this.gfx.lineBetween(0, hudH, w, hudH);
+
+    const textY = hudH / 2;
+
+    this.universeTxt = scene.add
+      .text(leftX + leftW / 2, textY, '', {
+        fontFamily: ARCADE_FONT,
+        fontSize: '10px',
+        color: accentColor,
+      })
+      .setDepth(GAMEPLAY_LAYERS.HUD_TEXT)
+      .setOrigin(0.5);
+
+    this.ruleTxt = scene.add
+      .text(this.ruleCenterX, textY, '', {
+        fontFamily: UI_FONT,
+        fontStyle: '700',
+        fontSize: `${MOBILE_UI.LABEL_MIN}px`,
+        color: '#c8c8dc',
+      })
+      .setDepth(GAMEPLAY_LAYERS.HUD_TEXT)
+      .setOrigin(0.5);
+
+    this.scoreTxt = scene.add
+      .text(rightX + rightW / 2, textY, '', {
+        fontFamily: UI_FONT,
+        fontStyle: '700',
+        fontSize: `${MOBILE_UI.LABEL_MIN}px`,
+        color: '#ffffff',
+      })
+      .setDepth(GAMEPLAY_LAYERS.HUD_TEXT)
+      .setOrigin(0.5);
   }
 
   update(
@@ -71,13 +115,12 @@ export class HUDRenderer {
     if (universeName !== this.lastUniverse) { this.universeTxt.setText(universeName); this.lastUniverse = universeName; }
     if (center !== this.lastCenter)         { this.ruleTxt.setText(center);           this.lastCenter = center; }
     if (scoreStr !== this.lastScore)        { this.scoreTxt.setText(scoreStr);        this.lastScore = scoreStr; }
-    this.fitOneLine();
+    this.fitCenter();
   }
 
   destroy(): void {
     this.bg.destroy();
-    this.hudPanelImg?.destroy();
-    this.accentBar?.destroy();
+    this.gfx.destroy();
     this.universeTxt.destroy();
     this.ruleTxt.destroy();
     this.scoreTxt.destroy();
@@ -87,7 +130,6 @@ export class HUDRenderer {
     const cleanRule = rule.trim();
     const cleanExtra = extra.trim();
     if (!cleanExtra) return cleanRule;
-
     const normRule = this.normalize(cleanRule);
     const normExtra = this.normalize(cleanExtra);
     if (normRule.includes(normExtra) || normExtra.includes(normRule)) return cleanRule;
@@ -99,17 +141,16 @@ export class HUDRenderer {
   private normalize(value: string): string {
     return value
       .normalize('NFD')
-      .replace(/[\u0300-\u036f]/g, '')
+      .replace(/[̀-ͯ]/g, '')
       .replace(/[^A-Z0-9]/gi, '')
       .toUpperCase();
   }
 
-  private fitOneLine(): void {
-    const centerMaxW = Math.max(72, this.scoreTxt.x - this.scoreTxt.width - 10 - (this.universeTxt.x + this.universeTxt.width + 10));
-    // Start at max size and compute fitted size in one step via ratio
+  private fitCenter(): void {
+    const maxW = this.ruleCenterW - 16;
     this.ruleTxt.setFontSize(MOBILE_UI.LABEL_MIN);
-    if (this.ruleTxt.width > 0 && this.ruleTxt.width > centerMaxW) {
-      const ratio = centerMaxW / this.ruleTxt.width;
+    if (this.ruleTxt.width > 0 && this.ruleTxt.width > maxW) {
+      const ratio = maxW / this.ruleTxt.width;
       const fitted = Math.max(MOBILE_UI.CAPTION_MIN, Math.floor(MOBILE_UI.LABEL_MIN * ratio));
       this.ruleTxt.setFontSize(fitted);
     }
