@@ -249,10 +249,6 @@ export class GameScene extends Phaser.Scene {
           }
           return null;
         });
-        // Newspaper icon for the paper pickup
-        if (this.textures.exists(PAPERBOY_OPENMOJI_ICONS.newspaper.key)) {
-          this.pickupRenderer.setTextureKey(PAPERBOY_OPENMOJI_ICONS.newspaper.key);
-        }
       }
       if (uid === 'fighter') {
         // Fist icon for sparZone obstacles
@@ -264,12 +260,6 @@ export class GameScene extends Phaser.Scene {
           return null;
         });
       }
-      if (uid === 'outrun') {
-        // Trophy icon for checkpoints
-        if (this.textures.exists(OUTRUN_OPENMOJI_ICONS.checkpoint.key)) {
-          this.pickupRenderer.setTextureKey(OUTRUN_OPENMOJI_ICONS.checkpoint.key);
-        }
-      }
     }
 
     // rt_ priority over transparent db_ placeholders — applied unconditionally for all non-Castle universes.
@@ -280,6 +270,14 @@ export class GameScene extends Phaser.Scene {
       if (rtObstacle) this.obstacleRenderer.setObstacleTextureKey(rtObstacle);
       const rtBoss = getRuntimeTextureKey(this, uid, 'boss');
       if (rtBoss) this.obstacleRenderer.setBossTextureKey(rtBoss);
+    }
+
+    // OpenMoji pickup overrides — must come AFTER rt_ block to take priority
+    if (uid === 'outrun' && this.textures.exists(OUTRUN_OPENMOJI_ICONS.checkpoint.key)) {
+      this.pickupRenderer.setTextureKey(OUTRUN_OPENMOJI_ICONS.checkpoint.key);
+    }
+    if (uid === 'paperboy' && this.textures.exists(PAPERBOY_OPENMOJI_ICONS.newspaper.key)) {
+      this.pickupRenderer.setTextureKey(PAPERBOY_OPENMOJI_ICONS.newspaper.key);
     }
 
     const gridBounds = new Phaser.Geom.Rectangle(
