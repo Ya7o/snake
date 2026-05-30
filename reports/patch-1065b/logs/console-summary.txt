@@ -1,0 +1,14 @@
+Console summary - PATCH 1065B public boss smoke
+URL: https://ya7o.github.io/snake/?unlockAll=1
+Errors: 0
+Warnings: 8
+- [warning] [.WebGL-0x2cdc0015d400]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels
+- [warning] [.WebGL-0x2cdc0015d400]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels
+- [warning] [.WebGL-0x2cdc0015d400]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels
+- [warning] [.WebGL-0x2cdc0015d400]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels (this message will no longer repeat)
+- [warning] [.WebGL-0x3da40015e000]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels
+- [warning] [.WebGL-0x3da40015e000]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels
+- [warning] [.WebGL-0x3da40015e000]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels
+- [warning] [.WebGL-0x3da40015e000]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels (this message will no longer repeat)
+Audio/autoplay notices: 0
+Verdict console: PASS - no blocking console error observed; WebGL ReadPixels performance warnings only during screenshots.

@@ -1,0 +1,5 @@
+Network summary - PATCH 1065B public boss smoke
+URL: https://ya7o.github.io/snake/?unlockAll=1
+Responses observed: 182
+Critical network errors: 0
+Verdict reseau: PASS - no 404/request failed observed.

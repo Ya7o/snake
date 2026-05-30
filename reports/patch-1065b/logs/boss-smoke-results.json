@@ -1,0 +1,322 @@
+{
+  "startedAt": "2026-05-30T10:26:39.322Z",
+  "url": "https://ya7o.github.io/snake/?unlockAll=1",
+  "viewport": "390x844 mobile emulation, headless Chromium",
+  "worldMap": {
+    "title": "Snake Drive V4",
+    "url": "https://ya7o.github.io/snake/?unlockAll=1",
+    "activeScene": "WorldMapScene",
+    "canvas": true,
+    "nodeObjects": 16,
+    "selectedLevelId": "castle_normal",
+    "footerTexts": [
+      "JARDIN D’ILLUSION · NIVEAU",
+      "RETAPE POUR LANCER"
+    ],
+    "unlockAllRuntime": true,
+    "debugButtonVisible": false
+  },
+  "results": [
+    {
+      "scenario": "Sonic boss",
+      "levelId": "sonic_boss",
+      "url": "https://ya7o.github.io/snake/?unlockAll=1 (GameScene direct sonic_boss)",
+      "loaded": true,
+      "crash": false,
+      "hudVisible": true,
+      "genericPickupExpected": false,
+      "genericPickupObserved": false,
+      "usefulPickupObserved": true,
+      "consoleErrors": [],
+      "networkErrors": [],
+      "verdict": "PASS",
+      "notes": [
+        "runtime: ri, pickups=0, activePickups=0, weakPoints=1",
+        "entities: loopSerpent:body, loopSerpent:body, loopSerpent:orb",
+        "screenshot: sonic_boss_public.png"
+      ],
+      "state": {
+        "title": "Snake Drive V4",
+        "url": "https://ya7o.github.io/snake/?unlockAll=1",
+        "canvas": true,
+        "canvasSize": {
+          "w": 390,
+          "h": 844
+        },
+        "levelId": "sonic_boss",
+        "levelType": "boss",
+        "universeId": "sonic",
+        "mechanicName": "ri",
+        "privatePickups": [],
+        "activePickups": [],
+        "weakPoints": [
+          {
+            "col": 11,
+            "row": 11
+          }
+        ],
+        "extraEntityTypes": [
+          "loopSerpent:body",
+          "loopSerpent:body",
+          "loopSerpent:orb"
+        ],
+        "hudText": "SONIC | FRAPPE | BOSS HP 3/3",
+        "hudVisible": true,
+        "crashed": false,
+        "gameOver": false,
+        "cleared": false,
+        "sceneActive": true
+      }
+    },
+    {
+      "scenario": "OutRun boss",
+      "levelId": "outrun_boss",
+      "url": "https://ya7o.github.io/snake/?unlockAll=1 (GameScene direct outrun_boss)",
+      "loaded": true,
+      "crash": false,
+      "hudVisible": true,
+      "genericPickupExpected": false,
+      "genericPickupObserved": false,
+      "usefulPickupObserved": true,
+      "consoleErrors": [],
+      "networkErrors": [],
+      "verdict": "PASS avec reserve",
+      "notes": [
+        "Weakpoint non present au moment de capture; mecanique boss visible via entites.",
+        "runtime: hi, pickups=0, activePickups=0, weakPoints=0",
+        "entities: turboRival:moving",
+        "screenshot: outrun_boss_public.png"
+      ],
+      "state": {
+        "title": "Snake Drive V4",
+        "url": "https://ya7o.github.io/snake/?unlockAll=1",
+        "canvas": true,
+        "canvasSize": {
+          "w": 390,
+          "h": 844
+        },
+        "levelId": "outrun_boss",
+        "levelType": "boss",
+        "universeId": "outrun",
+        "mechanicName": "hi",
+        "privatePickups": [],
+        "activePickups": [],
+        "weakPoints": [],
+        "extraEntityTypes": [
+          "turboRival:moving"
+        ],
+        "hudText": "OUTRUN | ÉVITE | BOSS HP 3/3",
+        "hudVisible": true,
+        "crashed": false,
+        "gameOver": false,
+        "cleared": false,
+        "sceneActive": true
+      }
+    },
+    {
+      "scenario": "Shinobi boss",
+      "levelId": "shinobi_boss",
+      "url": "https://ya7o.github.io/snake/?unlockAll=1 (GameScene direct shinobi_boss)",
+      "loaded": true,
+      "crash": false,
+      "hudVisible": true,
+      "genericPickupExpected": false,
+      "genericPickupObserved": false,
+      "usefulPickupObserved": true,
+      "consoleErrors": [],
+      "networkErrors": [],
+      "verdict": "PASS avec reserve",
+      "notes": [
+        "Weakpoint non present au moment de capture; mecanique boss visible via entites.",
+        "runtime: li, pickups=0, activePickups=0, weakPoints=0",
+        "entities: shadowNinja:shadow, shadowNinja:shadow",
+        "screenshot: shinobi_boss_public.png"
+      ],
+      "state": {
+        "title": "Snake Drive V4",
+        "url": "https://ya7o.github.io/snake/?unlockAll=1",
+        "canvas": true,
+        "canvasSize": {
+          "w": 390,
+          "h": 844
+        },
+        "levelId": "shinobi_boss",
+        "levelType": "boss",
+        "universeId": "shinobi",
+        "mechanicName": "li",
+        "privatePickups": [],
+        "activePickups": [],
+        "weakPoints": [],
+        "extraEntityTypes": [
+          "shadowNinja:shadow",
+          "shadowNinja:shadow"
+        ],
+        "hudText": "SHINOBI | OBSERVE | BOSS HP 3/3",
+        "hudVisible": true,
+        "crashed": false,
+        "gameOver": false,
+        "cleared": false,
+        "sceneActive": true
+      }
+    },
+    {
+      "scenario": "Paperboy boss",
+      "levelId": "paperboy_boss",
+      "url": "https://ya7o.github.io/snake/?unlockAll=1 (GameScene direct paperboy_boss)",
+      "loaded": true,
+      "crash": false,
+      "hudVisible": true,
+      "genericPickupExpected": true,
+      "genericPickupObserved": true,
+      "usefulPickupObserved": true,
+      "consoleErrors": [],
+      "networkErrors": [],
+      "verdict": "PASS",
+      "notes": [
+        "runtime: fi, pickups=1, activePickups=1, weakPoints=0",
+        "entities: chaosObstacle:moving, chaosObstacle:moving, bossTarget:idle, bossTarget:idle",
+        "screenshot: paperboy_boss_public.png"
+      ],
+      "state": {
+        "title": "Snake Drive V4",
+        "url": "https://ya7o.github.io/snake/?unlockAll=1",
+        "canvas": true,
+        "canvasSize": {
+          "w": 390,
+          "h": 844
+        },
+        "levelId": "paperboy_boss",
+        "levelType": "boss",
+        "universeId": "paperboy",
+        "mechanicName": "fi",
+        "privatePickups": [
+          {
+            "col": 13,
+            "row": 4
+          }
+        ],
+        "activePickups": [
+          {
+            "col": 13,
+            "row": 4
+          }
+        ],
+        "weakPoints": [],
+        "extraEntityTypes": [
+          "chaosObstacle:moving",
+          "chaosObstacle:moving",
+          "bossTarget:idle",
+          "bossTarget:idle"
+        ],
+        "hudText": "PAPER | VAGUE 1/3 | BOSS HP 3/3",
+        "hudVisible": true,
+        "crashed": false,
+        "gameOver": false,
+        "cleared": false,
+        "sceneActive": true
+      }
+    },
+    {
+      "scenario": "Normal level",
+      "levelId": "castle_normal",
+      "url": "https://ya7o.github.io/snake/?unlockAll=1 (GameScene direct castle_normal)",
+      "loaded": true,
+      "crash": false,
+      "hudVisible": true,
+      "genericPickupExpected": true,
+      "genericPickupObserved": true,
+      "usefulPickupObserved": true,
+      "consoleErrors": [],
+      "networkErrors": [],
+      "verdict": "PASS",
+      "notes": [
+        "runtime: Be, pickups=1, activePickups=1, weakPoints=0",
+        "entities: none",
+        "screenshot: normal_level_pickup_public.png"
+      ],
+      "state": {
+        "title": "Snake Drive V4",
+        "url": "https://ya7o.github.io/snake/?unlockAll=1",
+        "canvas": true,
+        "canvasSize": {
+          "w": 390,
+          "h": 844
+        },
+        "levelId": "castle_normal",
+        "levelType": "normal",
+        "universeId": "castle",
+        "mechanicName": "Be",
+        "privatePickups": [
+          {
+            "col": 9,
+            "row": 11
+          }
+        ],
+        "activePickups": [
+          {
+            "col": 9,
+            "row": 11
+          }
+        ],
+        "weakPoints": [],
+        "extraEntityTypes": [],
+        "hudText": "CASTLE | MURS CACHÉS | MAGIC 0/10",
+        "hudVisible": true,
+        "crashed": false,
+        "gameOver": false,
+        "cleared": false,
+        "sceneActive": true
+      }
+    }
+  ],
+  "screenshots": [
+    "reports/patch-1065b/screenshots/public_worldmap_unlock_all.png",
+    "reports/patch-1065b/screenshots/sonic_boss_public.png",
+    "reports/patch-1065b/screenshots/outrun_boss_public.png",
+    "reports/patch-1065b/screenshots/shinobi_boss_public.png",
+    "reports/patch-1065b/screenshots/paperboy_boss_public.png",
+    "reports/patch-1065b/screenshots/normal_level_pickup_public.png"
+  ],
+  "console": {
+    "errors": [],
+    "warnings": [
+      {
+        "type": "warning",
+        "text": "[.WebGL-0x2cdc0015d400]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels"
+      },
+      {
+        "type": "warning",
+        "text": "[.WebGL-0x2cdc0015d400]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels"
+      },
+      {
+        "type": "warning",
+        "text": "[.WebGL-0x2cdc0015d400]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels"
+      },
+      {
+        "type": "warning",
+        "text": "[.WebGL-0x2cdc0015d400]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels (this message will no longer repeat)"
+      },
+      {
+        "type": "warning",
+        "text": "[.WebGL-0x3da40015e000]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels"
+      },
+      {
+        "type": "warning",
+        "text": "[.WebGL-0x3da40015e000]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels"
+      },
+      {
+        "type": "warning",
+        "text": "[.WebGL-0x3da40015e000]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels"
+      },
+      {
+        "type": "warning",
+        "text": "[.WebGL-0x3da40015e000]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels (this message will no longer repeat)"
+      }
+    ],
+    "autoplay": []
+  },
+  "network": {
+    "critical": [],
+    "totalResponses": 182
+  }
+}
