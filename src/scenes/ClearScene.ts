@@ -13,6 +13,7 @@ export interface ClearData {
   bestScore?: number;
   previousBest?: number;
   isNewRecord?: boolean;
+  timeBonus?: number;
 }
 
 export class ClearScene extends Phaser.Scene {
@@ -95,10 +96,10 @@ export class ClearScene extends Phaser.Scene {
     const CT = CASTLE_RESULT_THEME;
     const buttons = getUniverseButtons(level?.universeId ?? 'castle');
     const isShortPortrait = H < 700 && H > W;
-    const actionTextY = H * (isShortPortrait ? 0.535 : 0.555);
-    const continueButtonY = H * (isShortPortrait ? 0.625 : 0.635);
-    const replayButtonY = H * (isShortPortrait ? 0.725 : 0.725);
-    const mapButtonY = H * (isShortPortrait ? 0.815 : 0.815);
+    const actionTextY = H * (isShortPortrait ? 0.58 : 0.62);
+    const continueButtonY = H * (isShortPortrait ? 0.64 : 0.63);
+    const replayButtonY = H * 0.76;
+    const mapButtonY = H * 0.85;
     const secondaryButtonH = Math.min(42, Math.max(36, Math.floor(H * 0.05)));
     const addFittedText = (
       x: number,
@@ -192,25 +193,41 @@ export class ClearScene extends Phaser.Scene {
     const bestScore = Math.max(0, Math.floor(data?.bestScore ?? storedBest));
     const previousBest = Math.max(0, Math.floor(data?.previousBest ?? storedBest));
     const isNewRecord = data?.isNewRecord ?? (score > previousBest && score === bestScore);
-    const scoreY = H * (isShortPortrait ? 0.39 : 0.405);
+    const timeBonus = Math.max(0, Math.floor(data?.timeBonus ?? 0));
+    const hasTimeBonus = timeBonus > 0;
+    const scoreY = H * (isShortPortrait ? 0.47 : 0.49);
     const scoreFont = Math.min(16, Math.floor(W * 0.039));
+    const timeBonusFont = Math.min(12, Math.floor(W * 0.03));
     const recordFont = Math.min(12, Math.floor(W * 0.03));
     const scorePanelW = Math.min(340, W * 0.78);
-    const scorePanelH = isNewRecord ? 62 : 46;
+    const lineH = 22;
+    const lineCount = 2 + (hasTimeBonus ? 1 : 0) + (isNewRecord ? 1 : 0);
+    const scorePanelH = lineCount * lineH + 14;
+    const lineStart = scoreY - ((lineCount - 1) / 2) * lineH;
     const scoreMaxTextW = scorePanelW - 24;
     const scorePanel = this.add.graphics().setDepth(5);
     scorePanel.fillStyle(0x000000, 0.46);
     scorePanel.fillRoundedRect(W / 2 - scorePanelW / 2, scoreY - scorePanelH / 2, scorePanelW, scorePanelH, 6);
     scorePanel.lineStyle(1, accentHex, 0.46);
     scorePanel.strokeRoundedRect(W / 2 - scorePanelW / 2, scoreY - scorePanelH / 2, scorePanelW, scorePanelH, 6);
-    addFittedText(W / 2, scoreY - 12, `SCORE : ${score}`, scoreFont, scoreMaxTextW, {
+    let li = 0;
+    addFittedText(W / 2, lineStart + li++ * lineH, `SCORE : ${score}`, scoreFont, scoreMaxTextW, {
       fontFamily: UI_FONT,
       fontStyle: '800',
       color: '#ffffff',
       stroke: '#000000',
       strokeThickness: 2,
     });
-    addFittedText(W / 2, scoreY + 9, `BEST : ${bestScore}`, scoreFont, scoreMaxTextW, {
+    if (hasTimeBonus) {
+      addFittedText(W / 2, lineStart + li++ * lineH, `+${timeBonus} TEMPS`, timeBonusFont, scoreMaxTextW, {
+        fontFamily: UI_FONT,
+        fontStyle: '700',
+        color: accentStr,
+        stroke: '#000000',
+        strokeThickness: 1,
+      });
+    }
+    addFittedText(W / 2, lineStart + li++ * lineH, `BEST : ${bestScore}`, scoreFont, scoreMaxTextW, {
       fontFamily: UI_FONT,
       fontStyle: '800',
       color: isCastle ? CT.titleClear : accentStr,
@@ -218,7 +235,7 @@ export class ClearScene extends Phaser.Scene {
       strokeThickness: 2,
     });
     if (isNewRecord) {
-      addFittedText(W / 2, scoreY + 29, 'NOUVEAU RECORD', recordFont, scoreMaxTextW, {
+      addFittedText(W / 2, lineStart + li++ * lineH, 'NOUVEAU RECORD', recordFont, scoreMaxTextW, {
         fontFamily: UI_FONT,
         fontStyle: '800',
         color: '#ffffff',
@@ -234,14 +251,6 @@ export class ClearScene extends Phaser.Scene {
     const nextLevel = nextNode ? getLevelById(nextNode.levelId) : null;
 
     if (nextLevel) {
-      addFittedText(W / 2, actionTextY, `PROCHAIN : ${nextLevel.name.toUpperCase()}`, Math.min(14, Math.floor(W * 0.036)), W * 0.82, {
-        fontFamily: UI_FONT,
-        fontStyle: '700',
-        color: '#ffffff',
-        stroke: '#000000',
-        strokeThickness: 2,
-      });
-
       addMobileButton(this, {
         x: W / 2,
         y: continueButtonY,
@@ -259,6 +268,14 @@ export class ClearScene extends Phaser.Scene {
             this.scene.start(SCENES.LEVEL_INTRO, { levelId: nextNode!.levelId });
           });
         },
+      });
+
+      addFittedText(W / 2, continueButtonY + L.primaryButtonH / 2 + 18, `PROCHAIN : ${nextLevel.name.toUpperCase()}`, Math.min(13, Math.floor(W * 0.033)), W * 0.82, {
+        fontFamily: UI_FONT,
+        fontStyle: '700',
+        color: '#ffffff',
+        stroke: '#000000',
+        strokeThickness: 2,
       });
     } else {
       const endFontSize = Math.min(15, Math.floor(W * 0.038));
@@ -281,7 +298,7 @@ export class ClearScene extends Phaser.Scene {
     // Separator between continue and secondary actions.
     const sep = this.add.graphics().setDepth(5);
     sep.lineStyle(1, buttons.primaryFill, 0.35);
-    sep.lineBetween(W * 0.2, H * 0.68, W * 0.8, H * 0.68);
+    sep.lineBetween(W * 0.2, H * 0.71, W * 0.8, H * 0.71);
 
     // Replay button
     addMobileButton(this, {
