@@ -56,7 +56,7 @@ const ENTITY_COLORS: Record<string, Record<string, number>> = {
   turboRival:     { moving: 0xff6b9d },
   turboZone:      { active: 0xffd32a },
   shadowNinja:    { real: 0x00b4d8, shadow: 0x333355 },
-  dragonGate:     { closed: 0x444444, opening: 0xf39c12, open: 0xf1c40f, danger: 0xe74c3c },
+  dragonGate:     { closed: 0x444444, opening: 0xf39c12, vulnerable: 0xf1c40f, danger: 0xe74c3c },
   dangerZone:     { active: 0xc0392b },
   chaosObstacle:  { moving: 0xe67e22 },
   bossTarget:     { highlighted: 0xf1c40f, idle: 0x27ae60 },

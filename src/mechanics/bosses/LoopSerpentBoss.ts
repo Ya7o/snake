@@ -8,7 +8,7 @@ export class LoopSerpentBoss extends BaseBoss {
   private bossIndex = 0;
   private orbIndex = 0;  // vulnerable spot = last in body
   private moveTimer = 0;
-  private moveInterval = 3;
+  private moveInterval = 1;
   private bossBody: Cell[] = [];
 
   protected onInit(): void {

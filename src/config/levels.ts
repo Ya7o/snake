@@ -24,7 +24,7 @@ export const LEVELS: LevelConfig[] = [
   { id: 'kombat_normal', universeId: 'kombat', type: 'normal', name: 'Arène des Enfers',     mechanic: 'fatalZones',        quota: 10, speedMs: 160, ruleText: 'ZONES FATALES',             introHint: "Les zones s’allument avant de frapper. Sors vite.", mapNodeId: 'node_13' },
   { id: 'kombat_boss',   universeId: 'kombat', type: 'boss',   name: 'Porte du Dragon',      mechanic: 'dragonGate',        bossHp: 3, speedMs: 170, ruleText: "FENÊTRE D’ATTAQUE",  introHint: "Attends l’ouverture. Frappe vite.", mapNodeId: 'node_14' },
   // Paperboy
-  { id: 'paperboy_normal',universeId:'paperboy',type: 'normal', name: 'Tournée du Matin',    mechanic: 'deliveryTargets',   quota: 8,  speedMs: 155, ruleText: 'LIVRAISON',                 introHint: 'Livre les bonnes maisons sans te crasher.', mapNodeId: 'node_15' },
+  { id: 'paperboy_normal',universeId:'paperboy',type: 'normal', name: 'Tournée du Matin',    mechanic: 'deliveryTargets',   quota: 8,  speedMs: 110, ruleText: 'LIVRAISON',                 introHint: 'Livre les bonnes maisons sans te crasher.', mapNodeId: 'node_15' },
   { id: 'paperboy_boss', universeId: 'paperboy',type: 'boss',  name: 'Chaos du Quartier',    mechanic: 'neighborhoodChaos', bossHp: 3, speedMs: 155, ruleText: 'SURVIE',                    introHint: "Les pièges s’enchaînent. Survis avant de livrer.", mapNodeId: 'node_16' },
 ];
 

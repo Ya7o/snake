@@ -7,11 +7,11 @@ type WallState = 'ghost' | 'warning' | 'active';
 interface BlinkWall { cell: Cell; state: WallState; ticksLeft: number }
 
 export const CASTLE_ILLUSION_TUNING = {
-  maxWalls: 3,
-  spawnIntervalTicks: 16,
-  safeTicks: 8,
-  warningTicks: 8,
-  activeTicks: 4,
+  maxWalls: 30,
+  spawnIntervalTicks: 2,
+  safeTicks: 6,
+  warningTicks: 6,
+  activeTicks: 5,
 } as const;
 
 export class CastleIllusionMechanic extends BaseMechanic {

@@ -5,7 +5,7 @@ import { Grid } from '../core/Grid';
 // Ring chains: rings appear in a chain; collect in order for bonus
 interface ChainRing { cell: Cell; index: number; active: boolean }
 
-const BOOST_TICKS = 20;   // ~2.7 s at 135 ms/tick
+const BOOST_TICKS = 60;   // ~8 s at 135 ms/tick
 const BOOST_SPEED_MULT = 0.55; // 45 % faster
 
 export class SonicRingsMechanic extends BaseMechanic {

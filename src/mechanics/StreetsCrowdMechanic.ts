@@ -56,21 +56,21 @@ export class StreetsCrowdMechanic extends BaseMechanic {
     for (const b of this.blockers) b.ttl--;
     this.blockers = this.blockers.filter(b => b.ttl > 0);
 
-    // Trigger a charge on a random idle blocker every ~25 ticks
-    if (this.spawnTimer % 25 === 0) {
+    // Trigger a charge on a random idle blocker every ~15 ticks
+    if (this.spawnTimer % 15 === 0) {
       const idleBlockers = this.blockers.filter(b => b.state === 'static' || b.state === 'moving');
       if (idleBlockers.length > 0) {
         const target = idleBlockers[Math.floor(Math.random() * idleBlockers.length)];
         target.dir = DIRS[Math.floor(Math.random() * DIRS.length)];
         target.state = 'warning';
         target.warningTicks = 2;
-        target.chargeStepsLeft = 2 + Math.floor(Math.random() * 4); // 2–5 steps
+        target.chargeStepsLeft = 5 + Math.floor(Math.random() * 8); // 5–12 steps
         target.ttl = Math.max(target.ttl, target.chargeStepsLeft + 4);
       }
     }
 
-    // Spawn new blockers every 15 ticks, max 5
-    if (this.spawnTimer % 15 === 0 && this.blockers.length < 5) {
+    // Spawn new blockers every 10 ticks, max 10
+    if (this.spawnTimer % 10 === 0 && this.blockers.length < 10) {
       const occupied = new Set<string>(this.ctx.snake.body.map(c => cellKey(c)));
       for (const b of this.blockers) occupied.add(cellKey(b.cell));
       for (const p of this.ctx.pickups) occupied.add(cellKey(p));

@@ -2,7 +2,10 @@ import { BaseMechanic, DangerCell, ExtraEntity, MechanicUpdate } from './BaseMec
 import { Cell, cellKey } from '../core/Grid';
 import { Grid } from '../core/Grid';
 
-// Charge move: maintain same direction for 4 cells to charge; special pickup validates charge
+// Charge move: maintain direction for bonus; spar zones refresh every ~3 s
+const SPAR_COUNT = 30;          // ×10 of original 3
+const SPAR_RESPAWN_TICKS = 18;  // ~3 s at 165 ms/tick
+
 export class FighterChargeMechanic extends BaseMechanic {
   private chargeCount = 0;
   private lastDir = '';
@@ -10,6 +13,7 @@ export class FighterChargeMechanic extends BaseMechanic {
   private sparZones: Cell[] = [];
   private grid!: Grid;
   private spawnTimer = 0;
+  private respawnTimer = 0;
 
   protected onInit(): void {
     this.grid = new Grid(this.ctx.grid.cols, this.ctx.grid.rows);
@@ -19,14 +23,22 @@ export class FighterChargeMechanic extends BaseMechanic {
   private spawnSparZones(): void {
     this.sparZones = [];
     const occupied = new Set<string>(this.ctx.snake.body.map(c => cellKey(c)));
-    for (let i = 0; i < 3; i++) {
+    for (let i = 0; i < SPAR_COUNT; i++) {
       const c = this.grid.randomFreeCell(occupied);
       if (c) { this.sparZones.push(c); occupied.add(cellKey(c)); }
     }
+    this.respawnTimer = 0;
   }
 
   tick(_tickCount: number): MechanicUpdate {
     this.spawnTimer++;
+    this.respawnTimer++;
+
+    // Refresh all zones every ~3 seconds
+    if (this.respawnTimer >= SPAR_RESPAWN_TICKS) {
+      this.spawnSparZones();
+    }
+
     const dir = this.ctx.snake.direction;
     if (dir === this.lastDir) {
       this.chargeCount++;
@@ -44,14 +56,14 @@ export class FighterChargeMechanic extends BaseMechanic {
     if (this.chargeReady) {
       this.chargeCount = 0;
       this.chargeReady = false;
-      return { score: 2 }; // bonus
+      return { score: 2 };
     }
     return {};
   }
 
   getExtraEntities(): ExtraEntity[] {
     const entities: ExtraEntity[] = this.sparZones.map(s => ({
-      type: 'sparZone', cell: s, state: 'static'
+      type: 'sparZone', cell: s, state: 'static' as const
     }));
     if (this.chargeReady) {
       entities.push({ type: 'chargeGlow', cell: this.ctx.snake.body[0], state: 'ready' });

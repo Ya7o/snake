@@ -2,8 +2,9 @@ import { BaseBoss, BossHitResult } from './BaseBoss';
 import { DangerCell, ExtraEntity, MechanicUpdate } from '../BaseMechanic';
 import { Cell } from '../../core/Grid';
 
-// Dragon Gate: gate opens for a brief finish window; outside = danger zone
-type GatePhase = 'closed' | 'opening' | 'open' | 'danger';
+// Dragon Gate: gate charges → big danger zone → brief vulnerable window for player
+// New sequence: closed → opening → danger(attack) → vulnerable(hit window) → closed
+type GatePhase = 'closed' | 'opening' | 'danger' | 'vulnerable';
 interface DangerZone { cell: Cell; ttl: number }
 
 export class DragonGateBoss extends BaseBoss {
@@ -24,28 +25,33 @@ export class DragonGateBoss extends BaseBoss {
     this.dangerZones = this.dangerZones.filter(dz => dz.ttl > 0);
 
     if (this.gatePhase === 'closed') {
-      if (this.phaseTimer > 25) { this.gatePhase = 'opening'; this.phaseTimer = 0; }
+      if (this.phaseTimer > 10) { this.gatePhase = 'opening'; this.phaseTimer = 0; }
     } else if (this.gatePhase === 'opening') {
-      if (this.phaseTimer > 8) { this.gatePhase = 'open'; this.phaseTimer = 0; }
-    } else if (this.gatePhase === 'open') {
-      if (this.phaseTimer > 12) {
+      if (this.phaseTimer > 4) {
         this.gatePhase = 'danger';
         this.phaseTimer = 0;
-        // Danger zone radius scales with HP drop: phase 0→r2, 1→r3, 2→r4
-        const radius = 2 + this.phase;
+        // Big circular danger zone — radius triples with phase loss
+        const radius = (2 + this.phase) * 3;
         for (let dc = -radius; dc <= radius; dc++) {
           for (let dr = -radius; dr <= radius; dr++) {
             if (dc === 0 && dr === 0) continue;
             if (dc * dc + dr * dr > radius * radius + 0.5) continue;
             const cell: Cell = { col: this.gateCell.col + dc, row: this.gateCell.row + dr };
             if (cell.col >= 0 && cell.col < this.ctx.grid.cols && cell.row >= 0 && cell.row < this.ctx.grid.rows) {
-              this.dangerZones.push({ cell, ttl: 10 });
+              this.dangerZones.push({ cell, ttl: 8 });
             }
           }
         }
       }
     } else if (this.gatePhase === 'danger') {
-      if (this.phaseTimer > 10) { this.gatePhase = 'closed'; this.phaseTimer = 0; }
+      if (this.phaseTimer > 8) {
+        // After attack, gate becomes vulnerable — hit window for player
+        this.gatePhase = 'vulnerable';
+        this.phaseTimer = 0;
+        this.dangerZones = [];
+      }
+    } else if (this.gatePhase === 'vulnerable') {
+      if (this.phaseTimer > 8) { this.gatePhase = 'closed'; this.phaseTimer = 0; }
     }
 
     return {};
@@ -66,11 +72,11 @@ export class DragonGateBoss extends BaseBoss {
   }
 
   getWeakPoints(): Cell[] {
-    return this.gatePhase === 'open' ? [this.gateCell] : [];
+    return this.gatePhase === 'vulnerable' ? [this.gateCell] : [];
   }
 
   onWeakPointHit(cell: Cell): BossHitResult {
-    if (this.gatePhase !== 'open' || cell.col !== this.gateCell.col || cell.row !== this.gateCell.row) {
+    if (this.gatePhase !== 'vulnerable' || cell.col !== this.gateCell.col || cell.row !== this.gateCell.row) {
       return { hit: false, defeated: this.isDefeated() };
     }
     const result = super.onWeakPointHit(cell);
@@ -87,8 +93,8 @@ export class DragonGateBoss extends BaseBoss {
 
   getHudExtra(): string {
     if (this.gatePhase === 'opening') return 'ATTENTION';
-    if (this.gatePhase === 'open') return 'ATTAQUE !';
     if (this.gatePhase === 'danger') return 'DANGER';
+    if (this.gatePhase === 'vulnerable') return 'ATTAQUE !';
     return super.getHudExtra();
   }
 }

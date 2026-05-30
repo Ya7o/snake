@@ -42,7 +42,7 @@ export class WitchMirrorBoss extends BaseBoss {
   private spawnMirrors(): void {
     this.mirrors = [];
     const occupied = new Set<string>(this.ctx.snake.body.map(c => cellKey(c)));
-    const count = 3 + this.phase;
+    const count = (3 + this.phase) * 3; // 9/12/15 per phase
     const realIndex = Math.floor(Math.random() * count);
     for (let i = 0; i < count; i++) {
       const cell = this.grid.randomFreeCell(occupied);
