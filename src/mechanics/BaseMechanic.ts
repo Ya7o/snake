@@ -61,6 +61,11 @@ export abstract class BaseMechanic {
   getHudExtra(): string {
     return '';
   }
+
+  // Optional speed multiplier: < 1 = faster, > 1 = slower. Default = no override.
+  getSpeedMultiplier(): number {
+    return 1;
+  }
 }
 
 export type EntityState =
@@ -69,7 +74,8 @@ export type EntityState =
   | 'danger' | 'ready' | 'decoy' | 'real' | 'orb' | 'body'
   | 'highlighted' | 'shadow'
   | 'pressure' | 'closed' | 'opening' | 'open'
-  | 'attack_window' | 'counter';
+  | 'attack_window' | 'counter'
+  | 'charging';
 
 export interface ExtraEntity {
   type: string;

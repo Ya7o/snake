@@ -5,12 +5,16 @@ import { Grid } from '../core/Grid';
 // Ring chains: rings appear in a chain; collect in order for bonus
 interface ChainRing { cell: Cell; index: number; active: boolean }
 
+const BOOST_TICKS = 20;   // ~2.7 s at 135 ms/tick
+const BOOST_SPEED_MULT = 0.55; // 45 % faster
+
 export class SonicRingsMechanic extends BaseMechanic {
   private chain: ChainRing[] = [];
   private chainIndex = 0;   // next ring to collect
   private chainSize = 4;
   private grid!: Grid;
   private spawnTimer = 0;
+  private boostTicksLeft = 0;
 
   protected onInit(): void {
     this.grid = new Grid(this.ctx.grid.cols, this.ctx.grid.rows);
@@ -31,30 +35,28 @@ export class SonicRingsMechanic extends BaseMechanic {
 
   tick(_tickCount: number): MechanicUpdate {
     this.spawnTimer++;
+    if (this.boostTicksLeft > 0) this.boostTicksLeft--;
     // Update active ring (first uncollected)
     for (const r of this.chain) {
       r.active = r.index === this.chainIndex;
     }
-    // Replace pickups to be chain rings only — handled via getExtraEntities
     return {};
   }
 
   onPickupCollected(cell: Cell): MechanicUpdate {
-    // find which ring was collected
     const ring = this.chain.find(r => r.cell.col === cell.col && r.cell.row === cell.row);
     if (!ring) return {};
     if (ring.index === this.chainIndex) {
-      // correct order
       this.chainIndex++;
       if (this.chainIndex >= this.chain.length) {
-        // chain complete — spawn new chain
+        // Chain complete — activate speed boost then spawn new chain
+        this.boostTicksLeft = BOOST_TICKS;
         this.spawnChain();
       } else {
-        // activate next
         for (const r of this.chain) r.active = r.index === this.chainIndex;
       }
     } else {
-      // wrong order — restart chain
+      // Wrong order — restart chain, no boost
       this.spawnChain();
     }
     return {};
@@ -77,6 +79,11 @@ export class SonicRingsMechanic extends BaseMechanic {
   }
 
   getHudExtra(): string {
+    if (this.boostTicksLeft > 0) return 'TURBO !';
     return `ANNEAU ${this.chainIndex + 1}/${this.chainSize}`;
+  }
+
+  override getSpeedMultiplier(): number {
+    return this.boostTicksLeft > 0 ? BOOST_SPEED_MULT : 1;
   }
 }

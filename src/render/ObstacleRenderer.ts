@@ -38,7 +38,7 @@ type EntityTextureResolver = (entity: ExtraEntity) => string | null;
 const ENTITY_COLORS: Record<string, Record<string, number>> = {
   blinkWall:      { ghost: 0x4a235a, warning: 0xf39c12, active: 0xe74c3c },
   chainRing:      { active: 0xf9ca24, inactive: 0x5d4e00 },
-  crowdBlocker:   { static: 0xe67e22, moving: 0xff6b35 },
+  crowdBlocker:   { static: 0xe67e22, moving: 0xff6b35, warning: 0xf39c12, charging: 0xe74c3c, danger: 0xc0392b },
   sparZone:       { static: 0xc0392b },
   chargeGlow:     { ready: 0xf39c12 },
   trafficBlock:   { moving: 0xff6b9d },

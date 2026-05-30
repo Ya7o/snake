@@ -27,7 +27,7 @@ import { flashScreen } from '../render/VfxUtils';
 import { preloadRuntimeAssets, getRuntimeTextureKey } from '../systems/RuntimeAssetResolver';
 import { drawCastleRuntimeBoardPanel, logCastleRuntimeLayers } from '../ui/CastleRuntimeLayering';
 import { GAMEPLAY_HUD, GAMEPLAY_LAYERS } from '../ui/RuntimeUILayout';
-import { CASTLE_OPENMOJI_ICON_ASSETS, CASTLE_OPENMOJI_ICONS, PAPERBOY_OPENMOJI_ICON_ASSETS, PAPERBOY_OPENMOJI_ICONS } from '../ui/OpenMojiIconRegistry';
+import { CASTLE_OPENMOJI_ICON_ASSETS, CASTLE_OPENMOJI_ICONS, PAPERBOY_OPENMOJI_ICON_ASSETS, PAPERBOY_OPENMOJI_ICONS, FIGHTER_OPENMOJI_ICON_ASSETS, FIGHTER_OPENMOJI_ICONS, OUTRUN_OPENMOJI_ICON_ASSETS, OUTRUN_OPENMOJI_ICONS } from '../ui/OpenMojiIconRegistry';
 
 const GRID_COLS = 16;
 const GRID_ROWS = 20;
@@ -129,6 +129,16 @@ export class GameScene extends Phaser.Scene {
       preloadRuntimeAssets(this, uid, isBoss);
       if (uid === 'paperboy') {
         for (const icon of PAPERBOY_OPENMOJI_ICON_ASSETS) {
+          if (!this.textures.exists(icon.key)) this.load.svg(icon.key, icon.url, { width: 64, height: 64 });
+        }
+      }
+      if (uid === 'fighter') {
+        for (const icon of FIGHTER_OPENMOJI_ICON_ASSETS) {
+          if (!this.textures.exists(icon.key)) this.load.svg(icon.key, icon.url, { width: 64, height: 64 });
+        }
+      }
+      if (uid === 'outrun') {
+        for (const icon of OUTRUN_OPENMOJI_ICON_ASSETS) {
           if (!this.textures.exists(icon.key)) this.load.svg(icon.key, icon.url, { width: 64, height: 64 });
         }
       }
@@ -239,6 +249,26 @@ export class GameScene extends Phaser.Scene {
           }
           return null;
         });
+        // Newspaper icon for the paper pickup
+        if (this.textures.exists(PAPERBOY_OPENMOJI_ICONS.newspaper.key)) {
+          this.pickupRenderer.setTextureKey(PAPERBOY_OPENMOJI_ICONS.newspaper.key);
+        }
+      }
+      if (uid === 'fighter') {
+        // Fist icon for sparZone obstacles
+        this.obstacleRenderer.setEntityTextureResolver(entity => {
+          if (entity.type === 'sparZone') {
+            return this.textures.exists(FIGHTER_OPENMOJI_ICONS.sparZone.key)
+              ? FIGHTER_OPENMOJI_ICONS.sparZone.key : null;
+          }
+          return null;
+        });
+      }
+      if (uid === 'outrun') {
+        // Trophy icon for checkpoints
+        if (this.textures.exists(OUTRUN_OPENMOJI_ICONS.checkpoint.key)) {
+          this.pickupRenderer.setTextureKey(OUTRUN_OPENMOJI_ICONS.checkpoint.key);
+        }
       }
     }
 
@@ -356,11 +386,11 @@ export class GameScene extends Phaser.Scene {
     if (this.levelConfig.universeId === 'paperboy') this.drawPaperboyTargetGlow(time);
     this.pickupRenderer.draw(activePickups, this.layout, this.colorAccent, time);
 
-    // Fixed-step accumulator — game logic runs at speedMs interval regardless of FPS
+    // Fixed-step accumulator — mechanic can override speed (e.g. Sonic turbo boost)
+    const effectiveSpeedMs = this.levelConfig.speedMs * this.mechanic.getSpeedMultiplier();
     this.tickAccumulator += delta;
-    if (this.tickAccumulator < this.levelConfig.speedMs) return;
-    // Consume one tick (cap at 1 to avoid spiral-of-death on slow frames)
-    this.tickAccumulator -= this.levelConfig.speedMs;
+    if (this.tickAccumulator < effectiveSpeedMs) return;
+    this.tickAccumulator -= effectiveSpeedMs;
     this.tickCount++;
 
     this.syncMechanicCtx();
