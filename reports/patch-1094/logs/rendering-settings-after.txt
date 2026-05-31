@@ -1,0 +1,69 @@
+PATCH 1094 - Rendering Settings After
+Generated: 2026-05-31
+Scope: rendering sharpness/code only; no asset or gameplay changes.
+
+PHASER CONFIG
+Source: src/main.ts
+
+- type: Phaser.AUTO
+- parent: app
+- scale.mode: Phaser.Scale.RESIZE
+- scale.autoCenter: Phaser.Scale.CENTER_BOTH
+- render.antialias: true
+- render.roundPixels: true
+- render.powerPreference: high-performance
+- text resolution override: Math.min(window.devicePixelRatio || 1, 2)
+- input.smoothFactor: 0
+- disableContextMenu: true
+
+Interpretation:
+- Global antialias remains enabled to avoid degrading high-resolution backgrounds and vector-like UI rendering.
+- roundPixels remains enabled to keep grid/object placement stable on integer pixels.
+- pixelArt is not enabled globally. PATCH 1094 avoids forcing NEAREST on every texture because backgrounds and OpenMoji SVG rasters should not become visibly jagged.
+
+CSS / CANVAS
+Source: index.html
+
+- #app canvas now has display:block.
+- #app canvas now has width:100% and height:100%.
+- No image-rendering: pixelated rule was added.
+
+Interpretation:
+- The canvas explicitly fills the app container and avoids inline-canvas layout artifacts.
+- Browser-level pixelated scaling is intentionally not used because it would affect the whole canvas, including high-resolution backgrounds.
+
+TEXTURE FILTER POLICY
+Sources:
+- src/render/TextureFiltering.ts
+- src/render/PickupRenderer.ts
+- src/render/ObstacleRenderer.ts
+
+Rules:
+- texture keys beginning with rt_ use Phaser.Textures.FilterMode.NEAREST.
+- texture keys beginning with openmoji- use Phaser.Textures.FilterMode.LINEAR.
+- unknown gameplay texture keys use LINEAR by default.
+
+Affected render paths:
+- PickupRenderer.fitImageInCell() now applies applyGameplayTextureFilter().
+- ObstacleRenderer.fitImageInCell() now applies applyGameplayTextureFilter().
+- Runtime pickups, secondary pickups, obstacles, boss idle sprites, and boss attack sprites loaded as rt_* now render with NEAREST when drawn by those renderers.
+- OpenMoji/SVG gameplay icons loaded as openmoji-* keep LINEAR to avoid excessive stair-stepping.
+
+UNCHANGED HIGH-RES BACKGROUND PATHS
+
+- GameScene backgrounds keep their existing image path and are not passed through the gameplay texture filter helper.
+- Title, LevelIntro, Clear, GameOver, and WorldMap image paths are not changed.
+- WorldMapScene still explicitly uses FilterMode.LINEAR for the map texture.
+
+EXPECTED EFFECT
+
+- Runtime PNG icons/sprites should appear sharper, especially 32x32 secondary pickups and pixel-like gameplay icons.
+- Large generated sprites may look less soft but can reveal source/pipeline limitations.
+- OpenMoji SVG rasters and backgrounds should remain smooth.
+
+KNOWN LIMITS
+
+- NEAREST cannot fix low-resolution or poor-contrast source assets.
+- Kombat finish token remains a source/contrast problem identified by PATCH 1093.
+- Shinobi boss black capture remains a separate runtime/fallback investigation.
+- No assets were regenerated or replaced.

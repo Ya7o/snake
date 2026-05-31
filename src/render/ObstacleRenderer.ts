@@ -2,6 +2,7 @@ import Phaser from 'phaser';
 import { ExtraEntity } from '../mechanics/BaseMechanic';
 import { GridLayout, cellToPixel, getCellMin } from './GridRenderer';
 import { GAMEPLAY_LAYERS } from '../ui/RuntimeUILayout';
+import { applyGameplayTextureFilter } from './TextureFiltering';
 
 // Boss entity types — peuvent utiliser un asset image si disponible
 const BOSS_ENTITY_TYPES = new Set([
@@ -218,10 +219,7 @@ export class ObstacleRenderer {
   }
 
   private fitImageInCell(img: Phaser.GameObjects.Image, textureKey: string, maxSize: number): void {
-    if (!this.filteredKeys.has(textureKey) && this.scene.textures.exists(textureKey)) {
-      this.scene.textures.get(textureKey).setFilter(Phaser.Textures.FilterMode.LINEAR);
-      this.filteredKeys.add(textureKey);
-    }
+    applyGameplayTextureFilter(this.scene, textureKey, this.filteredKeys);
     const frame = this.scene.textures.getFrame(textureKey);
     const fw = frame?.width ?? img.width;
     const fh = frame?.height ?? img.height;

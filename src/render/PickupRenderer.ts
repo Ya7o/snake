@@ -2,6 +2,7 @@ import Phaser from 'phaser';
 import { Cell } from '../core/Grid';
 import { GridLayout, cellToPixel, getCellMin } from './GridRenderer';
 import { GAMEPLAY_LAYERS } from '../ui/RuntimeUILayout';
+import { applyGameplayTextureFilter } from './TextureFiltering';
 
 // Shape per universe — matches the game's theme
 const UNIVERSE_SHAPES: Record<string, 'star' | 'ring' | 'diamond' | 'lightning' | 'triangle' | 'cross' | 'flame' | 'circle'> = {
@@ -329,10 +330,7 @@ export class PickupRenderer {
   }
 
   private fitImageInCell(img: Phaser.GameObjects.Image, textureKey: string, maxSize: number): void {
-    if (!this.filteredKeys.has(textureKey) && this.scene.textures.exists(textureKey)) {
-      this.scene.textures.get(textureKey).setFilter(Phaser.Textures.FilterMode.LINEAR);
-      this.filteredKeys.add(textureKey);
-    }
+    applyGameplayTextureFilter(this.scene, textureKey, this.filteredKeys);
     const frame = this.scene.textures.getFrame(textureKey);
     const fw = frame?.width ?? img.width;
     const fh = frame?.height ?? img.height;
