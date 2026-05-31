@@ -57,3 +57,5 @@ pnpm-debug.log*
 /design_boards/
 /tickets/
 /public/assets/universes/
+/public/assets/frames/
+/public/assets/level-intros/

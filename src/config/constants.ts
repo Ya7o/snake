@@ -62,27 +62,6 @@ export const MOBILE_UI = {
   SECONDARY_BUTTON_FONT: 12,
 } as const;
 
-export const UNIVERSE_FRAME_ASSETS = {
-  sonic: { key: 'frame-sonic', url: 'assets/frames/sonic/frame.png' },
-  streets: { key: 'frame-streets', url: 'assets/frames/streets/frame.png' },
-  fighter: { key: 'frame-fighter', url: 'assets/frames/fighter/frame.png' },
-  outrun: { key: 'frame-outrun', url: 'assets/frames/outrun/frame.png' },
-  shinobi: { key: 'frame-shinobi', url: 'assets/frames/shinobi/frame.png' },
-  kombat: { key: 'frame-kombat', url: 'assets/frames/kombat/frame.png' },
-  paperboy: { key: 'frame-paperboy', url: 'assets/frames/paperboy/frame.png' },
-} as const;
-
-export const UNIVERSE_LEVEL_INTRO_ASSETS = {
-  castle: { key: 'level-intro-castle', url: 'assets/level-intros/castle/intro.png' },
-  sonic: { key: 'level-intro-sonic', url: 'assets/level-intros/sonic/intro.png' },
-  streets: { key: 'level-intro-streets', url: 'assets/level-intros/streets/intro.png' },
-  fighter: { key: 'level-intro-fighter', url: 'assets/level-intros/fighter/intro.png' },
-  outrun: { key: 'level-intro-outrun', url: 'assets/level-intros/outrun/intro.png' },
-  shinobi: { key: 'level-intro-shinobi', url: 'assets/level-intros/shinobi/intro.png' },
-  kombat: { key: 'level-intro-kombat', url: 'assets/level-intros/kombat/intro.png' },
-  paperboy: { key: 'level-intro-paperboy', url: 'assets/level-intros/paperboy/intro.png' },
-} as const;
-
 interface BgSlot { key: string; url: string }
 export interface UniverseBgSet {
   system: BgSlot;
