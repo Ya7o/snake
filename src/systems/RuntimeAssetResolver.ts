@@ -4,8 +4,8 @@
 import Phaser from 'phaser';
 import { getRuntimeAsset, RuntimeAssetRole } from '../assets/runtimeUniverseAssets';
 
-const ROLES_NORMAL: RuntimeAssetRole[] = ['pickup', 'pickupSecondary', 'obstacle'];
-const ROLES_BOSS:   RuntimeAssetRole[] = ['pickup', 'pickupSecondary', 'obstacle', 'boss'];
+const ROLES_NORMAL: RuntimeAssetRole[] = ['pickup', 'obstacle'];
+const ROLES_BOSS:   RuntimeAssetRole[] = ['pickup', 'obstacle', 'boss'];
 
 export function runtimeKey(universeId: string, role: RuntimeAssetRole): string {
   return `rt_${universeId}_${role}`;

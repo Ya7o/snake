@@ -56,7 +56,6 @@ export class PickupRenderer {
   private scene: Phaser.Scene;
   private imagePool: Phaser.GameObjects.Image[] = [];
   private textureKey: string | null = null;
-  private secondaryTextureKey: string | null = null;
   private blendMode: number = Phaser.BlendModes.NORMAL;
   private lastCellKeys = '';
   private universeId = '';
@@ -80,11 +79,6 @@ export class PickupRenderer {
     if (this.blendMode === mode) return;
     this.blendMode = mode;
     for (const img of this.imagePool) img.setBlendMode(mode);
-  }
-
-  /** 906 — secondary texture for alternate pickup types */
-  setSecondaryTextureKey(key: string): void {
-    this.secondaryTextureKey = key;
   }
 
   setUniverseId(uid: string): void {
@@ -118,8 +112,7 @@ export class PickupRenderer {
       for (let i = 0; i < pickups.length; i++) {
         const { px, py } = cellToPixel(layout, pickups[i].col, pickups[i].row);
         const img = this.imagePool[i];
-        const useSecondary = i % 2 === 1 && this.secondaryTextureKey && this.scene.textures.exists(this.secondaryTextureKey);
-        const texKey = useSecondary ? this.secondaryTextureKey! : key!;
+        const texKey = key!;
         if (img.texture.key !== texKey) img.setTexture(texKey);
         this.fitImageInCell(img, texKey, maxSize);
         img.setPosition(

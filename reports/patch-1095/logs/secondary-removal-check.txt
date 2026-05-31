@@ -1,0 +1,101 @@
+PATCH 1095 - secondary runtime assets removal check
+
+Scope
+- Runtime secondary pickup PNGs only.
+- Code paths checked: src/assets, src/systems, src/scenes/GameScene.ts, src/render, public/assets/runtime.
+- Non-runtime UI palette fields named "secondary" are intentionally out of scope.
+
+References before
+Command:
+rg -n "pickupSecondary|setSecondaryTextureKey|secondaryTextureKey|pickup_secondary" src public/assets/runtime --glob '!dist/**'
+
+Results:
+- src/assets/runtimeUniverseAssets.ts declared RuntimeAssetRole "pickupSecondary".
+- src/assets/runtimeUniverseAssets.ts declared UniverseRuntimeAssetSet.pickupSecondary.
+- src/assets/runtimeUniverseAssets.ts mapped seven runtime files:
+  - assets/runtime/universes/sonic/pickup_secondary.png
+  - assets/runtime/universes/streets/pickup_secondary.png
+  - assets/runtime/universes/fighter/pickup_secondary.png
+  - assets/runtime/universes/outrun/pickup_secondary.png
+  - assets/runtime/universes/shinobi/pickup_secondary.png
+  - assets/runtime/universes/kombat/pickup_secondary.png
+  - assets/runtime/universes/paperboy/pickup_secondary.png
+- src/systems/RuntimeAssetResolver.ts preloaded pickupSecondary for normal and boss levels.
+- src/scenes/GameScene.ts resolved rtPickupSecondary and passed it to PickupRenderer.
+- src/scenes/GameScene.ts listed pickupSecondary in the debug assets overlay.
+- src/render/PickupRenderer.ts stored secondaryTextureKey and selected it for odd active pickup indexes.
+- src/ui/OpenMojiIconRegistry.ts contains CASTLE_OPENMOJI_ICONS.pickupSecondary; this is a Castle OpenMoji registry key, not a runtime PNG asset.
+
+Runtime files before
+Command:
+find public/assets/runtime -iname '*secondary*' -type f -print
+
+Results:
+- public/assets/runtime/universes/sonic/pickup_secondary.png
+- public/assets/runtime/universes/streets/pickup_secondary.png
+- public/assets/runtime/universes/fighter/pickup_secondary.png
+- public/assets/runtime/universes/outrun/pickup_secondary.png
+- public/assets/runtime/universes/shinobi/pickup_secondary.png
+- public/assets/runtime/universes/kombat/pickup_secondary.png
+- public/assets/runtime/universes/paperboy/pickup_secondary.png
+
+Changes made
+- Removed pickupSecondary from RuntimeAssetRole and UniverseRuntimeAssetSet.
+- Removed all pickupSecondary mappings from RUNTIME_UNIVERSE_ASSETS.
+- Removed pickupSecondary from RuntimeAssetResolver preload role lists.
+- Removed rtPickupSecondary lookup and renderer assignment from GameScene.
+- Removed pickupSecondary from the debug assets overlay.
+- Removed secondaryTextureKey and odd-index alternate texture selection from PickupRenderer.
+- Paperboy multi-pickups now render with the existing primary pickup texture, pickup_newspaper.png.
+
+Files deleted
+- public/assets/runtime/universes/sonic/pickup_secondary.png
+- public/assets/runtime/universes/streets/pickup_secondary.png
+- public/assets/runtime/universes/fighter/pickup_secondary.png
+- public/assets/runtime/universes/outrun/pickup_secondary.png
+- public/assets/runtime/universes/shinobi/pickup_secondary.png
+- public/assets/runtime/universes/kombat/pickup_secondary.png
+- public/assets/runtime/universes/paperboy/pickup_secondary.png
+
+References after
+Command:
+rg -n "pickupSecondary|setSecondaryTextureKey|secondaryTextureKey|pickup_secondary" src public/assets/runtime --glob '!dist/**'
+
+Result:
+- src/ui/OpenMojiIconRegistry.ts:13: pickupSecondary: { key: 'openmoji-castle-gem', url: CASTLE_V1_OPENMOJI.bonusGem },
+
+Justification for remaining reference:
+- This is not a runtime secondary PNG asset.
+- It is part of the Castle OpenMoji registry and is outside the runtime PNG removal scope.
+- GameScene no longer passes it to PickupRenderer, so the runtime secondary rendering path is disconnected.
+
+Focused runtime reference check after
+Command:
+rg -n "pickup_secondary|pickupSecondary|setSecondaryTextureKey|secondaryTextureKey" src/assets src/systems src/scenes/GameScene.ts src/render public/assets/runtime --glob '!dist/**'
+
+Result:
+- no matches
+
+Runtime files after
+Command:
+find public/assets/runtime -iname '*secondary*' -type f -print
+
+Result:
+- no matches
+
+Verification
+Command:
+npm run check
+
+Result:
+- OK. tsc and vite build completed.
+- Vite emitted the existing large chunk warning.
+
+Runtime assertions/logs
+- No dedicated runtime assertion exists for this asset contract.
+- Static debug overlay role list was updated to pickup, obstacle, boss.
+
+Conclusion
+- Runtime secondary pickup assets are disconnected from code/config.
+- Runtime secondary PNG files are deleted.
+- Gameplay, difficulty, and scoring were not changed.

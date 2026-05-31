@@ -210,14 +210,9 @@ export class GameScene extends Phaser.Scene {
     // Wire asset textures to renderers
     if (uid === 'castle' && this.textures.exists(CASTLE_OPENMOJI_ICONS.pickupPrimary.key)) {
       this.pickupRenderer.setTextureKey(CASTLE_OPENMOJI_ICONS.pickupPrimary.key);
-      if (this.textures.exists(CASTLE_OPENMOJI_ICONS.pickupSecondary.key)) {
-        this.pickupRenderer.setSecondaryTextureKey(CASTLE_OPENMOJI_ICONS.pickupSecondary.key);
-      }
     } else {
       const rtPickup = getRuntimeTextureKey(this, uid, 'pickup');
-      const rtPickupSecondary = getRuntimeTextureKey(this, uid, 'pickupSecondary');
       if (rtPickup) this.pickupRenderer.setTextureKey(rtPickup);
-      if (rtPickupSecondary) this.pickupRenderer.setSecondaryTextureKey(rtPickupSecondary);
     }
     this.pickupRenderer.setUniverseId(uid);
     if (uid === 'castle') {
@@ -372,7 +367,7 @@ export class GameScene extends Phaser.Scene {
   }
 
   private createDebugAssetsOverlay(uid: string): void {
-    const roles = ['pickup', 'pickupSecondary', 'obstacle', 'boss'] as const;
+    const roles = ['pickup', 'obstacle', 'boss'] as const;
     const lines = [`[debugAssets=1] univers: ${uid}`];
     for (const role of roles) {
       const key = `rt_${uid}_${role}`;
