@@ -35,23 +35,23 @@ export const CASTLE_OPENMOJI_ICON_ASSETS: OpenMojiAsset[] = Object.values(CASTLE
 
 // Paperboy entity icons
 export const PAPERBOY_OPENMOJI_ICONS = {
-  deliveryTarget: { key: 'openmoji-paperboy-mailbox',    url: 'assets/openmoji/obstacles/mailbox.svg' },
-  routeObstacle:  { key: 'openmoji-paperboy-roadblock',  url: 'assets/openmoji/obstacles/roadblock.svg' },
-  newspaper:      { key: 'openmoji-paperboy-newspaper',  url: 'assets/openmoji/pickups/newspaper.svg' },
+  deliveryTarget: { key: 'openmoji-paperboy-mailbox',    url: 'assets/runtime/universes/paperboy/icon_delivery_mailbox.svg' },
+  routeObstacle:  { key: 'openmoji-paperboy-roadblock',  url: 'assets/runtime/universes/paperboy/icon_route_roadblock.svg' },
+  newspaper:      { key: 'openmoji-paperboy-newspaper',  url: 'assets/runtime/universes/paperboy/icon_pickup_newspaper.svg' },
 } as const satisfies Record<string, OpenMojiAsset>;
 
 export const PAPERBOY_OPENMOJI_ICON_ASSETS: OpenMojiAsset[] = Object.values(PAPERBOY_OPENMOJI_ICONS);
 
 // Fighter sparZone icon — fist replaces generic obstacle texture
 export const FIGHTER_OPENMOJI_ICONS = {
-  sparZone: { key: 'openmoji-fighter-fist', url: 'assets/openmoji/obstacles/fist.svg' },
+  sparZone: { key: 'openmoji-fighter-fist', url: 'assets/runtime/universes/fighter/icon_spar_fist.svg' },
 } as const satisfies Record<string, OpenMojiAsset>;
 
 export const FIGHTER_OPENMOJI_ICON_ASSETS: OpenMojiAsset[] = Object.values(FIGHTER_OPENMOJI_ICONS);
 
 // OutRun checkpoint pickup — trophy replaces generic pickup texture
 export const OUTRUN_OPENMOJI_ICONS = {
-  checkpoint: { key: 'openmoji-outrun-trophy', url: 'assets/openmoji/pickups/trophy.svg' },
+  checkpoint: { key: 'openmoji-outrun-trophy', url: 'assets/runtime/universes/outrun/icon_pickup_trophy.svg' },
 } as const satisfies Record<string, OpenMojiAsset>;
 
 export const OUTRUN_OPENMOJI_ICON_ASSETS: OpenMojiAsset[] = Object.values(OUTRUN_OPENMOJI_ICONS);
