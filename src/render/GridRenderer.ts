@@ -111,7 +111,7 @@ export class GridRenderer {
       const img = scene.add.image(px, py, key)
         .setDisplaySize(tSize, tSize)
         .setAlpha(0.65)
-        .setDepth(1);
+        .setDepth(GAMEPLAY_LAYERS.BOARD_PANEL);
       this.frameTiles.push(img);
     }
   }

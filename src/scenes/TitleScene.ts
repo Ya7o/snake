@@ -45,9 +45,8 @@ export class TitleScene extends Phaser.Scene {
 
     // Layer 0 — background image or procedural fallback
     if (this.textures.exists(TITLE_HUB_ASSETS.bg.key)) {
-      this.add.image(W / 2, H / 2, TITLE_HUB_ASSETS.bg.key)
-        .setDisplaySize(W, H)
-        .setDepth(0);
+      const bg = this.add.image(W / 2, H / 2, TITLE_HUB_ASSETS.bg.key).setDepth(0);
+      bg.setScale(Math.max(W / bg.width, H / bg.height));
       const overlay = this.add.graphics().setDepth(1);
       overlay.fillStyle(0x000000, 0.38);
       overlay.fillRect(0, 0, W, H);
