@@ -53,9 +53,6 @@ pnpm-debug.log*
 *.zip
 *.rar
 
-# Design assets externes
-/design_boards/openemoji/
-
-# External assets
-/design_boards/openemoji
-/design_boards/Snake - assets/
+# Local archives / external design dumps
+/design_boards/
+/tickets/
