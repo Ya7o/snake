@@ -17,20 +17,20 @@ const OBSTACLE_IMAGE_TYPES = new Set([
   'routeObstacle',
 ]);
 
-const OPENMOJI_GAMEPLAY_ICON_SCALE = 1.9;
-const DEFAULT_RUNTIME_OBSTACLE_ICON_SCALE = 1.70;
-const DEFAULT_RUNTIME_BOSS_ICON_SCALE = 1.75;
+const OPENMOJI_GAMEPLAY_ICON_SCALE = 3.0;   // Castle/Fighter OpenMoji entities — clearly overflow cells
+const DEFAULT_RUNTIME_OBSTACLE_ICON_SCALE = 2.2;
+const DEFAULT_RUNTIME_BOSS_ICON_SCALE = 2.2;
 
 const RUNTIME_OBSTACLE_ICON_SCALE_BY_TYPE: Record<string, number> = {
-  trafficBlock: 1.75,
-  routeObstacle: 1.70,
+  trafficBlock: 2.5,   // Outrun car — extra scale for large transparent margins
+  routeObstacle: 2.2,
 };
 
 const RUNTIME_BOSS_ICON_SCALE_BY_TYPE: Record<string, number> = {
-  crimeLord: 1.82,
-  finalChallenger: 1.78,
-  turboRival: 1.82,
-  chaosObstacle: 1.60,
+  crimeLord: 2.3,
+  finalChallenger: 2.2,
+  turboRival: 2.5,
+  chaosObstacle: 2.0,
 };
 
 type EntityTextureResolver = (entity: ExtraEntity) => string | null;
