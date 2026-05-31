@@ -27,7 +27,7 @@ import { flashScreen } from '../render/VfxUtils';
 import { preloadRuntimeAssets, getRuntimeTextureKey } from '../systems/RuntimeAssetResolver';
 import { drawCastleRuntimeBoardPanel, logCastleRuntimeLayers } from '../ui/CastleRuntimeLayering';
 import { GAMEPLAY_HUD, GAMEPLAY_LAYERS } from '../ui/RuntimeUILayout';
-import { CASTLE_OPENMOJI_ICON_ASSETS, CASTLE_OPENMOJI_ICONS, PAPERBOY_OPENMOJI_ICON_ASSETS, PAPERBOY_OPENMOJI_ICONS, FIGHTER_OPENMOJI_ICON_ASSETS, FIGHTER_OPENMOJI_ICONS, OUTRUN_OPENMOJI_ICON_ASSETS, OUTRUN_OPENMOJI_ICONS } from '../ui/OpenMojiIconRegistry';
+import { CASTLE_OPENMOJI_ICON_ASSETS, CASTLE_OPENMOJI_ICONS, PAPERBOY_OPENMOJI_ICON_ASSETS, PAPERBOY_OPENMOJI_ICONS, OUTRUN_OPENMOJI_ICON_ASSETS, OUTRUN_OPENMOJI_ICONS } from '../ui/OpenMojiIconRegistry';
 
 const GRID_COLS = 16;
 const GRID_ROWS = 20;
@@ -36,6 +36,7 @@ const CASTLE_GRID_ROWS = GRID_ROWS + 6;
 const CASTLE_REFERENCE_GRID_WIDTH = 0.75;
 const CASTLE_REFERENCE_GRID_Y_BIAS = 0.38;
 const CASTLE_REFERENCE_BOTTOM_BREATHING = 8;
+const FIGHTER_OBSTACLE_NORMAL_KEY = 'rt_fighter_obstacle_normal';
 const FIGHTER_BOSS_IDLE_KEY = 'rt_fighter_boss_idle';
 const FIGHTER_BOSS_ATTACK_KEY = 'rt_fighter_boss_attack';
 const KOMBAT_BOSS_IDLE_KEY = 'rt_kombat_boss_idle';
@@ -108,12 +109,17 @@ export class GameScene extends Phaser.Scene {
     } else {
       const isBoss = this.levelConfig.type === 'boss';
       preloadRuntimeAssets(this, uid, isBoss);
+      if (uid === 'fighter') {
+        if (!this.textures.exists(FIGHTER_OBSTACLE_NORMAL_KEY)) {
+          this.load.image(FIGHTER_OBSTACLE_NORMAL_KEY, 'assets/runtime/universes/fighter/test1/sf2_obstacle_normal.png');
+        }
+      }
       if (uid === 'fighter' && isBoss) {
         if (!this.textures.exists(FIGHTER_BOSS_IDLE_KEY)) {
-          this.load.image(FIGHTER_BOSS_IDLE_KEY, 'assets/runtime/universes/fighter/boss_idle.png');
+          this.load.image(FIGHTER_BOSS_IDLE_KEY, 'assets/runtime/universes/fighter/test1/sf2_boss_idle.png');
         }
         if (!this.textures.exists(FIGHTER_BOSS_ATTACK_KEY)) {
-          this.load.image(FIGHTER_BOSS_ATTACK_KEY, 'assets/runtime/universes/fighter/boss_attack.png');
+          this.load.image(FIGHTER_BOSS_ATTACK_KEY, 'assets/runtime/universes/fighter/test1/sf2_boss_attack.png');
         }
       }
       if (uid === 'kombat' && isBoss) {
@@ -145,11 +151,6 @@ export class GameScene extends Phaser.Scene {
           this.load.image(PAPERBOY_MAILBOX_KEY, 'assets/runtime/universes/paperboy/mailbox.png');
         }
         for (const icon of PAPERBOY_OPENMOJI_ICON_ASSETS) {
-          if (!this.textures.exists(icon.key)) this.load.svg(icon.key, icon.url, { width: svgSize, height: svgSize });
-        }
-      }
-      if (uid === 'fighter') {
-        for (const icon of FIGHTER_OPENMOJI_ICON_ASSETS) {
           if (!this.textures.exists(icon.key)) this.load.svg(icon.key, icon.url, { width: svgSize, height: svgSize });
         }
       }
@@ -252,11 +253,10 @@ export class GameScene extends Phaser.Scene {
         });
       }
       if (uid === 'fighter') {
-        // Fist icon for sparZone obstacles
         this.obstacleRenderer.setEntityTextureResolver(entity => {
           if (entity.type === 'sparZone') {
-            return this.textures.exists(FIGHTER_OPENMOJI_ICONS.sparZone.key)
-              ? FIGHTER_OPENMOJI_ICONS.sparZone.key : null;
+            return this.textures.exists(FIGHTER_OBSTACLE_NORMAL_KEY)
+              ? FIGHTER_OBSTACLE_NORMAL_KEY : null;
           }
           return null;
         });

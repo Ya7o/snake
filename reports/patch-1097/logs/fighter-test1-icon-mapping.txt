@@ -1,0 +1,53 @@
+PATCH 1097 - Fighter test1 icon mapping
+
+Asset existence:
+- public/assets/runtime/universes/fighter/test1/sf2_boss_attack.png: OK
+- public/assets/runtime/universes/fighter/test1/sf2_boss_idle.png: OK
+- public/assets/runtime/universes/fighter/test1/sf2_obstacle_boss.png: OK
+- public/assets/runtime/universes/fighter/test1/sf2_obstacle_normal.png: OK
+- public/assets/runtime/universes/fighter/test1/sf2_pickup_energy.png: OK
+
+Mapping:
+- Usage réel: pickup énergie normal Fighter
+  Renderer: PickupRenderer
+  Ancienne key: rt_fighter_pickup
+  Ancien fichier: public/assets/runtime/universes/fighter/pickup_energy.png
+  Nouvelle key: rt_fighter_pickup
+  Fichier source: public/assets/runtime/universes/fighter/test1/sf2_pickup_energy.png
+
+- Usage réel: obstacle normal Fighter / sparZone
+  Renderer: ObstacleRenderer entityTextureResolver
+  Ancienne key: openmoji-fighter-fist
+  Ancien fichier: public/assets/runtime/universes/fighter/icon_spar_fist.svg
+  Nouvelle key: rt_fighter_obstacle_normal
+  Fichier source: public/assets/runtime/universes/fighter/test1/sf2_obstacle_normal.png
+
+- Usage réel: counterZone / obstacle boss Fighter
+  Renderer: ObstacleRenderer obstacleTextureKey
+  Ancienne key: rt_fighter_obstacle
+  Ancien fichier: public/assets/runtime/universes/fighter/obstacle_charge_marker.png
+  Nouvelle key: rt_fighter_obstacle
+  Fichier source: public/assets/runtime/universes/fighter/test1/sf2_obstacle_boss.png
+
+- Usage réel: boss finalChallenger idle
+  Renderer: ObstacleRenderer bossTextureResolver
+  Ancienne key: rt_fighter_boss_idle
+  Ancien fichier: public/assets/runtime/universes/fighter/boss_idle.png
+  Nouvelle key: rt_fighter_boss_idle
+  Fichier source: public/assets/runtime/universes/fighter/test1/sf2_boss_idle.png
+
+- Usage réel: boss finalChallenger attack_window / counter
+  Renderer: ObstacleRenderer bossTextureResolver
+  Ancienne key: rt_fighter_boss_attack
+  Ancien fichier: public/assets/runtime/universes/fighter/boss_attack.png
+  Nouvelle key: rt_fighter_boss_attack
+  Fichier source: public/assets/runtime/universes/fighter/test1/sf2_boss_attack.png
+
+Gameplay:
+- Taille logique des entités: inchangée
+- Hitbox: inchangée
+- Spawn: inchangé
+- HP: inchangé
+- Timings: inchangés
+- Score: inchangé
+- Autres univers: inchangés

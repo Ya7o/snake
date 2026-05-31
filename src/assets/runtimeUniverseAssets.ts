@@ -24,9 +24,9 @@ export const RUNTIME_UNIVERSE_ASSETS: Record<string, UniverseRuntimeAssetSet> = 
     boss: publicAsset("assets/runtime/universes/streets/boss_idle.png"),
   },
   fighter: {
-    pickup: publicAsset("assets/runtime/universes/fighter/pickup_energy.png"),
-    obstacle: publicAsset("assets/runtime/universes/fighter/obstacle_charge_marker.png"),
-    boss: publicAsset("assets/runtime/universes/fighter/boss_idle.png"),
+    pickup: publicAsset("assets/runtime/universes/fighter/test1/sf2_pickup_energy.png"),
+    obstacle: publicAsset("assets/runtime/universes/fighter/test1/sf2_obstacle_boss.png"),
+    boss: publicAsset("assets/runtime/universes/fighter/test1/sf2_boss_idle.png"),
   },
   outrun: {
     pickup: publicAsset("assets/runtime/universes/outrun/pickup_checkpoint.png"),
