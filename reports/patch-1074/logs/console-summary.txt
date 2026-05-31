@@ -1,7 +1,0 @@
-Console QA summary
-entries captured: 156
-warnings/errors/pageerrors: 4
-[warning] [.WebGL-0x25640015c200]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels
-[warning] [.WebGL-0x25640015c200]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels
-[warning] [.WebGL-0x25640015c200]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels
-[warning] [.WebGL-0x25640015c200]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels (this message will no longer repeat)

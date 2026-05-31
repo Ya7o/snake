@@ -1,1 +1,0 @@
-No failed network requests or HTTP 4xx/5xx responses captured.

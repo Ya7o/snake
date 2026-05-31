@@ -1,2 +1,0 @@
-Network QA summary
-failed/error responses: 0

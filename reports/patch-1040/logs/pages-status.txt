@@ -1,40 +1,0 @@
-2026-05-29T12:50:02+02:00
-
-GitHub Actions runs:
-Deploy GitHub Pages | completed | success | main | a10c40c | https://github.com/Ya7o/snake/actions/runs/26632265135
-Deploy GitHub Pages | completed | failure | main | cb2f6d2 | https://github.com/Ya7o/snake/actions/runs/26632113314
-Deploy GitHub Pages | completed | failure | main | d4d3e14 | https://github.com/Ya7o/snake/actions/runs/26631730258
-
-Pages status:
-status: 404
-html_url: undefined
-source: undefined
-build_type: undefined
-
-Public URL HEAD:
-  % Total    % Received % Xferd  Average Speed  Time    Time    Time   Current
-                                 Dload  Upload  Total   Spent   Left   Speed
-  0      0   0      0   0      0      0      0                              0  0   1397   0      0   0      0      0      0                              0  0   1397   0      0   0      0      0      0                              0  0   1397   0      0   0      0      0      0                              0
-HTTP/2 200 
-server: GitHub.com
-content-type: text/html; charset=utf-8
-last-modified: Fri, 29 May 2026 10:46:18 GMT
-access-control-allow-origin: *
-strict-transport-security: max-age=31556952
-etag: "6a196e7a-575"
-expires: Fri, 29 May 2026 11:00:04 GMT
-cache-control: max-age=600
-x-proxy-cache: MISS
-x-github-request-id: 29A4:1F6971:1D568FB:1DCEBBF:6A196F5A
-accept-ranges: bytes
-age: 0
-date: Fri, 29 May 2026 10:50:04 GMT
-via: 1.1 varnish
-x-served-by: cache-mad2200093-MAD
-x-cache: MISS
-x-cache-hits: 0
-x-timer: S1780051804.070020,VS0,VE139
-vary: Accept-Encoding
-x-fastly-request-id: d023f6ee3f4cf720c819720962bdbc17fe6f720a
-content-length: 1397
-

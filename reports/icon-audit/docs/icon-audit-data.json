@@ -1,0 +1,1265 @@
+{
+  "summary": {
+    "total": 33,
+    "critique": 0,
+    "moyen": 1,
+    "mineur": 10,
+    "ok": 22
+  },
+  "assets": [
+    {
+      "path": "/home/kali/apps/snake/public/assets/runtime/universes/sonic/pickup_ring.png",
+      "universe": "sonic",
+      "iconType": "pickup_main",
+      "dimensions": {
+        "w": 450,
+        "h": 450
+      },
+      "hasAlpha": true,
+      "boundingBox": {
+        "x": 25,
+        "y": 10,
+        "w": 411,
+        "h": 433
+      },
+      "opaqueCoverageRatio": 0.297,
+      "transparentMargins": {
+        "left": 25,
+        "right": 14,
+        "top": 10,
+        "bottom": 7
+      },
+      "transparentMarginsPct": {
+        "left": 5.6,
+        "right": 3.1,
+        "top": 2.2,
+        "bottom": 1.6
+      },
+      "centerOffset": {
+        "dx": 5.0,
+        "dy": 1.0
+      },
+      "suspectedPixelArt": false,
+      "suspectedBlur": false,
+      "backgroundContamination": false,
+      "severity": "OK",
+      "notes": "RAS"
+    },
+    {
+      "path": "/home/kali/apps/snake/public/assets/runtime/universes/sonic/pickup_secondary.png",
+      "universe": "sonic",
+      "iconType": "pickup_bonus",
+      "dimensions": {
+        "w": 32,
+        "h": 32
+      },
+      "hasAlpha": true,
+      "boundingBox": {
+        "x": 5,
+        "y": 5,
+        "w": 23,
+        "h": 23
+      },
+      "opaqueCoverageRatio": 0.259,
+      "transparentMargins": {
+        "left": 5,
+        "right": 4,
+        "top": 5,
+        "bottom": 4
+      },
+      "transparentMarginsPct": {
+        "left": 15.6,
+        "right": 12.5,
+        "top": 15.6,
+        "bottom": 12.5
+      },
+      "centerOffset": {
+        "dx": 0.0,
+        "dy": 0.0
+      },
+      "suspectedPixelArt": true,
+      "suspectedBlur": false,
+      "backgroundContamination": false,
+      "severity": "Mineur",
+      "notes": "Pixel art suspecte"
+    },
+    {
+      "path": "/home/kali/apps/snake/public/assets/runtime/universes/sonic/obstacle_bumper.png",
+      "universe": "sonic",
+      "iconType": "obstacle_normal",
+      "dimensions": {
+        "w": 1254,
+        "h": 1254
+      },
+      "hasAlpha": true,
+      "boundingBox": {
+        "x": 41,
+        "y": 116,
+        "w": 1188,
+        "h": 1018
+      },
+      "opaqueCoverageRatio": 0.341,
+      "transparentMargins": {
+        "left": 41,
+        "right": 25,
+        "top": 116,
+        "bottom": 120
+      },
+      "transparentMarginsPct": {
+        "left": 3.3,
+        "right": 2.0,
+        "top": 9.3,
+        "bottom": 9.6
+      },
+      "centerOffset": {
+        "dx": 7.5,
+        "dy": -2.5
+      },
+      "suspectedPixelArt": false,
+      "suspectedBlur": true,
+      "backgroundContamination": false,
+      "severity": "OK",
+      "notes": "Upscale/flou suspecte"
+    },
+    {
+      "path": "/home/kali/apps/snake/public/assets/runtime/universes/sonic/boss_loop_serpent.png",
+      "universe": "sonic",
+      "iconType": "boss_idle",
+      "dimensions": {
+        "w": 1254,
+        "h": 1254
+      },
+      "hasAlpha": true,
+      "boundingBox": {
+        "x": 0,
+        "y": 174,
+        "w": 1252,
+        "h": 910
+      },
+      "opaqueCoverageRatio": 0.447,
+      "transparentMargins": {
+        "left": 0,
+        "right": 2,
+        "top": 174,
+        "bottom": 170
+      },
+      "transparentMarginsPct": {
+        "left": 0.0,
+        "right": 0.2,
+        "top": 13.9,
+        "bottom": 13.6
+      },
+      "centerOffset": {
+        "dx": -1.5,
+        "dy": 1.5
+      },
+      "suspectedPixelArt": false,
+      "suspectedBlur": true,
+      "backgroundContamination": false,
+      "severity": "OK",
+      "notes": "Upscale/flou suspecte"
+    },
+    {
+      "path": "/home/kali/apps/snake/public/assets/runtime/universes/streets/pickup_street_bonus.png",
+      "universe": "streets",
+      "iconType": "pickup_main",
+      "dimensions": {
+        "w": 1254,
+        "h": 1254
+      },
+      "hasAlpha": true,
+      "boundingBox": {
+        "x": 0,
+        "y": 45,
+        "w": 1201,
+        "h": 1153
+      },
+      "opaqueCoverageRatio": 0.647,
+      "transparentMargins": {
+        "left": 0,
+        "right": 53,
+        "top": 45,
+        "bottom": 56
+      },
+      "transparentMarginsPct": {
+        "left": 0.0,
+        "right": 4.2,
+        "top": 3.6,
+        "bottom": 4.5
+      },
+      "centerOffset": {
+        "dx": -27.0,
+        "dy": -6.0
+      },
+      "suspectedPixelArt": false,
+      "suspectedBlur": true,
+      "backgroundContamination": false,
+      "severity": "OK",
+      "notes": "Upscale/flou suspecte"
+    },
+    {
+      "path": "/home/kali/apps/snake/public/assets/runtime/universes/streets/pickup_secondary.png",
+      "universe": "streets",
+      "iconType": "pickup_bonus",
+      "dimensions": {
+        "w": 32,
+        "h": 32
+      },
+      "hasAlpha": true,
+      "boundingBox": {
+        "x": 4,
+        "y": 4,
+        "w": 25,
+        "h": 25
+      },
+      "opaqueCoverageRatio": 0.431,
+      "transparentMargins": {
+        "left": 4,
+        "right": 3,
+        "top": 4,
+        "bottom": 3
+      },
+      "transparentMarginsPct": {
+        "left": 12.5,
+        "right": 9.4,
+        "top": 12.5,
+        "bottom": 9.4
+      },
+      "centerOffset": {
+        "dx": 0.0,
+        "dy": 0.0
+      },
+      "suspectedPixelArt": true,
+      "suspectedBlur": false,
+      "backgroundContamination": false,
+      "severity": "OK",
+      "notes": "Pixel art suspecte"
+    },
+    {
+      "path": "/home/kali/apps/snake/public/assets/runtime/universes/streets/obstacle_crowd.png",
+      "universe": "streets",
+      "iconType": "obstacle_normal",
+      "dimensions": {
+        "w": 1254,
+        "h": 1254
+      },
+      "hasAlpha": true,
+      "boundingBox": {
+        "x": 147,
+        "y": 155,
+        "w": 943,
+        "h": 985
+      },
+      "opaqueCoverageRatio": 0.375,
+      "transparentMargins": {
+        "left": 147,
+        "right": 164,
+        "top": 155,
+        "bottom": 114
+      },
+      "transparentMarginsPct": {
+        "left": 11.7,
+        "right": 13.1,
+        "top": 12.4,
+        "bottom": 9.1
+      },
+      "centerOffset": {
+        "dx": -9.0,
+        "dy": 20.0
+      },
+      "suspectedPixelArt": false,
+      "suspectedBlur": true,
+      "backgroundContamination": false,
+      "severity": "OK",
+      "notes": "Upscale/flou suspecte"
+    },
+    {
+      "path": "/home/kali/apps/snake/public/assets/runtime/universes/streets/boss_idle.png",
+      "universe": "streets",
+      "iconType": "boss_idle",
+      "dimensions": {
+        "w": 1254,
+        "h": 1254
+      },
+      "hasAlpha": true,
+      "boundingBox": {
+        "x": 357,
+        "y": 41,
+        "w": 522,
+        "h": 1172
+      },
+      "opaqueCoverageRatio": 0.243,
+      "transparentMargins": {
+        "left": 357,
+        "right": 375,
+        "top": 41,
+        "bottom": 41
+      },
+      "transparentMarginsPct": {
+        "left": 28.5,
+        "right": 29.9,
+        "top": 3.3,
+        "bottom": 3.3
+      },
+      "centerOffset": {
+        "dx": -9.5,
+        "dy": -0.5
+      },
+      "suspectedPixelArt": false,
+      "suspectedBlur": true,
+      "backgroundContamination": false,
+      "severity": "Mineur",
+      "notes": "Upscale/flou suspecte"
+    },
+    {
+      "path": "/home/kali/apps/snake/public/assets/runtime/universes/streets/boss_attack.png",
+      "universe": "streets",
+      "iconType": "boss_attack",
+      "dimensions": {
+        "w": 1254,
+        "h": 1254
+      },
+      "hasAlpha": true,
+      "boundingBox": {
+        "x": 137,
+        "y": 41,
+        "w": 933,
+        "h": 1176
+      },
+      "opaqueCoverageRatio": 0.319,
+      "transparentMargins": {
+        "left": 137,
+        "right": 184,
+        "top": 41,
+        "bottom": 37
+      },
+      "transparentMarginsPct": {
+        "left": 10.9,
+        "right": 14.7,
+        "top": 3.3,
+        "bottom": 3.0
+      },
+      "centerOffset": {
+        "dx": -24.0,
+        "dy": 1.5
+      },
+      "suspectedPixelArt": false,
+      "suspectedBlur": true,
+      "backgroundContamination": false,
+      "severity": "OK",
+      "notes": "Upscale/flou suspecte"
+    },
+    {
+      "path": "/home/kali/apps/snake/public/assets/runtime/universes/fighter/pickup_energy.png",
+      "universe": "fighter",
+      "iconType": "pickup_main",
+      "dimensions": {
+        "w": 1254,
+        "h": 1254
+      },
+      "hasAlpha": true,
+      "boundingBox": {
+        "x": 259,
+        "y": 178,
+        "w": 732,
+        "h": 829
+      },
+      "opaqueCoverageRatio": 0.262,
+      "transparentMargins": {
+        "left": 259,
+        "right": 263,
+        "top": 178,
+        "bottom": 247
+      },
+      "transparentMarginsPct": {
+        "left": 20.7,
+        "right": 21.0,
+        "top": 14.2,
+        "bottom": 19.7
+      },
+      "centerOffset": {
+        "dx": -2.5,
+        "dy": -35.0
+      },
+      "suspectedPixelArt": false,
+      "suspectedBlur": true,
+      "backgroundContamination": false,
+      "severity": "Mineur",
+      "notes": "Upscale/flou suspecte"
+    },
+    {
+      "path": "/home/kali/apps/snake/public/assets/runtime/universes/fighter/pickup_secondary.png",
+      "universe": "fighter",
+      "iconType": "pickup_bonus",
+      "dimensions": {
+        "w": 32,
+        "h": 32
+      },
+      "hasAlpha": true,
+      "boundingBox": {
+        "x": 7,
+        "y": 7,
+        "w": 19,
+        "h": 19
+      },
+      "opaqueCoverageRatio": 0.247,
+      "transparentMargins": {
+        "left": 7,
+        "right": 6,
+        "top": 7,
+        "bottom": 6
+      },
+      "transparentMarginsPct": {
+        "left": 21.9,
+        "right": 18.8,
+        "top": 21.9,
+        "bottom": 18.8
+      },
+      "centerOffset": {
+        "dx": 0.0,
+        "dy": 0.0
+      },
+      "suspectedPixelArt": true,
+      "suspectedBlur": false,
+      "backgroundContamination": false,
+      "severity": "Mineur",
+      "notes": "Pixel art suspecte"
+    },
+    {
+      "path": "/home/kali/apps/snake/public/assets/runtime/universes/fighter/obstacle_charge_marker.png",
+      "universe": "fighter",
+      "iconType": "obstacle_normal",
+      "dimensions": {
+        "w": 1254,
+        "h": 1254
+      },
+      "hasAlpha": true,
+      "boundingBox": {
+        "x": 165,
+        "y": 139,
+        "w": 944,
+        "h": 986
+      },
+      "opaqueCoverageRatio": 0.426,
+      "transparentMargins": {
+        "left": 165,
+        "right": 145,
+        "top": 139,
+        "bottom": 129
+      },
+      "transparentMarginsPct": {
+        "left": 13.2,
+        "right": 11.6,
+        "top": 11.1,
+        "bottom": 10.3
+      },
+      "centerOffset": {
+        "dx": 9.5,
+        "dy": 4.5
+      },
+      "suspectedPixelArt": false,
+      "suspectedBlur": true,
+      "backgroundContamination": false,
+      "severity": "OK",
+      "notes": "Upscale/flou suspecte"
+    },
+    {
+      "path": "/home/kali/apps/snake/public/assets/runtime/universes/fighter/boss_idle.png",
+      "universe": "fighter",
+      "iconType": "boss_idle",
+      "dimensions": {
+        "w": 1254,
+        "h": 1254
+      },
+      "hasAlpha": true,
+      "boundingBox": {
+        "x": 137,
+        "y": 7,
+        "w": 976,
+        "h": 1237
+      },
+      "opaqueCoverageRatio": 0.429,
+      "transparentMargins": {
+        "left": 137,
+        "right": 141,
+        "top": 7,
+        "bottom": 10
+      },
+      "transparentMarginsPct": {
+        "left": 10.9,
+        "right": 11.2,
+        "top": 0.6,
+        "bottom": 0.8
+      },
+      "centerOffset": {
+        "dx": -2.5,
+        "dy": -2.0
+      },
+      "suspectedPixelArt": false,
+      "suspectedBlur": true,
+      "backgroundContamination": false,
+      "severity": "OK",
+      "notes": "Upscale/flou suspecte"
+    },
+    {
+      "path": "/home/kali/apps/snake/public/assets/runtime/universes/fighter/boss_attack.png",
+      "universe": "fighter",
+      "iconType": "boss_attack",
+      "dimensions": {
+        "w": 1254,
+        "h": 1254
+      },
+      "hasAlpha": true,
+      "boundingBox": {
+        "x": 69,
+        "y": 28,
+        "w": 1129,
+        "h": 1176
+      },
+      "opaqueCoverageRatio": 0.459,
+      "transparentMargins": {
+        "left": 69,
+        "right": 56,
+        "top": 28,
+        "bottom": 50
+      },
+      "transparentMarginsPct": {
+        "left": 5.5,
+        "right": 4.5,
+        "top": 2.2,
+        "bottom": 4.0
+      },
+      "centerOffset": {
+        "dx": 6.0,
+        "dy": -11.5
+      },
+      "suspectedPixelArt": false,
+      "suspectedBlur": true,
+      "backgroundContamination": false,
+      "severity": "OK",
+      "notes": "Upscale/flou suspecte"
+    },
+    {
+      "path": "/home/kali/apps/snake/public/assets/runtime/universes/outrun/pickup_checkpoint.png",
+      "universe": "outrun",
+      "iconType": "pickup_main",
+      "dimensions": {
+        "w": 1254,
+        "h": 1254
+      },
+      "hasAlpha": true,
+      "boundingBox": {
+        "x": 144,
+        "y": 83,
+        "w": 957,
+        "h": 1090
+      },
+      "opaqueCoverageRatio": 0.386,
+      "transparentMargins": {
+        "left": 144,
+        "right": 153,
+        "top": 83,
+        "bottom": 81
+      },
+      "transparentMarginsPct": {
+        "left": 11.5,
+        "right": 12.2,
+        "top": 6.6,
+        "bottom": 6.5
+      },
+      "centerOffset": {
+        "dx": -5.0,
+        "dy": 0.5
+      },
+      "suspectedPixelArt": false,
+      "suspectedBlur": true,
+      "backgroundContamination": false,
+      "severity": "OK",
+      "notes": "Upscale/flou suspecte"
+    },
+    {
+      "path": "/home/kali/apps/snake/public/assets/runtime/universes/outrun/pickup_secondary.png",
+      "universe": "outrun",
+      "iconType": "pickup_bonus",
+      "dimensions": {
+        "w": 32,
+        "h": 32
+      },
+      "hasAlpha": true,
+      "boundingBox": {
+        "x": 8,
+        "y": 4,
+        "w": 17,
+        "h": 24
+      },
+      "opaqueCoverageRatio": 0.215,
+      "transparentMargins": {
+        "left": 8,
+        "right": 7,
+        "top": 4,
+        "bottom": 4
+      },
+      "transparentMarginsPct": {
+        "left": 25.0,
+        "right": 21.9,
+        "top": 12.5,
+        "bottom": 12.5
+      },
+      "centerOffset": {
+        "dx": 0.0,
+        "dy": -0.5
+      },
+      "suspectedPixelArt": true,
+      "suspectedBlur": false,
+      "backgroundContamination": false,
+      "severity": "Mineur",
+      "notes": "Pixel art suspecte"
+    },
+    {
+      "path": "/home/kali/apps/snake/public/assets/runtime/universes/outrun/obstacle_car.png",
+      "universe": "outrun",
+      "iconType": "obstacle_normal",
+      "dimensions": {
+        "w": 1254,
+        "h": 1254
+      },
+      "hasAlpha": true,
+      "boundingBox": {
+        "x": 48,
+        "y": 319,
+        "w": 1146,
+        "h": 613
+      },
+      "opaqueCoverageRatio": 0.314,
+      "transparentMargins": {
+        "left": 48,
+        "right": 60,
+        "top": 319,
+        "bottom": 322
+      },
+      "transparentMarginsPct": {
+        "left": 3.8,
+        "right": 4.8,
+        "top": 25.4,
+        "bottom": 25.7
+      },
+      "centerOffset": {
+        "dx": -6.5,
+        "dy": -2.0
+      },
+      "suspectedPixelArt": false,
+      "suspectedBlur": true,
+      "backgroundContamination": false,
+      "severity": "Mineur",
+      "notes": "Upscale/flou suspecte"
+    },
+    {
+      "path": "/home/kali/apps/snake/public/assets/runtime/universes/outrun/boss_idle.png",
+      "universe": "outrun",
+      "iconType": "boss_idle",
+      "dimensions": {
+        "w": 1254,
+        "h": 1254
+      },
+      "hasAlpha": true,
+      "boundingBox": {
+        "x": 20,
+        "y": 319,
+        "w": 1217,
+        "h": 626
+      },
+      "opaqueCoverageRatio": 0.38,
+      "transparentMargins": {
+        "left": 20,
+        "right": 17,
+        "top": 319,
+        "bottom": 309
+      },
+      "transparentMarginsPct": {
+        "left": 1.6,
+        "right": 1.4,
+        "top": 25.4,
+        "bottom": 24.6
+      },
+      "centerOffset": {
+        "dx": 1.0,
+        "dy": 4.5
+      },
+      "suspectedPixelArt": false,
+      "suspectedBlur": true,
+      "backgroundContamination": false,
+      "severity": "Mineur",
+      "notes": "Upscale/flou suspecte"
+    },
+    {
+      "path": "/home/kali/apps/snake/public/assets/runtime/universes/outrun/boss_attack.png",
+      "universe": "outrun",
+      "iconType": "boss_attack",
+      "dimensions": {
+        "w": 1254,
+        "h": 1254
+      },
+      "hasAlpha": true,
+      "boundingBox": {
+        "x": 15,
+        "y": 321,
+        "w": 1209,
+        "h": 612
+      },
+      "opaqueCoverageRatio": 0.332,
+      "transparentMargins": {
+        "left": 15,
+        "right": 30,
+        "top": 321,
+        "bottom": 321
+      },
+      "transparentMarginsPct": {
+        "left": 1.2,
+        "right": 2.4,
+        "top": 25.6,
+        "bottom": 25.6
+      },
+      "centerOffset": {
+        "dx": -8.0,
+        "dy": -0.5
+      },
+      "suspectedPixelArt": false,
+      "suspectedBlur": true,
+      "backgroundContamination": false,
+      "severity": "Mineur",
+      "notes": "Upscale/flou suspecte"
+    },
+    {
+      "path": "/home/kali/apps/snake/public/assets/runtime/universes/shinobi/pickup_shuriken.png",
+      "universe": "shinobi",
+      "iconType": "pickup_main",
+      "dimensions": {
+        "w": 256,
+        "h": 256
+      },
+      "hasAlpha": true,
+      "boundingBox": {
+        "x": 23,
+        "y": 22,
+        "w": 207,
+        "h": 207
+      },
+      "opaqueCoverageRatio": 0.269,
+      "transparentMargins": {
+        "left": 23,
+        "right": 26,
+        "top": 22,
+        "bottom": 27
+      },
+      "transparentMarginsPct": {
+        "left": 9.0,
+        "right": 10.2,
+        "top": 8.6,
+        "bottom": 10.5
+      },
+      "centerOffset": {
+        "dx": -2.0,
+        "dy": -3.0
+      },
+      "suspectedPixelArt": false,
+      "suspectedBlur": false,
+      "backgroundContamination": false,
+      "severity": "OK",
+      "notes": "RAS"
+    },
+    {
+      "path": "/home/kali/apps/snake/public/assets/runtime/universes/shinobi/pickup_secondary.png",
+      "universe": "shinobi",
+      "iconType": "pickup_bonus",
+      "dimensions": {
+        "w": 32,
+        "h": 32
+      },
+      "hasAlpha": true,
+      "boundingBox": {
+        "x": 9,
+        "y": 4,
+        "w": 14,
+        "h": 26
+      },
+      "opaqueCoverageRatio": 0.168,
+      "transparentMargins": {
+        "left": 9,
+        "right": 9,
+        "top": 4,
+        "bottom": 2
+      },
+      "transparentMarginsPct": {
+        "left": 28.1,
+        "right": 28.1,
+        "top": 12.5,
+        "bottom": 6.2
+      },
+      "centerOffset": {
+        "dx": -0.5,
+        "dy": 0.5
+      },
+      "suspectedPixelArt": true,
+      "suspectedBlur": false,
+      "backgroundContamination": false,
+      "severity": "Moyen",
+      "notes": "Couverture opaque tres faible (16.8%); Pixel art suspecte"
+    },
+    {
+      "path": "/home/kali/apps/snake/public/assets/runtime/universes/shinobi/obstacle_decoy.png",
+      "universe": "shinobi",
+      "iconType": "obstacle_normal",
+      "dimensions": {
+        "w": 251,
+        "h": 256
+      },
+      "hasAlpha": true,
+      "boundingBox": {
+        "x": 1,
+        "y": 1,
+        "w": 249,
+        "h": 254
+      },
+      "opaqueCoverageRatio": 0.589,
+      "transparentMargins": {
+        "left": 1,
+        "right": 1,
+        "top": 1,
+        "bottom": 1
+      },
+      "transparentMarginsPct": {
+        "left": 0.4,
+        "right": 0.4,
+        "top": 0.4,
+        "bottom": 0.4
+      },
+      "centerOffset": {
+        "dx": -0.5,
+        "dy": -0.5
+      },
+      "suspectedPixelArt": false,
+      "suspectedBlur": false,
+      "backgroundContamination": false,
+      "severity": "OK",
+      "notes": "RAS"
+    },
+    {
+      "path": "/home/kali/apps/snake/public/assets/runtime/universes/shinobi/boss_shadow_ninja.png",
+      "universe": "shinobi",
+      "iconType": "boss_idle",
+      "dimensions": {
+        "w": 256,
+        "h": 250
+      },
+      "hasAlpha": true,
+      "boundingBox": {
+        "x": 1,
+        "y": 1,
+        "w": 254,
+        "h": 248
+      },
+      "opaqueCoverageRatio": 0.584,
+      "transparentMargins": {
+        "left": 1,
+        "right": 1,
+        "top": 1,
+        "bottom": 1
+      },
+      "transparentMarginsPct": {
+        "left": 0.4,
+        "right": 0.4,
+        "top": 0.4,
+        "bottom": 0.4
+      },
+      "centerOffset": {
+        "dx": -0.5,
+        "dy": -0.5
+      },
+      "suspectedPixelArt": false,
+      "suspectedBlur": false,
+      "backgroundContamination": false,
+      "severity": "OK",
+      "notes": "RAS"
+    },
+    {
+      "path": "/home/kali/apps/snake/public/assets/runtime/universes/kombat/pickup_finish_token.png",
+      "universe": "kombat",
+      "iconType": "pickup_main",
+      "dimensions": {
+        "w": 1254,
+        "h": 1254
+      },
+      "hasAlpha": true,
+      "boundingBox": {
+        "x": 116,
+        "y": 89,
+        "w": 1020,
+        "h": 1046
+      },
+      "opaqueCoverageRatio": 0.502,
+      "transparentMargins": {
+        "left": 116,
+        "right": 118,
+        "top": 89,
+        "bottom": 119
+      },
+      "transparentMarginsPct": {
+        "left": 9.3,
+        "right": 9.4,
+        "top": 7.1,
+        "bottom": 9.5
+      },
+      "centerOffset": {
+        "dx": -1.5,
+        "dy": -15.5
+      },
+      "suspectedPixelArt": false,
+      "suspectedBlur": true,
+      "backgroundContamination": false,
+      "severity": "OK",
+      "notes": "Upscale/flou suspecte"
+    },
+    {
+      "path": "/home/kali/apps/snake/public/assets/runtime/universes/kombat/pickup_secondary.png",
+      "universe": "kombat",
+      "iconType": "pickup_bonus",
+      "dimensions": {
+        "w": 32,
+        "h": 32
+      },
+      "hasAlpha": true,
+      "boundingBox": {
+        "x": 5,
+        "y": 5,
+        "w": 23,
+        "h": 23
+      },
+      "opaqueCoverageRatio": 0.368,
+      "transparentMargins": {
+        "left": 5,
+        "right": 4,
+        "top": 5,
+        "bottom": 4
+      },
+      "transparentMarginsPct": {
+        "left": 15.6,
+        "right": 12.5,
+        "top": 15.6,
+        "bottom": 12.5
+      },
+      "centerOffset": {
+        "dx": 0.0,
+        "dy": 0.0
+      },
+      "suspectedPixelArt": true,
+      "suspectedBlur": false,
+      "backgroundContamination": false,
+      "severity": "Mineur",
+      "notes": "Pixel art suspecte"
+    },
+    {
+      "path": "/home/kali/apps/snake/public/assets/runtime/universes/kombat/obstacle_fatal_zone.png",
+      "universe": "kombat",
+      "iconType": "obstacle_normal",
+      "dimensions": {
+        "w": 235,
+        "h": 256
+      },
+      "hasAlpha": true,
+      "boundingBox": {
+        "x": 1,
+        "y": 1,
+        "w": 233,
+        "h": 254
+      },
+      "opaqueCoverageRatio": 0.676,
+      "transparentMargins": {
+        "left": 1,
+        "right": 1,
+        "top": 1,
+        "bottom": 1
+      },
+      "transparentMarginsPct": {
+        "left": 0.4,
+        "right": 0.4,
+        "top": 0.4,
+        "bottom": 0.4
+      },
+      "centerOffset": {
+        "dx": -0.5,
+        "dy": -0.5
+      },
+      "suspectedPixelArt": false,
+      "suspectedBlur": false,
+      "backgroundContamination": false,
+      "severity": "OK",
+      "notes": "RAS"
+    },
+    {
+      "path": "/home/kali/apps/snake/public/assets/runtime/universes/kombat/boss_idle.png",
+      "universe": "kombat",
+      "iconType": "boss_idle",
+      "dimensions": {
+        "w": 1254,
+        "h": 1254
+      },
+      "hasAlpha": true,
+      "boundingBox": {
+        "x": 79,
+        "y": 65,
+        "w": 1087,
+        "h": 1106
+      },
+      "opaqueCoverageRatio": 0.561,
+      "transparentMargins": {
+        "left": 79,
+        "right": 88,
+        "top": 65,
+        "bottom": 83
+      },
+      "transparentMarginsPct": {
+        "left": 6.3,
+        "right": 7.0,
+        "top": 5.2,
+        "bottom": 6.6
+      },
+      "centerOffset": {
+        "dx": -5.0,
+        "dy": -9.5
+      },
+      "suspectedPixelArt": false,
+      "suspectedBlur": true,
+      "backgroundContamination": false,
+      "severity": "OK",
+      "notes": "Upscale/flou suspecte"
+    },
+    {
+      "path": "/home/kali/apps/snake/public/assets/runtime/universes/kombat/boss_attack.png",
+      "universe": "kombat",
+      "iconType": "boss_attack",
+      "dimensions": {
+        "w": 1254,
+        "h": 1254
+      },
+      "hasAlpha": true,
+      "boundingBox": {
+        "x": 170,
+        "y": 41,
+        "w": 913,
+        "h": 1173
+      },
+      "opaqueCoverageRatio": 0.511,
+      "transparentMargins": {
+        "left": 170,
+        "right": 171,
+        "top": 41,
+        "bottom": 40
+      },
+      "transparentMarginsPct": {
+        "left": 13.6,
+        "right": 13.6,
+        "top": 3.3,
+        "bottom": 3.2
+      },
+      "centerOffset": {
+        "dx": -1.0,
+        "dy": 0.0
+      },
+      "suspectedPixelArt": false,
+      "suspectedBlur": true,
+      "backgroundContamination": false,
+      "severity": "OK",
+      "notes": "Upscale/flou suspecte"
+    },
+    {
+      "path": "/home/kali/apps/snake/public/assets/runtime/universes/paperboy/pickup_newspaper.png",
+      "universe": "paperboy",
+      "iconType": "pickup_main",
+      "dimensions": {
+        "w": 256,
+        "h": 191
+      },
+      "hasAlpha": true,
+      "boundingBox": {
+        "x": 1,
+        "y": 1,
+        "w": 254,
+        "h": 189
+      },
+      "opaqueCoverageRatio": 0.468,
+      "transparentMargins": {
+        "left": 1,
+        "right": 1,
+        "top": 1,
+        "bottom": 1
+      },
+      "transparentMarginsPct": {
+        "left": 0.4,
+        "right": 0.4,
+        "top": 0.4,
+        "bottom": 0.4
+      },
+      "centerOffset": {
+        "dx": -0.5,
+        "dy": -0.5
+      },
+      "suspectedPixelArt": false,
+      "suspectedBlur": false,
+      "backgroundContamination": false,
+      "severity": "OK",
+      "notes": "RAS"
+    },
+    {
+      "path": "/home/kali/apps/snake/public/assets/runtime/universes/paperboy/pickup_secondary.png",
+      "universe": "paperboy",
+      "iconType": "pickup_bonus",
+      "dimensions": {
+        "w": 32,
+        "h": 32
+      },
+      "hasAlpha": true,
+      "boundingBox": {
+        "x": 4,
+        "y": 4,
+        "w": 25,
+        "h": 25
+      },
+      "opaqueCoverageRatio": 0.431,
+      "transparentMargins": {
+        "left": 4,
+        "right": 3,
+        "top": 4,
+        "bottom": 3
+      },
+      "transparentMarginsPct": {
+        "left": 12.5,
+        "right": 9.4,
+        "top": 12.5,
+        "bottom": 9.4
+      },
+      "centerOffset": {
+        "dx": 0.0,
+        "dy": 0.0
+      },
+      "suspectedPixelArt": true,
+      "suspectedBlur": false,
+      "backgroundContamination": false,
+      "severity": "OK",
+      "notes": "Pixel art suspecte"
+    },
+    {
+      "path": "/home/kali/apps/snake/public/assets/runtime/universes/paperboy/obstacle_dog.png",
+      "universe": "paperboy",
+      "iconType": "obstacle_normal",
+      "dimensions": {
+        "w": 1254,
+        "h": 1254
+      },
+      "hasAlpha": true,
+      "boundingBox": {
+        "x": 102,
+        "y": 103,
+        "w": 1048,
+        "h": 1016
+      },
+      "opaqueCoverageRatio": 0.426,
+      "transparentMargins": {
+        "left": 102,
+        "right": 104,
+        "top": 103,
+        "bottom": 135
+      },
+      "transparentMarginsPct": {
+        "left": 8.1,
+        "right": 8.3,
+        "top": 8.2,
+        "bottom": 10.8
+      },
+      "centerOffset": {
+        "dx": -1.5,
+        "dy": -16.5
+      },
+      "suspectedPixelArt": false,
+      "suspectedBlur": true,
+      "backgroundContamination": false,
+      "severity": "OK",
+      "notes": "Upscale/flou suspecte"
+    },
+    {
+      "path": "/home/kali/apps/snake/public/assets/runtime/universes/paperboy/boss_neighborhood_chaos.png",
+      "universe": "paperboy",
+      "iconType": "boss_idle",
+      "dimensions": {
+        "w": 256,
+        "h": 233
+      },
+      "hasAlpha": true,
+      "boundingBox": {
+        "x": 1,
+        "y": 1,
+        "w": 254,
+        "h": 231
+      },
+      "opaqueCoverageRatio": 0.703,
+      "transparentMargins": {
+        "left": 1,
+        "right": 1,
+        "top": 1,
+        "bottom": 1
+      },
+      "transparentMarginsPct": {
+        "left": 0.4,
+        "right": 0.4,
+        "top": 0.4,
+        "bottom": 0.4
+      },
+      "centerOffset": {
+        "dx": -0.5,
+        "dy": -0.5
+      },
+      "suspectedPixelArt": false,
+      "suspectedBlur": false,
+      "backgroundContamination": false,
+      "severity": "OK",
+      "notes": "RAS"
+    },
+    {
+      "path": "/home/kali/apps/snake/public/assets/runtime/universes/paperboy/mailbox.png",
+      "universe": "paperboy",
+      "iconType": "mailbox",
+      "dimensions": {
+        "w": 1254,
+        "h": 1254
+      },
+      "hasAlpha": true,
+      "boundingBox": {
+        "x": 296,
+        "y": 86,
+        "w": 660,
+        "h": 1081
+      },
+      "opaqueCoverageRatio": 0.241,
+      "transparentMargins": {
+        "left": 296,
+        "right": 298,
+        "top": 86,
+        "bottom": 87
+      },
+      "transparentMarginsPct": {
+        "left": 23.6,
+        "right": 23.8,
+        "top": 6.9,
+        "bottom": 6.9
+      },
+      "centerOffset": {
+        "dx": -1.5,
+        "dy": -1.0
+      },
+      "suspectedPixelArt": false,
+      "suspectedBlur": true,
+      "backgroundContamination": false,
+      "severity": "Mineur",
+      "notes": "Upscale/flou suspecte"
+    }
+  ]
+}

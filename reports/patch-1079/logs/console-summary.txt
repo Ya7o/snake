@@ -1,4 +1,0 @@
-[warning] [.WebGL-0x2e1400160800]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels http://localhost:5174/snake/
-[warning] [.WebGL-0x2e1400160800]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels http://localhost:5174/snake/
-[warning] [.WebGL-0x2e1400160800]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels http://localhost:5174/snake/
-[warning] [.WebGL-0x2e1400160800]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels (this message will no longer repeat) http://localhost:5174/snake/

@@ -1,6 +1,0 @@
-level_id,universe,level_type,grid_width,grid_height,board_width,board_height,cell_size,reference_applied,exception_reason
-castle_normal,castle,normal,16,26,288,468,18,yes,
-sonic_normal,sonic,normal,16,20,288,468,18,yes,
-paperboy_normal,paperboy,normal,16,20,288,468,18,yes,
-outrun_normal,outrun,normal,16,20,288,468,18,yes,
-sonic_boss,sonic,boss,16,20,288,468,18,yes,
