@@ -1,0 +1,94 @@
+PATCH 1092 - Rendering Config Audit
+Generated: 2026-05-31
+Scope: audit only; no src/public asset changes.
+
+PHASER CONFIG
+Source: src/main.ts
+
+- type: Phaser.AUTO
+- parent: app
+- scale.mode: Phaser.Scale.RESIZE
+- scale.autoCenter: Phaser.Scale.CENTER_BOTH
+- render.antialias: true
+- render.roundPixels: true
+- render.powerPreference: high-performance
+- text resolution override: Math.min(window.devicePixelRatio || 1, 2)
+- input.smoothFactor: 0
+- disableContextMenu: true
+
+Interpretation:
+- RESIZE avoids a fixed-size stretch bug and lets Phaser follow the viewport.
+- roundPixels helps integer placement.
+- antialias:true enables smooth filtering, which softens pixel-art style runtime assets.
+- Text is rendered at DPR-capped resolution, so text is not the main blur source.
+
+CSS / CANVAS
+Source: index.html and runtime inspection by code search.
+
+- No explicit canvas image-rendering rule detected.
+- Browser/Phaser default smoothing therefore applies when the canvas or textures are scaled.
+- No evidence of a global CSS stretch defect in the captured screens.
+- Background images near the target mobile DPR 2 size generally remain sharp.
+
+DPR / MOBILE
+
+- RENDER_RESOLUTION = min(devicePixelRatio, 2).
+- OpenMoji SVG load size = round(64 * min(devicePixelRatio, 2)).
+- Headless audit viewport: 390x844 CSS px, deviceScaleFactor 2.
+- Approximate physical capture size: 780x1688 px.
+- Approximate grid cell on 390px portrait: 23px CSS, 46px physical.
+
+BOARD SCALING
+Source: src/render/GridRenderer.ts
+
+- computeGridLayout widthFactor default: 0.96.
+- side margin: max(8, floor(screenW * 0.04 / 2)).
+- cellSize: floor available width/cols, bounded by height and minCellSize.
+- On 390px width with 16 columns, cell is approximately 23px CSS.
+- Board fill and grid lines are procedural graphics; no texture blur there.
+
+HUD SCALING
+Source: src/render/HUDRenderer.ts and src/ui/RuntimeUILayout.ts
+
+- HUD is procedural graphics + text.
+- Captures show HUD generally readable.
+- Paperboy label is abbreviated/truncated by available capsule width; this is layout polish, not rendering blur.
+
+TEXTURE FILTERS
+Sources: src/render/PickupRenderer.ts, src/render/ObstacleRenderer.ts, src/render/VfxUtils.ts
+
+- PickupRenderer.fitImageInCell() sets FilterMode.LINEAR for every pickup texture.
+- ObstacleRenderer.fitImageInCell() sets FilterMode.LINEAR for every obstacle and boss texture.
+- VfxUtils includes an opt-in NEAREST helper, but the main runtime pickup/obstacle renderers do not use it for these assets.
+- Consequence: 32x32 assets are blurred when upscaled, and 1254x1254 boss sprites become soft when downscaled to about 50px CSS.
+
+DISPLAY SIZE VS SOURCE SIZE
+
+- Pickup maxSizeScale default: 2.5 cells.
+- OutRun pickup maxSizeScale: 2.8 cells.
+- Runtime obstacle icon scale default: about 2.2 cells.
+- Boss icon scale default: about 2.2 cells.
+- OpenMoji gameplay icon scale: 3.0 cells.
+- On 390px portrait, pickup display is roughly 57px CSS / 114px physical at DPR 2.
+
+ASSET RESOLUTION FINDINGS
+
+- Backgrounds: mostly 941x1672 or 1672x941 class PNGs, size-appropriate for mobile DPR 2.
+- `pickup_secondary.png`: 32x32, displayed around 57px CSS, visible upscale blur.
+- 1254x1254 boss/obstacle PNGs: displayed around 50px CSS, heavy downscale and soft detail.
+- 256px PNGs: generally acceptable at current display sizes, depending on contrast.
+- SVG OpenMoji: rasterized to 64-128px, acceptable if displayed near that range and contrast is strong.
+
+LIKELY ROOT CAUSES
+
+1. Low-resolution runtime icon assets (`pickup_secondary.png`).
+2. Over-large generated PNGs downscaled with LINEAR.
+3. No renderer-level distinction between pixel-art sprites and photographic/AI backgrounds.
+4. Low contrast palettes in Kombat/Shinobi/Fighter/Streets boss states.
+5. Procedural halos and glows too subtle for dark/red boards.
+
+VERIFICATION LIMITS
+
+- Audit was headless Chromium, not a physical Android/iOS device.
+- Animated effects and transient score popups are only partially represented in still screenshots.
+- Shinobi boss black capture may be a real render failure or capture timing/loading issue; needs targeted runtime confirmation in PATCH 1094.

@@ -1,0 +1,16 @@
+id,scene,universe,level_type,element,type,priority,capture,recommendation
+VQA-001,GameScene,kombat,normal,pickup (finish_token),low-contrast,P0,kombat_gameplay.png + kombat_pickup_crop.png,Replace finish_token asset or add bright procedural halo — pickup is invisible on blood-red bg
+VQA-002,GameScene,kombat,boss,full board,low-contrast,P0,kombat_boss.png,Add ambient brightness layer to kombat board — bg + grid too dark to distinguish entities
+VQA-003,GameScene,shinobi,boss,full render,procedural-noise,P0,shinobi_boss.png (all-black),Investigate shinobi boss bg load — screenshot all-black suggests canvas not painted (bg preload failure or timing)
+VQA-004,GameScene,all,both,pickup_secondary.png,blur + low-res,P1,sonic_pickup_crop.png,Replace pickup_secondary.png (32x32) with 256x256 version or use procedural fallback — unacceptable blur at 2-3x upscale with LINEAR
+VQA-005,GameScene,shinobi,normal,pickup (shuriken),low-contrast,P1,shinobi_pickup_crop.png,Shuriken PNG lacks contrast on dark maroon bg — add brighter halo color or use teal/yellow accent ring
+VQA-006,GameScene,castle,normal,obstacles (blinkWall SVGs),low-contrast,P1,castle_pickup_crop.png,Castle obstacle SVGs render at very low alpha on maroon bg — increase alpha or change icon color
+VQA-007,GameScene,fighter,boss,boss entity (finalChallenger),bad-scale + low-contrast,P1,fighter_boss_grid_crop.png,Boss entity too small (2-3 cells) and same red tones as bg — increase scale or add contrasting glow ring
+VQA-008,GameScene,streets,boss,boss + obstacles,procedural-noise,P1,streets_boss.png,CrimeLord boss lost in dense crowd rows — add distinct visual separator (size/color) between boss and crowd obstacles
+VQA-009,GameScene,sonic,boss,boss sprites (loopSerpent),blur,P1,sonic_boss_grid_crop.png,1254x1254 PNG downscaled to ~50px with LINEAR filter — consider using NEAREST filter or pre-resized 256px sprite
+VQA-010,all,all,both,all image assets,pixel-smoothing,P1,multiple,antialias:true + LINEAR filter on ALL textures — pixel art PNG obstacles/bosses all look soft; add NEAREST filter for non-photographic sprites
+VQA-011,GameScene,all,both,snake body,bad-scale,P2,multiple,Snake body segments appear very small (2-3 cells at session start) — expected as game progresses
+VQA-012,GameScene,paperboy,both,HUD label,low-contrast,P2,paperboy_hud_crop.png,HUD label shows "PAPER" instead of "PAPERBOY" — too abbreviated but readable
+VQA-013,GameScene,castle,boss,board entities,procedural-noise,P2,castle_boss_grid_crop.png,Castle boss board overcrowded with star SVG icons — hard to distinguish WitchMirror boss from normal pickups
+VQA-014,WorldMapScene,all,n/a,worldmap image,blur,P2,worldmap.png,World map image appears soft (AI-generated art) — acceptable but style-mismatch vs pixel art elements
+VQA-015,GameScene,all,both,background vs gameplay,style-mismatch,P2,multiple,AI-art photorealistic backgrounds vs pixel-art obstacles creates style discontinuity in some universes (streets fighter kombat)

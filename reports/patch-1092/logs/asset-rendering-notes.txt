@@ -1,0 +1,80 @@
+PATCH 1092 — Asset Rendering Notes
+Generated: 2026-05-31
+
+=== PHASER CONFIG (src/main.ts) ===
+
+render:
+  antialias: true          ← bilinear filtering on canvas; softens all PNG textures
+  roundPixels: true        ← helps crisp integer positioning
+  powerPreference: 'high-performance'
+
+scale:
+  mode: Phaser.Scale.RESIZE  ← fills viewport, no fixed resolution
+
+Resolution multiplier: Math.min(window.devicePixelRatio || 1, 2)
+  → At 2x DPR (retina): text rendered at 2x, canvas at native resolution
+
+=== IMAGE FILTER BEHAVIOR ===
+
+PickupRenderer.fitImageInCell():
+  → scene.textures.get(textureKey).setFilter(Phaser.Textures.FilterMode.LINEAR)
+  → Applied to ALL pickup textures: pickup_ring, pickup_shuriken, pickup_energy, etc.
+  → LINEAR = bilinear interpolation = blurry upscale, soft downscale
+
+ObstacleRenderer.fitImageInCell():
+  → Same: setFilter(Phaser.Textures.FilterMode.LINEAR) on all obstacle/boss textures
+  → No distinction between pixel art PNGs and photographic PNGs
+
+CSS on canvas element:
+  → No image-rendering property set in index.html or styles
+  → Default browser behavior = smooth scaling (equivalent to LINEAR)
+
+=== ASSET SIZES VS DISPLAYED SIZES ===
+
+Grid cell size on 390px wide portrait ≈ 390 * 0.96 / 16 ≈ 23px (CSS) = 46px physical (2x DPR)
+
+Pickup display: maxSizeScale = 2.5 → maxSize ≈ 57px CSS = 114px physical
+Obstacle display: DEFAULT_RUNTIME_OBSTACLE_ICON_SCALE = 2.2 → ~51px CSS
+Boss display: DEFAULT_RUNTIME_BOSS_ICON_SCALE = 2.2 → ~51px CSS
+OpenMoji SVG: OPENMOJI_GAMEPLAY_ICON_SCALE = 3.0 → ~69px CSS
+
+Asset sources:
+  pickup_ring.png (sonic):        450x450 → displayed ~57px CSS → 8x downscale  → OK with LINEAR
+  boss_loop_serpent.png (sonic):  1254x1254 → ~51px CSS → 24x downscale → very soft with LINEAR
+  boss_idle.png (fighter):        1254x1254 → ~51px CSS → 24x downscale → very soft
+  obstacle_bumper.png (sonic):    1254x1254 → ~51px CSS → 24x downscale → soft
+  pickup_shuriken.png (shinobi):  256x256 → ~57px CSS → 4.5x downscale → acceptable
+  boss_shadow_ninja.png (shinobi):256x250 → ~51px CSS → 5x downscale → soft but acceptable
+  pickup_secondary.png (ALL):     32x32 → ~57px CSS → 1.8x UPSCALE → BLURRY with LINEAR ← MAIN ISSUE
+  kombat/obstacle_fatal_zone.png: 235x256 → ~51px CSS → 4.5x downscale → acceptable
+  paperboy/boss_neighborhood_chaos.png: 256x233 → ~51px → 5x downscale → acceptable
+  paperboy/pickup_newspaper.png:  256x191 → ~57px CSS → 4.5x downscale → acceptable
+
+SVGs loaded at: svgSize = Math.round(64 * Math.min(DPR, 2)) = 64-128px
+  Then displayed at ~69px CSS (3.0 scale) = up to 138px physical
+  At DPR=1: 64px SVG displayed at 69px → very slight upscale, LINEAR = slightly soft
+  At DPR=2: 128px SVG displayed at 138px physical → slight upscale, acceptable
+
+Background images: 941x1672 displayed on 390x844 CSS = 780x1688 physical (2x)
+  → Near perfect 1:1 match for 2x DPR → sharp backgrounds ✅
+
+=== KNOWN PROBLEM: pickup_secondary.png ===
+All 8 universes use a 32x32 pickup_secondary.png as the alternate pickup texture.
+At the displayed size of ~57px CSS (114px physical at 2x DPR), this represents a
+1.78x upscale. With LINEAR filter, this produces a blurry, pixelated appearance.
+The secondary pickup in Sonic clearly shows this: the dark ring is fuzzy and unclear.
+
+=== KNOWN PROBLEM: antialias:true ===
+Phaser's antialias:true enables bilinear filtering on the WebGL context.
+For pixel-art style sprites (obstacle PNGs like fighter fists, outrun cars),
+this produces slight blurring that reduces the crisp retro aesthetic.
+The effect is most visible on the 1254x1254 boss PNGs downscaled to ~50px.
+Options: setFilter(NEAREST) per-texture for pixel art assets, or antialias:false globally.
+
+=== CASTLE UNIVERSE ===
+Uses exclusively SVG icons via CASTLE_OPENMOJI_ICON_ASSETS.
+SVGs loaded at 64-128px, displayed at 3.0x cell (~69px CSS).
+At DPR=2: 128px SVG → 138px physical → near 1:1 → sharp.
+At DPR=1: 64px SVG → 69px physical → slight upscale → slightly soft.
+Obstacle SVGs (brick, stone, door) rendered with very low alpha (~0.24-0.88).
+On the dark maroon castle background, these become nearly invisible at low alpha states.
