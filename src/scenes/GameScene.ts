@@ -100,9 +100,10 @@ export class GameScene extends Phaser.Scene {
       this.load.image(univBg.gameplay.key, univBg.gameplay.url);
     }
 
+    const svgSize = Math.round(64 * Math.min(window.devicePixelRatio || 1, 2));
     if (uid === 'castle') {
       for (const icon of CASTLE_OPENMOJI_ICON_ASSETS) {
-        if (!this.textures.exists(icon.key)) this.load.svg(icon.key, icon.url, { width: 64, height: 64 });
+        if (!this.textures.exists(icon.key)) this.load.svg(icon.key, icon.url, { width: svgSize, height: svgSize });
       }
     } else {
       const isBoss = this.levelConfig.type === 'boss';
@@ -144,17 +145,17 @@ export class GameScene extends Phaser.Scene {
           this.load.image(PAPERBOY_MAILBOX_KEY, 'assets/runtime/universes/paperboy/mailbox.png');
         }
         for (const icon of PAPERBOY_OPENMOJI_ICON_ASSETS) {
-          if (!this.textures.exists(icon.key)) this.load.svg(icon.key, icon.url, { width: 64, height: 64 });
+          if (!this.textures.exists(icon.key)) this.load.svg(icon.key, icon.url, { width: svgSize, height: svgSize });
         }
       }
       if (uid === 'fighter') {
         for (const icon of FIGHTER_OPENMOJI_ICON_ASSETS) {
-          if (!this.textures.exists(icon.key)) this.load.svg(icon.key, icon.url, { width: 64, height: 64 });
+          if (!this.textures.exists(icon.key)) this.load.svg(icon.key, icon.url, { width: svgSize, height: svgSize });
         }
       }
       if (uid === 'outrun') {
         for (const icon of OUTRUN_OPENMOJI_ICON_ASSETS) {
-          if (!this.textures.exists(icon.key)) this.load.svg(icon.key, icon.url, { width: 64, height: 64 });
+          if (!this.textures.exists(icon.key)) this.load.svg(icon.key, icon.url, { width: svgSize, height: svgSize });
         }
       }
     }

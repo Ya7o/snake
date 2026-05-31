@@ -24,10 +24,14 @@ type PickupImageProfile = Readonly<{
 }>;
 
 const DEFAULT_IMAGE_PROFILE: PickupImageProfile = {
-  maxSizeScale: 1.9,
+  maxSizeScale: 0.78,  // target 0.72–0.82 cell (ticket §5 pickup_main)
 };
 
 const PICKUP_IMAGE_PROFILES: Record<string, PickupImageProfile> = {
+  // Castle uses OpenMoji SVGs and renders well at current scale — preserve.
+  castle: {
+    maxSizeScale: 1.9,
+  },
   // OutRun uses a smaller board and a tall checkpoint beacon, so it needs
   // extra draw room to read like an icon instead of a thin stripe.
   outrun: {

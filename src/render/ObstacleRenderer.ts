@@ -17,20 +17,20 @@ const OBSTACLE_IMAGE_TYPES = new Set([
   'routeObstacle',
 ]);
 
-const OPENMOJI_GAMEPLAY_ICON_SCALE = 1.9;
-const DEFAULT_RUNTIME_OBSTACLE_ICON_SCALE = 1.70;
-const DEFAULT_RUNTIME_BOSS_ICON_SCALE = 1.75;
+const OPENMOJI_GAMEPLAY_ICON_SCALE = 1.9;  // Castle/Fighter OpenMoji entities — keep for Castle compatibility
+const DEFAULT_RUNTIME_OBSTACLE_ICON_SCALE = 0.88;  // target 0.82–0.95 cell (ticket §5)
+const DEFAULT_RUNTIME_BOSS_ICON_SCALE = 0.82;       // target 0.75–0.9 cell (ticket §5 boss_reward)
 
 const RUNTIME_OBSTACLE_ICON_SCALE_BY_TYPE: Record<string, number> = {
-  trafficBlock: 1.75,
-  routeObstacle: 1.70,
+  trafficBlock: 0.95,   // Outrun car — slightly larger to compensate for transparent margins
+  routeObstacle: 0.88,
 };
 
 const RUNTIME_BOSS_ICON_SCALE_BY_TYPE: Record<string, number> = {
-  crimeLord: 1.82,
-  finalChallenger: 1.78,
-  turboRival: 1.82,
-  chaosObstacle: 1.60,
+  crimeLord:        1.30,  // full-height figure — needs more vertical space
+  finalChallenger:  1.25,
+  turboRival:       1.10,  // wide vehicle — horizontal fill
+  chaosObstacle:    0.88,
 };
 
 type EntityTextureResolver = (entity: ExtraEntity) => string | null;
@@ -75,6 +75,7 @@ export class ObstacleRenderer {
   private entityTextureResolver: EntityTextureResolver | null = null;
   private bossTextureResolver: BossTextureResolver | null = null;
   private depth: number = GAMEPLAY_LAYERS.GAMEPLAY_OBJECTS;
+  private filteredKeys = new Set<string>();
 
   constructor(scene: Phaser.Scene) {
     this.scene = scene;
@@ -155,8 +156,9 @@ export class ObstacleRenderer {
           );
         }
         const img = this.obstaclePool[obsPoolIdx];
-        img.setTexture(entityTextureKey!).setPosition(px, py)
-          .setDisplaySize(cs * OPENMOJI_GAMEPLAY_ICON_SCALE, cs * OPENMOJI_GAMEPLAY_ICON_SCALE)
+        if (img.texture.key !== entityTextureKey!) img.setTexture(entityTextureKey!);
+        this.fitImageInCell(img, entityTextureKey!, cs * OPENMOJI_GAMEPLAY_ICON_SCALE);
+        img.setPosition(px, py)
           .setAlpha(e.type === 'witchMirror' ? this.witchMirrorAlpha(e.state) : alpha)
           .setVisible(true);
         obsPoolIdx++;
@@ -212,9 +214,14 @@ export class ObstacleRenderer {
   private clearBossImages(): void {
     for (const img of this.bossImages.values()) img.destroy();
     this.bossImages.clear();
+    this.filteredKeys.clear();
   }
 
   private fitImageInCell(img: Phaser.GameObjects.Image, textureKey: string, maxSize: number): void {
+    if (!this.filteredKeys.has(textureKey) && this.scene.textures.exists(textureKey)) {
+      this.scene.textures.get(textureKey).setFilter(Phaser.Textures.FilterMode.LINEAR);
+      this.filteredKeys.add(textureKey);
+    }
     const frame = this.scene.textures.getFrame(textureKey);
     const fw = frame?.width ?? img.width;
     const fh = frame?.height ?? img.height;
@@ -233,6 +240,7 @@ export class ObstacleRenderer {
   private clearObstaclePool(): void {
     for (const img of this.obstaclePool) img.destroy();
     this.obstaclePool = [];
+    this.filteredKeys.clear();
   }
 
   private drawEntity(e: ExtraEntity, px: number, py: number, size: number, color: number): void {

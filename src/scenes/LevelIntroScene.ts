@@ -37,8 +37,9 @@ export class LevelIntroScene extends Phaser.Scene {
     }
 
     if (uid === 'castle') {
+      const svgSize = Math.round(64 * Math.min(window.devicePixelRatio || 1, 2));
       for (const icon of CASTLE_OPENMOJI_ICON_ASSETS) {
-        if (!this.textures.exists(icon.key)) this.load.svg(icon.key, icon.url, { width: 64, height: 64 });
+        if (!this.textures.exists(icon.key)) this.load.svg(icon.key, icon.url, { width: svgSize, height: svgSize });
       }
     }
   }
