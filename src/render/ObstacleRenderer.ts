@@ -34,6 +34,7 @@ const RUNTIME_BOSS_ICON_SCALE_BY_TYPE: Record<string, number> = {
 };
 
 type EntityTextureResolver = (entity: ExtraEntity) => string | null;
+type BossTextureResolver = (entity: ExtraEntity) => string | null;
 
 const ENTITY_COLORS: Record<string, Record<string, number>> = {
   blinkWall:      { ghost: 0x4a235a, warning: 0xf39c12, active: 0xe74c3c },
@@ -53,7 +54,7 @@ const ENTITY_COLORS: Record<string, Record<string, number>> = {
   pressureZone:   { active: 0xc0392b },
   finalChallenger:{ idle: 0xaaaaaa, attack_window: 0xf1c40f, counter: 0xe74c3c },
   counterZone:    { danger: 0xe74c3c },
-  turboRival:     { moving: 0xff6b9d },
+  turboRival:     { moving: 0xff6b9d, active: 0xffd32a },
   turboZone:      { active: 0xffd32a },
   shadowNinja:    { real: 0x00b4d8, shadow: 0x333355 },
   dragonGate:     { closed: 0x444444, opening: 0xf39c12, vulnerable: 0xf1c40f, danger: 0xe74c3c },
@@ -72,6 +73,7 @@ export class ObstacleRenderer {
   private obstaclePool: Phaser.GameObjects.Image[] = [];
   private obstacleBlendMode: number = Phaser.BlendModes.NORMAL;
   private entityTextureResolver: EntityTextureResolver | null = null;
+  private bossTextureResolver: BossTextureResolver | null = null;
   private depth: number = GAMEPLAY_LAYERS.GAMEPLAY_OBJECTS;
 
   constructor(scene: Phaser.Scene) {
@@ -109,6 +111,11 @@ export class ObstacleRenderer {
     this.clearObstaclePool();
   }
 
+  setBossTextureResolver(resolver: BossTextureResolver | null): void {
+    this.bossTextureResolver = resolver;
+    this.clearBossImages();
+  }
+
   setDepth(depth: number): void {
     this.depth = depth;
     this.gfx.setDepth(depth);
@@ -121,8 +128,6 @@ export class ObstacleRenderer {
     const cs = getCellMin(layout);
     const pad = Math.max(1, Math.floor(cs * 0.08));
 
-    const bossKey = this.bossTextureKey;
-    const hasBossTexture = !!(bossKey && this.scene.textures.exists(bossKey));
     const seenBossIds = new Set<string>();
 
     const obstacleKey = this.obstacleTextureKey;
@@ -138,6 +143,8 @@ export class ObstacleRenderer {
       const hasEntityTexture = !!(entityTextureKey && this.scene.textures.exists(entityTextureKey));
 
       const isBossType = BOSS_ENTITY_TYPES.has(e.type);
+      const bossKey = this.bossTextureResolver?.(e) ?? this.bossTextureKey;
+      const hasBossTexture = !!(bossKey && this.scene.textures.exists(bossKey));
       if (e.type === 'turboZone') {
         this.drawTurboZone(px, py, size, color);
       } else if (hasEntityTexture) {
@@ -163,6 +170,7 @@ export class ObstacleRenderer {
           img = this.scene.add.image(px, py, bossKey!).setDepth(this.depth + 1).setBlendMode(this.bossBlendMode);
           this.bossImages.set(imgId, img);
         }
+        if (img.texture.key !== bossKey) img.setTexture(bossKey!);
         this.fitImageInCell(img, bossKey!, cs * this.bossIconScale(e));
         img.setPosition(px, py).setVisible(true);
         if (e.type === 'witchMirror') {

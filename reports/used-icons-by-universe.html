@@ -1,0 +1,413 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Icones reellement utilisees par univers</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #101114;
+      --panel: #181b21;
+      --panel-2: #20242c;
+      --text: #f2f4f8;
+      --muted: #aeb6c2;
+      --line: #343b49;
+      --accent: #f2c14e;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.45;
+    }
+
+    main {
+      width: min(1180px, calc(100vw - 32px));
+      margin: 0 auto;
+      padding: 28px 0 44px;
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      font-size: 28px;
+      letter-spacing: 0;
+    }
+
+    .intro {
+      margin: 0 0 24px;
+      color: var(--muted);
+      max-width: 900px;
+    }
+
+    section {
+      margin: 22px 0;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    h2 {
+      margin: 0;
+      padding: 14px 16px;
+      font-size: 19px;
+      background: var(--panel-2);
+      border-bottom: 1px solid var(--line);
+      letter-spacing: 0;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      table-layout: fixed;
+    }
+
+    th, td {
+      padding: 10px 12px;
+      border-bottom: 1px solid var(--line);
+      vertical-align: middle;
+      text-align: left;
+      overflow-wrap: anywhere;
+    }
+
+    th {
+      color: var(--accent);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: .03em;
+      background: rgba(255, 255, 255, .03);
+    }
+
+    tr:last-child td { border-bottom: 0; }
+
+    .thumb-cell {
+      width: 94px;
+      text-align: center;
+    }
+
+    .thumb {
+      width: 64px;
+      height: 64px;
+      object-fit: contain;
+      image-rendering: auto;
+      background:
+        linear-gradient(45deg, rgba(255,255,255,.06) 25%, transparent 25%),
+        linear-gradient(-45deg, rgba(255,255,255,.06) 25%, transparent 25%),
+        linear-gradient(45deg, transparent 75%, rgba(255,255,255,.06) 75%),
+        linear-gradient(-45deg, transparent 75%, rgba(255,255,255,.06) 75%);
+      background-size: 14px 14px;
+      background-position: 0 0, 0 7px, 7px -7px, -7px 0;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      padding: 4px;
+    }
+
+    code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      color: #dbe7ff;
+      font-size: 12px;
+    }
+
+    .path {
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .note {
+      margin: 18px 0 0;
+      padding: 14px 16px;
+      color: var(--muted);
+      background: #14171c;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+    }
+  </style>
+</head>
+<body>
+<main>
+  <h1>Icones reellement utilisees par univers</h1>
+  <p class="intro">
+    Audit visuel des images actuellement rendues par <code>PickupRenderer</code>,
+    <code>ObstacleRenderer</code> et les badges Castle de <code>LevelIntroScene</code>.
+    Les assets seulement precharges mais non rendus ne sont pas listes dans les tableaux.
+  </p>
+
+  <section>
+    <h2>Castle</h2>
+    <table>
+      <thead><tr><th class="thumb-cell">Image</th><th>Usage reel</th><th>Cle / renderer</th><th>Fichier</th></tr></thead>
+      <tbody>
+        <tr>
+          <td class="thumb-cell"><img class="thumb" src="../public/assets/openmoji/pickups/magic_star.svg" alt="magic star"></td>
+          <td>Pickup gameplay + badge intro normal</td>
+          <td><code>openmoji-castle-magic</code></td>
+          <td class="path">public/assets/openmoji/pickups/magic_star.svg</td>
+        </tr>
+        <tr>
+          <td class="thumb-cell"><img class="thumb" src="../public/assets/openmoji/obstacles/stone.svg" alt="stone"></td>
+          <td>Blink wall en etat <code>ghost</code></td>
+          <td><code>openmoji-castle-stone</code></td>
+          <td class="path">public/assets/openmoji/obstacles/stone.svg</td>
+        </tr>
+        <tr>
+          <td class="thumb-cell"><img class="thumb" src="../public/assets/openmoji/danger/impact.svg" alt="impact"></td>
+          <td>Blink wall <code>warning</code> + boss <code>warning</code></td>
+          <td><code>openmoji-castle-impact</code></td>
+          <td class="path">public/assets/openmoji/danger/impact.svg</td>
+        </tr>
+        <tr>
+          <td class="thumb-cell"><img class="thumb" src="../public/assets/openmoji/danger/fire.svg" alt="fire"></td>
+          <td>Blink wall active</td>
+          <td><code>openmoji-castle-fire</code></td>
+          <td class="path">public/assets/openmoji/danger/fire.svg</td>
+        </tr>
+        <tr>
+          <td class="thumb-cell"><img class="thumb" src="../public/assets/openmoji/boss/crystal_ball.svg" alt="crystal ball"></td>
+          <td>Boss idle + badge intro boss</td>
+          <td><code>openmoji-castle-boss-event</code></td>
+          <td class="path">public/assets/openmoji/boss/crystal_ball.svg</td>
+        </tr>
+        <tr>
+          <td class="thumb-cell"><img class="thumb" src="../public/assets/openmoji/boss/skull.svg" alt="skull"></td>
+          <td>Boss attacking</td>
+          <td><code>openmoji-castle-boss-danger</code></td>
+          <td class="path">public/assets/openmoji/boss/skull.svg</td>
+        </tr>
+        <tr>
+          <td class="thumb-cell"><img class="thumb" src="../public/assets/openmoji/boss/crown.svg" alt="crown"></td>
+          <td>Boss vulnerable / hit / defeated</td>
+          <td><code>openmoji-castle-boss-reward</code></td>
+          <td class="path">public/assets/openmoji/boss/crown.svg</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>Sonic</h2>
+    <table>
+      <thead><tr><th class="thumb-cell">Image</th><th>Usage reel</th><th>Cle / renderer</th><th>Fichier</th></tr></thead>
+      <tbody>
+        <tr>
+          <td class="thumb-cell"><img class="thumb" src="../public/assets/runtime/universes/sonic/pickup_ring.png" alt="sonic ring"></td>
+          <td>Pickup actif de la chaine d'anneaux</td>
+          <td><code>rt_sonic_pickup</code> / PickupRenderer</td>
+          <td class="path">public/assets/runtime/universes/sonic/pickup_ring.png</td>
+        </tr>
+        <tr>
+          <td class="thumb-cell"><img class="thumb" src="../public/assets/runtime/universes/sonic/boss_loop_serpent.png" alt="loop serpent"></td>
+          <td>Boss <code>loopSerpent</code>, corps + orb</td>
+          <td><code>rt_sonic_boss</code> / ObstacleRenderer</td>
+          <td class="path">public/assets/runtime/universes/sonic/boss_loop_serpent.png</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>Streets</h2>
+    <table>
+      <thead><tr><th class="thumb-cell">Image</th><th>Usage reel</th><th>Cle / renderer</th><th>Fichier</th></tr></thead>
+      <tbody>
+        <tr>
+          <td class="thumb-cell"><img class="thumb" src="../public/assets/runtime/universes/streets/pickup_street_bonus.png" alt="street bonus"></td>
+          <td>Pickup bonus</td>
+          <td><code>rt_streets_pickup</code> / PickupRenderer</td>
+          <td class="path">public/assets/runtime/universes/streets/pickup_street_bonus.png</td>
+        </tr>
+        <tr>
+          <td class="thumb-cell"><img class="thumb" src="../public/assets/runtime/universes/streets/obstacle_crowd.png" alt="crowd"></td>
+          <td><code>crowdBlocker</code> normal + <code>pressureZone</code> boss</td>
+          <td><code>rt_streets_obstacle</code> / ObstacleRenderer</td>
+          <td class="path">public/assets/runtime/universes/streets/obstacle_crowd.png</td>
+        </tr>
+        <tr>
+          <td class="thumb-cell"><img class="thumb" src="../public/assets/runtime/universes/streets/boss_idle.png" alt="crime lord idle"></td>
+          <td>Boss <code>crimeLord</code> en phase <code>vulnerable</code></td>
+          <td><code>rt_streets_boss_idle</code> / ObstacleRenderer</td>
+          <td class="path">public/assets/runtime/universes/streets/boss_idle.png</td>
+        </tr>
+        <tr>
+          <td class="thumb-cell"><img class="thumb" src="../public/assets/runtime/universes/streets/boss_attack.png" alt="crime lord attack"></td>
+          <td>Boss <code>crimeLord</code> en phase <code>pressure</code></td>
+          <td><code>rt_streets_boss_attack</code> / ObstacleRenderer</td>
+          <td class="path">public/assets/runtime/universes/streets/boss_attack.png</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>Fighter</h2>
+    <table>
+      <thead><tr><th class="thumb-cell">Image</th><th>Usage reel</th><th>Cle / renderer</th><th>Fichier</th></tr></thead>
+      <tbody>
+        <tr>
+          <td class="thumb-cell"><img class="thumb" src="../public/assets/runtime/universes/fighter/pickup_energy.png" alt="fighter energy"></td>
+          <td>Pickup energie</td>
+          <td><code>rt_fighter_pickup</code> / PickupRenderer</td>
+          <td class="path">public/assets/runtime/universes/fighter/pickup_energy.png</td>
+        </tr>
+        <tr>
+          <td class="thumb-cell"><img class="thumb" src="../public/assets/openmoji/obstacles/fist.svg" alt="fist"></td>
+          <td><code>sparZone</code> normal, override OpenMoji</td>
+          <td><code>openmoji-fighter-fist</code> / ObstacleRenderer resolver</td>
+          <td class="path">public/assets/openmoji/obstacles/fist.svg</td>
+        </tr>
+        <tr>
+          <td class="thumb-cell"><img class="thumb" src="../public/assets/runtime/universes/fighter/obstacle_charge_marker.png" alt="charge marker"></td>
+          <td><code>counterZone</code> du boss</td>
+          <td><code>rt_fighter_obstacle</code> / ObstacleRenderer</td>
+          <td class="path">public/assets/runtime/universes/fighter/obstacle_charge_marker.png</td>
+        </tr>
+        <tr>
+          <td class="thumb-cell"><img class="thumb" src="../public/assets/runtime/universes/fighter/boss_idle.png" alt="final challenger idle"></td>
+          <td>Boss <code>finalChallenger</code> en etat <code>idle</code></td>
+          <td><code>rt_fighter_boss_idle</code> / ObstacleRenderer</td>
+          <td class="path">public/assets/runtime/universes/fighter/boss_idle.png</td>
+        </tr>
+        <tr>
+          <td class="thumb-cell"><img class="thumb" src="../public/assets/runtime/universes/fighter/boss_attack.png" alt="final challenger attack"></td>
+          <td>Boss <code>finalChallenger</code> en <code>attack_window</code> ou <code>counter</code></td>
+          <td><code>rt_fighter_boss_attack</code> / ObstacleRenderer</td>
+          <td class="path">public/assets/runtime/universes/fighter/boss_attack.png</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>OutRun</h2>
+    <table>
+      <thead><tr><th class="thumb-cell">Image</th><th>Usage reel</th><th>Cle / renderer</th><th>Fichier</th></tr></thead>
+      <tbody>
+        <tr>
+          <td class="thumb-cell"><img class="thumb" src="../public/assets/openmoji/pickups/trophy.svg" alt="trophy"></td>
+          <td>Pickup checkpoint, override OpenMoji</td>
+          <td><code>openmoji-outrun-trophy</code> / PickupRenderer</td>
+          <td class="path">public/assets/openmoji/pickups/trophy.svg</td>
+        </tr>
+        <tr>
+          <td class="thumb-cell"><img class="thumb" src="../public/assets/runtime/universes/outrun/obstacle_car.png" alt="car"></td>
+          <td><code>trafficBlock</code> normal + boss</td>
+          <td><code>rt_outrun_obstacle</code> / ObstacleRenderer</td>
+          <td class="path">public/assets/runtime/universes/outrun/obstacle_car.png</td>
+        </tr>
+        <tr>
+          <td class="thumb-cell"><img class="thumb" src="../public/assets/runtime/universes/outrun/boss_idle.png" alt="turbo rival idle"></td>
+          <td>Boss <code>turboRival</code> hors fenetre turbo</td>
+          <td><code>rt_outrun_boss_idle</code> / ObstacleRenderer</td>
+          <td class="path">public/assets/runtime/universes/outrun/boss_idle.png</td>
+        </tr>
+        <tr>
+          <td class="thumb-cell"><img class="thumb" src="../public/assets/runtime/universes/outrun/boss_attack.png" alt="turbo rival attack"></td>
+          <td>Boss <code>turboRival</code> pendant fenetre turbo</td>
+          <td><code>rt_outrun_boss_attack</code> / ObstacleRenderer</td>
+          <td class="path">public/assets/runtime/universes/outrun/boss_attack.png</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>Shinobi</h2>
+    <table>
+      <thead><tr><th class="thumb-cell">Image</th><th>Usage reel</th><th>Cle / renderer</th><th>Fichier</th></tr></thead>
+      <tbody>
+        <tr>
+          <td class="thumb-cell"><img class="thumb" src="../public/assets/runtime/universes/shinobi/pickup_shuriken.png" alt="shuriken"></td>
+          <td>Vraie cible pickup</td>
+          <td><code>rt_shinobi_pickup</code> / PickupRenderer</td>
+          <td class="path">public/assets/runtime/universes/shinobi/pickup_shuriken.png</td>
+        </tr>
+        <tr>
+          <td class="thumb-cell"><img class="thumb" src="../public/assets/runtime/universes/shinobi/boss_shadow_ninja.png" alt="shadow ninja"></td>
+          <td>Boss <code>shadowNinja</code>, clones reels et ombres</td>
+          <td><code>rt_shinobi_boss</code> / ObstacleRenderer</td>
+          <td class="path">public/assets/runtime/universes/shinobi/boss_shadow_ninja.png</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>Kombat</h2>
+    <table>
+      <thead><tr><th class="thumb-cell">Image</th><th>Usage reel</th><th>Cle / renderer</th><th>Fichier</th></tr></thead>
+      <tbody>
+        <tr>
+          <td class="thumb-cell"><img class="thumb" src="../public/assets/runtime/universes/kombat/pickup_finish_token.png" alt="finish token"></td>
+          <td>Pickup finish token</td>
+          <td><code>rt_kombat_pickup</code> / PickupRenderer</td>
+          <td class="path">public/assets/runtime/universes/kombat/pickup_finish_token.png</td>
+        </tr>
+        <tr>
+          <td class="thumb-cell"><img class="thumb" src="../public/assets/runtime/universes/kombat/obstacle_fatal_zone.png" alt="fatal zone"></td>
+          <td><code>fatalZone</code> normal + <code>dangerZone</code> boss</td>
+          <td><code>rt_kombat_obstacle</code> / ObstacleRenderer</td>
+          <td class="path">public/assets/runtime/universes/kombat/obstacle_fatal_zone.png</td>
+        </tr>
+        <tr>
+          <td class="thumb-cell"><img class="thumb" src="../public/assets/runtime/universes/kombat/boss_idle.png" alt="dragon gate idle"></td>
+          <td>Boss <code>dragonGate</code> en <code>closed</code>, <code>opening</code> ou <code>vulnerable</code></td>
+          <td><code>rt_kombat_boss_idle</code> / ObstacleRenderer</td>
+          <td class="path">public/assets/runtime/universes/kombat/boss_idle.png</td>
+        </tr>
+        <tr>
+          <td class="thumb-cell"><img class="thumb" src="../public/assets/runtime/universes/kombat/boss_attack.png" alt="dragon gate attack"></td>
+          <td>Boss <code>dragonGate</code> en <code>danger</code></td>
+          <td><code>rt_kombat_boss_attack</code> / ObstacleRenderer</td>
+          <td class="path">public/assets/runtime/universes/kombat/boss_attack.png</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>Paperboy</h2>
+    <table>
+      <thead><tr><th class="thumb-cell">Image</th><th>Usage reel</th><th>Cle / renderer</th><th>Fichier</th></tr></thead>
+      <tbody>
+        <tr>
+          <td class="thumb-cell"><img class="thumb" src="../public/assets/openmoji/pickups/newspaper.svg" alt="newspaper"></td>
+          <td>Pickup journal + cible de livraison quand active</td>
+          <td><code>openmoji-paperboy-newspaper</code> / PickupRenderer</td>
+          <td class="path">public/assets/openmoji/pickups/newspaper.svg</td>
+        </tr>
+        <tr>
+          <td class="thumb-cell"><img class="thumb" src="../public/assets/runtime/universes/paperboy/mailbox.png" alt="mailbox"></td>
+          <td><code>deliveryTarget</code> normal + <code>bossTarget</code> boss</td>
+          <td><code>rt_paperboy_mailbox</code> / ObstacleRenderer resolver</td>
+          <td class="path">public/assets/runtime/universes/paperboy/mailbox.png</td>
+        </tr>
+        <tr>
+          <td class="thumb-cell"><img class="thumb" src="../public/assets/openmoji/obstacles/roadblock.svg" alt="roadblock"></td>
+          <td><code>routeObstacle</code> normal</td>
+          <td><code>openmoji-paperboy-roadblock</code> / ObstacleRenderer resolver</td>
+          <td class="path">public/assets/openmoji/obstacles/roadblock.svg</td>
+        </tr>
+        <tr>
+          <td class="thumb-cell"><img class="thumb" src="../public/assets/runtime/universes/paperboy/boss_neighborhood_chaos.png" alt="neighborhood chaos"></td>
+          <td><code>chaosObstacle</code> du boss</td>
+          <td><code>rt_paperboy_boss</code> / ObstacleRenderer</td>
+          <td class="path">public/assets/runtime/universes/paperboy/boss_neighborhood_chaos.png</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <p class="note">
+    Exemples d'assets charges mais non rendus par le chemin actuel: Castle <code>gem.svg</code>
+    est branche comme texture secondaire mais les pickups Castle courants sont rendus un par un;
+    Sonic <code>obstacle_bumper.png</code>, Shinobi <code>obstacle_decoy.png</code>,
+    Paperboy <code>obstacle_dog.png</code> et OutRun <code>pickup_checkpoint.png</code>
+    sont precharges/remplaces ou non atteints par le renderer actuel.
+  </p>
+</main>
+</body>
+</html>

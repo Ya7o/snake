@@ -22,17 +22,17 @@ export const RUNTIME_UNIVERSE_ASSETS: Record<string, UniverseRuntimeAssetSet> = 
   streets: {
     pickup: publicAsset("assets/runtime/universes/streets/pickup_street_bonus.png"),
     obstacle: publicAsset("assets/runtime/universes/streets/obstacle_crowd.png"),
-    boss: publicAsset("assets/runtime/universes/streets/boss_crime_lord.png"),
+    boss: publicAsset("assets/runtime/universes/streets/boss_idle.png"),
   },
   fighter: {
     pickup: publicAsset("assets/runtime/universes/fighter/pickup_energy.png"),
     obstacle: publicAsset("assets/runtime/universes/fighter/obstacle_charge_marker.png"),
-    boss: publicAsset("assets/runtime/universes/fighter/boss_final_challenger.png"),
+    boss: publicAsset("assets/runtime/universes/fighter/boss_idle.png"),
   },
   outrun: {
     pickup: publicAsset("assets/runtime/universes/outrun/pickup_checkpoint.png"),
     obstacle: publicAsset("assets/runtime/universes/outrun/obstacle_car.png"),
-    boss: publicAsset("assets/runtime/universes/outrun/boss_turbo_rival.png"),
+    boss: publicAsset("assets/runtime/universes/outrun/boss_idle.png"),
   },
   shinobi: {
     pickup: publicAsset("assets/runtime/universes/shinobi/pickup_shuriken.png"),
@@ -42,7 +42,7 @@ export const RUNTIME_UNIVERSE_ASSETS: Record<string, UniverseRuntimeAssetSet> = 
   kombat: {
     pickup: publicAsset("assets/runtime/universes/kombat/pickup_finish_token.png"),
     obstacle: publicAsset("assets/runtime/universes/kombat/obstacle_fatal_zone.png"),
-    boss: publicAsset("assets/runtime/universes/kombat/boss_dragon_gate.png"),
+    boss: publicAsset("assets/runtime/universes/kombat/boss_idle.png"),
   },
   paperboy: {
     pickup: publicAsset("assets/runtime/universes/paperboy/pickup_newspaper.png"),

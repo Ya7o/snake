@@ -72,7 +72,7 @@ export class TurboRivalBoss extends BaseBoss {
 
   getExtraEntities(): ExtraEntity[] {
     const entities: ExtraEntity[] = [
-      { type: 'turboRival', cell: this.rivalCell, state: 'moving', data: { hp: this.hp } },
+      { type: 'turboRival', cell: this.rivalCell, state: this.turboZones.length > 0 ? 'active' : 'moving', data: { hp: this.hp } },
     ];
     for (const tz of this.turboZones) {
       entities.push({ type: 'turboZone', cell: tz.cell, state: 'active' });

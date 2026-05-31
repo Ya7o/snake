@@ -36,6 +36,15 @@ const CASTLE_GRID_ROWS = GRID_ROWS + 6;
 const CASTLE_REFERENCE_GRID_WIDTH = 0.75;
 const CASTLE_REFERENCE_GRID_Y_BIAS = 0.38;
 const CASTLE_REFERENCE_BOTTOM_BREATHING = 8;
+const FIGHTER_BOSS_IDLE_KEY = 'rt_fighter_boss_idle';
+const FIGHTER_BOSS_ATTACK_KEY = 'rt_fighter_boss_attack';
+const KOMBAT_BOSS_IDLE_KEY = 'rt_kombat_boss_idle';
+const KOMBAT_BOSS_ATTACK_KEY = 'rt_kombat_boss_attack';
+const OUTRUN_BOSS_IDLE_KEY = 'rt_outrun_boss_idle';
+const OUTRUN_BOSS_ATTACK_KEY = 'rt_outrun_boss_attack';
+const PAPERBOY_MAILBOX_KEY = 'rt_paperboy_mailbox';
+const STREETS_BOSS_IDLE_KEY = 'rt_streets_boss_idle';
+const STREETS_BOSS_ATTACK_KEY = 'rt_streets_boss_attack';
 
 export interface GameSceneData {
   levelId: string;
@@ -111,7 +120,42 @@ export class GameScene extends Phaser.Scene {
         if (!this.textures.exists(key)) this.load.image(key, path);
       }
       preloadRuntimeAssets(this, uid, isBoss);
+      if (uid === 'fighter' && isBoss) {
+        if (!this.textures.exists(FIGHTER_BOSS_IDLE_KEY)) {
+          this.load.image(FIGHTER_BOSS_IDLE_KEY, 'assets/runtime/universes/fighter/boss_idle.png');
+        }
+        if (!this.textures.exists(FIGHTER_BOSS_ATTACK_KEY)) {
+          this.load.image(FIGHTER_BOSS_ATTACK_KEY, 'assets/runtime/universes/fighter/boss_attack.png');
+        }
+      }
+      if (uid === 'kombat' && isBoss) {
+        if (!this.textures.exists(KOMBAT_BOSS_IDLE_KEY)) {
+          this.load.image(KOMBAT_BOSS_IDLE_KEY, 'assets/runtime/universes/kombat/boss_idle.png');
+        }
+        if (!this.textures.exists(KOMBAT_BOSS_ATTACK_KEY)) {
+          this.load.image(KOMBAT_BOSS_ATTACK_KEY, 'assets/runtime/universes/kombat/boss_attack.png');
+        }
+      }
+      if (uid === 'outrun' && isBoss) {
+        if (!this.textures.exists(OUTRUN_BOSS_IDLE_KEY)) {
+          this.load.image(OUTRUN_BOSS_IDLE_KEY, 'assets/runtime/universes/outrun/boss_idle.png');
+        }
+        if (!this.textures.exists(OUTRUN_BOSS_ATTACK_KEY)) {
+          this.load.image(OUTRUN_BOSS_ATTACK_KEY, 'assets/runtime/universes/outrun/boss_attack.png');
+        }
+      }
+      if (uid === 'streets' && isBoss) {
+        if (!this.textures.exists(STREETS_BOSS_IDLE_KEY)) {
+          this.load.image(STREETS_BOSS_IDLE_KEY, 'assets/runtime/universes/streets/boss_idle.png');
+        }
+        if (!this.textures.exists(STREETS_BOSS_ATTACK_KEY)) {
+          this.load.image(STREETS_BOSS_ATTACK_KEY, 'assets/runtime/universes/streets/boss_attack.png');
+        }
+      }
       if (uid === 'paperboy') {
+        if (!this.textures.exists(PAPERBOY_MAILBOX_KEY)) {
+          this.load.image(PAPERBOY_MAILBOX_KEY, 'assets/runtime/universes/paperboy/mailbox.png');
+        }
         for (const icon of PAPERBOY_OPENMOJI_ICON_ASSETS) {
           if (!this.textures.exists(icon.key)) this.load.svg(icon.key, icon.url, { width: 64, height: 64 });
         }
@@ -216,8 +260,7 @@ export class GameScene extends Phaser.Scene {
       if (uid === 'paperboy') {
         this.obstacleRenderer.setEntityTextureResolver(entity => {
           if (entity.type === 'deliveryTarget' || entity.type === 'bossTarget') {
-            return this.textures.exists(PAPERBOY_OPENMOJI_ICONS.deliveryTarget.key)
-              ? PAPERBOY_OPENMOJI_ICONS.deliveryTarget.key : null;
+            return this.textures.exists(PAPERBOY_MAILBOX_KEY) ? PAPERBOY_MAILBOX_KEY : null;
           }
           if (entity.type === 'routeObstacle') {
             return this.textures.exists(PAPERBOY_OPENMOJI_ICONS.routeObstacle.key)
@@ -234,6 +277,40 @@ export class GameScene extends Phaser.Scene {
               ? FIGHTER_OPENMOJI_ICONS.sparZone.key : null;
           }
           return null;
+        });
+        this.obstacleRenderer.setBossTextureResolver(entity => {
+          if (entity.type !== 'finalChallenger') return null;
+          if (entity.state === 'idle') {
+            return this.textures.exists(FIGHTER_BOSS_IDLE_KEY) ? FIGHTER_BOSS_IDLE_KEY : null;
+          }
+          return this.textures.exists(FIGHTER_BOSS_ATTACK_KEY) ? FIGHTER_BOSS_ATTACK_KEY : null;
+        });
+      }
+      if (uid === 'kombat') {
+        this.obstacleRenderer.setBossTextureResolver(entity => {
+          if (entity.type !== 'dragonGate') return null;
+          if (entity.state === 'danger') {
+            return this.textures.exists(KOMBAT_BOSS_ATTACK_KEY) ? KOMBAT_BOSS_ATTACK_KEY : null;
+          }
+          return this.textures.exists(KOMBAT_BOSS_IDLE_KEY) ? KOMBAT_BOSS_IDLE_KEY : null;
+        });
+      }
+      if (uid === 'outrun') {
+        this.obstacleRenderer.setBossTextureResolver(entity => {
+          if (entity.type !== 'turboRival') return null;
+          if (entity.state === 'active') {
+            return this.textures.exists(OUTRUN_BOSS_ATTACK_KEY) ? OUTRUN_BOSS_ATTACK_KEY : null;
+          }
+          return this.textures.exists(OUTRUN_BOSS_IDLE_KEY) ? OUTRUN_BOSS_IDLE_KEY : null;
+        });
+      }
+      if (uid === 'streets') {
+        this.obstacleRenderer.setBossTextureResolver(entity => {
+          if (entity.type !== 'crimeLord') return null;
+          if (entity.state === 'pressure') {
+            return this.textures.exists(STREETS_BOSS_ATTACK_KEY) ? STREETS_BOSS_ATTACK_KEY : null;
+          }
+          return this.textures.exists(STREETS_BOSS_IDLE_KEY) ? STREETS_BOSS_IDLE_KEY : null;
         });
       }
     }
