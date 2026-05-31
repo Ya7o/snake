@@ -17,20 +17,20 @@ const OBSTACLE_IMAGE_TYPES = new Set([
   'routeObstacle',
 ]);
 
-const OPENMOJI_GAMEPLAY_ICON_SCALE = 1.9;  // Castle/Fighter OpenMoji entities — keep for Castle compatibility
-const DEFAULT_RUNTIME_OBSTACLE_ICON_SCALE = 0.88;  // target 0.82–0.95 cell (ticket §5)
-const DEFAULT_RUNTIME_BOSS_ICON_SCALE = 0.82;       // target 0.75–0.9 cell (ticket §5 boss_reward)
+const OPENMOJI_GAMEPLAY_ICON_SCALE = 1.9;
+const DEFAULT_RUNTIME_OBSTACLE_ICON_SCALE = 1.70;
+const DEFAULT_RUNTIME_BOSS_ICON_SCALE = 1.75;
 
 const RUNTIME_OBSTACLE_ICON_SCALE_BY_TYPE: Record<string, number> = {
-  trafficBlock: 0.95,   // Outrun car — slightly larger to compensate for transparent margins
-  routeObstacle: 0.88,
+  trafficBlock: 1.75,
+  routeObstacle: 1.70,
 };
 
 const RUNTIME_BOSS_ICON_SCALE_BY_TYPE: Record<string, number> = {
-  crimeLord:        1.30,  // full-height figure — needs more vertical space
-  finalChallenger:  1.25,
-  turboRival:       1.10,  // wide vehicle — horizontal fill
-  chaosObstacle:    0.88,
+  crimeLord: 1.82,
+  finalChallenger: 1.78,
+  turboRival: 1.82,
+  chaosObstacle: 1.60,
 };
 
 type EntityTextureResolver = (entity: ExtraEntity) => string | null;

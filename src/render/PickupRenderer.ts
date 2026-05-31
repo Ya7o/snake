@@ -24,7 +24,7 @@ type PickupImageProfile = Readonly<{
 }>;
 
 const DEFAULT_IMAGE_PROFILE: PickupImageProfile = {
-  maxSizeScale: 0.78,  // target 0.72–0.82 cell (ticket §5 pickup_main)
+  maxSizeScale: 1.9,
 };
 
 const PICKUP_IMAGE_PROFILES: Record<string, PickupImageProfile> = {
