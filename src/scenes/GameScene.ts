@@ -105,20 +105,7 @@ export class GameScene extends Phaser.Scene {
         if (!this.textures.exists(icon.key)) this.load.svg(icon.key, icon.url, { width: 64, height: 64 });
       }
     } else {
-      const base = `assets/universes/${uid}`;
       const isBoss = this.levelConfig.type === 'boss';
-      const assetKeys: Array<[string, string]> = [
-        [`db_${uid}_pickup01`,   `${base}/pickup_01.png`],
-        [`db_${uid}_pickup02`,   `${base}/pickup_02.png`],
-        [`db_${uid}_obstacle01`, `${base}/obstacle_01.png`],
-        [`db_${uid}_hudPanel`,   `${base}/hud_panel.png`],
-      ];
-      if (isBoss) {
-        assetKeys.push([`db_${uid}_boss`, `${base}/boss.png`]);
-      }
-      for (const [key, path] of assetKeys) {
-        if (!this.textures.exists(key)) this.load.image(key, path);
-      }
       preloadRuntimeAssets(this, uid, isBoss);
       if (uid === 'fighter' && isBoss) {
         if (!this.textures.exists(FIGHTER_BOSS_IDLE_KEY)) {
@@ -200,21 +187,14 @@ export class GameScene extends Phaser.Scene {
     this.visualBoardLayout = this.computeCastleReferenceLayout(width, height);
     this.layout = this.computeActiveGridLayout(this.visualBoardLayout, this.gridCols, this.gridRows);
 
-    // 906 — compute asset keys before renderer creation
     const uid        = this.levelConfig.universeId;
-    const pickupKey  = `db_${uid}_pickup01`;
-    const pickup2Key = `db_${uid}_pickup02`;
-    const bossKey    = `db_${uid}_boss`;
-    const obstacleKey = `db_${uid}_obstacle01`;
-    const hudKey     = `db_${uid}_hudPanel`;
 
     // Renderers
     this.gridRenderer    = new GridRenderer(this, this.layout);
     this.snakeRenderer   = new SnakeRenderer(this);
     this.pickupRenderer  = new PickupRenderer(this);
     this.obstacleRenderer = new ObstacleRenderer(this);
-    const readableHudPanelKey = this.textures.exists(hudKey) ? hudKey : undefined;
-    this.hudRenderer     = new HUDRenderer(this, palette.accent, readableHudPanelKey);
+    this.hudRenderer     = new HUDRenderer(this, palette.accent);
     if (uid === 'castle') {
       this.castlePickupGlow = this.add.graphics().setDepth(GAMEPLAY_LAYERS.GAMEPLAY_OBJECTS + 1);
     }
@@ -233,8 +213,10 @@ export class GameScene extends Phaser.Scene {
         this.pickupRenderer.setSecondaryTextureKey(CASTLE_OPENMOJI_ICONS.pickupSecondary.key);
       }
     } else {
-      if (this.textures.exists(pickupKey))  this.pickupRenderer.setTextureKey(pickupKey);
-      if (this.textures.exists(pickup2Key)) this.pickupRenderer.setSecondaryTextureKey(pickup2Key);
+      const rtPickup = getRuntimeTextureKey(this, uid, 'pickup');
+      const rtPickupSecondary = getRuntimeTextureKey(this, uid, 'pickupSecondary');
+      if (rtPickup) this.pickupRenderer.setTextureKey(rtPickup);
+      if (rtPickupSecondary) this.pickupRenderer.setSecondaryTextureKey(rtPickupSecondary);
     }
     this.pickupRenderer.setUniverseId(uid);
     if (uid === 'castle') {
@@ -255,8 +237,10 @@ export class GameScene extends Phaser.Scene {
         return null;
       });
     } else {
-      if (this.textures.exists(bossKey))    this.obstacleRenderer.setBossTextureKey(bossKey);
-      if (this.textures.exists(obstacleKey)) this.obstacleRenderer.setObstacleTextureKey(obstacleKey);
+      const rtObstacle = getRuntimeTextureKey(this, uid, 'obstacle');
+      const rtBoss = getRuntimeTextureKey(this, uid, 'boss');
+      if (rtObstacle) this.obstacleRenderer.setObstacleTextureKey(rtObstacle);
+      if (rtBoss) this.obstacleRenderer.setBossTextureKey(rtBoss);
       if (uid === 'paperboy') {
         this.obstacleRenderer.setEntityTextureResolver(entity => {
           if (entity.type === 'deliveryTarget' || entity.type === 'bossTarget') {
@@ -315,17 +299,7 @@ export class GameScene extends Phaser.Scene {
       }
     }
 
-    // rt_ priority over transparent db_ placeholders — applied unconditionally for all non-Castle universes.
-    if (uid !== 'castle') {
-      const rtPickup = getRuntimeTextureKey(this, uid, 'pickup');
-      if (rtPickup) this.pickupRenderer.setTextureKey(rtPickup);
-      const rtObstacle = getRuntimeTextureKey(this, uid, 'obstacle');
-      if (rtObstacle) this.obstacleRenderer.setObstacleTextureKey(rtObstacle);
-      const rtBoss = getRuntimeTextureKey(this, uid, 'boss');
-      if (rtBoss) this.obstacleRenderer.setBossTextureKey(rtBoss);
-    }
-
-    // OpenMoji pickup overrides — must come AFTER rt_ block to take priority
+    // OpenMoji pickup overrides currently take priority over runtime pickup art.
     if (uid === 'outrun' && this.textures.exists(OUTRUN_OPENMOJI_ICONS.checkpoint.key)) {
       this.pickupRenderer.setTextureKey(OUTRUN_OPENMOJI_ICONS.checkpoint.key);
     }
@@ -397,11 +371,11 @@ export class GameScene extends Phaser.Scene {
   }
 
   private createDebugAssetsOverlay(uid: string): void {
-    const slots = ['pickup01', 'pickup02', 'obstacle01', 'obstacle02', 'boss', 'frame', 'hudPanel'];
+    const roles = ['pickup', 'pickupSecondary', 'obstacle', 'boss'] as const;
     const lines = [`[debugAssets=1] univers: ${uid}`];
-    for (const slot of slots) {
-      const key = `db_${uid}_${slot}`;
-      lines.push(`  ${this.textures.exists(key) ? '✓' : '✗'} ${slot}`);
+    for (const role of roles) {
+      const key = `rt_${uid}_${role}`;
+      lines.push(`  ${this.textures.exists(key) ? '✓' : '✗'} ${role}`);
     }
     this.add.text(4, 58, lines.join('\n'), {
       fontFamily: 'monospace', fontSize: '8px', color: '#00ff88',

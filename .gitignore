@@ -56,3 +56,4 @@ pnpm-debug.log*
 # Local archives / external design dumps
 /design_boards/
 /tickets/
+/public/assets/universes/
