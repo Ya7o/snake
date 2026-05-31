@@ -171,6 +171,7 @@ export class GameScene extends Phaser.Scene {
     this.colorBg      = parseInt(palette.bg.replace('#', ''), 16);
     this.colorPrimary = parseInt(palette.primary.replace('#', ''), 16);
     this.colorAccent  = parseInt(palette.accent.replace('#', ''), 16);
+    this.applyCriticalVisibilityPalette();
 
     this.add.rectangle(width / 2, height / 2, width, height, this.colorBg).setDepth(GAMEPLAY_LAYERS.BACKGROUND_FILL);
     const univBg = UNIVERSE_RESULT_SCREEN_ASSETS[this.levelConfig.universeId];
@@ -215,6 +216,7 @@ export class GameScene extends Phaser.Scene {
       if (rtPickup) this.pickupRenderer.setTextureKey(rtPickup);
     }
     this.pickupRenderer.setUniverseId(uid);
+    this.obstacleRenderer.setUniverseId(uid);
     if (uid === 'castle') {
       this.obstacleRenderer.setEntityTextureResolver(entity => {
         if (entity.type === 'blinkWall') {
@@ -377,6 +379,19 @@ export class GameScene extends Phaser.Scene {
       fontFamily: 'monospace', fontSize: '8px', color: '#00ff88',
       backgroundColor: '#000000cc', padding: { x: 4, y: 2 },
     }).setDepth(GAMEPLAY_LAYERS.DEBUG).setScrollFactor(0);
+  }
+
+  private applyCriticalVisibilityPalette(): void {
+    const uid = this.levelConfig.universeId;
+    if (uid === 'kombat') {
+      this.colorBg = this.levelConfig.type === 'boss' ? 0x120303 : 0x160505;
+      this.colorPrimary = 0xff6a2a;
+      this.colorAccent = 0xffe066;
+    } else if (uid === 'shinobi' && this.levelConfig.type === 'boss') {
+      this.colorBg = 0x07111d;
+      this.colorPrimary = 0x7cecff;
+      this.colorAccent = 0xe6f7ff;
+    }
   }
 
   private computeCastleReferenceLayout(width: number, height: number): GridLayout {

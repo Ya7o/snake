@@ -30,6 +30,8 @@ const RUNTIME_OBSTACLE_ICON_SCALE_BY_TYPE: Record<string, number> = {
 const RUNTIME_BOSS_ICON_SCALE_BY_TYPE: Record<string, number> = {
   crimeLord: 2.3,
   finalChallenger: 2.2,
+  shadowNinja: 2.45,
+  dragonGate: 2.45,
   turboRival: 2.5,
   chaosObstacle: 2.0,
 };
@@ -57,9 +59,9 @@ const ENTITY_COLORS: Record<string, Record<string, number>> = {
   counterZone:    { danger: 0xe74c3c },
   turboRival:     { moving: 0xff6b9d, active: 0xffd32a },
   turboZone:      { active: 0xffd32a },
-  shadowNinja:    { real: 0x00b4d8, shadow: 0x333355 },
-  dragonGate:     { closed: 0x444444, opening: 0xf39c12, vulnerable: 0xf1c40f, danger: 0xe74c3c },
-  dangerZone:     { active: 0xc0392b },
+  shadowNinja:    { real: 0x7cecff, shadow: 0x6d7896 },
+  dragonGate:     { closed: 0xb8452f, opening: 0xffc857, vulnerable: 0xfff07a, danger: 0xff3b30 },
+  dangerZone:     { active: 0xff3b30 },
   chaosObstacle:  { moving: 0xe67e22 },
   bossTarget:     { highlighted: 0xf1c40f, idle: 0x27ae60 },
 };
@@ -77,6 +79,7 @@ export class ObstacleRenderer {
   private bossTextureResolver: BossTextureResolver | null = null;
   private depth: number = GAMEPLAY_LAYERS.GAMEPLAY_OBJECTS;
   private filteredKeys = new Set<string>();
+  private universeId = '';
 
   constructor(scene: Phaser.Scene) {
     this.scene = scene;
@@ -94,6 +97,10 @@ export class ObstacleRenderer {
   setBossBlendMode(mode: number): void {
     this.bossBlendMode = mode;
     for (const img of this.bossImages.values()) img.setBlendMode(mode);
+  }
+
+  setUniverseId(uid: string): void {
+    this.universeId = uid;
   }
 
   /** Appelé par GameScene si l'obstacle texture runtime est disponible */
@@ -121,7 +128,7 @@ export class ObstacleRenderer {
   setDepth(depth: number): void {
     this.depth = depth;
     this.gfx.setDepth(depth);
-    for (const img of this.bossImages.values()) img.setDepth(depth + 1);
+    for (const img of this.bossImages.values()) img.setDepth(depth + 3);
     for (const img of this.obstaclePool) img.setDepth(depth + 1);
   }
 
@@ -143,6 +150,7 @@ export class ObstacleRenderer {
       const size = cs - pad * 2;
       const entityTextureKey = this.entityTextureResolver?.(e) ?? null;
       const hasEntityTexture = !!(entityTextureKey && this.scene.textures.exists(entityTextureKey));
+      const needsKombatHazardTreatment = this.universeId === 'kombat' && (e.type === 'fatalZone' || e.type === 'dangerZone');
 
       const isBossType = BOSS_ENTITY_TYPES.has(e.type);
       const bossKey = this.bossTextureResolver?.(e) ?? this.bossTextureKey;
@@ -170,20 +178,25 @@ export class ObstacleRenderer {
         seenBossIds.add(imgId);
         let img = this.bossImages.get(imgId);
         if (!img) {
-          img = this.scene.add.image(px, py, bossKey!).setDepth(this.depth + 1).setBlendMode(this.bossBlendMode);
+          img = this.scene.add.image(px, py, bossKey!).setDepth(this.depth + 3).setBlendMode(this.bossBlendMode);
           this.bossImages.set(imgId, img);
         }
         if (img.texture.key !== bossKey) img.setTexture(bossKey!);
         this.fitImageInCell(img, bossKey!, cs * this.bossIconScale(e));
-        img.setPosition(px, py).setVisible(true);
+        this.applyBossImageStyle(img, e);
+        img.setPosition(px, py).setAlpha(this.bossImageAlpha(e)).setVisible(true);
         if (e.type === 'witchMirror') {
           img.setAlpha(this.witchMirrorAlpha(e.state));
         }
       } else if (!isBossType && OBSTACLE_IMAGE_TYPES.has(e.type) && hasObstacleTexture) {
         // Rendu image pour obstacles physiques — glow + sprite poolé
         const alpha = this.entityAlpha(e);
-        this.gfx.fillStyle(color, e.type === 'blinkWall' ? 0.18 + alpha * 0.18 : 0.25);
-        this.gfx.fillCircle(px, py, cs * 0.43);
+        if (needsKombatHazardTreatment) {
+          this.drawKombatHazardTelegraph(e, px, py, size, color);
+        } else {
+          this.gfx.fillStyle(color, e.type === 'blinkWall' ? 0.18 + alpha * 0.18 : 0.25);
+          this.gfx.fillCircle(px, py, cs * 0.43);
+        }
         if (obsPoolIdx >= this.obstaclePool.length) {
           this.obstaclePool.push(
             this.scene.add.image(px, py, obstacleKey!).setDepth(this.depth + 1).setBlendMode(this.obstacleBlendMode),
@@ -191,7 +204,7 @@ export class ObstacleRenderer {
         }
         const img = this.obstaclePool[obsPoolIdx];
         img.setTexture(obstacleKey!).setPosition(px, py)
-          .setAlpha(alpha).setVisible(true);
+          .setAlpha(needsKombatHazardTreatment ? 1 : alpha).setVisible(true);
         this.fitImageInCell(img, obstacleKey!, cs * this.obstacleIconScale(e));
         if (e.type === 'blinkWall') {
           this.drawBlinkWallTelegraph(px, py, size, color, e.state);
@@ -228,6 +241,7 @@ export class ObstacleRenderer {
   }
 
   private obstacleIconScale(e: ExtraEntity): number {
+    if (this.universeId === 'kombat' && (e.type === 'fatalZone' || e.type === 'dangerZone')) return 2.55;
     return RUNTIME_OBSTACLE_ICON_SCALE_BY_TYPE[e.type] ?? DEFAULT_RUNTIME_OBSTACLE_ICON_SCALE;
   }
 
@@ -294,6 +308,19 @@ export class ObstacleRenderer {
         this.gfx.lineStyle(e.state === 'vulnerable' ? 3 : 2, e.state === 'attacking' ? 0x2b0000 : 0xffffff, 0.7);
         this.gfx.strokeRoundedRect(px - size / 2, py - size / 2, size, size, 4);
         if (e.type === 'witchMirror') this.drawWitchMirrorSymbol(px, py, size, e.state);
+        if (e.type === 'shadowNinja') this.drawShadowNinjaMark(px, py, size, e.state);
+        if (e.type === 'dragonGate') this.drawDragonGateMark(px, py, size, e.state);
+        break;
+      }
+
+      case 'dangerZone':
+      case 'fatalZone': {
+        if (this.universeId === 'kombat') {
+          this.drawKombatHazardTelegraph(e, px, py, size, color);
+          break;
+        }
+        this.gfx.fillStyle(color, 0.8);
+        this.gfx.fillRect(px - size / 2, py - size / 2, size, size);
         break;
       }
 
@@ -392,6 +419,81 @@ export class ObstacleRenderer {
       this.gfx.lineStyle(e.state === 'vulnerable' ? 4 : 2, e.state === 'vulnerable' ? 0xffffff : color, Math.min(1, alpha + 0.2));
       this.gfx.strokeCircle(px, py, size * 0.52);
       this.drawWitchMirrorSymbol(px, py, size, e.state);
+    } else if (e.type === 'shadowNinja') {
+      const real = e.state === 'real';
+      this.gfx.fillStyle(0x020812, real ? 0.50 : 0.34);
+      this.gfx.fillCircle(px, py, size * (real ? 1.02 : 0.82));
+      this.gfx.fillStyle(real ? 0x7cecff : 0x9aa5c7, real ? 0.46 : 0.24);
+      this.gfx.fillCircle(px, py, size * (real ? 0.96 : 0.78));
+      this.gfx.lineStyle(real ? 4 : 2, real ? 0xffffff : 0x9aa5c7, real ? 0.92 : 0.58);
+      this.gfx.strokeCircle(px, py, size * (real ? 0.62 : 0.54));
+      this.drawShadowNinjaMark(px, py, size, e.state);
+    } else if (e.type === 'dragonGate') {
+      const vulnerable = e.state === 'vulnerable';
+      const danger = e.state === 'danger';
+      const opening = e.state === 'opening';
+      const glowColor = vulnerable ? 0xfff07a : danger ? 0xff3b30 : opening ? 0xffc857 : 0xf05a24;
+      this.gfx.fillStyle(0x050000, 0.56);
+      this.gfx.fillCircle(px, py, size * 0.98);
+      this.gfx.fillStyle(glowColor, vulnerable ? 0.34 : danger ? 0.28 : 0.22);
+      this.gfx.fillCircle(px, py, size * (vulnerable ? 0.94 : 0.82));
+      this.gfx.lineStyle(vulnerable ? 4 : 3, vulnerable ? 0xffffff : glowColor, vulnerable ? 0.94 : 0.78);
+      this.gfx.strokeCircle(px, py, size * 0.62);
+      this.drawDragonGateMark(px, py, size, e.state);
+    }
+  }
+
+  private bossImageAlpha(e: ExtraEntity): number {
+    if (e.type === 'shadowNinja') return e.state === 'real' ? 1 : 0.76;
+    return 1;
+  }
+
+  private applyBossImageStyle(img: Phaser.GameObjects.Image, e: ExtraEntity): void {
+    img.clearTint();
+    if (e.type === 'shadowNinja' && e.state === 'real') {
+      img.setTint(0xd8fbff);
+    }
+  }
+
+  private drawKombatHazardTelegraph(e: ExtraEntity, px: number, py: number, size: number, color: number): void {
+    const half = size / 2;
+    const active = e.state === 'active';
+    const fill = active ? 0xff2a1f : 0xffb13b;
+    const stroke = active ? 0xffffff : 0xfff07a;
+    this.gfx.fillStyle(0x0a0000, 0.52);
+    this.gfx.fillRoundedRect(px - half - 2, py - half - 2, size + 4, size + 4, 4);
+    this.gfx.fillStyle(fill, active ? 0.42 : 0.30);
+    this.gfx.fillRoundedRect(px - half, py - half, size, size, 4);
+    this.gfx.lineStyle(active ? 3 : 2, stroke, active ? 0.86 : 0.74);
+    this.gfx.strokeRoundedRect(px - half - 1, py - half - 1, size + 2, size + 2, 4);
+    this.gfx.lineStyle(2, color, active ? 0.9 : 0.7);
+    this.gfx.lineBetween(px - half * 0.62, py, px + half * 0.62, py);
+    this.gfx.lineBetween(px, py - half * 0.62, px, py + half * 0.62);
+  }
+
+  private drawShadowNinjaMark(px: number, py: number, size: number, state: string): void {
+    const real = state === 'real';
+    const r = size * (real ? 0.34 : 0.28);
+    this.gfx.lineStyle(real ? 3 : 2, real ? 0xffffff : 0xc9d0d6, real ? 0.92 : 0.62);
+    this.gfx.lineBetween(px - r, py, px + r, py);
+    this.gfx.lineBetween(px, py - r, px, py + r);
+    if (real) {
+      this.gfx.lineStyle(2, 0x7cecff, 0.9);
+      this.gfx.strokeCircle(px, py, size * 0.42);
+    }
+  }
+
+  private drawDragonGateMark(px: number, py: number, size: number, state: string): void {
+    const vulnerable = state === 'vulnerable';
+    const danger = state === 'danger';
+    const color = vulnerable ? 0xffffff : danger ? 0xfff07a : 0xffc857;
+    const alpha = vulnerable ? 0.96 : 0.74;
+    const r = size * 0.38;
+    this.gfx.lineStyle(vulnerable ? 4 : 3, color, alpha);
+    this.gfx.strokeRect(px - r, py - r, r * 2, r * 2);
+    if (danger) {
+      this.gfx.lineBetween(px - r, py - r, px + r, py + r);
+      this.gfx.lineBetween(px + r, py - r, px - r, py + r);
     }
   }
 

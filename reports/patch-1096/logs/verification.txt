@@ -1,0 +1,27 @@
+PATCH 1096 - verification
+
+Commands
+- npm run check
+- PATCH1096_BASE_URL=http://127.0.0.1:5173/snake/ node reports/patch-1096/capture-targeted-screenshots.mjs
+
+Results
+- npm run check: OK
+  - tsc passed.
+  - vite build passed.
+  - Vite reported the existing large chunk warning.
+- Targeted screenshots: OK
+  - reports/patch-1096/screenshots/kombat_normal_after.png
+  - reports/patch-1096/screenshots/kombat_boss_after.png
+  - reports/patch-1096/screenshots/shinobi_boss_after.png
+
+Capture note
+- In Playwright/headless, passive waiting did not advance the Kombat boss phase reliably.
+- The capture script starts GameScene, then advances boss mechanics by deterministic tick calls before rendering:
+  - Kombat boss: 16 ticks to show the danger-zone phase.
+  - Shinobi boss: 28 ticks to show the real-shadow reveal phase.
+- This is capture-only instrumentation in reports/patch-1096 and does not change gameplay code.
+
+Visual checks from captures
+- Kombat normal: pickup has a bright/dark backplate, stronger white outline and yellow/white halo against the red board.
+- Kombat boss: board grid is visible, danger zones are bright, and the dragon gate boss is drawn above hazard sprites.
+- Shinobi boss: board is no longer black, shadow sprites are visible, and the real shadow is brighter in FRAPPE state.

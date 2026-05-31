@@ -22,6 +22,13 @@ type PickupImageProfile = Readonly<{
   offsetYCells?: number;
   haloScale?: number;
   ringScale?: number;
+  haloColor?: number;
+  coreColor?: number;
+  outlineColor?: number;
+  outlineAlpha?: number;
+  outlineWidthScale?: number;
+  backplateColor?: number;
+  backplateAlpha?: number;
 }>;
 
 const DEFAULT_IMAGE_PROFILE: PickupImageProfile = {
@@ -48,6 +55,18 @@ const PICKUP_IMAGE_PROFILES: Record<string, PickupImageProfile> = {
     offsetXCells: 0.02,
     offsetYCells: 0.04,
     haloScale: 1.08,
+  },
+  kombat: {
+    maxSizeScale: 2.6,
+    haloScale: 1.34,
+    ringScale: 1.22,
+    haloColor: 0xffd34a,
+    coreColor: 0xffffff,
+    outlineColor: 0xffffff,
+    outlineAlpha: 0.82,
+    outlineWidthScale: 0.11,
+    backplateColor: 0x140000,
+    backplateAlpha: 0.68,
   },
 };
 
@@ -156,19 +175,31 @@ export class PickupRenderer {
     const glowAlpha  = 0.22 + 0.08 * Math.max(0, pulse);
     const haloScale = profile.haloScale ?? 1;
     const ringScale = profile.ringScale ?? haloScale;
+    const haloColor = profile.haloColor ?? color;
+    const coreColor = profile.coreColor ?? color;
+    const outlineColor = profile.outlineColor ?? 0xffffff;
     for (const p of pickups) {
       const { px, py } = cellToPixel(layout, p.col, p.row);
 
+      if (profile.backplateColor !== undefined) {
+        this.gfx.fillStyle(profile.backplateColor, profile.backplateAlpha ?? 0.5);
+        this.gfx.fillCircle(px, py, cs * 0.72 * haloScale);
+      }
+
       // Outer ambient bloom (barely visible, gives a soft colored floor)
-      this.gfx.fillStyle(color, bloomAlpha);
+      this.gfx.fillStyle(haloColor, bloomAlpha + (profile.haloColor !== undefined ? 0.08 : 0));
       this.gfx.fillCircle(px, py, cs * (0.60 + 0.04 * pulse) * haloScale);
 
       // Inner glow — tight around the image
-      this.gfx.fillStyle(color, glowAlpha);
+      this.gfx.fillStyle(coreColor, glowAlpha + (profile.coreColor !== undefined ? 0.10 : 0));
       this.gfx.fillCircle(px, py, cs * (0.42 + 0.03 * pulse) * haloScale);
 
       // Thin white ring — minimal outline, separates gem from dark bg
-      this.gfx.lineStyle(Math.max(1, Math.floor(cs * 0.07)), 0xffffff, 0.28 + 0.08 * Math.max(0, pulse));
+      this.gfx.lineStyle(
+        Math.max(1, Math.floor(cs * (profile.outlineWidthScale ?? 0.07))),
+        outlineColor,
+        (profile.outlineAlpha ?? 0.28) + 0.08 * Math.max(0, pulse),
+      );
       this.gfx.strokeCircle(px, py, cs * 0.46 * ringScale);
     }
   }
