@@ -1,0 +1,127 @@
+{
+  "generatedAt": "2026-05-31",
+  "scope": "PATCH 1093 audit only",
+  "summary": {
+    "filesFound": 7,
+    "allFilesAre32x32Png": true,
+    "registryStatus": "All seven non-Castle secondary pickups are registered as pickupSecondary in src/assets/runtimeUniverseAssets.ts.",
+    "preloadStatus": "RuntimeAssetResolver preloads pickupSecondary for normal and boss levels.",
+    "renderRule": "PickupRenderer uses the secondary texture only for active pickup indexes where i % 2 === 1.",
+    "overallDecision": "Do not delete in PATCH 1093. Paperboy can actively display a secondary pickup; the other universes are wired but appear legacy-suspect because current mechanics usually expose only one active pickup."
+  },
+  "codeEvidence": [
+    {
+      "path": "src/assets/runtimeUniverseAssets.ts",
+      "evidence": "pickupSecondary is declared for sonic, streets, fighter, outrun, shinobi, kombat, and paperboy."
+    },
+    {
+      "path": "src/systems/RuntimeAssetResolver.ts",
+      "evidence": "ROLES_NORMAL and ROLES_BOSS both include pickupSecondary."
+    },
+    {
+      "path": "src/scenes/GameScene.ts",
+      "evidence": "GameScene resolves rtPickupSecondary and calls pickupRenderer.setSecondaryTextureKey(rtPickupSecondary)."
+    },
+    {
+      "path": "src/render/PickupRenderer.ts",
+      "evidence": "Secondary texture is selected only when the active pickup index is odd."
+    },
+    {
+      "path": "src/scenes/GameScene.ts",
+      "evidence": "getActivePickups returns one active pickup for Sonic, Shinobi, OutRun, and generic normal flows; Paperboy can combine the carried-paper pickup with delivery targets."
+    }
+  ],
+  "assets": [
+    {
+      "universe": "sonic",
+      "path": "public/assets/runtime/universes/sonic/pickup_secondary.png",
+      "dimensions": "32x32",
+      "sizeBytes": 195,
+      "used": "wired_but_rarely_displayed",
+      "usedBy": "RUNTIME_UNIVERSE_ASSETS pickupSecondary; PickupRenderer odd active pickup index",
+      "levelOrUniverse": "sonic_normal and sonic_boss preload path",
+      "actualDisplayAssessment": "SonicRingsMechanic returns one active chain pickup, so the secondary texture is unlikely to appear in current normal gameplay.",
+      "legacyProbable": "incertain",
+      "deletionRisk": "medium: deleting the file without registry cleanup can create load warnings; current visual risk appears low.",
+      "recommendation": "Keep temporarily; decide whether alternate Sonic pickups are still needed before regenerating or removing the registry binding."
+    },
+    {
+      "universe": "streets",
+      "path": "public/assets/runtime/universes/streets/pickup_secondary.png",
+      "dimensions": "32x32",
+      "sizeBytes": 217,
+      "used": "wired_but_rarely_displayed",
+      "usedBy": "RUNTIME_UNIVERSE_ASSETS pickupSecondary; generic PickupRenderer path",
+      "levelOrUniverse": "streets_normal and streets_boss preload path",
+      "actualDisplayAssessment": "Current Streets normal flow keeps a single generic pickup; boss flow is boss-managed.",
+      "legacyProbable": "oui_probable",
+      "deletionRisk": "medium if registry remains; low visible risk in current flow.",
+      "recommendation": "Keep temporarily; remove only together with registry/preload cleanup or regenerate if multi-pickup Streets design returns."
+    },
+    {
+      "universe": "fighter",
+      "path": "public/assets/runtime/universes/fighter/pickup_secondary.png",
+      "dimensions": "32x32",
+      "sizeBytes": 196,
+      "used": "wired_but_rarely_displayed",
+      "usedBy": "RUNTIME_UNIVERSE_ASSETS pickupSecondary; generic PickupRenderer path",
+      "levelOrUniverse": "fighter_normal and fighter_boss preload path",
+      "actualDisplayAssessment": "Current Fighter normal flow generally has one generic pickup; spar zones are extra entities, not secondary pickups.",
+      "legacyProbable": "oui_probable",
+      "deletionRisk": "medium if registry remains; low visible risk in current flow.",
+      "recommendation": "Keep temporarily; replace only if alternate pickup visuals are part of future Fighter mechanics."
+    },
+    {
+      "universe": "outrun",
+      "path": "public/assets/runtime/universes/outrun/pickup_secondary.png",
+      "dimensions": "32x32",
+      "sizeBytes": 199,
+      "used": "wired_but_not_normally_displayed",
+      "usedBy": "RUNTIME_UNIVERSE_ASSETS pickupSecondary; primary pickup later overridden by OpenMoji trophy in GameScene",
+      "levelOrUniverse": "outrun_normal and outrun_boss preload path",
+      "actualDisplayAssessment": "OutRunLaneMechanic returns one checkpoint pickup and GameScene overrides primary pickup art with a trophy SVG, making secondary display unlikely.",
+      "legacyProbable": "oui_probable",
+      "deletionRisk": "medium if registry remains; very low visible risk in current OutRun flow.",
+      "recommendation": "Keep temporarily; likely candidate for later cleanup after registry contract is simplified."
+    },
+    {
+      "universe": "shinobi",
+      "path": "public/assets/runtime/universes/shinobi/pickup_secondary.png",
+      "dimensions": "32x32",
+      "sizeBytes": 141,
+      "used": "wired_but_rarely_displayed",
+      "usedBy": "RUNTIME_UNIVERSE_ASSETS pickupSecondary; PickupRenderer odd active pickup index",
+      "levelOrUniverse": "shinobi_normal and shinobi_boss preload path",
+      "actualDisplayAssessment": "ShinobiFocusMechanic returns only the real target as a pickup; decoys render as focusTarget extra entities.",
+      "legacyProbable": "oui_probable",
+      "deletionRisk": "medium if registry remains; low visible risk in current flow.",
+      "recommendation": "Keep temporarily; focus Shinobi fix on primary shuriken contrast and boss render investigation."
+    },
+    {
+      "universe": "kombat",
+      "path": "public/assets/runtime/universes/kombat/pickup_secondary.png",
+      "dimensions": "32x32",
+      "sizeBytes": 218,
+      "used": "wired_but_rarely_displayed",
+      "usedBy": "RUNTIME_UNIVERSE_ASSETS pickupSecondary; generic PickupRenderer path",
+      "levelOrUniverse": "kombat_normal and kombat_boss preload path",
+      "actualDisplayAssessment": "Current Kombat normal flow uses one generic pickup; active P0 concerns the primary finish token, not the secondary file.",
+      "legacyProbable": "oui_probable",
+      "deletionRisk": "medium if registry remains; low visible risk in current flow.",
+      "recommendation": "Keep temporarily; do not spend first fix pass on this file."
+    },
+    {
+      "universe": "paperboy",
+      "path": "public/assets/runtime/universes/paperboy/pickup_secondary.png",
+      "dimensions": "32x32",
+      "sizeBytes": 216,
+      "used": "yes_active_when_multiple_pickups_exist",
+      "usedBy": "RUNTIME_UNIVERSE_ASSETS pickupSecondary; PaperboyDeliveryMechanic delivery pickups; PickupRenderer odd active pickup index",
+      "levelOrUniverse": "paperboy_normal and paperboy_boss preload path",
+      "actualDisplayAssessment": "Paperboy can render multiple active pickups after collecting paper: the base paper pickup plus active delivery targets. The odd-index target can use pickup_secondary.",
+      "legacyProbable": "non",
+      "deletionRisk": "high: can alter visible Paperboy delivery phases and still leaves registry preload references.",
+      "recommendation": "Regenerate or replace with a 256x256 Paperboy-appropriate secondary/delivery visual; keep until replaced."
+    }
+  ]
+}
