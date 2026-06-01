@@ -112,39 +112,39 @@ export class GameScene extends Phaser.Scene {
       preloadRuntimeAssets(this, uid, isBoss);
       if (uid === 'fighter') {
         if (!this.textures.exists(FIGHTER_OBSTACLE_NORMAL_KEY)) {
-          this.load.image(FIGHTER_OBSTACLE_NORMAL_KEY, 'assets/runtime/universes/fighter/new/05_obstacle.png');
+          this.load.image(FIGHTER_OBSTACLE_NORMAL_KEY, 'assets/runtime/universes/fighter/05_obstacle.png');
         }
       }
       if (uid === 'fighter' && isBoss) {
         if (!this.textures.exists(FIGHTER_BOSS_IDLE_KEY)) {
-          this.load.image(FIGHTER_BOSS_IDLE_KEY, 'assets/runtime/universes/fighter/new/01_boss_idle.png');
+          this.load.image(FIGHTER_BOSS_IDLE_KEY, 'assets/runtime/universes/fighter/01_boss_idle.png');
         }
         if (!this.textures.exists(FIGHTER_BOSS_ATTACK_KEY)) {
-          this.load.image(FIGHTER_BOSS_ATTACK_KEY, 'assets/runtime/universes/fighter/new/06_boss_attack.png');
+          this.load.image(FIGHTER_BOSS_ATTACK_KEY, 'assets/runtime/universes/fighter/06_boss_attack.png');
         }
       }
       if (uid === 'kombat' && isBoss) {
         if (!this.textures.exists(KOMBAT_BOSS_IDLE_KEY)) {
-          this.load.image(KOMBAT_BOSS_IDLE_KEY, 'assets/runtime/universes/kombat/new/01_boss_idle.png');
+          this.load.image(KOMBAT_BOSS_IDLE_KEY, 'assets/runtime/universes/kombat/01_boss_idle.png');
         }
         if (!this.textures.exists(KOMBAT_BOSS_ATTACK_KEY)) {
-          this.load.image(KOMBAT_BOSS_ATTACK_KEY, 'assets/runtime/universes/kombat/new/06_boss_attack.png');
+          this.load.image(KOMBAT_BOSS_ATTACK_KEY, 'assets/runtime/universes/kombat/06_boss_attack.png');
         }
       }
       if (uid === 'outrun' && isBoss) {
         if (!this.textures.exists(OUTRUN_BOSS_IDLE_KEY)) {
-          this.load.image(OUTRUN_BOSS_IDLE_KEY, 'assets/runtime/universes/outrun/new/05_boss_idle.png');
+          this.load.image(OUTRUN_BOSS_IDLE_KEY, 'assets/runtime/universes/outrun/05_boss_idle.png');
         }
         if (!this.textures.exists(OUTRUN_BOSS_ATTACK_KEY)) {
-          this.load.image(OUTRUN_BOSS_ATTACK_KEY, 'assets/runtime/universes/outrun/new/06_boss_attack.png');
+          this.load.image(OUTRUN_BOSS_ATTACK_KEY, 'assets/runtime/universes/outrun/06_boss_attack.png');
         }
       }
       if (uid === 'streets' && isBoss) {
         if (!this.textures.exists(STREETS_BOSS_IDLE_KEY)) {
-          this.load.image(STREETS_BOSS_IDLE_KEY, 'assets/runtime/universes/streets/new/01_boss_idle.png');
+          this.load.image(STREETS_BOSS_IDLE_KEY, 'assets/runtime/universes/streets/01_boss_idle.png');
         }
         if (!this.textures.exists(STREETS_BOSS_ATTACK_KEY)) {
-          this.load.image(STREETS_BOSS_ATTACK_KEY, 'assets/runtime/universes/streets/new/06_boss_attack.png');
+          this.load.image(STREETS_BOSS_ATTACK_KEY, 'assets/runtime/universes/streets/06_boss_attack.png');
         }
       }
     }
