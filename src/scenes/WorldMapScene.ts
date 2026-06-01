@@ -271,7 +271,7 @@ export class WorldMapScene extends Phaser.Scene {
 
     this.mapContainer.setScale(this.currentZoom);
     this.updateNodeScreenScale();
-    // Always center on first node (portrait or landscape); user pans to explore.
+    // Initial center — overridden below once focusNode is resolved.
     this.centerOnNode(MAP_NODES[0]?.id);
     this.clampContainer();
 
@@ -310,7 +310,11 @@ export class WorldMapScene extends Phaser.Scene {
     const focusNode = this.focusLevelId
       ? (MAP_NODES.find(n => n.levelId === this.focusLevelId) ?? MAP_NODES.find(node => saveData.unlockedNodes.includes(node.id)) ?? MAP_NODES[0])
       : (MAP_NODES.find(node => saveData.unlockedNodes.includes(node.id)) ?? MAP_NODES[0]);
-    if (focusNode) this.selectNode(focusNode.levelId, focusNode.id, saveData.unlockedNodes.includes(focusNode.id));
+    if (focusNode) {
+      this.selectNode(focusNode.levelId, focusNode.id, saveData.unlockedNodes.includes(focusNode.id));
+      this.centerOnNode(focusNode.id);
+      this.clampContainer();
+    }
 
     this.cameras.main.fadeIn(280, 0, 0, 0);
     this.events.once(Phaser.Scenes.Events.SHUTDOWN, () => this.doShutdown());
