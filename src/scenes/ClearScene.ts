@@ -1,5 +1,5 @@
 import Phaser from 'phaser';
-import { UNIVERSE_RESULT_SCREEN_ASSETS, SCENES } from '../config/constants';
+import { UNIVERSE_RESULT_SCREEN_ASSETS, SCENES, SCORE_VALUES } from '../config/constants';
 import { getLevelById, resolveLevelId } from '../config/levels';
 import { UNIVERSES } from '../config/universes';
 import { MAP_NODES } from '../config/mapNodes';
@@ -14,6 +14,8 @@ export interface ClearData {
   previousBest?: number;
   isNewRecord?: boolean;
   timeBonus?: number;
+  pickupCount?: number;
+  bossHitCount?: number;
 }
 
 export class ClearScene extends Phaser.Scene {
@@ -195,13 +197,24 @@ export class ClearScene extends Phaser.Scene {
     const isNewRecord = data?.isNewRecord ?? (score > previousBest && score === bestScore);
     const timeBonus = Math.max(0, Math.floor(data?.timeBonus ?? 0));
     const hasTimeBonus = timeBonus > 0;
+    const pickupCount = Math.max(0, data?.pickupCount ?? 0);
+    const bossHitCount = Math.max(0, data?.bossHitCount ?? 0);
+    const isBossLevel = level?.type === 'boss';
+    const breakdownScore = isBossLevel
+      ? bossHitCount * SCORE_VALUES.BOSS_HIT
+      : pickupCount * SCORE_VALUES.PICKUP;
+    const breakdownLabel = isBossLevel
+      ? (bossHitCount > 0 ? `BOSS +${breakdownScore}` : '')
+      : (pickupCount > 0 ? `PICKUPS +${breakdownScore}` : '');
+    const hasBreakdown = breakdownLabel.length > 0;
     const scoreY = H * (isShortPortrait ? 0.47 : 0.49);
     const scoreFont = Math.min(16, Math.floor(W * 0.039));
+    const breakdownFont = Math.min(12, Math.floor(W * 0.03));
     const timeBonusFont = Math.min(12, Math.floor(W * 0.03));
     const recordFont = Math.min(12, Math.floor(W * 0.03));
     const scorePanelW = Math.min(340, W * 0.78);
     const lineH = 22;
-    const lineCount = 2 + (hasTimeBonus ? 1 : 0) + (isNewRecord ? 1 : 0);
+    const lineCount = 2 + (hasBreakdown ? 1 : 0) + (hasTimeBonus ? 1 : 0) + (isNewRecord ? 1 : 0);
     const scorePanelH = lineCount * lineH + 14;
     const lineStart = scoreY - ((lineCount - 1) / 2) * lineH;
     const scoreMaxTextW = scorePanelW - 24;
@@ -211,7 +224,16 @@ export class ClearScene extends Phaser.Scene {
     scorePanel.lineStyle(1, accentHex, 0.46);
     scorePanel.strokeRoundedRect(W / 2 - scorePanelW / 2, scoreY - scorePanelH / 2, scorePanelW, scorePanelH, 6);
     let li = 0;
-    addFittedText(W / 2, lineStart + li++ * lineH, `SCORE : ${score}`, scoreFont, scoreMaxTextW, {
+    if (hasBreakdown) {
+      addFittedText(W / 2, lineStart + li++ * lineH, breakdownLabel, breakdownFont, scoreMaxTextW, {
+        fontFamily: UI_FONT,
+        fontStyle: '700',
+        color: '#aaaacc',
+        stroke: '#000000',
+        strokeThickness: 1,
+      });
+    }
+    addFittedText(W / 2, lineStart + li++ * lineH, `TOTAL : ${score}`, scoreFont, scoreMaxTextW, {
       fontFamily: UI_FONT,
       fontStyle: '800',
       color: '#ffffff',

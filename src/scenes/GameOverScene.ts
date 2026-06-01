@@ -10,6 +10,8 @@ export interface GameOverData {
   levelId: string;
   score?: number;
   bestScore?: number;
+  pickupCount?: number;
+  bossHitCount?: number;
 }
 
 export class GameOverScene extends Phaser.Scene {
@@ -134,7 +136,7 @@ export class GameOverScene extends Phaser.Scene {
     scorePanel.fillRoundedRect(W / 2 - scorePanelW / 2, scoreY - scorePanelH / 2, scorePanelW, scorePanelH, 6);
     scorePanel.lineStyle(1, isCastle ? 0xf6c45c : 0xe74c3c, 0.42);
     scorePanel.strokeRoundedRect(W / 2 - scorePanelW / 2, scoreY - scorePanelH / 2, scorePanelW, scorePanelH, 6);
-    addFittedText(W / 2, scoreY - lineH / 2, `SCORE : ${score}`, scoreFont, scoreMaxTextW, {
+    addFittedText(W / 2, scoreY - lineH / 2, `TOTAL : ${score}`, scoreFont, scoreMaxTextW, {
       fontFamily: UI_FONT,
       fontStyle: '800',
       color: '#ffffff',

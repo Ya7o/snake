@@ -59,6 +59,8 @@ export class GameScene extends Phaser.Scene {
   private walls: Cell[] = [];
   private score = 0;
   private runtimeScore = 0;
+  private pickupCount = 0;
+  private bossHitCount = 0;
   private tickCount = 0;
   private tickAccumulator = 0;
   private gameOver = false;
@@ -332,6 +334,8 @@ export class GameScene extends Phaser.Scene {
     this.walls = [];
     this.score = 0;
     this.runtimeScore = 0;
+    this.pickupCount = 0;
+    this.bossHitCount = 0;
     this.tickCount = 0;
     this.tickAccumulator = 0;
     this.gameOver = false;
@@ -494,6 +498,7 @@ export class GameScene extends Phaser.Scene {
     if (result.ate) {
       AudioSystem.pickup();
       this.runtimeScore += SCORE_VALUES.PICKUP;
+      this.pickupCount += 1;
       this.spawnScorePopup(`+${SCORE_VALUES.PICKUP}`, result.head.col, result.head.row);
       const eaten = result.head;
       const mr = this.mechanic.onPickupCollected(eaten);
@@ -626,6 +631,7 @@ export class GameScene extends Phaser.Scene {
     const hitResult = boss.onWeakPointHit(weakPoint);
     if (!hitResult.hit) return false;
     this.runtimeScore += SCORE_VALUES.BOSS_HIT;
+    this.bossHitCount += 1;
     this.spawnScorePopup(`+${SCORE_VALUES.BOSS_HIT}`, head.col, head.row);
     flashScreen(this, 0xffffff, 0.32, 160, GAMEPLAY_LAYERS.SCREEN_FX);
     this.cameras.main.shake(110, 0.006);
@@ -702,6 +708,8 @@ export class GameScene extends Phaser.Scene {
           bestScore: bestResult.bestScore,
           previousBest: bestResult.previousBest,
           isNewRecord: bestResult.isNewRecord,
+          pickupCount: this.pickupCount,
+          bossHitCount: this.bossHitCount,
         });
       });
     });
@@ -736,6 +744,8 @@ export class GameScene extends Phaser.Scene {
           previousBest: bestResult.previousBest,
           isNewRecord: bestResult.isNewRecord,
           timeBonus,
+          pickupCount: this.pickupCount,
+          bossHitCount: this.bossHitCount,
         });
       });
     });

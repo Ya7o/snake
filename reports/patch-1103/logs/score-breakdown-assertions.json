@@ -1,0 +1,59 @@
+{
+  "patch": "1103",
+  "assertions": [
+    {
+      "id": "breakdown_normal_clear",
+      "description": "Clear normal affiche PICKUPS +N si pickupCount > 0",
+      "condition": "hasBreakdown = (pickupCount > 0 && !isBossLevel) → breakdownLabel = 'PICKUPS +1000'",
+      "status": "verified_by_code"
+    },
+    {
+      "id": "breakdown_boss_clear",
+      "description": "Boss clear affiche BOSS +N si bossHitCount > 0",
+      "condition": "hasBreakdown = (bossHitCount > 0 && isBossLevel) → breakdownLabel = 'BOSS +750'",
+      "status": "verified_by_code"
+    },
+    {
+      "id": "no_breakdown_zero_counts",
+      "description": "Pas de ligne breakdown si pickupCount === 0 et bossHitCount === 0",
+      "condition": "breakdownLabel.length === 0 → hasBreakdown = false → lineCount non incrémenté",
+      "status": "verified_by_code"
+    },
+    {
+      "id": "total_coherent",
+      "description": "TOTAL = runtimeScore = pickups + clear_bonus + boss_hits + time_bonus",
+      "condition": "ClearScene affiche data.score = this.runtimeScore (GameScene) qui inclut tout",
+      "status": "verified_by_code"
+    },
+    {
+      "id": "best_score_not_modified",
+      "description": "Best score non écrasé par score inférieur",
+      "condition": "SaveSystem.recordBestScore() inchangé — isNewRecord = score > previousBest uniquement",
+      "status": "verified_by_code"
+    },
+    {
+      "id": "replay_reset_counters",
+      "description": "pickupCount et bossHitCount remis à 0 au replay",
+      "condition": "GameScene.create() : this.pickupCount = 0; this.bossHitCount = 0;",
+      "status": "verified_by_code"
+    },
+    {
+      "id": "gameover_total_label",
+      "description": "GameOver affiche TOTAL (pas SCORE) pour cohérence terminologie",
+      "condition": "GameOverScene.ts : 'TOTAL : ${score}' (renommé depuis 'SCORE :')",
+      "status": "verified_by_code"
+    },
+    {
+      "id": "time_bonus_preserved",
+      "description": "+X TEMPS toujours affiché sur Clear normal si timeBonus > 0",
+      "condition": "hasTimeBonus guard inchangé dans ClearScene",
+      "status": "verified_by_code"
+    },
+    {
+      "id": "buttons_preserved",
+      "description": "Boutons CONTINUER / REJOUER / CARTE inchangés",
+      "condition": "Aucune modification des blocs boutons dans ClearScene/GameOverScene",
+      "status": "verified_by_code"
+    }
+  ]
+}
