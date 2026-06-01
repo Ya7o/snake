@@ -355,7 +355,7 @@ export class ClearScene extends Phaser.Scene {
       onClick: () => {
         this.cameras.main.fadeOut(200, 0, 0, 0);
         this.cameras.main.once('camerafadeoutcomplete', () => {
-          this.scene.start(SCENES.WORLD_MAP);
+          this.scene.start(SCENES.WORLD_MAP, { levelId: this.levelId });
         });
       },
     });

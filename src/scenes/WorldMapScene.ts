@@ -69,8 +69,14 @@ export class WorldMapScene extends Phaser.Scene {
   // 908 debug
   private debugMapOverlay: Phaser.GameObjects.Text | null = null;
 
+  private focusLevelId: string | null = null;
+
   constructor() {
     super(SCENES.WORLD_MAP);
+  }
+
+  init(data: { levelId?: string }): void {
+    this.focusLevelId = data?.levelId ?? null;
   }
 
   preload(): void {
@@ -301,8 +307,10 @@ export class WorldMapScene extends Phaser.Scene {
       align: 'center',
     }).setOrigin(0.5, 0.5).setDepth(7).setAlpha(0.75).setVisible(false);
 
-    const firstUnlocked = MAP_NODES.find(node => saveData.unlockedNodes.includes(node.id)) ?? MAP_NODES[0];
-    if (firstUnlocked) this.selectNode(firstUnlocked.levelId, firstUnlocked.id, saveData.unlockedNodes.includes(firstUnlocked.id));
+    const focusNode = this.focusLevelId
+      ? (MAP_NODES.find(n => n.levelId === this.focusLevelId) ?? MAP_NODES.find(node => saveData.unlockedNodes.includes(node.id)) ?? MAP_NODES[0])
+      : (MAP_NODES.find(node => saveData.unlockedNodes.includes(node.id)) ?? MAP_NODES[0]);
+    if (focusNode) this.selectNode(focusNode.levelId, focusNode.id, saveData.unlockedNodes.includes(focusNode.id));
 
     this.cameras.main.fadeIn(280, 0, 0, 0);
     this.events.once(Phaser.Scenes.Events.SHUTDOWN, () => this.doShutdown());
