@@ -19,21 +19,16 @@ const OBSTACLE_IMAGE_TYPES = new Set([
 ]);
 
 const OPENMOJI_GAMEPLAY_ICON_SCALE = 3.0;   // Castle/Fighter OpenMoji entities — clearly overflow cells
-const DEFAULT_RUNTIME_OBSTACLE_ICON_SCALE = 2.2;
-const DEFAULT_RUNTIME_BOSS_ICON_SCALE = 2.2;
-
-const RUNTIME_OBSTACLE_ICON_SCALE_BY_TYPE: Record<string, number> = {
-  trafficBlock: 2.5,   // Outrun car — extra scale for large transparent margins
-  routeObstacle: 2.2,
-};
+const DEFAULT_RUNTIME_OBSTACLE_ICON_SCALE = 2.5;
+const DEFAULT_RUNTIME_BOSS_ICON_SCALE = 2.5;
 
 const RUNTIME_BOSS_ICON_SCALE_BY_TYPE: Record<string, number> = {
-  crimeLord: 2.3,
-  finalChallenger: 2.2,
-  shadowNinja: 2.45,
-  dragonGate: 2.45,
-  turboRival: 2.5,
-  chaosObstacle: 2.0,
+  // Narrow standing silhouettes read smaller than wide bosses at the same
+  // frame scale, so give them a little more visual mass.
+  shadowNinja: 3.0,
+  crimeLord: 3.0,
+  loopSerpent: 2.8,
+  chaosObstacle: 2.75,
 };
 
 type EntityTextureResolver = (entity: ExtraEntity) => string | null;
@@ -41,7 +36,7 @@ type BossTextureResolver = (entity: ExtraEntity) => string | null;
 
 const ENTITY_COLORS: Record<string, Record<string, number>> = {
   blinkWall:      { ghost: 0x4a235a, warning: 0xf39c12, active: 0xe74c3c },
-  chainRing:      { active: 0xf9ca24, inactive: 0x5d4e00 },
+  chainRing:      { active: 0xf9ca24, inactive: 0x4a4a7a },
   crowdBlocker:   { static: 0xe67e22, moving: 0xff6b35, warning: 0xf39c12, charging: 0xe74c3c, danger: 0xc0392b },
   sparZone:       { static: 0xc0392b },
   chargeGlow:     { ready: 0xf39c12 },
@@ -241,8 +236,7 @@ export class ObstacleRenderer {
   }
 
   private obstacleIconScale(e: ExtraEntity): number {
-    if (this.universeId === 'kombat' && (e.type === 'fatalZone' || e.type === 'dangerZone')) return 2.55;
-    return RUNTIME_OBSTACLE_ICON_SCALE_BY_TYPE[e.type] ?? DEFAULT_RUNTIME_OBSTACLE_ICON_SCALE;
+    return DEFAULT_RUNTIME_OBSTACLE_ICON_SCALE;
   }
 
   private bossIconScale(e: ExtraEntity): number {
