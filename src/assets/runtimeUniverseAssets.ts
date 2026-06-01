@@ -2,51 +2,81 @@
 // Runtime gameplay asset registry.
 // All non-Castle gameplay assets should be resolved from public/assets/runtime/universes.
 
-export type RuntimeAssetRole = "pickup" | "obstacle" | "boss";
+export type RuntimeAssetRole =
+  | "pickup"
+  | "pickupSecondary"
+  | "obstacle"
+  | "obstacleDanger"
+  | "boss"
+  | "bossAttack";
 
 export type UniverseRuntimeAssetSet = {
   pickup: string;
+  pickupSecondary: string;
   obstacle: string;
+  obstacleDanger: string;
   boss: string;
+  bossAttack: string;
 };
 
 const publicAsset = (path: string): string => `${import.meta.env.BASE_URL}${path}`;
 
 export const RUNTIME_UNIVERSE_ASSETS: Record<string, UniverseRuntimeAssetSet> = {
   sonic: {
-    pickup: publicAsset("assets/runtime/universes/sonic/pickup_ring.png"),
-    obstacle: publicAsset("assets/runtime/universes/sonic/obstacle_bumper.png"),
-    boss: publicAsset("assets/runtime/universes/sonic/boss_loop_serpent.png"),
+    pickup: publicAsset("assets/runtime/universes/sonic/new/01_pickup_object.png"),
+    pickupSecondary: publicAsset("assets/runtime/universes/sonic/new/03_pickup_object_2.png"),
+    obstacle: publicAsset("assets/runtime/universes/sonic/new/04_obstacle.png"),
+    obstacleDanger: publicAsset("assets/runtime/universes/sonic/new/05_obstacle_danger.png"),
+    boss: publicAsset("assets/runtime/universes/sonic/new/02_boss_idle.png"),
+    bossAttack: publicAsset("assets/runtime/universes/sonic/new/06_boss_attack.png"),
   },
   streets: {
-    pickup: publicAsset("assets/runtime/universes/streets/pickup_street_bonus.png"),
-    obstacle: publicAsset("assets/runtime/universes/streets/obstacle_crowd.png"),
-    boss: publicAsset("assets/runtime/universes/streets/boss_idle.png"),
+    pickup: publicAsset("assets/runtime/universes/streets/new/02_pickup_object.png"),
+    pickupSecondary: publicAsset("assets/runtime/universes/streets/new/03_pickup_object_2.png"),
+    obstacle: publicAsset("assets/runtime/universes/streets/new/04_obstacle.png"),
+    obstacleDanger: publicAsset("assets/runtime/universes/streets/new/05_obstacle_danger.png"),
+    boss: publicAsset("assets/runtime/universes/streets/new/01_boss_idle.png"),
+    bossAttack: publicAsset("assets/runtime/universes/streets/new/06_boss_attack.png"),
   },
   fighter: {
-    pickup: publicAsset("assets/runtime/universes/fighter/test1/sf2_pickup_energy.png"),
-    obstacle: publicAsset("assets/runtime/universes/fighter/test1/sf2_obstacle_boss.png"),
-    boss: publicAsset("assets/runtime/universes/fighter/test1/sf2_boss_idle.png"),
+    pickup: publicAsset("assets/runtime/universes/fighter/new/03_pickup_object.png"),
+    pickupSecondary: publicAsset("assets/runtime/universes/fighter/new/04_pickup_object_2.png"),
+    obstacle: publicAsset("assets/runtime/universes/fighter/new/05_obstacle.png"),
+    obstacleDanger: publicAsset("assets/runtime/universes/fighter/new/02_obstacle_danger.png"),
+    boss: publicAsset("assets/runtime/universes/fighter/new/01_boss_idle.png"),
+    bossAttack: publicAsset("assets/runtime/universes/fighter/new/06_boss_attack.png"),
   },
   outrun: {
-    pickup: publicAsset("assets/runtime/universes/outrun/pickup_checkpoint.png"),
-    obstacle: publicAsset("assets/runtime/universes/outrun/obstacle_car.png"),
-    boss: publicAsset("assets/runtime/universes/outrun/boss_idle.png"),
+    pickup: publicAsset("assets/runtime/universes/outrun/new/01_pickup_object.png"),
+    pickupSecondary: publicAsset("assets/runtime/universes/outrun/new/02_pickup_object_2.png"),
+    obstacle: publicAsset("assets/runtime/universes/outrun/new/03_obstacle.png"),
+    obstacleDanger: publicAsset("assets/runtime/universes/outrun/new/04_obstacle_danger.png"),
+    boss: publicAsset("assets/runtime/universes/outrun/new/05_boss_idle.png"),
+    bossAttack: publicAsset("assets/runtime/universes/outrun/new/06_boss_attack.png"),
   },
   shinobi: {
-    pickup: publicAsset("assets/runtime/universes/shinobi/pickup_shuriken.png"),
-    obstacle: publicAsset("assets/runtime/universes/shinobi/obstacle_decoy.png"),
-    boss: publicAsset("assets/runtime/universes/shinobi/boss_shadow_ninja.png"),
+    pickup: publicAsset("assets/runtime/universes/shinobi/new/02_pickup_object.png"),
+    pickupSecondary: publicAsset("assets/runtime/universes/shinobi/new/03_pickup_object_2.png"),
+    obstacle: publicAsset("assets/runtime/universes/shinobi/new/04_obstacle.png"),
+    obstacleDanger: publicAsset("assets/runtime/universes/shinobi/new/05_obstacle_danger.png"),
+    boss: publicAsset("assets/runtime/universes/shinobi/new/01_boss_idle.png"),
+    bossAttack: publicAsset("assets/runtime/universes/shinobi/new/06_boss_attack.png"),
   },
   kombat: {
-    pickup: publicAsset("assets/runtime/universes/kombat/pickup_finish_token.png"),
-    obstacle: publicAsset("assets/runtime/universes/kombat/obstacle_fatal_zone.png"),
-    boss: publicAsset("assets/runtime/universes/kombat/boss_idle.png"),
+    pickup: publicAsset("assets/runtime/universes/kombat/new/02_pickup_object.png"),
+    pickupSecondary: publicAsset("assets/runtime/universes/kombat/new/03_pickup_object_2.png"),
+    obstacle: publicAsset("assets/runtime/universes/kombat/new/04_obstacle.png"),
+    obstacleDanger: publicAsset("assets/runtime/universes/kombat/new/05_obstacle_danger.png"),
+    boss: publicAsset("assets/runtime/universes/kombat/new/01_boss_idle.png"),
+    bossAttack: publicAsset("assets/runtime/universes/kombat/new/06_boss_attack.png"),
   },
   paperboy: {
-    pickup: publicAsset("assets/runtime/universes/paperboy/pickup_newspaper.png"),
-    obstacle: publicAsset("assets/runtime/universes/paperboy/obstacle_dog.png"),
-    boss: publicAsset("assets/runtime/universes/paperboy/boss_neighborhood_chaos.png"),
+    pickup: publicAsset("assets/runtime/universes/paperboy/new/02_pickup_object.png"),
+    pickupSecondary: publicAsset("assets/runtime/universes/paperboy/new/03_pickup_object_2.png"),
+    obstacle: publicAsset("assets/runtime/universes/paperboy/new/04_obstacle.png"),
+    obstacleDanger: publicAsset("assets/runtime/universes/paperboy/new/05_obstacle_danger.png"),
+    boss: publicAsset("assets/runtime/universes/paperboy/new/01_boss_idle.png"),
+    bossAttack: publicAsset("assets/runtime/universes/paperboy/new/06_boss_attack.png"),
   },
 };
 
