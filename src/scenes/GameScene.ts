@@ -419,12 +419,15 @@ export class GameScene extends Phaser.Scene {
   private computeActiveGridLayout(reference: GridLayout, cols: number, rows: number): GridLayout {
     const referenceWidth = getCellWidth(reference) * reference.cols;
     const referenceHeight = getCellHeight(reference) * reference.rows;
+    const cellSize = Math.min(referenceWidth / cols, referenceHeight / rows);
+    const gridWidth = cellSize * cols;
+    const gridHeight = cellSize * rows;
     return {
-      x: reference.x,
-      y: reference.y,
-      cellSize: reference.cellSize,
-      cellWidth: referenceWidth / cols,
-      cellHeight: referenceHeight / rows,
+      x: reference.x + (referenceWidth - gridWidth) / 2,
+      y: reference.y + (referenceHeight - gridHeight) / 2,
+      cellSize,
+      cellWidth: cellSize,
+      cellHeight: cellSize,
       cols,
       rows,
     };

@@ -32,41 +32,16 @@ type PickupImageProfile = Readonly<{
 }>;
 
 const DEFAULT_IMAGE_PROFILE: PickupImageProfile = {
-  maxSizeScale: 2.5,
+  maxSizeScale: 2.8,
+  offsetYCells: -0.04,
+  haloScale: 1.18,
+  ringScale: 1.12,
 };
 
 const PICKUP_IMAGE_PROFILES: Record<string, PickupImageProfile> = {
   // Castle OpenMoji SVGs — clearly overflow cells
   castle: {
     maxSizeScale: 2.5,
-  },
-  // OutRun uses a smaller board and a tall checkpoint beacon, so it needs
-  // extra draw room to read like an icon instead of a thin stripe.
-  outrun: {
-    maxSizeScale: 2.8,
-    offsetYCells: -0.04,
-    haloScale: 1.18,
-    ringScale: 1.12,
-  },
-  // The shuriken PNG is optically top-left heavy after trimming stray pixels.
-  // A tiny runtime offset keeps the icon seated in the halo on mobile.
-  shinobi: {
-    maxSizeScale: 2.5,
-    offsetXCells: 0.02,
-    offsetYCells: 0.04,
-    haloScale: 1.08,
-  },
-  kombat: {
-    maxSizeScale: 2.6,
-    haloScale: 1.34,
-    ringScale: 1.22,
-    haloColor: 0xffd34a,
-    coreColor: 0xffffff,
-    outlineColor: 0xffffff,
-    outlineAlpha: 0.82,
-    outlineWidthScale: 0.11,
-    backplateColor: 0x140000,
-    backplateAlpha: 0.68,
   },
 };
 

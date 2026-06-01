@@ -150,7 +150,7 @@ export class ObstacleRenderer {
       const isBossType = BOSS_ENTITY_TYPES.has(e.type);
       const bossKey = this.bossTextureResolver?.(e) ?? this.bossTextureKey;
       const hasBossTexture = !!(bossKey && this.scene.textures.exists(bossKey));
-      if (e.type === 'turboZone') {
+      if (e.type === 'turboZone' && !hasEntityTexture) {
         this.drawTurboZone(px, py, size, color);
       } else if (hasEntityTexture) {
         const alpha = this.entityAlpha(e);
