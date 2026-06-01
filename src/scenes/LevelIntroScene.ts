@@ -208,8 +208,10 @@ export class LevelIntroScene extends Phaser.Scene {
       }).setOrigin(0.5, 0).setDepth(10);
       textY += H < 720 ? 18 : 22;
 
-      // Hint
-      const hintMaxLines = textY + bodySize * 3 + 10 <= contentBottomY ? 3 : 2;
+      // Hint — reserve space below for the BEST score label so they never overlap
+      const bestFontSize = Math.max(10, Math.min(12, Math.floor(W * 0.027)));
+      const hintMaxY = contentBottomY - bestFontSize - 10;
+      const hintMaxLines = textY + bodySize * 3 + 10 <= hintMaxY ? 3 : 2;
       const hintTxt = this.add.text(centerX, textY, level.introHint, {
         fontFamily: 'Arial, sans-serif',
         fontSize: `${bodySize}px`,
@@ -221,9 +223,12 @@ export class LevelIntroScene extends Phaser.Scene {
         wordWrap: { width: panelW - 40, useAdvancedWrap: true },
       }).setOrigin(0.5, 0).setDepth(10);
       hintTxt.setMaxLines(hintMaxLines);
-      if (hintTxt.getBounds().bottom > contentBottomY) {
+      if (hintTxt.getBounds().bottom > hintMaxY) {
         hintTxt.setFontSize(Math.max(11, bodySize - 1));
         hintTxt.setMaxLines(2);
+        if (hintTxt.getBounds().bottom > hintMaxY) {
+          hintTxt.setMaxLines(1);
+        }
       }
     }
 
