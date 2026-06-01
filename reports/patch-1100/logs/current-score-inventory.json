@@ -1,0 +1,106 @@
+{
+  "audit_date": "2026-06-01",
+  "patch": "1100",
+  "score_variables": {
+    "this.score": {
+      "type": "gameplay_progress",
+      "purpose": "Tracks pickups for quota/clear check. Passed to mechanic context.",
+      "reset": "GameScene.create() → this.score = 0",
+      "displayed_in_hud": true,
+      "format": "X/quota (normal) or HP X/maxHp (boss)"
+    },
+    "this.runtimeScore": {
+      "type": "display_score",
+      "purpose": "Leaderboard/best score. Includes pickups + bonuses + clears.",
+      "reset": "GameScene.create() → this.runtimeScore = 0",
+      "displayed_in_hud": false,
+      "displayed_at": ["ClearScene", "GameOverScene"]
+    }
+  },
+  "score_events": [
+    {
+      "event": "pickup_collected_normal",
+      "runtime_delta": 100,
+      "progress_delta": 1,
+      "source_file": "src/scenes/GameScene.ts",
+      "source_line": 497,
+      "constant": "SCORE_VALUES.PICKUP"
+    },
+    {
+      "event": "pickup_collected_fighter_charge",
+      "runtime_delta": 100,
+      "progress_delta": 2,
+      "source_file": "src/mechanics/FighterChargeMechanic.ts",
+      "note": "progress counts double for charge move"
+    },
+    {
+      "event": "paperboy_pickup_paper",
+      "runtime_delta": 100,
+      "progress_delta": 0,
+      "source_file": "src/mechanics/PaperboyDeliveryMechanic.ts",
+      "note": "no progress on pickup, only on delivery"
+    },
+    {
+      "event": "paperboy_delivery_complete",
+      "runtime_delta": 100,
+      "progress_delta": 1,
+      "source_file": "src/mechanics/PaperboyDeliveryMechanic.ts",
+      "note": "ate=true on delivery cell triggers the +100 PICKUP + progress +1"
+    },
+    {
+      "event": "boss_weak_point_hit",
+      "runtime_delta": 250,
+      "progress_delta": 0,
+      "source_file": "src/scenes/GameScene.ts",
+      "source_line": 628,
+      "constant": "SCORE_VALUES.BOSS_HIT"
+    },
+    {
+      "event": "stage_clear",
+      "runtime_delta": 500,
+      "progress_delta": 0,
+      "source_file": "src/scenes/GameScene.ts",
+      "source_line": 690,
+      "constant": "SCORE_VALUES.STAGE_CLEAR"
+    },
+    {
+      "event": "boss_clear",
+      "runtime_delta": 1000,
+      "progress_delta": 0,
+      "source_file": "src/scenes/GameScene.ts",
+      "source_line": 690,
+      "constant": "SCORE_VALUES.BOSS_CLEAR"
+    },
+    {
+      "event": "time_bonus_normal_only",
+      "runtime_delta": "floor(remainingMs/1000) * 10",
+      "progress_delta": 0,
+      "source_file": "src/scenes/GameScene.ts",
+      "source_line": 692,
+      "constant": "SCORE_VALUES.TIME_SECOND = 10",
+      "note": "Based on 120s max. Boss levels get no time bonus. Already uses remaining time (correct)."
+    }
+  ],
+  "best_score": {
+    "storage": "localStorage",
+    "key": "snakeDriveV4.bestScores",
+    "format": "Record<levelId, number>",
+    "updated_at": ["triggerGameOver", "triggerClear"],
+    "source_file": "src/systems/SaveSystem.ts"
+  },
+  "hud_display_current": {
+    "normal_level": "X/quota — this.score / levelConfig.quota",
+    "boss_level": "HP X/maxHp — boss.getHp() / boss.getMaxHp()",
+    "prefix_normal": "'' (empty)",
+    "prefix_castle": "'MAGIC '",
+    "prefix_boss": "'HP '",
+    "runtimeScore_visible": false
+  },
+  "clear_scene_data": {
+    "score": "runtimeScore",
+    "bestScore": "SaveSystem.getBestScore(levelId)",
+    "previousBest": "BestScoreResult.previousBest",
+    "isNewRecord": "BestScoreResult.isNewRecord",
+    "timeBonus": "computed in triggerClear()"
+  }
+}
