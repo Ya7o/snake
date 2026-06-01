@@ -14,3 +14,9 @@
 - 2026-05-22 : `DEV_UNLOCK_ALL = true` dans constants.ts pour développement — à passer `false` avant release.
 - 2026-05-22 : `EntityState` union TypeScript stricte dans BaseMechanic. WitchMirrorBoss : miroir réel randomisé à chaque spawn.
 - 2026-05-22 : Rule 14 CLAUDE.md — Claude peut lancer npm run dev pour ses tests de validation, doit arrêter le serveur après.
+- 2026-05-29 : Repo migré dans WSL (`~/apps/snake`). Node.js Windows désinstallé — npm/build/Playwright depuis WSL uniquement.
+- 2026-05-29 : `DEV_UNLOCK_ALL` passé de `true` à `false` dans constants.ts — verrou release actif. Session debug via `?unlockAll=1`.
+- 2026-05-29 : PATCH 1115b — LINEAR filter étendu à tous les univers non-Castle (`TextureFiltering.ts`, `SMOOTH_RUNTIME_UNIVERSES`). Fichiers modifiés : ObstacleRenderer, PickupRenderer, GameScene.
+- 2026-06-01 : Audits pre-release complétés (PATCH 1110 screens/score, 1111 gameplay/boss, 1112 visual rendering). Verdict global : PASS avec réserve — 0 P0, corrections P1 planifiées.
+- 2026-06-01 : PATCH 1116 — Corrections écrans + score : suppression "PROTOTYPE BUILD" TitleScene ; "NIVEAU RÉUSSI" typo ; breakdown STAGE +500 / VAINCU +1000 dans ClearScene ; textes GameOver par univers (FATALITY, CRASH !, K.O.!, etc.) ; tap-anywhere LevelIntro debounce 500ms ; badge boss doublon → nom univers.
+- 2026-06-01 : PATCH 1117 — Corrections gameplay : Paperboy normal speedMs 110→145 ; chainRing.inactive `0x5d4e00`→`0x4a4a7a` (bleu-gris lisible) ; `BaseBoss.getHudExtra()` retourne `''` (suppression Unicode ♥♡, centre HUD affiche ruleText boss).

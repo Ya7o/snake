@@ -55,13 +55,18 @@ Les sources design sont déjà triées par univers dans `design_boards/[univers]
 Structure `public/assets/` (ne pas réintroduire les dossiers supprimés) :
 
 ```text
-frames/[univers]/frame.png          — cadres gameplay
-level-intros/[univers]/intro.png    — backgrounds LevelIntroScene (8 univers)
-ui/castle/castle_*.png              — 4 backgrounds Castle (system, gameplay, clear, game_over)
-universes/[univers]/                — db_ assets : pickup_01/02, obstacle_01/02, boss, frame_tile, hud_panel
-runtime/universes/[7 univers]/      — rt_ assets (sonic, streets, fighter, outrun, shinobi, kombat, paperboy)
+frames/[univers]/frame.png                    — cadres gameplay
+level-intros/[univers]/intro.png              — backgrounds LevelIntroScene (8 univers)
+ui/[univers]/[uid]_system_bg.png              — backgrounds result screens (8 univers × 5 slots)
+ui/[univers]/[uid]_boss_system_bg.png
+ui/[univers]/[uid]_gameplay_bg.png
+ui/[univers]/[uid]_game_over_bg.png
+ui/[univers]/[uid]_clear_bg.png
+universes/[univers]/                          — db_ assets Castle uniquement (pickup, obstacle, boss…)
+runtime/universes/[7 univers]/                — rt_ assets (6 rôles × 7 univers non-Castle)
 map/world_map.png
-ui/title_hub_bg.png
+ui/worldmap/world_map_minimap_16_9.png
+ui/title/title_hub_bg.png
 ```
 
 Pipeline de priorité : `db_` > `rt_` > fallback procédural. Pas de tier codex.
@@ -235,12 +240,14 @@ chmod -x CLAUDE.md reports/patch-XXXX/*.md
 
 Voir le template complet : `docs/WORKFLOW_TEMPLATE.md`
 
-## État Dev (2026-05-29)
+## État Dev (2026-06-01)
 
 - Repo migré dans WSL : `~/apps/snake`
 - Node.js Windows désinstallé — npm/build/Playwright depuis WSL uniquement
-- `DEV_UNLOCK_ALL = true` dans `src/config/constants.ts` — tous les niveaux débloqués. Passer à `false` avant release.
-- Build propre : 0 erreur TypeScript, 60 modules.
+- `DEV_UNLOCK_ALL = false` dans `src/config/constants.ts` — verrou release actif. Utiliser `?unlockAll=1` pour débloquer en session.
+- Build propre : 0 erreur TypeScript, 61 modules.
+- Derniers patches appliqués : 1115b (LINEAR filter), 1116 (screens + score), 1117 (gameplay mechanics).
+- Audits pre-release complétés : PATCH 1110 (screens/score), 1111 (gameplay/boss), 1112 (visual/icons).
 
 ## Nettoyage Repo
 

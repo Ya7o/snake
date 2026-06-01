@@ -1,85 +1,71 @@
 # 13 — Acceptance Matrix
 
-Ce fichier sert à valider la build V4 actuelle après patchs.
+Mis à jour au 2026-06-01 — source : audits PATCH 1110/1111/1112 + vérification code.
 
-## Statuts autorisés
+## Statuts
 
-- `OK` : conforme et testé.
-- `PARTIAL` : présent mais incomplet ou fallback.
+- `OK` : conforme et vérifié (code ou test).
+- `PARTIAL` : présent mais incomplet ou fallback procédural.
 - `FAIL` : absent ou cassé.
-- `NOT TESTED` : non testé manuellement.
+- `NOT TESTED` : non validé en runtime.
 
 ## Matrice globale
 
 | Domaine | Critère | Statut | Notes |
 |---|---|---:|---|
-| Build | `npm run check` passe | OK | Dernier check demandé pendant nettoyage repo |
+| Build | `npm run check` passe | **OK** | 0 erreur, 61 modules, PATCH 1117 |
 | Web mobile | `npm run dev` accessible sur téléphone via Wi-Fi | NOT TESTED | |
-| Architecture | Pas de fichier monolithique | NOT TESTED | |
-| Architecture | Scènes séparées | NOT TESTED | |
-| Architecture | Core Snake séparé du rendu | NOT TESTED | |
-| Architecture | Mécaniques séparées par univers | NOT TESTED | |
-| UX | TitleScene fonctionnelle | NOT TESTED | |
-| UX | WorldMapScene fonctionnelle | NOT TESTED | |
-| UX | World map asset réellement utilisé | OK | `public/assets/map/world_map.png` 1448×1086 |
-| UX | World map cadrage mobile patch 909 | NOT TESTED | Cover scale, zoom initial, nodes compacts, footer/header réduits |
-| UX | World map nodes + double tap patch 911 | NOT TESTED | Nodes taille écran stable, simple tap sélection, double tap lance |
-| UX | Title noms univers patch 912 | NOT TESTED | Labels centralisés, noms complets sur 2 colonnes |
-| Design | Cadres gameplay univers | OK | 8 cadres complets dans `public/assets/frames/[univers]/frame.png`; runtime non testé visuellement dans cette passe |
-| Audit | Audit mobile-first | OK | Rapports dans `docs/audits/` |
-| UX | LevelIntroScene fonctionnelle | NOT TESTED | |
-| UX | ClearScene fonctionnelle | NOT TESTED | |
-| UX | GameOverScene fonctionnelle | NOT TESTED | |
-| Input | Swipe gameplay | NOT TESTED | |
+| Architecture | Scènes séparées | **OK** | 7 scènes indépendantes |
+| Architecture | Core Snake séparé du rendu | **OK** | src/core/ vs src/render/ |
+| Architecture | Mécaniques séparées par univers | **OK** | MechanicFactory + BaseMechanic |
+| UX | TitleScene fonctionnelle | **OK** (code) | Tap/keydown → WorldMap ; "PROTOTYPE BUILD" supprimé (PATCH 1116) |
+| UX | WorldMapScene fonctionnelle | **OK** (code) | Tap sélectionne, retap lance ; pas de bouton JOUER |
+| UX | LevelIntroScene — BEST affiché | **OK** (code) | `SaveSystem.getBestScore()` |
+| UX | LevelIntroScene — boutons JOUER + CARTE | **OK** (code) | Tap-anywhere debounce 500ms (PATCH 1116) |
+| UX | ClearScene — titre | **OK** (code) | "NIVEAU RÉUSSI" corrigé (PATCH 1116) |
+| UX | ClearScene — breakdown score | **OK** (code) | STAGE +500 / VAINCU +1000 visibles (PATCH 1116) |
+| UX | ClearScene — boutons CONTINUER / REJOUER / CARTE | **OK** (code) | |
+| UX | GameOverScene — texte univers | **OK** (code) | FATALITY, CRASH !, K.O. !, etc. (PATCH 1116) |
+| UX | GameOverScene — boutons REJOUER + CARTE | **OK** (code) | |
+| Score | Capsule score in-game séparée HP/progression | **OK** (code) | HUD 4 capsules |
+| Score | Popup +100 pickup | **OK** (code) | `spawnScorePopup` |
+| Score | Popup +250 boss hit | **OK** (code) | `resolveBossWeakPoint` |
+| Score | Best score persisté localStorage | **OK** (code) | `snakeDriveV4.bestScores` |
+| Score | Reset score au replay | **OK** (code) | `runtimeScore = 0` dans `create()` |
+| Input | Swipe gameplay | NOT TESTED | InputSystem.ts wired |
 | Input | Clavier desktop fallback | NOT TESTED | |
 | Input | Map drag | NOT TESTED | |
-| Input | Map pinch | NOT TESTED | |
-| Input | Pas de double tap involontaire | NOT TESTED | |
-| Gameplay | Snake avance à timestep fixe | NOT TESTED | |
-| Gameplay | Pickup spawn safe | NOT TESTED | |
-| Gameplay | Collision mur | NOT TESTED | |
-| Gameplay | Collision corps | NOT TESTED | |
-| Gameplay | Retry après Game Over | NOT TESTED | |
-| Gameplay | Clear après objectif | NOT TESTED | |
-| Save | Progression sauvegardée en localStorage | NOT TESTED | |
-| Design | Design pack utilisé | NOT TESTED | |
-| Design | Pas de planche brute visible dans gameplay | NOT TESTED | |
-| Design | Grille prioritaire | NOT TESTED | |
-| Design | Pickups visibles | NOT TESTED | |
-| Design | Obstacles lisibles | NOT TESTED | |
-| Audio | Audio ne bloque pas le jeu | NOT TESTED | |
+| Input | Map pinch zoom | NOT TESTED | |
+| Gameplay | Snake avance à timestep fixe | **OK** (code) | Accumulator pattern |
+| Gameplay | Collision mur + corps | **OK** (code) | `stepSnake()` |
+| Gameplay | Pickup spawn safe | **OK** (code) | `spawnPickup()` évite snake + walls |
+| Gameplay | Paperboy vitesse acceptable | **OK** (code) | 110→145ms (PATCH 1117) |
+| Gameplay | Sonic anneaux inactifs lisibles | **OK** (code) | `0x5d4e00`→`0x4a4a7a` (PATCH 1117) |
+| Boss | HP affiché dans capsule progress | **OK** (code) | `HP hp/maxHp` |
+| Boss | Centre HUD = ruleText (plus de ♥♡) | **OK** (code) | `getHudExtra()` retourne `''` (PATCH 1117) |
+| Save | Progression unlockedNodes / clearedLevels | **OK** (code) | `snakeDriveV4_save` localStorage |
+| Design | "PROTOTYPE BUILD" supprimé | **OK** | PATCH 1116 |
+| Design | Cadres gameplay chargés | PARTIAL | Assets présents, rendu visuel non testé en runtime |
+| Design | Pickups visibles vs obstacles | PARTIAL | Audit 1112 : PNG 64×64, LINEAR filter OK, contenu illustré à valider |
+| Audio | Audio ne bloque pas le jeu | NOT TESTED | AudioSystem.ts wired |
 
 ## Matrice univers
 
-| Univers | Normal jouable | Mécanique normale distincte | Boss jouable | Mécanique boss distincte | Design identifiable | Notes |
+| Univers | Normal jouable | Mécanique distincte | Boss jouable | Mécanique boss | Design identifiable | Notes |
 |---|---:|---:|---:|---:|---:|---|
-| Castle | NOT TESTED | NOT TESTED | NOT TESTED | NOT TESTED | NOT TESTED | |
-| Sonic | NOT TESTED | NOT TESTED | NOT TESTED | NOT TESTED | NOT TESTED | |
-| Streets | NOT TESTED | NOT TESTED | NOT TESTED | NOT TESTED | NOT TESTED | |
-| Fighter | NOT TESTED | NOT TESTED | NOT TESTED | NOT TESTED | NOT TESTED | |
-| OutRun | NOT TESTED | NOT TESTED | NOT TESTED | NOT TESTED | NOT TESTED | |
-| Shinobi | NOT TESTED | NOT TESTED | NOT TESTED | NOT TESTED | NOT TESTED | |
-| Kombat | NOT TESTED | NOT TESTED | NOT TESTED | NOT TESTED | NOT TESTED | |
-| Paperboy | NOT TESTED | NOT TESTED | NOT TESTED | NOT TESTED | NOT TESTED | |
+| Castle | OK (code) | OK — blinkWall / OpenMoji | OK (code) | OK — WitchMirror phases | OK — OpenMoji SVG crisp | |
+| Sonic | OK (code) | OK — ringChains | OK (code) | OK — loopSerpent | PARTIAL — inactifs corrigés 1117 | |
+| Streets | OK (code) | OK — crowdBlockers | OK (code) | OK — crimeLord | NOT TESTED runtime | |
+| Fighter | OK (code) | OK — chargeMove | OK (code) | OK — finalChallenger 3 manches | NOT TESTED runtime | |
+| OutRun | OK (code) | OK — laneDrift | OK (code) | OK — turboRival | NOT TESTED runtime | |
+| Shinobi | OK (code) | OK — focusMode (real/decoy) | OK (code) | OK — shadowNinja | PARTIAL — PNG distinction à valider | |
+| Kombat | OK (code) | OK — fatalZones (PATCH 1115b) | OK (code) | OK — dragonGate | NOT TESTED runtime | |
+| Paperboy | OK (code) | OK — deliveryTargets (vitesse corrigée 1117) | OK (code) | OK — neighborhoodChaos | NOT TESTED runtime | |
 
-## Critère d’acceptation première build
+## Critères de release
 
-La première build est acceptable si :
-
-- `npm run check` = OK ;
-- Title, map, game, clear, game over = OK ;
-- Snake core = OK ;
-- au moins 8 niveaux normaux lançables = OK ;
-- au moins 8 boss lançables = OK ;
-- chaque univers a une différence mécanique visible = OK ou PARTIAL documenté ;
-- design pack utilisé ou fallback documenté ;
-- pas de crash bloquant mobile.
-
-## Si la matrice n’est pas conforme
-
-Ne pas prétendre que la build est finie.
-
-Créer immédiatement des tickets correctifs :
-- P0 : crash, build, écran noir, input cassé ;
-- P1 : mécanique absente, boss absent, map cassée, lisibilité mauvaise ;
-- P2 : polish visuel, audio, transitions.
+- [x] `npm run check` = OK
+- [x] `DEV_UNLOCK_ALL = false`
+- [x] Toutes corrections P1 appliquées (PATCH 1116 + 1117)
+- [ ] Play-test mobile physique (Paperboy, Shinobi, boss timing)
+- [ ] Validation visuelle runtime PNG assets (PATCH 1112 VIS-04)

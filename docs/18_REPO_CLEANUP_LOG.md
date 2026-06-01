@@ -57,6 +57,28 @@ public/assets/
   universes/[univers]/                — db_ assets (pickup, obstacle, boss, etc.)
 ```
 
+## 2026-05-29
+
+Migration environnement.
+
+- Node.js Windows désinstallé — tout passe par WSL.
+- `DEV_UNLOCK_ALL` passé à `false` — verrou release activé.
+- `PATCH 1115b` : `TextureFiltering.ts` — LINEAR filter étendu à tous les univers non-Castle (`SMOOTH_RUNTIME_UNIVERSES`). Modifié : ObstacleRenderer, PickupRenderer.
+
+## 2026-06-01
+
+Audits pre-release + corrections.
+
+- `PATCH 1110` : audit screens + score (no code, rapport uniquement).
+- `PATCH 1111` : audit gameplay + boss (no code, rapport uniquement).
+- `PATCH 1112` : audit visual rendering + icons (no code, rapport uniquement).
+- `PATCH 1116` : corrections screens + score — `TitleScene` : suppression "PROTOTYPE BUILD" ; `ClearScene` : "NIVEAU RÉUSSI" typo, breakdown STAGE +500 / VAINCU +1000, badge boss doublon → nom univers ; `GameOverScene` : cause text par univers ; `LevelIntroScene` : tap-anywhere debounce 500ms.
+- `PATCH 1117` : corrections gameplay — `levels.ts` : Paperboy normal `speedMs` 110→145 ; `ObstacleRenderer` : `chainRing.inactive` `0x5d4e00`→`0x4a4a7a` ; `BaseBoss` : `getHudExtra()` retourne `''`.
+
+### Assets orphelins identifiés (non supprimés en pre-release)
+
+- `public/assets/ui/*/world_token_*.png` : 8 PNGs non référencés dans `src/`. À traiter post-release.
+
 ## Convention Future
 
 Après application d'un ticket pack :
