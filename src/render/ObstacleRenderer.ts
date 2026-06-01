@@ -18,17 +18,17 @@ const OBSTACLE_IMAGE_TYPES = new Set([
   'routeObstacle',
 ]);
 
-const OPENMOJI_GAMEPLAY_ICON_SCALE = 3.0;   // Castle/Fighter OpenMoji entities — clearly overflow cells
-const DEFAULT_RUNTIME_OBSTACLE_ICON_SCALE = 2.5;
-const DEFAULT_RUNTIME_BOSS_ICON_SCALE = 2.5;
+const CASTLE_OPENMOJI_ENTITY_ICON_SCALE = 2.35;
+const DEFAULT_RUNTIME_OBSTACLE_ICON_SCALE = 2.25;
+const DEFAULT_RUNTIME_BOSS_ICON_SCALE = 2.25;
 
 const RUNTIME_BOSS_ICON_SCALE_BY_TYPE: Record<string, number> = {
   // Narrow standing silhouettes read smaller than wide bosses at the same
   // frame scale, so give them a little more visual mass.
-  shadowNinja: 3.0,
-  crimeLord: 3.0,
-  loopSerpent: 2.8,
-  chaosObstacle: 2.75,
+  shadowNinja: 2.6,
+  crimeLord: 2.55,
+  loopSerpent: 2.45,
+  chaosObstacle: 2.45,
 };
 
 type EntityTextureResolver = (entity: ExtraEntity) => string | null;
@@ -161,7 +161,7 @@ export class ObstacleRenderer {
         }
         const img = this.obstaclePool[obsPoolIdx];
         if (img.texture.key !== entityTextureKey!) img.setTexture(entityTextureKey!);
-        this.fitImageInCell(img, entityTextureKey!, cs * OPENMOJI_GAMEPLAY_ICON_SCALE);
+        this.fitImageInCell(img, entityTextureKey!, cs * this.entityTextureScale(e));
         img.setPosition(px, py)
           .setAlpha(e.type === 'witchMirror' ? this.witchMirrorAlpha(e.state) : alpha)
           .setVisible(true);
@@ -241,6 +241,11 @@ export class ObstacleRenderer {
 
   private bossIconScale(e: ExtraEntity): number {
     return RUNTIME_BOSS_ICON_SCALE_BY_TYPE[e.type] ?? DEFAULT_RUNTIME_BOSS_ICON_SCALE;
+  }
+
+  private entityTextureScale(e: ExtraEntity): number {
+    if (this.universeId === 'castle') return CASTLE_OPENMOJI_ENTITY_ICON_SCALE;
+    return this.obstacleIconScale(e);
   }
 
   private clearObstaclePool(): void {

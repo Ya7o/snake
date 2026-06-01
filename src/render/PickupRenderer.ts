@@ -32,16 +32,17 @@ type PickupImageProfile = Readonly<{
 }>;
 
 const DEFAULT_IMAGE_PROFILE: PickupImageProfile = {
-  maxSizeScale: 2.8,
+  maxSizeScale: 2.45,
   offsetYCells: -0.04,
-  haloScale: 1.18,
-  ringScale: 1.12,
+  haloScale: 1.08,
+  ringScale: 1.04,
 };
 
 const PICKUP_IMAGE_PROFILES: Record<string, PickupImageProfile> = {
-  // Castle OpenMoji SVGs — clearly overflow cells
   castle: {
-    maxSizeScale: 2.5,
+    maxSizeScale: 2.3,
+    haloScale: 1.02,
+    ringScale: 1,
   },
 };
 
