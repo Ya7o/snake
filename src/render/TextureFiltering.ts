@@ -3,10 +3,10 @@ import Phaser from 'phaser';
 const SHARP_RUNTIME_KEY_PREFIX = 'rt_';
 const SMOOTH_VECTOR_KEY_PREFIX = 'openmoji-';
 
-// These universe runtimes use stylised non-pixel-art icons. LINEAR gives cleaner
-// results when downscaling 256 px sources to ~50–65 px cell display sizes on mobile.
-// NEAREST at 0.20–0.25x scale creates aliasing artifacts on smooth artwork.
-const SMOOTH_RUNTIME_UNIVERSES = new Set(['outrun']);
+// All non-castle runtime universes use stylised non-pixel-art 48×48 icons.
+// LINEAR gives clean upscaling to ~50–65 px cell display sizes on mobile.
+// NEAREST would produce blocky artefacts on smooth artwork at these scales.
+const SMOOTH_RUNTIME_UNIVERSES = new Set(['sonic', 'streets', 'fighter', 'outrun', 'shinobi', 'kombat', 'paperboy']);
 
 export function filterModeForGameplayTexture(textureKey: string): Phaser.Textures.FilterMode {
   if (textureKey.startsWith(SMOOTH_VECTOR_KEY_PREFIX)) {
