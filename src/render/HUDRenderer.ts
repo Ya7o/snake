@@ -11,6 +11,7 @@ export class HUDRenderer {
 
   private readonly ruleCenterX: number;
   private readonly ruleCenterW: number;
+  private readonly rightCapsuleW: number;
   private lastUniverse = '';
   private lastCenter = '';
   private lastScore = '';
@@ -35,6 +36,7 @@ export class HUDRenderer {
 
     this.ruleCenterX = cX + cW / 2;
     this.ruleCenterW = cW;
+    this.rightCapsuleW = rightW;
 
     this.gfx = scene.add.graphics().setDepth(GAMEPLAY_LAYERS.HUD_STRIP + 1);
 
@@ -99,12 +101,22 @@ export class HUDRenderer {
     quota: number | undefined,
     extra: string,
     progressPrefix = '',
+    runtimeScore = 0,
   ): void {
-    const scoreStr = quota !== undefined ? `${progressPrefix}${score}/${quota}` : `${progressPrefix}${score}`;
+    const progressStr = quota !== undefined ? `${progressPrefix}${score}/${quota}` : `${progressPrefix}${score}`;
+    const combined = runtimeScore > 0 ? `${progressStr}·${runtimeScore}` : progressStr;
     const center = this.compactCenter(rule, extra);
     if (universeName !== this.lastUniverse) { this.universeTxt.setText(universeName); this.lastUniverse = universeName; }
     if (center !== this.lastCenter)         { this.ruleTxt.setText(center);           this.lastCenter = center; }
-    if (scoreStr !== this.lastScore)        { this.scoreTxt.setText(scoreStr);        this.lastScore = scoreStr; }
+    if (combined !== this.lastScore) {
+      this.scoreTxt.setText(combined);
+      if (this.scoreTxt.width > this.rightCapsuleW - 8) {
+        this.scoreTxt.setText(progressStr);
+        this.lastScore = progressStr;
+      } else {
+        this.lastScore = combined;
+      }
+    }
     this.fitCenter();
   }
 

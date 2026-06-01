@@ -1,0 +1,47 @@
+{
+  "patch": "1101",
+  "assertions": [
+    {
+      "id": "score_initial_zero",
+      "description": "Score affiché dans HUD = 0 au démarrage",
+      "expected": "Capsule droite affiche X/10 (pas de ·0)",
+      "condition": "runtimeScore === 0 → combined === progressStr → pas de ·0",
+      "status": "verified_by_code"
+    },
+    {
+      "id": "score_after_pickup",
+      "description": "Score augmente de 100 après chaque pickup",
+      "expected": "Capsule droite passe de X/10 à X/10·100 après le 1er pickup",
+      "condition": "runtimeScore += SCORE_VALUES.PICKUP (100) à GameScene:497",
+      "status": "verified_by_code"
+    },
+    {
+      "id": "score_boss_hit",
+      "description": "Score boss visible (+250 par weak point hit)",
+      "expected": "Capsule droite affiche HP X/3·250 après 1er hit",
+      "condition": "runtimeScore += SCORE_VALUES.BOSS_HIT (250) à GameScene:628",
+      "status": "verified_by_code"
+    },
+    {
+      "id": "replay_reset",
+      "description": "Replay remet runtimeScore à 0",
+      "expected": "Capsule droite revient à X/10 après replay",
+      "condition": "this.runtimeScore = 0 dans GameScene.create()",
+      "status": "verified_by_code"
+    },
+    {
+      "id": "best_score_preserved",
+      "description": "Best score non modifié pendant gameplay",
+      "expected": "SaveSystem.getBestScore() identique pendant la partie",
+      "condition": "recordBestScore() appelé seulement dans triggerGameOver/triggerClear",
+      "status": "verified_by_code"
+    },
+    {
+      "id": "overflow_fallback",
+      "description": "Fall-back sur progressStr si capsule déborde",
+      "expected": "Si scoreTxt.width > rightCapsuleW - 8 → affiche X/10 seul",
+      "condition": "HUDRenderer.update() vérifie width après setText(combined)",
+      "status": "verified_by_code"
+    }
+  ]
+}
