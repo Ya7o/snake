@@ -5,6 +5,7 @@ import { UNIVERSES } from '../config/universes';
 import { MENU_THEMES, MenuTheme } from '../config/menuThemes';
 import { ARCADE_FONT, UI_FONT, addMobileButton, flashScreen } from '../render/VfxUtils';
 import { CASTLE_OPENMOJI_ICON_ASSETS, getCastleOpenMojiBadge } from '../ui/OpenMojiIconRegistry';
+import { SaveSystem } from '../systems/SaveSystem';
 
 const clamp = (value: number, min: number, max: number): number => Math.max(min, Math.min(max, value));
 
@@ -226,6 +227,17 @@ export class LevelIntroScene extends Phaser.Scene {
       }
     }
 
+    // ── Best score preview ────────────────────────────────────────────────────
+    const bestScore = SaveSystem.getBestScore(levelId);
+    const bestLabel = bestScore > 0 ? `BEST  ${bestScore}` : 'BEST  —';
+    this.add.text(centerX, contentBottomY, bestLabel, {
+      fontFamily: UI_FONT,
+      fontSize: `${Math.max(10, Math.min(12, Math.floor(W * 0.027)))}px`,
+      fontStyle: '700',
+      color: bestScore > 0 ? '#ffd700' : '#555577',
+      align: 'center',
+    }).setOrigin(0.5, 1).setDepth(10);
+
     // Universe badge — Castle only (OpenMoji icons already loaded for Castle)
     if (isCastle) {
       const badgeKey = getCastleOpenMojiBadge(level.type).key;
@@ -284,7 +296,7 @@ export class LevelIntroScene extends Phaser.Scene {
       pressedFillColor: theme.buttons.secondaryPressed,
       strokeColor: theme.buttons.secondaryStroke,
       textColor: theme.buttons.secondaryText,
-      onClick: () => this.scene.start(SCENES.WORLD_MAP),
+      onClick: () => this.scene.start(SCENES.WORLD_MAP, { levelId: levelId }),
     });
 
     // ── Ambient FX ────────────────────────────────────────────────────────────
