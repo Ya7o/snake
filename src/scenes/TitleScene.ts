@@ -130,13 +130,6 @@ export class TitleScene extends Phaser.Scene {
       ease: 'Sine.easeInOut',
     });
 
-    // Footer — tiny build marker
-    this.add.text(W / 2, H * 0.965, 'PROTOTYPE BUILD', {
-      fontFamily: UI_FONT,
-      fontSize: `${Math.min(10, Math.floor(W * 0.025))}px`,
-      color: '#2a2244',
-    }).setOrigin(0.5).setDepth(6);
-
     // Input
     let titleStarted = false;
     const startGame = () => {

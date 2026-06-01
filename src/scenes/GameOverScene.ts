@@ -112,7 +112,17 @@ export class GameOverScene extends Phaser.Scene {
       color: isCastle ? CT.titleLoss : '#e74c3c',
     }).setOrigin(0.5).setDepth(6);
 
-    const causeText = isCastle ? 'Pris dans l\'illusion' : 'ENCORE UNE FOIS';
+    const CAUSE_BY_UNIVERSE: Record<string, string> = {
+      castle:   "Pris dans l'illusion",
+      sonic:    'SPEED IS LIFE',
+      streets:  'KNOCKED OUT',
+      fighter:  'K.O. !',
+      outrun:   'CRASH !',
+      shinobi:  'MISSION ÉCHOUÉE',
+      kombat:   'FATALITY',
+      paperboy: 'MAUVAISE LIVRAISON',
+    };
+    const causeText = CAUSE_BY_UNIVERSE[level?.universeId ?? ''] ?? 'ENCORE UNE FOIS';
     const causeBacking = this.add.graphics().setDepth(5);
     causeBacking.fillStyle(0x000000, 0.38);
     causeBacking.fillRoundedRect(W * 0.12, causeY - 20, W * 0.76, 40, 6);

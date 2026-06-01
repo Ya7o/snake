@@ -310,11 +310,13 @@ export class LevelIntroScene extends Phaser.Scene {
     // ── Fade in ───────────────────────────────────────────────────────────────
     this.cameras.main.fadeIn(250, 0, 0, 0);
 
-    // Tap anywhere outside buttons also starts the level
-    this.input.on('pointerdown', (_p: unknown, go: Phaser.GameObjects.GameObject[]) => {
-      if (started) return;
-      if (go && go.length > 0) return;
-      startLevel();
+    // Tap anywhere outside buttons also starts the level — delayed 500ms to avoid accidental trigger on scene open
+    this.time.delayedCall(500, () => {
+      this.input.on('pointerdown', (_p: unknown, go: Phaser.GameObjects.GameObject[]) => {
+        if (started) return;
+        if (go && go.length > 0) return;
+        startLevel();
+      });
     });
   }
 

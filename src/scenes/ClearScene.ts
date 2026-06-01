@@ -125,7 +125,7 @@ export class ClearScene extends Phaser.Scene {
 
     // Success title
     const titleFontSize = Math.min(22, Math.floor(W * 0.058));
-    const title = level?.type === 'boss' ? 'BOSS VAINCU' : 'NIVEAU REUSSI';
+    const title = level?.type === 'boss' ? 'BOSS VAINCU' : 'NIVEAU RÉUSSI';
     const subTitle = level?.id === 'castle_normal'
       ? 'BOSS DU CHÂTEAU DÉBLOQUÉ'
       : level?.id === 'castle_boss'
@@ -176,17 +176,15 @@ export class ClearScene extends Phaser.Scene {
       }).setOrigin(0.5).setDepth(6);
     }
 
-    // Boss defeated badge (non-Castle universes with no subTitle)
-    if (level?.type === 'boss' && !subTitle) {
-      const badgeGfx = this.add.graphics().setDepth(5);
-      badgeGfx.fillStyle(0xe74c3c, 0.9);
-      badgeGfx.fillRoundedRect(W / 2 - 70, H * L.subtitleY - 11, 140, 22, 4);
-
-      this.add.text(W / 2, H * L.subtitleY, 'BOSS VAINCU !', {
+    // Univers name for non-Castle boss clear (no subTitle)
+    if (level?.type === 'boss' && !subTitle && universe && !isCastle) {
+      this.add.text(W / 2, H * L.subtitleY, universe.name.toUpperCase(), {
         fontFamily: UI_FONT,
-        fontSize: '13px',
-        fontStyle: '800',
-        color: '#ffffff',
+        fontSize: `${Math.min(13, Math.floor(W * 0.034))}px`,
+        fontStyle: '700',
+        color: universe.palette.primary,
+        stroke: '#000000',
+        strokeThickness: 2,
       }).setOrigin(0.5).setDepth(6);
     }
 
@@ -207,6 +205,8 @@ export class ClearScene extends Phaser.Scene {
       ? (bossHitCount > 0 ? `BOSS +${breakdownScore}` : '')
       : (pickupCount > 0 ? `PICKUPS +${breakdownScore}` : '');
     const hasBreakdown = breakdownLabel.length > 0;
+    const clearBonusAmount = isBossLevel ? SCORE_VALUES.BOSS_CLEAR : SCORE_VALUES.STAGE_CLEAR;
+    const clearBonusLabel = isBossLevel ? `VAINCU +${clearBonusAmount}` : `STAGE +${clearBonusAmount}`;
     const scoreY = H * (isShortPortrait ? 0.47 : 0.49);
     const scoreFont = Math.min(16, Math.floor(W * 0.039));
     const breakdownFont = Math.min(12, Math.floor(W * 0.03));
@@ -214,7 +214,7 @@ export class ClearScene extends Phaser.Scene {
     const recordFont = Math.min(12, Math.floor(W * 0.03));
     const scorePanelW = Math.min(340, W * 0.78);
     const lineH = 22;
-    const lineCount = 2 + (hasBreakdown ? 1 : 0) + (hasTimeBonus ? 1 : 0) + (isNewRecord ? 1 : 0);
+    const lineCount = 3 + (hasBreakdown ? 1 : 0) + (hasTimeBonus ? 1 : 0) + (isNewRecord ? 1 : 0);
     const scorePanelH = lineCount * lineH + 14;
     const lineStart = scoreY - ((lineCount - 1) / 2) * lineH;
     const scoreMaxTextW = scorePanelW - 24;
@@ -233,6 +233,13 @@ export class ClearScene extends Phaser.Scene {
         strokeThickness: 1,
       });
     }
+    addFittedText(W / 2, lineStart + li++ * lineH, clearBonusLabel, breakdownFont, scoreMaxTextW, {
+      fontFamily: UI_FONT,
+      fontStyle: '700',
+      color: isCastle ? CT.titleClear : accentStr,
+      stroke: '#000000',
+      strokeThickness: 1,
+    });
     addFittedText(W / 2, lineStart + li++ * lineH, `TOTAL : ${score}`, scoreFont, scoreMaxTextW, {
       fontFamily: UI_FONT,
       fontStyle: '800',
