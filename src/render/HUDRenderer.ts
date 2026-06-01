@@ -7,13 +7,16 @@ export class HUDRenderer {
   private gfx: Phaser.GameObjects.Graphics;
   private universeTxt: Phaser.GameObjects.Text;
   private ruleTxt: Phaser.GameObjects.Text;
+  private progressTxt: Phaser.GameObjects.Text;
   private scoreTxt: Phaser.GameObjects.Text;
 
   private readonly ruleCenterX: number;
   private readonly ruleCenterW: number;
-  private readonly rightCapsuleW: number;
+  private readonly progressCapsuleW: number;
+  private readonly scoreCapsuleW: number;
   private lastUniverse = '';
   private lastCenter = '';
+  private lastProgress = '';
   private lastScore = '';
 
   constructor(scene: Phaser.Scene, accentColor: string, _hudPanelKey?: string) {
@@ -21,26 +24,29 @@ export class HUDRenderer {
     const hudH = GAMEPLAY_HUD.HEIGHT;
     const accentHex = parseInt(accentColor.replace('#', ''), 16);
 
-    // Capsule geometry (3 zones: left · center · right)
+    // 4-capsule geometry: left · center · progress · score
     const margin = 5;
     const gap = 4;
     const capH = 40;
-    const capY = Math.floor((hudH - capH) / 2); // ~8 px vertical centering
+    const capY = Math.floor((hudH - capH) / 2);
     const radius = 10;
-    const leftW = Math.round(w * 0.246);  // ~96 px at 390
-    const rightW = Math.round(w * 0.256); // ~100 px at 390
-    const cW = w - 2 * margin - leftW - rightW - 2 * gap;
-    const leftX = margin;
-    const cX = leftX + leftW + gap;
-    const rightX = cX + cW + gap;
+    const leftW     = Math.round(w * 0.200); // universe name
+    const progressW = Math.round(w * 0.185); // progress / HP
+    const scoreW    = Math.round(w * 0.215); // runtime score
+    const cW = w - 2 * margin - 3 * gap - leftW - progressW - scoreW;
+    const leftX     = margin;
+    const cX        = leftX + leftW + gap;
+    const progressX = cX + cW + gap;
+    const scoreX    = progressX + progressW + gap;
 
-    this.ruleCenterX = cX + cW / 2;
-    this.ruleCenterW = cW;
-    this.rightCapsuleW = rightW;
+    this.ruleCenterX    = cX + cW / 2;
+    this.ruleCenterW    = cW;
+    this.progressCapsuleW = progressW;
+    this.scoreCapsuleW  = scoreW;
 
     this.gfx = scene.add.graphics().setDepth(GAMEPLAY_LAYERS.HUD_STRIP + 1);
 
-    // ── Left capsule (universe) — accent border + subtle accent tint ──────
+    // ── Left capsule (universe) ───────────────────────────────────────────
     this.gfx.fillStyle(0x060212, 0.90);
     this.gfx.fillRoundedRect(leftX, capY, leftW, capH, radius);
     this.gfx.fillStyle(accentHex, 0.09);
@@ -48,19 +54,27 @@ export class HUDRenderer {
     this.gfx.lineStyle(2, accentHex, 0.88);
     this.gfx.strokeRoundedRect(leftX, capY, leftW, capH, radius);
 
-    // ── Center capsule (rule / hint) — neutral dark ────────────────────────
+    // ── Center capsule (rule) ─────────────────────────────────────────────
     this.gfx.fillStyle(0x0e0828, 0.84);
     this.gfx.fillRoundedRect(cX, capY, cW, capH, radius);
     this.gfx.lineStyle(1, 0x2c2848, 0.72);
     this.gfx.strokeRoundedRect(cX, capY, cW, capH, radius);
 
-    // ── Right capsule (score / HP) — accent border + subtle accent tint ───
+    // ── Progress capsule (4/10 · HP 2/3) ─────────────────────────────────
     this.gfx.fillStyle(0x060212, 0.90);
-    this.gfx.fillRoundedRect(rightX, capY, rightW, capH, radius);
+    this.gfx.fillRoundedRect(progressX, capY, progressW, capH, radius);
     this.gfx.fillStyle(accentHex, 0.09);
-    this.gfx.fillRoundedRect(rightX, capY, rightW, capH, radius);
+    this.gfx.fillRoundedRect(progressX, capY, progressW, capH, radius);
     this.gfx.lineStyle(2, accentHex, 0.88);
-    this.gfx.strokeRoundedRect(rightX, capY, rightW, capH, radius);
+    this.gfx.strokeRoundedRect(progressX, capY, progressW, capH, radius);
+
+    // ── Score capsule (SCORE 1200) ────────────────────────────────────────
+    this.gfx.fillStyle(0x060212, 0.90);
+    this.gfx.fillRoundedRect(scoreX, capY, scoreW, capH, radius);
+    this.gfx.fillStyle(accentHex, 0.09);
+    this.gfx.fillRoundedRect(scoreX, capY, scoreW, capH, radius);
+    this.gfx.lineStyle(2, accentHex, 0.88);
+    this.gfx.strokeRoundedRect(scoreX, capY, scoreW, capH, radius);
 
     const textY = hudH / 2;
 
@@ -83,12 +97,22 @@ export class HUDRenderer {
       .setDepth(GAMEPLAY_LAYERS.HUD_TEXT)
       .setOrigin(0.5);
 
-    this.scoreTxt = scene.add
-      .text(rightX + rightW / 2, textY, '', {
+    this.progressTxt = scene.add
+      .text(progressX + progressW / 2, textY, '', {
         fontFamily: UI_FONT,
         fontStyle: '700',
         fontSize: `${MOBILE_UI.LABEL_MIN}px`,
         color: '#ffffff',
+      })
+      .setDepth(GAMEPLAY_LAYERS.HUD_TEXT)
+      .setOrigin(0.5);
+
+    this.scoreTxt = scene.add
+      .text(scoreX + scoreW / 2, textY, '', {
+        fontFamily: UI_FONT,
+        fontStyle: '700',
+        fontSize: `${MOBILE_UI.LABEL_MIN}px`,
+        color: '#ffd700',
       })
       .setDepth(GAMEPLAY_LAYERS.HUD_TEXT)
       .setOrigin(0.5);
@@ -103,19 +127,37 @@ export class HUDRenderer {
     progressPrefix = '',
     runtimeScore = 0,
   ): void {
-    const progressStr = quota !== undefined ? `${progressPrefix}${score}/${quota}` : `${progressPrefix}${score}`;
-    const combined = runtimeScore > 0 ? `${progressStr}·${runtimeScore}` : progressStr;
+    const progressStr = quota !== undefined
+      ? `${progressPrefix}${score}/${quota}`
+      : `${progressPrefix}${score}`;
+    const scoreStr = `${runtimeScore}`;
     const center = this.compactCenter(rule, extra);
-    if (universeName !== this.lastUniverse) { this.universeTxt.setText(universeName); this.lastUniverse = universeName; }
-    if (center !== this.lastCenter)         { this.ruleTxt.setText(center);           this.lastCenter = center; }
-    if (combined !== this.lastScore) {
-      this.scoreTxt.setText(combined);
-      if (this.scoreTxt.width > this.rightCapsuleW - 8) {
-        this.scoreTxt.setText(progressStr);
-        this.lastScore = progressStr;
+
+    if (universeName !== this.lastUniverse) {
+      this.universeTxt.setText(universeName);
+      this.lastUniverse = universeName;
+    }
+    if (center !== this.lastCenter) {
+      this.ruleTxt.setText(center);
+      this.lastCenter = center;
+    }
+    if (progressStr !== this.lastProgress) {
+      this.progressTxt.setText(progressStr);
+      if (this.progressTxt.width > this.progressCapsuleW - 8) {
+        this.progressTxt.setFontSize(MOBILE_UI.CAPTION_MIN);
       } else {
-        this.lastScore = combined;
+        this.progressTxt.setFontSize(MOBILE_UI.LABEL_MIN);
       }
+      this.lastProgress = progressStr;
+    }
+    if (scoreStr !== this.lastScore) {
+      this.scoreTxt.setText(scoreStr);
+      if (this.scoreTxt.width > this.scoreCapsuleW - 8) {
+        this.scoreTxt.setFontSize(MOBILE_UI.CAPTION_MIN);
+      } else {
+        this.scoreTxt.setFontSize(MOBILE_UI.LABEL_MIN);
+      }
+      this.lastScore = scoreStr;
     }
     this.fitCenter();
   }
@@ -124,6 +166,7 @@ export class HUDRenderer {
     this.gfx.destroy();
     this.universeTxt.destroy();
     this.ruleTxt.destroy();
+    this.progressTxt.destroy();
     this.scoreTxt.destroy();
   }
 
