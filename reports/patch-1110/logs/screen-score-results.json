@@ -1,0 +1,59 @@
+{
+  "patch": "1110",
+  "date": "2026-06-01",
+  "type": "pre-release audit",
+  "verdict": "PASS avec réserve",
+  "summary": {
+    "P0": 0,
+    "P1": 1,
+    "P2": 6
+  },
+  "screens": [
+    { "id": "title",      "result": "PASS avec réserve", "issue": "SCR-01 PROTOTYPE BUILD footer", "priority": "P1" },
+    { "id": "worldmap",   "result": "PASS",               "issue": null,                            "priority": null },
+    { "id": "levelintro", "result": "PASS avec réserve", "issue": "SCR-06 tap-anywhere",            "priority": "P2" },
+    { "id": "hud_game",   "result": "PASS",               "issue": null,                            "priority": null },
+    { "id": "clear",      "result": "PASS avec réserve", "issue": "SCR-02 REUSSI, SCR-03 +500, SCR-04 +1000", "priority": "P2" },
+    { "id": "boss_clear", "result": "PASS avec réserve", "issue": "SCR-07 badge doublon",           "priority": "P2" },
+    { "id": "gameover",   "result": "PASS avec réserve", "issue": "SCR-05 ENCORE UNE FOIS",         "priority": "P2" }
+  ],
+  "score_functions": [
+    { "function": "BEST avant niveau",        "result": "PASS" },
+    { "function": "Capsule score in-game",    "result": "PASS" },
+    { "function": "Score séparé HP/progression", "result": "PASS" },
+    { "function": "Popup +100 pickup",        "result": "PASS" },
+    { "function": "Popup +250 boss hit",      "result": "PASS" },
+    { "function": "Breakdown PICKUPS",        "result": "PASS" },
+    { "function": "Breakdown STAGE_CLEAR",    "result": "ABSENT - P2" },
+    { "function": "Breakdown BOSS_CLEAR",     "result": "ABSENT - P2" },
+    { "function": "Time Bonus",               "result": "PASS" },
+    { "function": "BEST ClearScene",          "result": "PASS" },
+    { "function": "Total+BEST GameOver",      "result": "PASS" },
+    { "function": "Reset score replay",       "result": "PASS" },
+    { "function": "Persistance best score",   "result": "PASS" }
+  ],
+  "buttons": [
+    { "label": "CTA Title",   "screen": "TitleScene",     "result": "PASS" },
+    { "label": "JOUER",       "screen": "LevelIntroScene","result": "PASS" },
+    { "label": "CARTE",       "screen": "LevelIntroScene","result": "PASS" },
+    { "label": "CONTINUER",   "screen": "ClearScene",     "result": "PASS" },
+    { "label": "REJOUER",     "screen": "ClearScene",     "result": "PASS" },
+    { "label": "CARTE",       "screen": "ClearScene",     "result": "PASS" },
+    { "label": "REJOUER",     "screen": "GameOverScene",  "result": "PASS" },
+    { "label": "CARTE",       "screen": "GameOverScene",  "result": "PASS" }
+  ],
+  "issues": [
+    { "id": "SCR-01", "description": "'PROTOTYPE BUILD' footer TitleScene", "priority": "P1", "patch_recommended": "1113 ou pre-release" },
+    { "id": "SCR-02", "description": "'NIVEAU REUSSI' manque accent É",     "priority": "P2", "patch_recommended": "1113" },
+    { "id": "SCR-03", "description": "STAGE_CLEAR +500 invisible breakdown", "priority": "P2", "patch_recommended": "1113" },
+    { "id": "SCR-04", "description": "BOSS_CLEAR +1000 invisible breakdown", "priority": "P2", "patch_recommended": "1113" },
+    { "id": "SCR-05", "description": "'ENCORE UNE FOIS' générique GameOver", "priority": "P2", "patch_recommended": "1114" },
+    { "id": "SCR-06", "description": "Tap-anywhere LevelIntro risque accidentel", "priority": "P2", "patch_recommended": "1114" },
+    { "id": "SCR-07", "description": "Boss badge 'BOSS VAINCU !' doublon titre", "priority": "P2", "patch_recommended": "1113" }
+  ],
+  "npm_check": {
+    "errors": 0,
+    "modules": 61,
+    "warnings": ["chunk > 500 kB (expected)"]
+  }
+}

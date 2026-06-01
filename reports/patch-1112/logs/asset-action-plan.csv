@@ -1,0 +1,16 @@
+Asset,Univers,Rôle,Action,Priorité,Raison,Remplacement suggéré
+chainRing ENTITY_COLORS inactive,sonic,obstacle procédural,MODIFIER CODE,P1,Couleur 0x5d4e00 illisible sur fond sombre,0x5a5a7a (gris bleuté neutre)
+01_boss_idle.png,shinobi,boss,RÉGÉNÉRER,P1,Illustration complexe mal scalée à 2.8-3× cell,Silhouette ninja simple fond transparent dominante cyan
+01_boss_idle.png,streets,boss,RÉGÉNÉRER,P1,Illustration complexe mal scalée à 3× cell,Silhouette homme fort fond transparent dominante rouge/orange
+02_boss_idle.png,sonic,boss,VÉRIFIER VISUELLEMENT,P1,Serpent tête peut être bonne ou bruitée à 2.8×,Régénérer si bruitée: tête verte simple vue de face
+03_pickup_object_2.png,paperboy,pickupSecondary,VÉRIFIER VISUELLEMENT,P1,Doit être distinct de 02 (pickup journal),Tint jaune dans renderer si similaire
+01_boss_idle.png,fighter,boss,GARDER,P2,Texture switching idle/attack bien géré,—
+06_boss_attack.png,fighter,bossAttack,GARDER,P2,Utilisé lors de l'attaque du finalChallenger,—
+01_boss_idle.png,kombat,boss,GARDER,P2,Appliqué avec LINEAR filter PATCH 1115b,—
+01_boss_idle.png,outrun,boss,GARDER,P2,Texture switching idle/active,—
+01_boss_idle.png,paperboy,boss,GARDER,P2,Utilisé pour neighborhoodChaos,—
+Tous backgrounds *_gameplay_bg.png,tous,background,GARDER,—,Affiché en cover-fill grande taille,—
+Tous backgrounds *_clear_bg.png,tous,clear,GARDER,—,Affiché en cover-fill,—
+Tous backgrounds *_game_over_bg.png,tous,gameover,GARDER,—,Affiché en cover-fill,—
+world_token_*.png,ui,token,SUPPRIMER ou BRANCHER,P2,Orphelins non référencés dans le code,—
+SVG OpenMoji castle,castle,tous états,GARDER,—,Rendu parfait DPR-adaptatif,—

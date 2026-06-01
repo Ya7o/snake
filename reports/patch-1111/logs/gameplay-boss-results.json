@@ -1,0 +1,44 @@
+{
+  "patch": "1111",
+  "date": "2026-06-01",
+  "type": "pre-release audit",
+  "verdict": "PASS avec réserve",
+  "summary": {
+    "P0": 0,
+    "P1": 3,
+    "P2": 3
+  },
+  "normal_levels": [
+    { "id": "castle_normal",  "speedMs": 175, "quota": 10, "mechanic": "castleIllusion",  "objective_clear": true, "mechanic_ok": true, "difficulty": "correct",  "readability": "pass",           "verdict": "PASS" },
+    { "id": "sonic_normal",   "speedMs": 135, "quota": 15, "mechanic": "ringChains",       "objective_clear": true, "mechanic_ok": true, "difficulty": "elevated", "readability": "warning - GAM-02","verdict": "PASS avec réserve" },
+    { "id": "streets_normal", "speedMs": 155, "quota": 10, "mechanic": "crowdBlockers",    "objective_clear": true, "mechanic_ok": true, "difficulty": "correct",  "readability": "pass",           "verdict": "PASS" },
+    { "id": "fighter_normal", "speedMs": 165, "quota": 8,  "mechanic": "chargeMove",       "objective_clear": true, "mechanic_ok": true, "difficulty": "correct",  "readability": "pass",           "verdict": "PASS" },
+    { "id": "outrun_normal",  "speedMs": 130, "quota": 10, "mechanic": "laneDrift",        "objective_clear": true, "mechanic_ok": true, "difficulty": "fast",     "readability": "pass",           "verdict": "PASS avec réserve" },
+    { "id": "shinobi_normal", "speedMs": 160, "quota": 8,  "mechanic": "focusMode",        "objective_clear": true, "mechanic_ok": true, "difficulty": "correct",  "readability": "warning - GAM-05","verdict": "PASS avec réserve" },
+    { "id": "kombat_normal",  "speedMs": 160, "quota": 10, "mechanic": "fatalZones",       "objective_clear": true, "mechanic_ok": true, "difficulty": "correct",  "readability": "pass",           "verdict": "PASS" },
+    { "id": "paperboy_normal","speedMs": 110, "quota": 8,  "mechanic": "deliveryTargets",  "objective_clear": true, "mechanic_ok": true, "difficulty": "TROP RAPIDE", "readability": "pass",        "verdict": "P1 - GAM-01" }
+  ],
+  "boss_levels": [
+    { "id": "castle_boss",   "speedMs": 180, "bossHp": 3, "mechanic": "witchMirror",      "objective_clear": true, "attacks_readable": true, "hp_visible": true, "difficulty": "correct", "verdict": "PASS" },
+    { "id": "sonic_boss",    "speedMs": 145, "bossHp": 3, "mechanic": "loopSerpent",      "objective_clear": true, "attacks_readable": true, "hp_visible": true, "difficulty": "correct", "verdict": "PASS" },
+    { "id": "streets_boss",  "speedMs": 165, "bossHp": 3, "mechanic": "crimeLord",        "objective_clear": true, "attacks_readable": true, "hp_visible": true, "difficulty": "correct", "verdict": "PASS" },
+    { "id": "fighter_boss",  "speedMs": 175, "bossHp": 3, "mechanic": "finalChallenger",  "objective_clear": true, "attacks_readable": true, "hp_visible": true, "difficulty": "correct", "verdict": "PASS" },
+    { "id": "outrun_boss",   "speedMs": 140, "bossHp": 3, "mechanic": "turboRival",       "objective_clear": true, "attacks_readable": true, "hp_visible": true, "difficulty": "correct", "verdict": "PASS" },
+    { "id": "shinobi_boss",  "speedMs": 160, "bossHp": 3, "mechanic": "shadowNinja",      "objective_clear": true, "attacks_readable": "warning - GAM-05", "hp_visible": true, "difficulty": "correct", "verdict": "PASS avec réserve" },
+    { "id": "kombat_boss",   "speedMs": 170, "bossHp": 3, "mechanic": "dragonGate",       "objective_clear": true, "attacks_readable": true, "hp_visible": true, "difficulty": "correct", "verdict": "PASS" },
+    { "id": "paperboy_boss", "speedMs": 155, "bossHp": 3, "mechanic": "neighborhoodChaos","objective_clear": true, "attacks_readable": true, "hp_visible": true, "difficulty": "acceptable", "verdict": "PASS avec réserve" }
+  ],
+  "issues": [
+    { "id": "GAM-01", "level": "paperboy_normal", "problem": "speedMs:110 trop rapide pour mechanique double-objet",        "priority": "P1", "recommendation": "Augmenter à 140-150ms" },
+    { "id": "GAM-02", "level": "sonic_normal",    "problem": "Anneaux inactifs couleur sombre, confondus avec obstacles",    "priority": "P1", "recommendation": "Couleur neutre ou indication HUD" },
+    { "id": "GAM-03", "level": "tous_bosses",     "problem": "HUD HP utilise Unicode hearts ♥♡ non garanti Android < 10",  "priority": "P1", "recommendation": "Remplacer par ASCII ou OpenMoji SVG" },
+    { "id": "GAM-04", "level": "outrun_normal",   "problem": "speedMs:130 peut être difficile pour niveau 5 de la progression","priority": "P2", "recommendation": "Tester empiriquement, envisager 145ms" },
+    { "id": "GAM-05", "level": "shinobi_boss",    "problem": "Distinction real/shadow dépend qualité PNG — voir PATCH 1112", "priority": "P2", "recommendation": "Audit PATCH 1112 d'abord" },
+    { "id": "GAM-06", "level": "castle_boss",     "problem": "Phase 3: 30 miroirs sur 416 cells (7.2%) — dense mais acceptable", "priority": "P2", "recommendation": "Réduire à 24 si play-test confirme confusion" }
+  ],
+  "npm_check": {
+    "errors": 0,
+    "modules": 61,
+    "warnings": ["chunk > 500 kB (expected)"]
+  }
+}

@@ -1,0 +1,9 @@
+ID,Element,Type,Problème,Cause probable,Action recommandée,Priorité
+VIS-01,Sonic chainRing inactive,ENTITY_COLORS,Couleur 0x5d4e00 trop sombre sur fond sombre,Couleur procédurale non optimisée,Patch ENTITY_COLORS: 0x5a5a7a,P1
+VIS-02,Shinobi focusTarget real vs decoy,PNG + procédural,Distinction possible insuffisante si PNG override les couleurs procédurales,PNG générés style similaire,Forcer fallback procédural si PNG trop similaires,P1
+VIS-03,Paperboy pickup vs deliveryTarget,PNG similaire,02 et 03 peuvent se ressembler à 24px,Style PNG similaire,Vérifier visuellement + tint différenciateur si nécessaire,P1
+VIS-04,Boss icons upscalés 2.5-3×,PNG 64×64,Détail fin visible en upscale,Source 64px limite la montée en échelle,Régénérer boss clés avec silhouette simple,P1
+VIS-05,LINEAR filter boss dynamiques,Code,Boss textures chargées hors flow standard peuvent manquer le filter,Chargement conditionnel dynamique,Vérifier TextureFiltering.ts couverture,P2
+VIS-06,obstacle vs obstacleDanger paires,PNG similarité,Obstacle et dangerObstacle peuvent être visuellement trop proches,PNGs générés sans contrainte de différenciation,Vérifier chaque paire; amplifier rouge sur danger,P2
+VIS-07,HUD capsules font taille,Rendu texte,LABEL_MIN=12 sur 360px avec 4 capsules peut overflow,Contrainte écran étroit,Tester 360px; envisager taille 10 si débordement,P2
+VIS-08,world_token_*.png,PNG UI,8 tokens présents dans public mais non référencés dans le code,Feature non branchée ou assets orphelins,Supprimer ou brancher,P2
