@@ -23,7 +23,7 @@ import { InputSystem } from '../systems/InputSystem';
 import { AudioSystem } from '../systems/AudioSystem';
 import { SaveSystem } from '../systems/SaveSystem';
 import { MAP_NODES } from '../config/mapNodes';
-import { flashScreen } from '../render/VfxUtils';
+import { UI_FONT, flashScreen } from '../render/VfxUtils';
 import { preloadRuntimeAssets, getRuntimeTextureKey } from '../systems/RuntimeAssetResolver';
 import { drawCastleRuntimeBoardPanel, logCastleRuntimeLayers } from '../ui/CastleRuntimeLayering';
 import { GAMEPLAY_HUD, GAMEPLAY_LAYERS } from '../ui/RuntimeUILayout';
@@ -494,6 +494,7 @@ export class GameScene extends Phaser.Scene {
     if (result.ate) {
       AudioSystem.pickup();
       this.runtimeScore += SCORE_VALUES.PICKUP;
+      this.spawnScorePopup(`+${SCORE_VALUES.PICKUP}`, result.head.col, result.head.row);
       const eaten = result.head;
       const mr = this.mechanic.onPickupCollected(eaten);
       if (this.applyMechanicUpdate(mr, 1)) { AudioSystem.danger(); this.triggerGameOver(); return; }
@@ -625,11 +626,33 @@ export class GameScene extends Phaser.Scene {
     const hitResult = boss.onWeakPointHit(weakPoint);
     if (!hitResult.hit) return false;
     this.runtimeScore += SCORE_VALUES.BOSS_HIT;
+    this.spawnScorePopup(`+${SCORE_VALUES.BOSS_HIT}`, head.col, head.row);
     flashScreen(this, 0xffffff, 0.32, 160, GAMEPLAY_LAYERS.SCREEN_FX);
     this.cameras.main.shake(110, 0.006);
     AudioSystem.bossHit();
     this.syncMechanicCtx();
     return true;
+  }
+
+  private spawnScorePopup(text: string, col: number, row: number): void {
+    const { px, py } = cellToPixel(this.layout, col, row);
+    const cellH = getCellHeight(this.layout);
+    const popup = this.add.text(px, py - cellH * 0.5, text, {
+      fontFamily: UI_FONT,
+      fontStyle: '800',
+      fontSize: '13px',
+      color: '#ffe066',
+      stroke: '#000000',
+      strokeThickness: 3,
+    }).setOrigin(0.5).setDepth(GAMEPLAY_LAYERS.GAMEPLAY_FX);
+    this.tweens.add({
+      targets: popup,
+      y: py - cellH * 2.0,
+      alpha: 0,
+      duration: 650,
+      ease: 'Power1',
+      onComplete: () => popup.destroy(),
+    });
   }
 
   private syncMechanicCtx(): void {

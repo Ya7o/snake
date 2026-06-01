@@ -1,0 +1,37 @@
+{
+  "patch": "1102",
+  "assertions": [
+    {
+      "id": "popup_created_on_pickup",
+      "description": "Un popup '+100' est créé à chaque pickup collecté",
+      "condition": "result.ate === true → spawnScorePopup('+100', head.col, head.row) appelé",
+      "source": "GameScene.ts, bloc if (result.ate)",
+      "status": "verified_by_code"
+    },
+    {
+      "id": "popup_created_on_boss_hit",
+      "description": "Un popup '+250' est créé à chaque boss weak point hit",
+      "condition": "hitResult.hit === true → spawnScorePopup('+250', head.col, head.row) appelé",
+      "source": "GameScene.ts, resolveBossWeakPoint()",
+      "status": "verified_by_code"
+    },
+    {
+      "id": "popup_auto_destroyed",
+      "description": "Chaque popup est détruit après 650 ms (onComplete → destroy)",
+      "condition": "tween.onComplete fires → popup.destroy() — aucun texte résiduel",
+      "status": "verified_by_code"
+    },
+    {
+      "id": "score_not_modified",
+      "description": "spawnScorePopup ne modifie pas runtimeScore ni this.score",
+      "condition": "méthode read-only : crée seulement un Text Phaser + Tween",
+      "status": "verified_by_code"
+    },
+    {
+      "id": "depth_below_hud",
+      "description": "Popup depth 70 (GAMEPLAY_FX) — sous HUD_STRIP (80) et HUD_TEXT (90)",
+      "condition": "setDepth(GAMEPLAY_LAYERS.GAMEPLAY_FX)",
+      "status": "verified_by_code"
+    }
+  ]
+}
