@@ -1,0 +1,138 @@
+{
+  "audit_date": "2026-06-02",
+  "patch": "1118",
+  "stats": {
+    "total_images": 89,
+    "total_size_kb": 90608.8,
+    "total_size_mb": 88.49,
+    "used_count": 81,
+    "unused_count": 8,
+    "unused_size_kb": 586.1,
+    "safe_to_optimize_count": 43,
+    "estimated_gain_kb": 73647.0,
+    "estimated_gain_mb": 71.92
+  },
+  "categories": {
+    "runtime_icon_png": {
+      "count": 28,
+      "total_kb": 174.9,
+      "used": 28,
+      "safe_to_optimize": 0
+    },
+    "runtime_icon_svg": {
+      "count": 7,
+      "total_kb": 20.6,
+      "used": 7,
+      "safe_to_optimize": 0
+    },
+    "snake_sprite": {
+      "count": 3,
+      "total_kb": 12.3,
+      "used": 3,
+      "safe_to_optimize": 0
+    },
+    "ui_bg": {
+      "count": 40,
+      "total_kb": 82294.4,
+      "used": 40,
+      "safe_to_optimize": 40
+    },
+    "ui_title_bg": {
+      "count": 1,
+      "total_kb": 1886.2,
+      "used": 1,
+      "safe_to_optimize": 1
+    },
+    "ui_title_token": {
+      "count": 8,
+      "total_kb": 586.1,
+      "used": 0,
+      "safe_to_optimize": 0
+    },
+    "worldmap": {
+      "count": 2,
+      "total_kb": 5634.3,
+      "used": 2,
+      "safe_to_optimize": 2
+    }
+  },
+  "unused_files": [
+    {
+      "path": "public/assets/ui/title/world_token_castle.png",
+      "size_kb": 75.9,
+      "dimensions": "256x256"
+    },
+    {
+      "path": "public/assets/ui/title/world_token_fighter.png",
+      "size_kb": 68.7,
+      "dimensions": "256x256"
+    },
+    {
+      "path": "public/assets/ui/title/world_token_kombat.png",
+      "size_kb": 70.2,
+      "dimensions": "256x256"
+    },
+    {
+      "path": "public/assets/ui/title/world_token_outrun.png",
+      "size_kb": 74.7,
+      "dimensions": "256x256"
+    },
+    {
+      "path": "public/assets/ui/title/world_token_paperboy.png",
+      "size_kb": 78.0,
+      "dimensions": "256x256"
+    },
+    {
+      "path": "public/assets/ui/title/world_token_shinobi.png",
+      "size_kb": 75.1,
+      "dimensions": "256x256"
+    },
+    {
+      "path": "public/assets/ui/title/world_token_speed.png",
+      "size_kb": 74.2,
+      "dimensions": "256x256"
+    },
+    {
+      "path": "public/assets/ui/title/world_token_streets.png",
+      "size_kb": 69.3,
+      "dimensions": "256x256"
+    }
+  ],
+  "top5_largest": [
+    {
+      "path": "public/assets/ui/paperboy/paperboy_boss_system_bg.png",
+      "size_kb": 2846.7,
+      "dimensions": "941x1672",
+      "has_alpha": "no",
+      "safe_to_optimize": "yes"
+    },
+    {
+      "path": "public/assets/ui/worldmap/world_map_minimap_16_9.png",
+      "size_kb": 2827.3,
+      "dimensions": "1672x941",
+      "has_alpha": "no",
+      "safe_to_optimize": "yes"
+    },
+    {
+      "path": "public/assets/map/world_map.png",
+      "size_kb": 2807.0,
+      "dimensions": "1448x1086",
+      "has_alpha": "no",
+      "safe_to_optimize": "yes"
+    },
+    {
+      "path": "public/assets/ui/outrun/outrun_boss_system_bg.png",
+      "size_kb": 2604.8,
+      "dimensions": "941x1672",
+      "has_alpha": "no",
+      "safe_to_optimize": "yes"
+    },
+    {
+      "path": "public/assets/ui/fighter/fighter_boss_system_bg.png",
+      "size_kb": 2535.1,
+      "dimensions": "941x1672",
+      "has_alpha": "no",
+      "safe_to_optimize": "yes"
+    }
+  ]
+}
