@@ -7,15 +7,16 @@ export const SNAKE_SKINS: Record<string, SnakeSkinData> = {
     headSprite: 'snake_u01_head',
     bodySprite: 'snake_u01_body',
     tailSprite: 'snake_u01_tail',
-    // PNG content occupies ~88% width, 64% height, 47% height, 34% height for head/body/tail.
-    // These multipliers compensate for transparent margins to reach 85-95% visual cell fill.
-    headScale: 1.1,
+    // Content ratios within each PNG (opaque area / sprite size): head ~88%, body ~47%, tail ~34%.
+    // headScale and tailScale are boosted above body to compensate for sparse tail content and
+    // to make head/tail visually larger than body segments (~17% and ~12% bigger respectively).
+    headScale: 1.25,
     bodyScale: 2.0,
-    tailScale: 1.3,
+    tailScale: 3.1,
   },
 };
 
-/** Asset URL for a skin sprite key — matches public/assets/snakes/<key>.png */
+/** Asset URL for a skin sprite key - matches public/assets/snakes/<key>.png */
 export function snakeSkinSpriteUrl(spriteKey: string): string {
   return `assets/snakes/${spriteKey}.png`;
 }
