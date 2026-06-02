@@ -1,0 +1,53 @@
+{
+  "check_date": "2026-06-02",
+  "patch": "1120B",
+  "server": "http://localhost:5173/snake (Vite dev server WSL)",
+  "phaser_version": "3.90.0",
+  "renderer": "Canvas (headless fallback)",
+  "total_assets_checked_static": 43,
+  "static_pass": 43,
+  "network_confirmed_webp": 3,
+  "failed_requests": 0,
+  "confirmed_loads": [
+    {
+      "asset": "assets/ui/title/title_hub_bg.webp",
+      "screen": "Title screen (TitleScene)",
+      "request_id": "17240.147",
+      "status": "200 OK",
+      "method": "GET",
+      "how": "Phaser preload, TitleScene",
+      "result": "PASS",
+      "notes": "Loaded as Phaser texture key 'title_hub_bg'"
+    },
+    {
+      "asset": "assets/ui/worldmap/world_map_minimap_16_9.webp",
+      "screen": "World Map (WorldMapScene)",
+      "request_id": "17240.157",
+      "status": "200 OK",
+      "method": "GET",
+      "how": "Phaser preload, WorldMapScene",
+      "result": "PASS",
+      "notes": "Loaded as Phaser texture key 'world_map_minimap_16_9'"
+    },
+    {
+      "asset": "assets/ui/castle/castle_gameplay_bg.webp",
+      "screen": "Gameplay Castle (GameScene)",
+      "request_id": "17240.159",
+      "status": "200 OK",
+      "method": "GET",
+      "how": "Phaser preload, GameScene, universe=castle",
+      "result": "PASS",
+      "notes": "Loaded as Phaser texture key 'bg-castle-gameplay'"
+    }
+  ],
+  "console_errors": 0,
+  "console_warnings_asset_related": 0,
+  "pre_existing_qa_failures": [
+    "981 Castle illusion tuning is readable (unrelated to image optimization)"
+  ],
+  "notes": [
+    "Screenshot tool timed out — Phaser WebGL/Canvas in headless context.",
+    "Replaced with JS eval probing of Phaser texture manager.",
+    "No asset-related console errors or warnings observed."
+  ]
+}

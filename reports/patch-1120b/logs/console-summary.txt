@@ -1,0 +1,36 @@
+PATCH 1120B — Console / Network Summary
+========================================
+Date: 2026-06-02
+Server: http://localhost:5173/snake (Vite dev server WSL)
+Phaser: v3.90.0 | Renderer: Canvas (headless fallback)
+
+NETWORK REQUESTS CONFIRMED (200 OK):
+  [17240.147] GET assets/ui/title/title_hub_bg.webp            → 200 OK
+  [17240.157] GET assets/ui/worldmap/world_map_minimap_16_9.webp → 200 OK
+  [17240.159] GET assets/ui/castle/castle_gameplay_bg.webp      → 200 OK
+
+PHASER TEXTURE MANAGER (confirmed loaded):
+  title_hub_bg              ✓
+  world_map_minimap_16_9    ✓
+  bg-castle-gameplay        ✓
+
+FAILED REQUESTS: 0
+ASSET LOAD ERRORS: 0
+ASSET 404s: 0
+CONSOLE ERRORS (asset-related): 0
+CONSOLE WARNINGS (asset-related): 0
+
+PRE-EXISTING QA FAILURES (unrelated to images):
+  ✗ 981 Castle illusion tuning is readable (warning=6, active=5, maxWalls=30)
+  → This is a gameplay tuning check, not an image check. Pre-existing.
+
+SCENES TESTED:
+  BootScene    → OK
+  TitleScene   → OK (title_hub_bg.webp loaded)
+  WorldMapScene → OK (world_map_minimap_16_9.webp loaded)
+  GameScene    → OK (castle_gameplay_bg.webp loaded, SVG icons loaded)
+
+LIMITATION:
+  Screenshot capture impossible in Phaser/WebGL headless context.
+  Visual validation via JS eval + network panel instead.
+  Manual visual check recommended on real browser.
