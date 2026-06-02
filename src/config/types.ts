@@ -6,6 +6,12 @@ export interface SnakeSkinData {
   headSprite: string;
   bodySprite: string;
   tailSprite: string;
+  /** Scale multiplier for the head sprite relative to standard cell-fit (default 1). */
+  headScale?: number;
+  /** Scale multiplier for body segments relative to standard cell-fit (default 1). */
+  bodyScale?: number;
+  /** Scale multiplier for the tail sprite relative to standard cell-fit (default 1). */
+  tailScale?: number;
 }
 
 export interface UniverseConfig {

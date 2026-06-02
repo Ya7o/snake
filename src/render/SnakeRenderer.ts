@@ -96,7 +96,7 @@ export class SnakeRenderer {
     // Head (body[0])
     const head = body[0];
     const headImg = this.getOrCreateImage('head', s.headSprite);
-    this.placeSprite(headImg, s.headSprite, layout, head.col, head.row, cs, DIR_TRANSFORM[snake.direction]);
+    this.placeSprite(headImg, s.headSprite, layout, head.col, head.row, cs, DIR_TRANSFORM[snake.direction], s.headScale ?? 1);
 
     // Tail (body[last]) — only when snake has 2+ segments
     if (body.length >= 2) {
@@ -105,7 +105,7 @@ export class SnakeRenderer {
       const prev = body[tailIdx - 1];
       const tailDir = directionToward(tail.col, tail.row, prev.col, prev.row);
       const tailImg = this.getOrCreateImage('tail', s.tailSprite);
-      this.placeSprite(tailImg, s.tailSprite, layout, tail.col, tail.row, cs, DIR_TRANSFORM[tailDir]);
+      this.placeSprite(tailImg, s.tailSprite, layout, tail.col, tail.row, cs, DIR_TRANSFORM[tailDir], s.tailScale ?? 1);
     } else if (this.tailImg) {
       this.tailImg.setVisible(false);
     }
@@ -117,7 +117,7 @@ export class SnakeRenderer {
       const seg = body[i + 1];
       const segNext = body[i]; // toward head
       const dir = directionToward(seg.col, seg.row, segNext.col, segNext.row);
-      this.placeSprite(this.bodyPool[i], s.bodySprite, layout, seg.col, seg.row, cs, DIR_TRANSFORM[dir]);
+      this.placeSprite(this.bodyPool[i], s.bodySprite, layout, seg.col, seg.row, cs, DIR_TRANSFORM[dir], s.bodyScale ?? 1);
     }
     for (let i = bodySegCount; i < this.bodyPool.length; i++) {
       this.bodyPool[i].setVisible(false);
@@ -132,13 +132,14 @@ export class SnakeRenderer {
     row: number,
     cs: number,
     transform: SpriteTransform,
+    partScale: number = 1,
   ): void {
     this.applyTextureFilter(textureKey);
     const { px, py } = cellToPixel(layout, col, row);
     const frame = this.scene.textures.getFrame(textureKey);
     const fw = frame?.realWidth  ?? img.width  ?? cs;
     const fh = frame?.realHeight ?? img.height ?? cs;
-    const scale = fw > 0 && fh > 0 ? (cs * 0.92) / Math.max(fw, fh) : 1;
+    const scale = fw > 0 && fh > 0 ? (cs * 0.92 * partScale) / Math.max(fw, fh) : 1;
     img
       .setTexture(textureKey)
       .setPosition(px, py)

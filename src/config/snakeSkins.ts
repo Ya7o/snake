@@ -7,6 +7,11 @@ export const SNAKE_SKINS: Record<string, SnakeSkinData> = {
     headSprite: 'snake_u01_head',
     bodySprite: 'snake_u01_body',
     tailSprite: 'snake_u01_tail',
+    // PNG content occupies ~88% width, 64% height, 47% height, 34% height for head/body/tail.
+    // These multipliers compensate for transparent margins to reach 85-95% visual cell fill.
+    headScale: 1.1,
+    bodyScale: 2.0,
+    tailScale: 1.3,
   },
 };
 
