@@ -3,11 +3,15 @@ import { SnakeState, Direction } from '../core/Snake';
 import { GridLayout, cellToPixel, getCellHeight, getCellMin, getCellWidth } from './GridRenderer';
 import { SnakeSkinData } from '../config/types';
 
-const DIR_ANGLE: Record<Direction, number> = {
-  RIGHT: 0,
-  DOWN:  Math.PI / 2,
-  LEFT:  Math.PI,
-  UP:    3 * Math.PI / 2,
+interface SpriteTransform { angle: number; flipX: boolean; }
+
+// LEFT uses horizontal mirror instead of 180° rotation so the head/tail art
+// stays right-side-up (rotation would flip the sprite upside-down too).
+const DIR_TRANSFORM: Record<Direction, SpriteTransform> = {
+  RIGHT: { angle: 0,            flipX: false },
+  DOWN:  { angle: Math.PI / 2,  flipX: false },
+  LEFT:  { angle: 0,            flipX: true  },
+  UP:    { angle: -Math.PI / 2, flipX: false },
 };
 
 /** Direction from cell A toward cell B (A is behind, B is in front). */
@@ -92,7 +96,7 @@ export class SnakeRenderer {
     // Head (body[0])
     const head = body[0];
     const headImg = this.getOrCreateImage('head', s.headSprite);
-    this.placeSprite(headImg, s.headSprite, layout, head.col, head.row, cs, DIR_ANGLE[snake.direction]);
+    this.placeSprite(headImg, s.headSprite, layout, head.col, head.row, cs, DIR_TRANSFORM[snake.direction]);
 
     // Tail (body[last]) — only when snake has 2+ segments
     if (body.length >= 2) {
@@ -101,7 +105,7 @@ export class SnakeRenderer {
       const prev = body[tailIdx - 1];
       const tailDir = directionToward(tail.col, tail.row, prev.col, prev.row);
       const tailImg = this.getOrCreateImage('tail', s.tailSprite);
-      this.placeSprite(tailImg, s.tailSprite, layout, tail.col, tail.row, cs, DIR_ANGLE[tailDir]);
+      this.placeSprite(tailImg, s.tailSprite, layout, tail.col, tail.row, cs, DIR_TRANSFORM[tailDir]);
     } else if (this.tailImg) {
       this.tailImg.setVisible(false);
     }
@@ -113,7 +117,7 @@ export class SnakeRenderer {
       const seg = body[i + 1];
       const segNext = body[i]; // toward head
       const dir = directionToward(seg.col, seg.row, segNext.col, segNext.row);
-      this.placeSprite(this.bodyPool[i], s.bodySprite, layout, seg.col, seg.row, cs, DIR_ANGLE[dir]);
+      this.placeSprite(this.bodyPool[i], s.bodySprite, layout, seg.col, seg.row, cs, DIR_TRANSFORM[dir]);
     }
     for (let i = bodySegCount; i < this.bodyPool.length; i++) {
       this.bodyPool[i].setVisible(false);
@@ -127,20 +131,20 @@ export class SnakeRenderer {
     col: number,
     row: number,
     cs: number,
-    angle: number,
+    transform: SpriteTransform,
   ): void {
     this.applyTextureFilter(textureKey);
     const { px, py } = cellToPixel(layout, col, row);
     const frame = this.scene.textures.getFrame(textureKey);
     const fw = frame?.realWidth  ?? img.width  ?? cs;
     const fh = frame?.realHeight ?? img.height ?? cs;
-    // Scale to fit within cell with a small margin
     const scale = fw > 0 && fh > 0 ? (cs * 0.92) / Math.max(fw, fh) : 1;
     img
       .setTexture(textureKey)
       .setPosition(px, py)
       .setScale(scale)
-      .setRotation(angle)
+      .setFlipX(transform.flipX)
+      .setRotation(transform.angle)
       .setVisible(true);
   }
 
