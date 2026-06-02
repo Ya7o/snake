@@ -78,5 +78,5 @@ Pas de captures automatisées dans ce patch. Validation mobile réelle recommand
 
 ## Liens GitHub
 
-- Commit : _(à renseigner après push)_
+- Commit : https://github.com/Ya7o/snake/commit/b39f327d2ba415b27e878c6795215991e9608186
 - PR : N/A
