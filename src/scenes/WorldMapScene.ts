@@ -11,7 +11,7 @@ import { AudioSystem } from '../systems/AudioSystem';
 import { UI_FONT } from '../render/VfxUtils';
 
 // Source map dimensions — updated from texture metadata if available
-// New minimap: world_map_minimap_16_9.png (1672x941)
+// New minimap: world_map_minimap_16_9.webp (1672x941)
 const MAP_IMG_W = 1672;
 const MAP_IMG_H = 941;
 
@@ -83,7 +83,7 @@ export class WorldMapScene extends Phaser.Scene {
     if (!this.textures.exists(WM_KEY)) {
       this.load.on('loaderror', (file: Phaser.Loader.File) => {
         if (file.key === WM_KEY)
-          console.warn('[WorldMap] world_map_minimap_16_9.png introuvable — fallback procédural');
+          console.warn('[WorldMap] world_map_minimap_16_9.webp introuvable — fallback procédural');
       });
       this.load.image(WM_KEY, WM_PATH);
     }

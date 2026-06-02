@@ -9,8 +9,8 @@ export const ASSET_KEYS = {
 } as const;
 
 export const ASSET_PATHS = {
-  WORLD_MAP: 'assets/map/world_map.png',
-  WORLD_MAP_MINIMAP: 'assets/ui/worldmap/world_map_minimap_16_9.png',
+  WORLD_MAP: 'assets/map/world_map.webp',
+  WORLD_MAP_MINIMAP: 'assets/ui/worldmap/world_map_minimap_16_9.webp',
 } as const;
 
 export const SCENES = {
@@ -72,11 +72,11 @@ export interface UniverseBgSet {
 }
 
 const mk = (uid: string): UniverseBgSet => ({
-  system:     { key: `bg-${uid}-system`,    url: `assets/ui/${uid}/${uid}_system_bg.png` },
-  bossSystem: { key: `bg-${uid}-boss-sys`,  url: `assets/ui/${uid}/${uid}_boss_system_bg.png` },
-  gameplay:   { key: `bg-${uid}-gameplay`,  url: `assets/ui/${uid}/${uid}_gameplay_bg.png` },
-  gameOver:   { key: `bg-${uid}-gameover`,  url: `assets/ui/${uid}/${uid}_game_over_bg.png` },
-  clear:      { key: `bg-${uid}-clear`,     url: `assets/ui/${uid}/${uid}_clear_bg.png` },
+  system:     { key: `bg-${uid}-system`,    url: `assets/ui/${uid}/${uid}_system_bg.webp` },
+  bossSystem: { key: `bg-${uid}-boss-sys`,  url: `assets/ui/${uid}/${uid}_boss_system_bg.webp` },
+  gameplay:   { key: `bg-${uid}-gameplay`,  url: `assets/ui/${uid}/${uid}_gameplay_bg.webp` },
+  gameOver:   { key: `bg-${uid}-gameover`,  url: `assets/ui/${uid}/${uid}_game_over_bg.webp` },
+  clear:      { key: `bg-${uid}-clear`,     url: `assets/ui/${uid}/${uid}_clear_bg.webp` },
 });
 
 export const UNIVERSE_RESULT_SCREEN_ASSETS: Record<string, UniverseBgSet> = {

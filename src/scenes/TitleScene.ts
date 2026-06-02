@@ -5,7 +5,7 @@ import { runQAChecks } from '../qa/QAChecks';
 import { ARCADE_FONT, UI_FONT, drawGradientBg } from '../render/VfxUtils';
 
 const TITLE_HUB_ASSETS = {
-  bg: { key: 'title_hub_bg', url: 'assets/ui/title/title_hub_bg.png' },
+  bg: { key: 'title_hub_bg', url: 'assets/ui/title/title_hub_bg.webp' },
 };
 
 export class TitleScene extends Phaser.Scene {
