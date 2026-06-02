@@ -18,6 +18,7 @@ export const UNIVERSES: Record<string, UniverseConfig> = {
     assetFolder: 'sonic',
     mechanicNormal: 'ringChains',
     mechanicBoss: 'loopSerpent',
+    snakeSkinId: 'snake_u01_sonic',
     palette: { bg: '#001033', primary: '#2980b9', secondary: '#3498db', accent: '#f9ca24' }
   },
   streets: {

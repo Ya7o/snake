@@ -1,6 +1,13 @@
 export type UniverseId = 'castle' | 'sonic' | 'streets' | 'fighter' | 'outrun' | 'shinobi' | 'kombat' | 'paperboy';
 export type LevelType = 'normal' | 'boss';
 
+export interface SnakeSkinData {
+  id: string;
+  headSprite: string;
+  bodySprite: string;
+  tailSprite: string;
+}
+
 export interface UniverseConfig {
   id: UniverseId;
   name: string;
@@ -8,6 +15,7 @@ export interface UniverseConfig {
   assetFolder: string;
   mechanicNormal: string;
   mechanicBoss: string;
+  snakeSkinId?: string;
   palette: {
     bg: string;
     primary: string;

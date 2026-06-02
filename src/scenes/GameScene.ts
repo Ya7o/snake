@@ -25,6 +25,7 @@ import { SaveSystem } from '../systems/SaveSystem';
 import { MAP_NODES } from '../config/mapNodes';
 import { UI_FONT, flashScreen } from '../render/VfxUtils';
 import { preloadRuntimeAssets, getRuntimeTextureKey } from '../systems/RuntimeAssetResolver';
+import { resolveSnakeSkinForUniverse, snakeSkinSpriteUrl } from '../config/snakeSkins';
 import { drawCastleRuntimeBoardPanel, logCastleRuntimeLayers } from '../ui/CastleRuntimeLayering';
 import { GAMEPLAY_HUD, GAMEPLAY_LAYERS } from '../ui/RuntimeUILayout';
 import { CASTLE_OPENMOJI_ICON_ASSETS, CASTLE_OPENMOJI_ICONS } from '../ui/OpenMojiIconRegistry';
@@ -148,6 +149,14 @@ export class GameScene extends Phaser.Scene {
         }
       }
     }
+
+    // Snake skin assets — loaded only for universes that declare a skin
+    const snakeSkin = resolveSnakeSkinForUniverse(uid);
+    if (snakeSkin) {
+      for (const key of [snakeSkin.headSprite, snakeSkin.bodySprite, snakeSkin.tailSprite]) {
+        if (!this.textures.exists(key)) this.load.image(key, snakeSkinSpriteUrl(key));
+      }
+    }
   }
 
   create(): void {
@@ -183,6 +192,7 @@ export class GameScene extends Phaser.Scene {
     // Renderers
     this.gridRenderer    = new GridRenderer(this, this.layout);
     this.snakeRenderer   = new SnakeRenderer(this);
+    this.snakeRenderer.setSkin(resolveSnakeSkinForUniverse(uid));
     this.pickupRenderer  = new PickupRenderer(this);
     this.obstacleRenderer = new ObstacleRenderer(this);
     this.hudRenderer     = new HUDRenderer(this, palette.accent);
