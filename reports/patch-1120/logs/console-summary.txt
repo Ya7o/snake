@@ -1,0 +1,23 @@
+PATCH 1120 — Console/Network Check Summary
+==========================================
+Date: 2026-06-02
+Method: WSL Vite dev server + HTTP Content-Type validation
+
+CHECKS PERFORMED:
+-----------------
+1. File existence: All 43 .webp files on disk — PASS
+2. PIL verify: All 43 .webp decode without error — PASS
+3. HTTP Content-Type: All 43 serve as image/webp — PASS
+4. Old PNG deleted: All 43 original .png removed from disk — PASS
+5. TypeScript build: npm run check — PASS (no errors)
+6. Bundle refs: dist/assets/*.js contains .webp refs, no old _bg.png — PASS
+7. SPA fallback: Old PNG URLs return text/html (not actual PNG) — CORRECT
+
+ERRORS / WARNINGS:
+------------------
+None blocking.
+
+Vite chunk size warning (pre-existing): index-*.js > 500 KB
+This is a JS bundle size issue unrelated to image optimization.
+
+VERDICT: PASS

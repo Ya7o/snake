@@ -1,0 +1,11 @@
+{
+  "check_date": "2026-06-02",
+  "method": "WSL Vite dev server HTTP check (Content-Type validation)",
+  "server": "http://localhost:5173/snake",
+  "total_assets_checked": 43,
+  "all_webp_serve_200_image_webp": true,
+  "all_old_png_deleted": true,
+  "webp_404s": [],
+  "old_png_still_serving": [],
+  "notes": "Old PNG paths return text/html SPA fallback (correct \u2014 Vite SPA fallback for unmatched routes)"
+}

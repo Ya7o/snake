@@ -1,0 +1,8 @@
+Textures: {
+  "scene": true,
+  "head": true,
+  "body": true,
+  "tail": true
+}
+Errors:
+none
