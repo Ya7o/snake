@@ -7,12 +7,15 @@ export const SNAKE_SKINS: Record<string, SnakeSkinData> = {
     headSprite: 'snake_u01_head',
     bodySprite: 'snake_u01_body',
     tailSprite: 'snake_u01_tail',
-    // Content ratios within each PNG (opaque area / sprite size): head ~88%, body ~47%, tail ~34%.
-    // headScale and tailScale are boosted above body to compensate for sparse tail content and
-    // to make head/tail visually larger than body segments (~17% and ~12% bigger respectively).
-    headScale: 1.25,
+    // PNG dimensions after PATCH 1121E crop (head/tail only):
+    //   head: 60x45 (content 56x41, 2px padding), body: 64x64 (unchanged), tail: 60x26 (content 56x22, 2px padding)
+    // Rendered visual height at these scales (reference: body = cs*0.863):
+    //   head  = cs*0.92*1.85*(41/60) = cs*1.164  (+35% vs body)
+    //   body  = cs*0.92*2.0 *(30/64) = cs*0.863  (reference)
+    //   tail  = cs*0.92*3.35*(22/60) = cs*1.131  (+31% vs body)
+    headScale: 1.85,
     bodyScale: 2.0,
-    tailScale: 3.1,
+    tailScale: 3.35,
   },
 };
 
